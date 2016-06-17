@@ -2,19 +2,24 @@ import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import config from '../src/config';
-import * as actions from './actions/index';
-import {mapUrl} from 'utils/url.js';
+import * as authentication  from 'actions/authentication';
+import * as recipes  from 'actions/recipe';
+import handleAction from 'utils/handleAction.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
 
 const pretty = new PrettyError();
 const app = express();
-
 const server = new http.Server(app);
-
 const io = new SocketIo(server);
+const mongoose   = require('mongoose');
+const Recipe   = require('models/recipe');
+const router = express.Router();              // get an instance of the express Router
+
 io.path('/ws');
+
+mongoose.connect('mongodb://localhost/test');
 
 app.use(session({
   secret: 'react and redux rule!!!!',
@@ -25,30 +30,53 @@ app.use(session({
 app.use(bodyParser.json());
 
 
-app.use((req, res) => {
-  const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
 
-  const {action, params} = mapUrl(actions, splittedUrlPath);
+// middleware to use for all requests
+router.use(function(req, res, next) {
+    // do logging 
+    console.log('Something is happening.');
+    next(); // make sure we go to the next routes and don't stop here
+});
 
-  if (action) {
-    action(req, params)
-      .then((result) => {
-        if (result instanceof Function) {
-          result(res);
-        } else {
-          res.json(result);
-        }
-      }, (reason) => {
-        if (reason && reason.redirect) {
-          res.redirect(reason.redirect);
-        } else {
-          console.error('API ERROR:', pretty.render(reason));
-          res.status(reason.status || 500).json(reason);
-        }
-      });
-  } else {
-    res.status(404).end('NOT FOUND');
-  }
+
+router.get('/login', function(req, res) {
+    handleAction(authentication.login(req), res);
+});
+
+router.get('/logout', function(req, res) {
+    handleAction(authentication.logout(req), res);
+});
+
+router.get('/loadAuth', function(req, res) {
+    handleAction(authentication.loadAuth(req.session.user), res);
+});
+
+router.get('/loadInfo', function(req, res) {
+    handleAction(authentication.loadInfo(), res);
+});
+
+router.route('/recipes')
+
+    .post(function(req, res) {
+       handleAction(recipes.add(req.body), res);        
+    })
+
+    .get(function(req, res) {
+        handleAction(recipes.find(), res);
+    });
+
+router.route('/recipes/:recipe_id')
+
+    // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
+    .get(function(req, res) {
+          handleAction(recipes.findById(req.params.recipe_id), res);
+    });
+
+app.use('/api', router);
+
+// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+router.get('/', function(req, res) {
+    res.json({ message: 'hooray! welcome to our api!' });   
 });
 
 
@@ -63,6 +91,7 @@ if (config.apiPort) {
     }
     console.info('----\n==> 🌎  API is running on port %s', config.apiPort);
     console.info('==> 💻  Send requests to http://%s:%s', config.apiHost, config.apiPort);
+
   });
 
   io.on('connection', (socket) => {
