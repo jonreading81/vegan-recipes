@@ -5,7 +5,6 @@ export  function find () {
     return new Promise((resolve,reject) => {
 
  		Recipe.find(function(err, recipes) {
- 			console.log(err);
             if (err) reject(err);
 
             resolve(recipes);
@@ -18,7 +17,6 @@ export  function findById (id) {
 	return new Promise((resolve,reject) => {
 
  		Recipe.find({ name: id },function(err, recipe) {
- 			console.log(err);
             if (err) reject(err);
 
             resolve(recipe);
