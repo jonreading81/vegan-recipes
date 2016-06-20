@@ -4,8 +4,7 @@ export default function handleAction(action ,res)  {
       (result) => {
           res.json(result);
       }, 
-      (reason) => {
-        
+      (reason) => {        
           res.status(reason.status || 500).json(reason);
       }
   );

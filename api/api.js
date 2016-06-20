@@ -27,6 +27,9 @@ app.use(session({
   cookie: { maxAge: 60000 }
 }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({  
+  extended: true
+})); 
 
 
 
@@ -66,7 +69,7 @@ router.route('/recipes/:recipe_id')
 
     // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
     .get(function(req, res) {
-          handleAction(recipes.findById(req.params.recipe_id), res);
+          handleAction(recipes.findBySlug(req.params.recipe_id), res);
     });
 
 app.use('/api', router);
