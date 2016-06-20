@@ -32,14 +32,13 @@ app.use(bodyParser.urlencoded({
 })); 
 
 
-
 // middleware to use for all requests
 router.use(function(req, res, next) {
     next(); // make sure we go to the next routes and don't stop here
 });
 
 
-router.get('/login', function(req, res) {
+router.post('/login', function(req, res) {
     handleAction(authentication.login(req), res);
 });
 
@@ -70,14 +69,15 @@ router.route('/recipes/:recipe_id')
     // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
     .get(function(req, res) {
           handleAction(recipes.findBySlug(req.params.recipe_id), res);
+    })
+
+     .delete(function(req, res) {
+      console.log('dlete');
+         handleAction(recipes.findByIdAndRemove(req.params.recipe_id), res);
     });
 
-app.use('/api', router);
+app.use('/', router);
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
-});
 
 
 const bufferSize = 100;

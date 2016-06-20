@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
+import { requestRecipes} from 'redux/modules/recipe';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
@@ -18,6 +19,8 @@ import { asyncConnect } from 'redux-async-connect';
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
+
+    promises.push(dispatch(requestRecipes()));
 
     return Promise.all(promises);
   }
@@ -72,13 +75,19 @@ export default class App extends Component {
 
           <Navbar.Collapse eventKey={0}>
             <Nav navbar>
+             <LinkContainer to="/recipes">
+                <NavItem eventKey={1}>Recipes</NavItem>
+              </LinkContainer>
+             <LinkContainer to="/addRecipe">
+                <NavItem eventKey={2}>Add Recipe</NavItem>
+              </LinkContainer>
               {!user &&
               <LinkContainer to="/login">
-                <NavItem eventKey={5}>Login</NavItem>
+                <NavItem eventKey={3}>Login</NavItem>
               </LinkContainer>}
               {user &&
               <LinkContainer to="/logout">
-                <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
+                <NavItem eventKey={3} className="logout-link" onClick={this.handleLogout}>
                   Logout
                 </NavItem>
               </LinkContainer>}

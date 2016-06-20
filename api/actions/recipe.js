@@ -25,6 +25,21 @@ export  function findById (id) {
  	
 };
 
+export  function findByIdAndRemove (id) {
+
+  return new Promise((resolve,reject) => {
+
+    Recipe.findByIdAndRemove(id,function(err, recipe) {
+            if (err) reject(err);
+
+             resolve({ message: 'Recipe deleted!' });
+        });
+    });
+  
+};
+
+
+
 export  function findBySlug (slug) {
 
   return new Promise((resolve,reject) => {
@@ -45,8 +60,6 @@ export function add(params){
   		let myRecipe = new Recipe();
 
 		  myRecipe= Object.assign(myRecipe,params);
-
-      console.log(params);
    		myRecipe.save(function(err) {
        
         if (err) {

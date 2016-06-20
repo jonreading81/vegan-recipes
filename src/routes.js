@@ -4,6 +4,8 @@ import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import {
     App,
     Home,
+    AddRecipe,
+    RecipeList,
     Login,
     LoginSuccess,
     NotFound,
@@ -40,9 +42,9 @@ export default (store) => {
         <Route path="loginSuccess" component={LoginSuccess}/>
       </Route>
 
-      { /* Routes */ }
       <Route path="login" component={Login}/>
-
+      <Route path="addRecipe" component={AddRecipe}/>
+      <Route path="recipes" component={RecipeList}/>
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />
     </Route>
