@@ -4,3 +4,4 @@
  *  ie: import {  } from 'components';
  *
  */
+export ItemsList from './ItemsList/ItemsList';
