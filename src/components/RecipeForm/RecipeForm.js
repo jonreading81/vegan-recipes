@@ -1,6 +1,14 @@
-import React, { Component, PropTypes } from 'react'
-import { reduxForm } from 'redux-form'
-export const fields = [ 'title', 'description', 'author', 'imageURL' ]
+import React, { Component, PropTypes } from 'react';
+import { reduxForm } from 'redux-form';
+export const fields = [ 'title', 'description', 'author', 'imageURL' ];
+
+const validate = values => {
+  const errors = {};
+  if (!values.title) {
+    errors.title = 'Required';
+  }
+  return errors;
+};
 
 class SimpleForm extends Component {
   render() {
@@ -9,30 +17,28 @@ class SimpleForm extends Component {
       handleSubmit,
       resetForm,
       submitting
-      } = this.props
+      } = this.props;
+
     return (<form onSubmit={handleSubmit}>
         <div>
           <label>Title</label>
           <div>
             <input type="text" placeholder="Title" {...title}/>
+                {title.touched && title.error && <div>{title.error}</div>}
           </div>
         </div>
-        
         <div>
           <label>Author</label>
           <div>
             <input type="text" placeholder="Author" {...author}/>
           </div>
         </div>
-
         <div>
           <label>ImageURL</label>
           <div>
             <input type="text" placeholder="ImageURL" {...imageURL}/>
           </div>
         </div>
-
-        
         <div>
           <label>Description</label>
           <div>
@@ -52,7 +58,7 @@ class SimpleForm extends Component {
           </button>
         </div>
       </form>
-    )
+    );
   }
 }
 
@@ -61,9 +67,10 @@ SimpleForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   resetForm: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired
-}
+};
 
 export default reduxForm({
   form: 'simple',
-  fields
-})(SimpleForm)
+  fields,
+  validate
+})(SimpleForm);

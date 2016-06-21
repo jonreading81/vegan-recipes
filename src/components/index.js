@@ -5,3 +5,4 @@
  *
  */
 export ItemsList from './ItemsList/ItemsList';
+export RecipeForm from './RecipeForm/RecipeForm';

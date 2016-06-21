@@ -3,6 +3,10 @@ const REQUEST_RECIPES = 'vegan-recipes/recipes/REQUEST_RECIPES';
 const REQUEST_RECIPES_SUCCESS = 'vegan-recipes/recipes/REQUEST_RECIPES_SUCCESS';
 const REQUEST_RECIPES_FAIL = 'vegan-recipes/recipes/REQUEST_RECIPES_FAIL';
 
+const REQUEST_ADD_RECIPE = 'vegan-recipes/recipes/REQUEST_ADD_RECIPE';
+const REQUEST_ADD_RECIPE_SUCCESS = 'vegan-recipes/recipes/REQUEST_ADD_RECIPE_SUCCESS';
+const REQUEST_ADD_RECIPE_FAIL = 'vegan-recipes/recipes/REQUEST_ADD_RECIPE_FAIL';
+
 // Reducer
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
@@ -26,6 +30,13 @@ export default function reducer(state = {}, action = {}) {
 export function requestRecipes() {
   return {
     types: [REQUEST_RECIPES, REQUEST_RECIPES_SUCCESS, REQUEST_RECIPES_FAIL],
+    promise: (client) => client.get('/recipes')
+  };
+}
+
+export function requestAddRecipe() {
+  return {
+    types: [REQUEST_ADD_RECIPE, REQUEST_ADD_RECIPE_SUCCESS, REQUEST_ADD_RECIPE_FAIL],
     promise: (client) => client.get('/recipes')
   };
 }
