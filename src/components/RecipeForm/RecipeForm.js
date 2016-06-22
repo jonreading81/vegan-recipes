@@ -1,14 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 export const fields = [ 'title', 'description', 'author', 'imageURL' ];
-
-const validate = values => {
-  const errors = {};
-  if (!values.title) {
-    errors.title = 'Required';
-  }
-  return errors;
-};
+import FormGroup from 'components/Form/FormGroup';
+import validation from './validation';
+const validate = values => validation(values);
 
 class SimpleForm extends Component {
   render() {
@@ -21,22 +16,18 @@ class SimpleForm extends Component {
 
     return (<form onSubmit={handleSubmit}>
         <div>
-          <label>Title</label>
-          <div>
-            <input type="text" placeholder="Title" {...title}/>
-                {title.touched && title.error && <div>{title.error}</div>}
-          </div>
+          <FormGroup controlId="title" label="Title" type="text" field={title}/>
         </div>
         <div>
           <label>Author</label>
           <div>
-            <input type="text" placeholder="Author" {...author}/>
-          </div>
+           <FormGroup controlId="author" label="Author" type="text" field={author}/>
+      </div>
         </div>
         <div>
           <label>ImageURL</label>
           <div>
-            <input type="text" placeholder="ImageURL" {...imageURL}/>
+            <FormGroup controlId="imageURL" label="imageURL" type="text" field={imageURL}/>
           </div>
         </div>
         <div>

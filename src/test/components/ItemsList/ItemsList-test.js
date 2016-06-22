@@ -4,6 +4,7 @@ import {expect} from 'chai';
 import {ItemsList} from 'components';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const mockItems=[
 	{
@@ -40,8 +41,8 @@ describe('<ItemsList />', () => {
         .to.equal(mockItems[0].title);
       });
 
-       it('should set href', () => {
-        expect(wrapper.find(ListGroupItem).at(0).props().href)
+       it('should set destination on link container', () => {
+        expect(wrapper.find(LinkContainer).at(0).props().to)
         .to.equal(mockItems[0].url);
       });
   });
