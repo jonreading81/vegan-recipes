@@ -1,16 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import {FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
-import HelpBlock from 'components/Form/HelpBlock';
-
+import {FormGroup} from 'react-bootstrap';
 
 export default class ReduxFormFormGroup extends Component {
 
   static propTypes = {
-    field: PropTypes.object.isRequired,
-    type: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
     controlId: PropTypes.string,
-    children: PropTypes.array
+    children: PropTypes.array,
+    field: PropTypes.object.required
   };
 
   getValidationState = (field) => {
@@ -26,14 +22,11 @@ export default class ReduxFormFormGroup extends Component {
   }
 
   render() {
-    const {field, controlId, type, label} = this.props;
+    const {field, controlId, children} = this.props;
     return (
       <div>
         <FormGroup controlId={controlId} validationState={this.getValidationState(field)}>
-          <ControlLabel>{label}</ControlLabel>
-            <FormControl type={type} {...field}/>
-            <FormControl.Feedback />
-            <HelpBlock field={field}/>
+         {children}
         </FormGroup>
       </div>
     );
