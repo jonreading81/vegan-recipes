@@ -7,7 +7,7 @@ import HelpBlock from 'components/Form/HelpBlock';
 import validation from './validation';
 const validate = values => validation(values);
 
-class SimpleForm extends Component {
+class RecipeForm extends Component {
   render() {
     const {
       fields: { title, author, imageURL, description},
@@ -52,7 +52,7 @@ class SimpleForm extends Component {
   }
 }
 
-SimpleForm.propTypes = {
+RecipeForm.propTypes = {
   fields: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   resetForm: PropTypes.func.isRequired,
@@ -60,7 +60,7 @@ SimpleForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'simple',
+  form: 'recipeForm',
   fields,
   validate
-})(SimpleForm);
+})(RecipeForm);

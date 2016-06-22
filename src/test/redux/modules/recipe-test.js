@@ -1,6 +1,6 @@
 
 import {expect} from 'chai';
-import reducer from 'redux/modules/recipe';
+import reducer from 'redux/modules/recipeList';
 
 describe('redux/modules/recipe', () => {
 

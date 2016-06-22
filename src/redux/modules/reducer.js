@@ -4,12 +4,14 @@ import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 import {reducer as form} from 'redux-form';
 
 import auth from './auth';
-import recipe from './recipe';
+import addRecipe from './addRecipe';
+import recipeList from './recipeList';
 
 export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
   auth,
-  recipe,
+  recipeList,
+  addRecipe,
   form
 });

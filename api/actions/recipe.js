@@ -54,20 +54,17 @@ export  function findBySlug (slug) {
 };
 
 export function add(params){
+    params=Object.assign({
+      title:''
+    },params);
 	
   	return new Promise((resolve,reject) => {
-
-  		let myRecipe = new Recipe();
-
-		  myRecipe= Object.assign(myRecipe,params);
+  		let myRecipe = new Recipe(params);
+ 
    		myRecipe.save(function(err) {
-       
-        if (err) {
-          reject(err);
-        }
-        resolve({ message: 'Recipe created!' });
+        if (err) reject(err);
+        resolve(myRecipe);       
+           
       });
-
   	});
-
 }

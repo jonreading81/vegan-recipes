@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {RecipeForm} from 'components';
-import { requestAddRecipe} from 'redux/modules/recipe';
+import { requestAddRecipe} from 'redux/modules/addRecipe';
 
 
 const mapDispatchToProps = (dispatch) => {

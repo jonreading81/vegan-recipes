@@ -7,7 +7,7 @@ import {mapRecipesToItems} from 'utils/recipes';
 
 const mapStateToProps = (state) => {
   return {
-    items: mapRecipesToItems(state.recipe.items)
+    items: mapRecipesToItems(state.recipeList.items)
   };
 };
 
