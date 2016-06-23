@@ -44,10 +44,14 @@ export  function findBySlug (slug) {
 
   return new Promise((resolve,reject) => {
 
-    Recipe.find({ slug: slug },function(err, recipe) {
+    Recipe.find({ slug: slug },function(err, recipes) {
             if (err) reject(err);
 
-            resolve(recipe);
+            if(recipes.length==0){
+              reject({message: "Recipe not found"});
+            }else{
+                 resolve(recipes[0]);
+               }
         });
     });
   

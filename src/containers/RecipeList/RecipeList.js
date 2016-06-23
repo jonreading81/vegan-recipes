@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {ItemsList} from 'components';
 import {mapRecipesToItems} from 'utils/recipes';
+import { requestRecipes} from 'redux/modules/recipeList';
 
+import { asyncConnect } from 'redux-async-connect';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,6 +15,12 @@ const mapStateToProps = (state) => {
 
 const RecipeListComponent = connect(mapStateToProps)(ItemsList);
 
+
+@asyncConnect([{
+  promise: ({store: {dispatch}}) => {
+    return dispatch(requestRecipes());
+  }
+}])
 export default class RecipeListContainer extends Component {
 
   render() {

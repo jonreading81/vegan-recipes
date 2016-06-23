@@ -6,6 +6,7 @@ import {reducer as form} from 'redux-form';
 import auth from './auth';
 import addRecipe from './addRecipe';
 import recipeList from './recipeList';
+import viewRecipe from './viewRecipe';
 
 export default combineReducers({
   routing: routerReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   auth,
   recipeList,
   addRecipe,
+  viewRecipe,
   form
 });

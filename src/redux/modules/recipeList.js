@@ -7,16 +7,22 @@ const REQUEST_RECIPES_FAIL = 'vegan-recipes/recipes/REQUEST_RECIPES_FAIL';
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case REQUEST_RECIPES:
-      return Object.assign({}, state, {
+      return {
         	isFetching: true,
         	didInvalidate: false
-      });
+      };
+    case REQUEST_RECIPES_FAIL:
+      return {
+          isFetching: false,
+          didInvalidate: true,
+          error:action.error
+      };
     case REQUEST_RECIPES_SUCCESS:
-      return Object.assign({}, state, {
+      return {
         isFetching: false,
         didInvalidate: false,
         items: action.result
-      });
+      };
     default:
       return state;
   }

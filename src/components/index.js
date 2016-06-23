@@ -6,3 +6,4 @@
  */
 export ItemsList from './ItemsList/ItemsList';
 export RecipeForm from './RecipeForm/RecipeForm';
+export RecipeDetails from './RecipeDetails/RecipeDetails';

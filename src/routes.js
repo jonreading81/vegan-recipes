@@ -6,6 +6,7 @@ import {
     Home,
     AddRecipe,
     RecipeList,
+    ViewRecipe,
     Login,
     LoginSuccess,
     NotFound,
@@ -45,6 +46,7 @@ export default (store) => {
       <Route path="login" component={Login}/>
       <Route path="addRecipe" component={AddRecipe}/>
       <Route path="recipes" component={RecipeList}/>
+      <Route path="recipes/:recipe" component={ViewRecipe}/>
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />
     </Route>
