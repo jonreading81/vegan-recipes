@@ -8,6 +8,14 @@ import validation from './validation';
 const validate = values => validation(values);
 
 class RecipeForm extends Component {
+
+  static propTypes = {
+    fields: PropTypes.object.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    resetForm: PropTypes.func.isRequired,
+    submitting: PropTypes.bool.isRequired
+  }
+
   render() {
     const {
       fields: { title, author, imageURL, description},
@@ -51,14 +59,6 @@ class RecipeForm extends Component {
     );
   }
 }
-
-RecipeForm.propTypes = {
-  fields: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  resetForm: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired
-};
-
 export default reduxForm({
   form: 'recipeForm',
   fields,

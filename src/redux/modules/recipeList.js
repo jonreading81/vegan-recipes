@@ -8,14 +8,14 @@ export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case REQUEST_RECIPES:
       return {
-        	isFetching: true,
-        	didInvalidate: false
+        isFetching: true,
+        didInvalidate: false
       };
     case REQUEST_RECIPES_FAIL:
       return {
-          isFetching: false,
-          didInvalidate: true,
-          error:action.error
+        isFetching: false,
+        didInvalidate: true,
+        error: action.error
       };
     case REQUEST_RECIPES_SUCCESS:
       return {

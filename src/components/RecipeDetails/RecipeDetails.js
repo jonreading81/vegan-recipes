@@ -3,11 +3,16 @@ import React, { Component, PropTypes } from 'react';
 class RecipeDetail extends Component {
 
   static propTypes = {
-    recipe: PropTypes.object.required
+    recipe: PropTypes.object.isRequired
   };
 
   render() {
-    const {recipe} = this.props;
+    const recipe = Object.assign(
+      {
+        title: '',
+        description: ''
+      },
+      this.props.recipe);
 
     return (
       <div>

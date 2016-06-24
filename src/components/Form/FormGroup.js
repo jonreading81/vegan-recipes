@@ -6,7 +6,7 @@ export default class ReduxFormFormGroup extends Component {
   static propTypes = {
     controlId: PropTypes.string,
     children: PropTypes.array,
-    field: PropTypes.object.required
+    field: PropTypes.object
   };
 
   getValidationState = (field) => {
