@@ -67,7 +67,7 @@ describe('redux/modules/addRecipe', () => {
 
        it('should assign action result to recipe', () => {
       
-        expect(state).to.have.property('recipe')
+        expect(state).to.have.property('recipeAdded')
           .to.equal(action.result);
       });
     });
@@ -106,7 +106,49 @@ describe('redux/modules/addRecipe', () => {
         expect(state).to.have.property('error')
           .to.equal(action.error);
       });
+
     });
+
+
+    describe('Reset action', () => {
+
+      let originalState, action, state;
+      
+      before(() => {
+        originalState={
+          error: 'val'
+        };
+        Object.freeze(originalState);
+        action= {
+          type: 'vegan-recipes/recipes/RESET'
+        };
+        state=reducer(originalState, action);
+      })
+
+      it('should update state with didInvalidate ', () => {
+        
+        expect(state).to.have.property('didInvalidate')
+          .to.be.false;
+
+      });
+
+      it('should update state with isFetching ', () => {
+      
+        expect(state).to.have.property('isFetching')
+          .to.be.false;
+
+      });
+
+      it('should not have property error', () => {
+      
+        expect(state).to.have.property('error').to.equal(false);
+
+      });
+
+
+
+    });
+   
   
   });
 

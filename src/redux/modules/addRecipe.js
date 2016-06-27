@@ -2,26 +2,36 @@
 const REQUEST_ADD_RECIPE = 'vegan-recipes/recipes/REQUEST_ADD_RECIPE';
 const REQUEST_ADD_RECIPE_SUCCESS = 'vegan-recipes/recipes/REQUEST_ADD_RECIPE_SUCCESS';
 const REQUEST_ADD_RECIPE_FAIL = 'vegan-recipes/recipes/REQUEST_ADD_RECIPE_FAIL';
+const RESET = 'vegan-recipes/recipes/RESET';
 
+const defaultState = {
+  isFetching: false,
+  didInvalidate: false,
+  error: false,
+  recipeAdded: false
+};
 // Reducer
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case REQUEST_ADD_RECIPE:
       return {
-        isFetching: true,
-        didInvalidate: false
+        ...defaultState,
+        isFetching: true
       };
     case REQUEST_ADD_RECIPE_FAIL:
       return {
-        isFetching: false,
+        ...defaultState,
         didInvalidate: true,
         error: action.error
       };
     case REQUEST_ADD_RECIPE_SUCCESS:
       return {
-        isFetching: false,
-        didInvalidate: false,
-        recipe: action.result
+        ...defaultState,
+        recipeAdded: action.result
+      };
+    case RESET:
+      return {
+        ...defaultState
       };
     default:
       return state;
@@ -37,4 +47,11 @@ export function requestAddRecipe(params) {
     })
   };
 }
+
+export function resetAddRecipe() {
+  return {
+    type: RESET
+  };
+}
+
 
