@@ -38,6 +38,17 @@ export  function findByIdAndRemove (id) {
   
 };
 
+export  function findByIdAndUpdate (id, data) {
+  return new Promise((resolve,reject) => {
+
+    Recipe.findByIdAndUpdate(id, data, function(err, recipe) {
+            if (err) reject(err);
+
+             resolve(recipe);
+        });
+    });
+  
+};
 
 
 export  function findBySlug (slug) {

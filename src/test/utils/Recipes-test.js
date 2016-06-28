@@ -1,6 +1,6 @@
 
 import {expect} from 'chai';
-import {mapRecipesToItems} from 'utils/recipes';
+import {mapRecipesToItems, getURL, getURLWithSlug} from 'utils/recipes';
 
 const mockRecipes=[
 	{
@@ -64,8 +64,35 @@ describe('Recipe utils', () => {
 	it('should construct URL', () => {
 		expect(mapRecipesToItems(mockRecipes)[0])
 		.to.have.property('url')
-		.to.equal('/recipes/' + mockRecipes[0].slug);
+		.to.equal('/recipe/' + mockRecipes[0].slug);
 	});
-  });
+ });
+
+describe('getURL', () => {
+
+	it('should return URL', () => {
+		expect(getURL(mockRecipes[0]))
+		.to.equal('/recipe/' + mockRecipes[0].slug);
+	});
+
+	it('should return URL with action', () => {
+		expect(getURL(mockRecipes[0], 'update'))
+		.to.equal('/recipe/' + mockRecipes[0].slug + '/update');
+	});
+});
+
+describe('getURLWithSlug', () => {
+
+	it('should return URL', () => {
+		expect(getURLWithSlug('test'))
+		.to.equal('/recipe/test');
+	});
+
+	it('should return URL with action', () => {
+		expect(getURLWithSlug('test', 'update'))
+		.to.equal('/recipe/test/update');
+	});
+});
+
 
 });

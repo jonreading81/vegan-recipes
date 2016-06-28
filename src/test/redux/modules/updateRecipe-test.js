@@ -1,12 +1,12 @@
 
 import {expect} from 'chai';
-import reducer from 'redux/modules/addRecipe';
+import reducer from 'redux/modules/updateRecipe';
 
-describe('redux/modules/addRecipe', () => {
+describe('redux/modules/updateREcipe', () => {
 
   describe('reducer', () => {
 
-    describe('REQUEST_ADD_RECIPE action', () => {
+    describe('REQUEST_UPDATE_RECIPE action', () => {
 
       let originalState, action, state;
       
@@ -16,7 +16,7 @@ describe('redux/modules/addRecipe', () => {
         };
         Object.freeze(originalState);
         action= {
-          type: 'vegan-recipes/recipes/REQUEST_ADD_RECIPE'
+          type: 'vegan-recipes/recipes/REQUEST_UPDATE_RECIPE'
         };
         state=reducer(originalState, action);
       })
@@ -34,9 +34,15 @@ describe('redux/modules/addRecipe', () => {
           .to.be.true;
 
       });
+
+       it('should assign isSuccess to false', () => {
+      
+        expect(state).to.have.property('isSuccess')
+          .to.equal(false);
+      });
     });
 
-    describe('REQUEST_ADD_RECIPE_SUCCESS action', () => {
+    describe('REQUEST_UPDATE_RECIPE_SUCCESS action', () => {
 
       let originalState, action, state;
       
@@ -47,7 +53,7 @@ describe('redux/modules/addRecipe', () => {
         Object.freeze(originalState);
 
         action= {
-          type: 'vegan-recipes/recipes/REQUEST_ADD_RECIPE_SUCCESS',
+          type: 'vegan-recipes/recipes/REQUEST_UPDATE_RECIPE_SUCCESS',
           result: [1]
         };
         state=reducer(originalState, action);
@@ -70,15 +76,15 @@ describe('redux/modules/addRecipe', () => {
         expect(state).to.have.property('recipe')
           .to.equal(action.result);
       });
-
-        it('should set isSuccess to true', () => {
+       
+       it('should assign isSuccess to true', () => {
       
         expect(state).to.have.property('isSuccess')
           .to.equal(true);
       });
     });
 
-     describe('REQUEST_ADD_RECIPE_FAIL action', () => {
+     describe('REQUEST_UPDATE_RECIPE_FAIL action', () => {
 
       let originalState, action, state;
       
@@ -89,7 +95,7 @@ describe('redux/modules/addRecipe', () => {
         Object.freeze(originalState);
 
         action= {
-          type: 'vegan-recipes/recipes/REQUEST_ADD_RECIPE_FAIL',
+          type: 'vegan-recipes/recipes/REQUEST_UPDATE_RECIPE_FAIL',
           error: [1]
         };
         state=reducer(originalState, action);
@@ -107,16 +113,22 @@ describe('redux/modules/addRecipe', () => {
           .to.be.false;
       });
 
-       it('should assign error result to error', () => {
+       it('should assign error result to recipe', () => {
       
         expect(state).to.have.property('error')
           .to.equal(action.error);
       });
 
+        it('should assign isSuccess to false', () => {
+      
+        expect(state).to.have.property('isSuccess')
+          .to.equal(false);
+      });
+
     });
 
 
-    describe('RESET_ADD_RECIPE action', () => {
+    describe('RESET_UPDATE_RECIPE action', () => {
 
       let originalState, action, state;
       
@@ -126,7 +138,7 @@ describe('redux/modules/addRecipe', () => {
         };
         Object.freeze(originalState);
         action= {
-          type: 'vegan-recipes/recipes/RESET_ADD_RECIPE'
+          type: 'vegan-recipes/recipes/RESET_UPDATE_RECIPE'
         };
         state=reducer(originalState, action);
       })
@@ -149,6 +161,12 @@ describe('redux/modules/addRecipe', () => {
       
         expect(state).to.have.property('error').to.equal(false);
 
+      });
+
+      it('should assign isSuccess to false', () => {
+      
+        expect(state).to.have.property('isSuccess')
+          .to.equal(false);
       });
 
 

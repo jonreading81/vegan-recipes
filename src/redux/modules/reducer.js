@@ -7,6 +7,7 @@ import auth from './auth';
 import addRecipe from './addRecipe';
 import recipeList from './recipeList';
 import viewRecipe from './viewRecipe';
+import updateRecipe from './updateRecipe';
 
 export default combineReducers({
   routing: routerReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
   recipeList,
   addRecipe,
   viewRecipe,
+  updateRecipe,
   form
 });

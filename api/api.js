@@ -71,9 +71,13 @@ router.route('/recipes/:recipe_id')
           handleAction(recipes.findBySlug(req.params.recipe_id), res);
     })
 
-     .delete(function(req, res) {
-      console.log('dlete');
+    .delete(function(req, res) {
          handleAction(recipes.findByIdAndRemove(req.params.recipe_id), res);
+    })
+
+    .put(function(req, res) {
+      console.log('put');
+         handleAction(recipes.findByIdAndUpdate(req.params.recipe_id, req.body), res);
     });
 
 app.use('/', router);

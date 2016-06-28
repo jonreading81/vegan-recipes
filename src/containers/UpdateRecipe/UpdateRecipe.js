@@ -4,14 +4,21 @@ import Helmet from 'react-helmet';
 import RecipeForm from './RecipeForm';
 import ErrorModal from './ErrorModal';
 import ConfirmationModal from './ConfirmationModal';
+import {requestGetRecipe} from 'redux/modules/viewRecipe';
+import { asyncConnect } from 'redux-async-connect';
 import get from 'lodash/get';
 
 @connect((state) => {
   return {
-    recipe: state.addRecipe.recipe
+    recipe: state.viewRecipe.recipe
   };
 })
-export default class AddRecipeContainer extends Component {
+@asyncConnect([{
+  promise: ({params, store: {dispatch}}) => {
+    return dispatch(requestGetRecipe(params.recipe));
+  }
+}])
+export default class UpdateRecipeContainer extends Component {
 
   static propTypes ={
     recipe: PropTypes.object
@@ -22,15 +29,15 @@ export default class AddRecipeContainer extends Component {
 
     return (
       <div>
-        <Helmet title="Add Recipes"/>
+        <Helmet title="Update Recipe"/>
         <div className="container">
-          <h1>Add Recipes</h1>
-          <RecipeForm />
+          <h1>Update Recipe</h1>
+          <RecipeForm recipe={get(recipe, '_id')}/>
           <ErrorModal title="Validation Error">
             <p>The server returned an error while saving the document</p>
           </ErrorModal>
-          <ConfirmationModal recipe={get(recipe, 'slug')} title="Recipe Added" >
-              <p>The Recipe was added successfully click OK to view the recipe</p>
+          <ConfirmationModal recipe={get(recipe, 'slug')} title="Recipe Updated" >
+              <p>The Recipe was updated successfully click OK to view the recipe</p>
           </ConfirmationModal>
          </div>
       </div>
