@@ -76,7 +76,6 @@ router.route('/recipes/:recipe_id')
     })
 
     .put(function(req, res) {
-      console.log('put');
          handleAction(recipes.findByIdAndUpdate(req.params.recipe_id, req.body), res);
     });
 

@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import {resetUpdateRecipe} from 'redux/modules/updateRecipe';
-import ErrorModal from 'components/Form/ErrorModal';
+import StatusModal from 'components/Form/StatusModal';
 
 const ValidationErrorModal = connect(
   (state) => {
@@ -14,6 +14,6 @@ const ValidationErrorModal = connect(
       close: bindActionCreators(resetUpdateRecipe, dispatch)
     };
   }
-)(ErrorModal);
+)(StatusModal);
 
 export default ValidationErrorModal;

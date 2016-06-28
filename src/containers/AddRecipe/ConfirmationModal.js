@@ -10,8 +10,7 @@ import {getURLWithSlug as getRecipeURL} from 'utils/recipes';
 const SuccessConfirmationModal = connect(
   (state) => {
     return {
-      show: get(state.addRecipe, 'isSuccess', false),
-      title: 'Recipe Added'
+      show: get(state.addRecipe, 'isSuccess', false)
     };
   },
   (dispatch, params) => {

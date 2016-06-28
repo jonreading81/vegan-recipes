@@ -3,6 +3,7 @@ export Home from './Home/Home';
 export RecipeList from './RecipeList/RecipeList';
 export ViewRecipe from './ViewRecipe/ViewRecipe';
 export UpdateRecipe from './UpdateRecipe/UpdateRecipe';
+export DeleteRecipe from './DeleteRecipe/DeleteRecipe';
 export AddRecipe from './AddRecipe/AddRecipe';
 export Login from './Login/Login';
 export LoginSuccess from './LoginSuccess/LoginSuccess';
