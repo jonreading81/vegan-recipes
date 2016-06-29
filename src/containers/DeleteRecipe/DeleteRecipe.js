@@ -27,8 +27,9 @@ import {resetDeleteRecipe} from 'redux/modules/deleteRecipe';
       reset: bindActionCreators(resetDeleteRecipe, dispatch),
     };
   },
-  (stateProps, dispatchProps) => {
+  (stateProps, dispatchProps, componentProps) => {
     return {
+      ...componentProps,
       ...stateProps,
       ...dispatchProps,
       confirm: () => {

@@ -2,30 +2,39 @@ import {connect} from 'react-redux';
 import ConfirmationModal from 'components/Form/ConfirmationModal';
 import {batchActions} from 'redux-batched-actions';
 import {reset as resetForm} from 'redux-form';
-import {resetUpdateRecipe} from 'redux/modules/updateRecipe';
 import {push } from 'react-router-redux';
 import get from 'lodash/get';
-import {getURLWithSlug as getRecipeURL} from 'utils/recipes';
+import {getURL as getRecipeURL} from 'utils/recipes';
+import {resetUpdateRecipe} from 'redux/modules/updateRecipe';
 
 const SuccessConfirmationModal = connect(
   (state) => {
     return {
-      show: get(state.updateRecipe, 'isSuccess', false),
-      title: 'Recipe Updated'
+      recipe: state.updateRecipe.recipe,
+      show: get(state.updateRecipe, 'isSuccess', false)
     };
   },
-  (dispatch, params) => {
+  (dispatch) => {
     return {
       close: () => {
-        dispatch(batchActions([resetForm('recipeForm'), resetUpdateRecipe()]));
-      },
-      confirm: () => {
         dispatch(batchActions([
           resetForm('recipeForm'),
           resetUpdateRecipe()
         ]));
-        dispatch(push(getRecipeURL(get(params, 'recipe'))));
       },
+      confirm: (recipe) => {
+        dispatch(push(getRecipeURL(recipe)));
+      },
+    };
+  },
+  (stateProps, dispatchProps, componentProps) => {
+    return {
+      ...componentProps,
+      ...stateProps,
+      ...dispatchProps,
+      confirm: () => {
+        dispatchProps.confirm(stateProps.recipe);
+      }
     };
   }
 )(ConfirmationModal);

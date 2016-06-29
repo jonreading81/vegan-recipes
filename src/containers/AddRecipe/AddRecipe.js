@@ -4,22 +4,35 @@ import Helmet from 'react-helmet';
 import RecipeForm from './RecipeForm';
 import ErrorModal from './ErrorModal';
 import ConfirmationModal from './ConfirmationModal';
-import get from 'lodash/get';
+import {resetAddRecipe} from 'redux/modules/addRecipe';
+import { bindActionCreators } from 'redux';
+import {reset as resetForm} from 'redux-form';
 
-@connect((state) => {
-  return {
-    recipe: state.addRecipe.recipe
-  };
-})
+@connect(
+  (state) => {
+    return {
+      recipe: state.addRecipe.recipe
+    };
+  },
+  (dispatch) => {
+    return {
+      resetAction: bindActionCreators(resetAddRecipe, dispatch),
+    };
+  }
+)
 export default class AddRecipeContainer extends Component {
 
   static propTypes ={
-    recipe: PropTypes.object
+    recipe: PropTypes.object,
+    resetAction: PropTypes.func
+  }
+
+  componentWillUnmount() {
+    this.props.resetAction();
+    resetForm('recipeForm');
   }
 
   render() {
-    const {recipe} = this.props;
-
     return (
       <div>
         <Helmet title="Add Recipes"/>
@@ -29,7 +42,7 @@ export default class AddRecipeContainer extends Component {
           <ErrorModal title="Validation Error">
             <p>The server returned an error while saving the document</p>
           </ErrorModal>
-          <ConfirmationModal recipe={get(recipe, 'slug')} title="Recipe Added" >
+          <ConfirmationModal title="Recipe Added" >
               <p>The Recipe was added successfully click OK to view the recipe</p>
           </ConfirmationModal>
          </div>

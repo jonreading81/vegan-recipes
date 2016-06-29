@@ -53,7 +53,7 @@ class RecipeForm extends Component {
           </FormGroup>
           <ButtonToolbar>
             <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>Submit</Button>
-            <Button type="button" bsSize="large" active disabled={submitting} onClick={resetForm} > Clear Values</Button>
+            <Button type="button" bsSize="large" active disabled={submitting} onClick={resetForm} >Reset</Button>
           </ButtonToolbar>
       </form>
     );

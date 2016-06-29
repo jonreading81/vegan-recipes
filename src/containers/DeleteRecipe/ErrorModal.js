@@ -13,7 +13,7 @@ const ErrorModal = connect(
     return {
       close: bindActionCreators(resetDeleteRecipe, dispatch)
     };
-  }
+  },
 )(StatusModal);
 
 export default ErrorModal;

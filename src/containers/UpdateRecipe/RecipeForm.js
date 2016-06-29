@@ -6,14 +6,23 @@ import get from 'lodash/get';
 export default connect(
   (store) => {
     return {
-      initialValues: store.viewRecipe.recipe
+      initialValues: store.viewRecipe.recipe,
+      recipe: store.viewRecipe.recipe
     };
   },
-  (dispatch, params) => {
+  (dispatch) => {
     return {
+      onSubmit: (id, data) => {
+        dispatch(requestUpdateRecipe(id, data));
+      }
+    };
+  },
+  (stateProps, dispatchProps) => {
+    return {
+      ...stateProps,
+      ...dispatchProps,
       onSubmit: (data) => {
-        console.log(data);
-        dispatch(requestUpdateRecipe(get(params, 'recipe'), data));
+        dispatchProps.onSubmit(get(stateProps.recipe, '_id'), data);
       }
     };
   }
