@@ -16,6 +16,8 @@ const io = new SocketIo(server);
 const mongoose   = require('mongoose');
 const Recipe   = require('models/recipe');
 const router = express.Router();              // get an instance of the express Router
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart();
 
 io.path('/ws');
 mongoose.connect(config.mongoDBURL);
@@ -56,7 +58,12 @@ router.get('/loadInfo', function(req, res) {
 
 router.route('/recipes')
 
-    .post(function(req, res) {
+    .post(multipartMiddleware, function(req, res) {
+      console.log('post data');
+       console.log(req.body, req.files);
+
+       req.body.imageURL=req.files.imageURL.originalFilename;
+     
        handleAction(recipes.add(req.body), res);        
     })
 

@@ -17,16 +17,16 @@ export default class MultiValueFieldActions extends Component {
          <ButtonGroup >
           <Button disabled={index === 0} onClick={() => {
             field.swapFields(index, index - 1);  // swap field with it's predecessor
-          }}><i className="glyphicon glyphicon-arrow-up"/>
+          }}><i className="fa fa-chevron-up"/>
           </Button>
           <Button disabled={index === field.length - 1} onClick={() => {
             field.swapFields(index, index + 1); // swap field with it's successor
-          }}><i className="glyphicon glyphicon-arrow-down" />
+          }}><i className="fa fa-chevron-down" />
           </Button>
         </ButtonGroup>
         <Button onClick={() => {
           field.removeField(index);  // remove from index
-        }}><i className="glyphicon glyphicon-trash"/> Remove
+        }}><i className="fa fa-trash"/> Remove
         </Button>
       </ButtonToolbar>
     );

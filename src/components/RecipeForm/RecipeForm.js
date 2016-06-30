@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 import FormGroup from 'components/Form/FormGroup';
 import MultiValueFieldActions from 'components/Form/MultiValueFieldActions';
 import MultiValueFieldAddButton from 'components/Form/MultiValueFieldAddButton';
-import {Button, ButtonToolbar, FormControl, ControlLabel, Col, Row} from 'react-bootstrap';
+import {Button, ButtonToolbar, FormControl, ControlLabel, Col, Row, Panel} from 'react-bootstrap';
 import HelpBlock from 'components/Form/HelpBlock';
 import validation from './validation';
 const validate = values => validation(values);
@@ -36,7 +36,9 @@ class RecipeForm extends Component {
     const styles = require('./RecipeForm.scss');
 
     return (<form onSubmit={handleSubmit}>
-          <FormGroup controlId="title" type="text" field={title}>
+
+        <Panel header="Pecipe Details">
+         <FormGroup controlId="title" type="text" field={title}>
             <ControlLabel>Title</ControlLabel>
             <FormControl type="text" placeholder="Enter title" {...title}/>
             <FormControl.Feedback />
@@ -52,7 +54,7 @@ class RecipeForm extends Component {
 
           <FormGroup controlId="imageURL" type="text" field={imageURL}>
             <ControlLabel>ImageURL</ControlLabel>
-            <FormControl type="text" placeholder="Enter ImageURL" {...imageURL}/>
+            <FormControl type="file" placeholder="Enter ImageURL" {...imageURL} value={ null }/>
             <FormControl.Feedback />
             <HelpBlock field={imageURL}/>
           </FormGroup>
@@ -63,7 +65,8 @@ class RecipeForm extends Component {
             <FormControl.Feedback />
             <HelpBlock field={description}/>
           </FormGroup>
-        <h3>Ingredients</h3>
+        </Panel>
+        <Panel header="Ingredients">
         {!ingredients.length && <div>No ingredients</div>}
         <MultiValueFieldAddButton field={ingredients} title="Add Ingredient"/>
         {ingredients.map((ingredient, index) =>
@@ -94,17 +97,16 @@ class RecipeForm extends Component {
             </Row>
           </div>
         )}
-
-      <h3>steps</h3>
+        </Panel>
+        <Panel header="Steps">
         {!steps.length && <div>No steps</div>}
-       <MultiValueFieldAddButton field={steps} title="Add steps"/>
+        <MultiValueFieldAddButton field={steps} title="Add steps"/>
         {steps.map((step, index) =>
           <div key={index} >
-            <h4>step #{index + 1}</h4>
             <Row>
             <Col xs={12} md={8}>
             <FormGroup controlId={'step-' + (index + 1)} type="text" field={step.step}>
-              <ControlLabel>step</ControlLabel>
+              <ControlLabel>Step #{index + 1}</ControlLabel>
               <FormControl type="input" placeholder="Enter step" {...step.step}/>
               <FormControl.Feedback />
               <HelpBlock field={step.step}/>
@@ -118,6 +120,7 @@ class RecipeForm extends Component {
             </Row>
           </div>
         )}
+        </Panel>
         <ButtonToolbar>
             <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>Submit</Button>
             <Button type="button" bsSize="large" active disabled={submitting} onClick={resetForm} >Reset</Button>

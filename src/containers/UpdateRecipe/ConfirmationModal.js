@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import ConfirmationModal from 'components/Form/ConfirmationModal';
 import {batchActions} from 'redux-batched-actions';
-import {reset as resetForm} from 'redux-form';
 import {push } from 'react-router-redux';
 import get from 'lodash/get';
 import {getURL as getRecipeURL} from 'utils/recipes';
@@ -18,7 +17,6 @@ const SuccessConfirmationModal = connect(
     return {
       close: () => {
         dispatch(batchActions([
-          resetForm('recipeForm'),
           resetUpdateRecipe()
         ]));
       },

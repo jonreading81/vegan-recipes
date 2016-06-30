@@ -54,6 +54,11 @@ export function match(field) {
   };
 }
 
+export function validImage(image) {
+  console.log(image);
+  return 'valid image required';
+}
+
 export function createValidator(rules) {
   return (data = {}) => {
     const errors = {};
