@@ -19,7 +19,9 @@ export function mapRecipesToItems(recipes) {
       id: get(recipe, 'slug'),
       title: get(recipe, 'title'),
       description: get(recipe, 'description'),
-      url: getURL(recipe)
+      URL: getURL(recipe),
+      updateURL: getURL(recipe, 'update'),
+      deleteURL: getURL(recipe, 'delete'),
     });
   });
   return items;

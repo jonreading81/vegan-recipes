@@ -63,8 +63,20 @@ describe('Recipe utils', () => {
 
 	it('should construct URL', () => {
 		expect(mapRecipesToItems(mockRecipes)[0])
-		.to.have.property('url')
+		.to.have.property('URL')
 		.to.equal('/recipe/' + mockRecipes[0].slug);
+	});
+
+	it('should construct updateURL', () => {
+		expect(mapRecipesToItems(mockRecipes)[0])
+		.to.have.property('updateURL')
+		.to.equal('/recipe/' + mockRecipes[0].slug + '/update');
+	});
+
+	it('should construct deleteURL', () => {
+		expect(mapRecipesToItems(mockRecipes)[0])
+		.to.have.property('deleteURL')
+		.to.equal('/recipe/' + mockRecipes[0].slug + '/delete');
 	});
  });
 
