@@ -5,7 +5,7 @@ import {Button, ButtonToolbar, ButtonGroup} from 'react-bootstrap';
 export default class MultiValueFieldActions extends Component {
 
   static propTypes = {
-    field: PropTypes.object,
+    field: PropTypes.array,
     index: PropTypes.number,
   }
 
