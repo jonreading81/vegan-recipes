@@ -1,30 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
-import Helmet from 'react-helmet';
 import {requestGetRecipe} from 'redux/modules/viewRecipe';
 import { asyncConnect } from 'redux-async-connect';
-import get from 'lodash/get';
-import { Button, ButtonToolbar } from 'react-bootstrap';
-import {goBack} from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import {requestDeleteRecipe} from 'redux/modules/deleteRecipe';
-import ErrorModal from './ErrorModal';
-import SuccessModal from './SuccessModal';
+import {DeleteEntity} from 'components';
 import {resetDeleteRecipe} from 'redux/modules/deleteRecipe';
-
+import get from 'lodash/get';
 
 @connect(
-  (store) => {
+  (state) => {
     return {
-      recipe: get(store.viewRecipe, 'recipe', {}),
-      submitting: get(store.deleteRecipe, 'isFetching', false)
+      recipe: get(state.viewRecipe, 'recipe', {}),
+      submitting: get(state.deleteRecipe, 'isFetching', false),
+      isSuccess: state.deleteRecipe.isSuccess,
+      error: state.deleteRecipe.error
     };
   },
   (dispatch) => {
     return {
-      cancel: bindActionCreators(goBack, dispatch),
-      confirm: bindActionCreators(requestDeleteRecipe, dispatch),
-      reset: bindActionCreators(resetDeleteRecipe, dispatch),
+      deleteRecipe: bindActionCreators(requestDeleteRecipe, dispatch),
     };
   },
   (stateProps, dispatchProps, componentProps) => {
@@ -32,8 +27,8 @@ import {resetDeleteRecipe} from 'redux/modules/deleteRecipe';
       ...componentProps,
       ...stateProps,
       ...dispatchProps,
-      confirm: () => {
-        dispatchProps.confirm(get(stateProps.recipe, '_id'));
+      deleteRecipe: () => {
+        dispatchProps.deleteRecipe(get(stateProps.recipe, '_id'));
       }
     };
   }
@@ -46,38 +41,38 @@ import {resetDeleteRecipe} from 'redux/modules/deleteRecipe';
 export default class DeleteRecipeContainer extends Component {
 
   static propTypes = {
-    params: PropTypes.object,
     recipe: PropTypes.object,
-    confirm: PropTypes.func,
-    cancel: PropTypes.func,
-    reset: PropTypes.func,
-    submitting: PropTypes.bool
+    deleteRecipe: PropTypes.func,
+    submitting: PropTypes.bool,
+    error: PropTypes.bool,
+    isSuccess: PropTypes.bool
   };
 
-  componentWillUnmount() {
-    this.props.reset();
-  }
-
   render() {
-    const {recipe, confirm, cancel, submitting} = this.props;
+    const {
+      recipe,
+      deleteRecipe,
+      submitting,
+      isSuccess,
+      error
+    } = this.props;
+
     return (
       <div>
-        <Helmet title="Delete Recipe"/>
-        <div className="container">
-          <h1>Delete Recipe</h1>
+        <DeleteEntity
+          deleteEntity={deleteRecipe}
+          resetStateAction={resetDeleteRecipe()}
+          pageTitle="Delete Recipe"
+          submitting={submitting}
+          isSuccess = {isSuccess}
+          isError = {error ? true : false}
+          successMessage = "The Recipe was deleted successfully"
+          successTitle = "Recipe Deleted"
+          successURL="/recipe/list"
+          >
           <p>Are you sure you would like to delete the following recipe?</p>
           <p>{get(recipe, 'title')}</p>
-          <ButtonToolbar>
-            <Button disabled={submitting} onClick={confirm} bsStyle="primary" bsSize="large" >Confirm</Button>
-            <Button disabled={submitting} onClick={cancel} bsSize="large" >Cancel</Button>
-          </ButtonToolbar>
-           <SuccessModal title="Recipe Deleted">
-            <p>The recipe was deleted sccessfully</p>
-          </SuccessModal>
-           <ErrorModal title="Deletion Failed">
-            <p>The server returned an error while deleting the document</p>
-          </ErrorModal>
-       </div>
+        </DeleteEntity>
       </div>
     );
   }
