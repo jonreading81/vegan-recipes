@@ -15,20 +15,22 @@ import {batchActions} from 'redux-batched-actions';
     };
   }
 )
-export default class AddEntityComponent extends Component {
+export default class EntityFormContainer extends Component {
 
   static propTypes ={
     entity: PropTypes.object,
     children: PropTypes.object,
     resetState: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
-    resetStateAction: PropTypes.func.isRequired,
-    resetFormAction: PropTypes.func.isRequired,
+    resetStateAction: PropTypes.object.isRequired,
+    resetFormAction: PropTypes.object.isRequired,
+    onSuccessCancelActions: PropTypes.array.isRequired,
     getEntityURL: PropTypes.func.isRequired,
     pageTitle: PropTypes.string.isRequired,
-    entityName: PropTypes.string.isRequired,
-    isSuccess: PropTypes.bool.isRequired,
+    isSuccess: PropTypes.bool,
     isError: PropTypes.bool.isRequired,
+    successMessage: PropTypes.string,
+    successTitle: PropTypes.string,
   }
 
   componentWillUnmount() {
@@ -38,17 +40,14 @@ export default class AddEntityComponent extends Component {
   }
 
   getSuccessModal() {
-    const {resetFormAction, resetStateAction, getEntityURL } = this.props;
+    const {onSuccessCancelActions, getEntityURL } = this.props;
 
     return connect(
       null,
       (dispatch) => {
         return {
           close: () => {
-            dispatch(batchActions([
-              resetFormAction,
-              resetStateAction
-            ]));
+            dispatch(batchActions(onSuccessCancelActions));
           },
           confirm: (entity) => {
             dispatch(push(getEntityURL(entity)));
@@ -61,7 +60,7 @@ export default class AddEntityComponent extends Component {
           ...stateProps,
           ...dispatchProps,
           confirm: () => {
-            dispatchProps.confirm(stateProps.entity);
+            dispatchProps.confirm(componentProps.entity);
           }
         };
       }
@@ -69,9 +68,8 @@ export default class AddEntityComponent extends Component {
   }
 
   render() {
-    const {pageTitle, entityName, children, isSuccess, entity, isError, resetState} = this.props;
+    const {pageTitle, children, isSuccess, entity, isError, resetState, successMessage, successTitle} = this.props;
     const SuccessModal = this.getSuccessModal();
-
     return (
       <div>
         <Helmet title={pageTitle}/>
@@ -81,8 +79,8 @@ export default class AddEntityComponent extends Component {
           <StatusModal show={isError} title="Validation Error" close={resetState}>
             <p>The server returned an error while saving the document</p>
           </StatusModal>
-          <SuccessModal entity={entity} show={isSuccess} title={entityName + 'Added'} >
-              <p>The {entityName} was added successfully click OK to view the recipe</p>
+          <SuccessModal entity={entity} show={isSuccess} title={successTitle} >
+              <p>{successMessage}</p>
           </SuccessModal>
          </div>
       </div>
