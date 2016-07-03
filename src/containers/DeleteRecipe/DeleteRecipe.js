@@ -1,17 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
-import {requestGetRecipe} from 'redux/modules/viewRecipe';
+import {request as requestGet} from 'redux/modules/recipes/view';
 import { asyncConnect } from 'redux-async-connect';
 import { bindActionCreators } from 'redux';
-import {requestDeleteRecipe} from 'redux/modules/deleteRecipe';
+import {request as requestDeleteRecipe, reset as resetDeleteRecipe} from 'redux/modules/recipes/delete';
 import {DeleteEntity} from 'components';
-import {resetDeleteRecipe} from 'redux/modules/deleteRecipe';
 import get from 'lodash/get';
 
 @connect(
   (state) => {
     return {
-      recipe: get(state.viewRecipe, 'recipe', {}),
+      recipe: get(state.viewRecipe, 'entity', {}),
       submitting: get(state.deleteRecipe, 'isFetching', false),
       isSuccess: state.deleteRecipe.isSuccess,
       error: state.deleteRecipe.error
@@ -35,7 +34,7 @@ import get from 'lodash/get';
 )
 @asyncConnect([{
   promise: ({params, store: {dispatch}}) => {
-    return dispatch(requestGetRecipe(params.recipe));
+    return dispatch(requestGet(params.recipe));
   }
 }])
 export default class DeleteRecipeContainer extends Component {

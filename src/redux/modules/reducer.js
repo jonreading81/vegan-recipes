@@ -4,11 +4,11 @@ import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 import {reducer as form} from 'redux-form';
 
 import auth from './auth';
-import addRecipe from './addRecipe';
-import recipeList from './recipeList';
-import viewRecipe from './viewRecipe';
-import updateRecipe from './updateRecipe';
-import deleteRecipe from './deleteRecipe';
+import {reducer as addRecipe} from './recipes/add';
+import {reducer as recipeList} from './recipes/list';
+import {reducer as viewRecipe} from './recipes/view';
+import {reducer as updateRecipe} from './recipes/update';
+import {reducer as deleteRecipe} from './recipes/delete';
 
 export default combineReducers({
   routing: routerReducer,

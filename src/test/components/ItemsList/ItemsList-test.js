@@ -41,10 +41,7 @@ describe('<ItemsList />', () => {
         .to.equal(mockItems[0].title);
       });
 
-       it('should set destination on link container', () => {
-        expect(wrapper.find(LinkContainer).at(0).props().to)
-        .to.equal(mockItems[0].url);
-      });
+      
   });
 
 });

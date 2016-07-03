@@ -37,7 +37,7 @@ class RecipeForm extends Component {
 
     return (<form onSubmit={handleSubmit}>
 
-        <Panel header="Pecipe Details">
+        <Panel header="Recipe Details">
          <FormGroup controlId="title" type="text" field={title}>
             <ControlLabel>Title</ControlLabel>
             <FormControl type="text" placeholder="Enter title" {...title}/>

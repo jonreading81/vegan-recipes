@@ -1,12 +1,14 @@
 
 import {expect} from 'chai';
-import reducer from 'redux/modules/viewRecipe';
+import moduleCreator from 'redux/modules/crud/list';
+const recipeModule=  moduleCreator('recipes','recipes');
+const reducer = recipeModule.reducer;
 
-describe('redux/modules/viewRecipe', () => {
+describe('redux/modules/crud/list', () => {
 
   describe('reducer', () => {
 
-    describe('REQUEST_GET_RECIPE action', () => {
+    describe('REQUEST_LIST action', () => {
 
       let originalState, action, state;
       
@@ -16,7 +18,7 @@ describe('redux/modules/viewRecipe', () => {
         };
         Object.freeze(originalState);
         action= {
-          type: 'vegan-recipes/recipes/REQUEST_GET_RECIPE'
+          type: 'vegan-recipes/recipes/REQUEST_LIST'
         };
         state=reducer(originalState, action);
       })
@@ -36,7 +38,7 @@ describe('redux/modules/viewRecipe', () => {
       });
     });
 
-    describe('REQUEST_GET_RECIPE_SUCCESS action', () => {
+    describe('REQUEST_SUCCESS action', () => {
 
       let originalState, action, state;
       
@@ -47,7 +49,7 @@ describe('redux/modules/viewRecipe', () => {
         Object.freeze(originalState);
 
         action= {
-          type: 'vegan-recipes/recipes/REQUEST_GET_RECIPE_SUCCESS',
+          type: 'vegan-recipes/recipes/REQUEST_LIST_SUCCESS',
           result: [1]
         };
         state=reducer(originalState, action);
@@ -65,14 +67,14 @@ describe('redux/modules/viewRecipe', () => {
           .to.be.false;
       });
 
-       it('should assign action result to recipe', () => {
+       it('should assign action result to items', () => {
       
-        expect(state).to.have.property('recipe')
+        expect(state).to.have.property('items')
           .to.equal(action.result);
       });
     });
 
-     describe('REQUEST_GET_RECIPE_FAIL action', () => {
+       describe('REQUEST_LIST_FAIL action', () => {
 
       let originalState, action, state;
       
@@ -83,7 +85,7 @@ describe('redux/modules/viewRecipe', () => {
         Object.freeze(originalState);
 
         action= {
-          type: 'vegan-recipes/recipes/REQUEST_GET_RECIPE_FAIL',
+          type: 'vegan-recipes/recipes/REQUEST_LIST_FAIL',
           error: [1]
         };
         state=reducer(originalState, action);
@@ -101,13 +103,12 @@ describe('redux/modules/viewRecipe', () => {
           .to.be.false;
       });
 
-       it('should assign error result to recipe', () => {
+       it('should assign error result to list', () => {
       
         expect(state).to.have.property('error')
           .to.equal(action.error);
       });
     });
-  
   
   });
 

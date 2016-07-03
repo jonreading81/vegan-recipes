@@ -1,15 +1,13 @@
 import React, { Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {resetAddRecipe} from 'redux/modules/addRecipe';
-import EntityFormContainer from 'components';
 import {reset as resetForm} from 'redux-form';
 import {getURL as getRecipeURL} from 'utils/recipes';
 import { bindActionCreators } from 'redux';
-import {requestAddRecipe} from 'redux/modules/addRecipe';
+import { request as requestAddRecipe, reset as resetAddRecipe} from 'redux/modules/recipes/add';
 import {RecipeForm} from 'components';
+import {EntityFormContainer} from 'components';
 const resetFormAction = resetForm('recipeForm');
 const resetStateAction = resetAddRecipe();
-
 
 @connect(
   (state) => {

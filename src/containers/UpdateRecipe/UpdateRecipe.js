@@ -1,13 +1,13 @@
 import React, { Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import EntityFormContainer from 'components';
+import {EntityFormContainer} from 'components';
 import {reset as resetForm} from 'redux-form';
 import {getURL as getRecipeURL} from 'utils/recipes';
-import {requestUpdateRecipe} from 'redux/modules/updateRecipe';
-import {requestGetRecipe} from 'redux/modules/viewRecipe';
-import {resetUpdateRecipe} from 'redux/modules/updateRecipe';
+import {request as requestUpdateRecipe, reset as resetUpdateRecipe} from 'redux/modules/recipes/update';
+import {request as requestGet} from 'redux/modules/recipes/view';
 import {RecipeForm} from 'components';
 const resetFormAction = resetForm('recipeForm');
+
 const resetStateAction = resetUpdateRecipe();
 import get from 'lodash/get';
 import { asyncConnect } from 'redux-async-connect';
@@ -15,7 +15,7 @@ import { asyncConnect } from 'redux-async-connect';
 @connect(
   (state) => {
     return {
-      recipe: state.viewRecipe.recipe,
+      recipe: state.viewRecipe.entity,
       isSuccess: state.updateRecipe.isSuccess,
       error: state.updateRecipe.error
     };
@@ -39,7 +39,7 @@ import { asyncConnect } from 'redux-async-connect';
 )
 @asyncConnect([{
   promise: ({params, store: {dispatch}}) => {
-    return dispatch(requestGetRecipe(params.recipe));
+    return dispatch(requestGet(params.recipe));
   }
 }])
 export default class UpdateRecipeContainer extends Component {
