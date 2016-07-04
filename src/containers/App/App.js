@@ -7,15 +7,17 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
+import {getStatus } from 'redux/modules/api';
 
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
+import {Error} from 'containers';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
-
+    promises.push(dispatch(getStatus()));
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
@@ -24,14 +26,18 @@ import { asyncConnect } from 'redux-async-connect';
   }
 }])
 @connect(
-  state => ({user: state.auth.user}),
+  state => ({
+    user: state.auth.user,
+    apiError: state.api.error
+  }),
   {logout, pushState: push})
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     user: PropTypes.object,
     logout: PropTypes.func.isRequired,
-    pushState: PropTypes.func.isRequired
+    pushState: PropTypes.func.isRequired,
+    apiError: PropTypes.object
   };
 
   static contextTypes = {
@@ -54,11 +60,10 @@ export default class App extends Component {
   };
 
   render() {
-    const {user} = this.props;
+    const {user, apiError} = this.props;
     const styles = require('./App.scss');
-
     return (
-      <div className={styles.app}>
+        <div className={styles.app}>
         <Helmet {...config.app.head}/>
         <Navbar fixedTop>
           <Navbar.Header>
@@ -96,10 +101,9 @@ export default class App extends Component {
         </Navbar>
 
         <div className={styles.appContent}>
-          {this.props.children}
+         {!apiError ? this.props.children : <Error code="500"><p>Cannot connect to API</p></Error > }
         </div>
-
       </div>
-    );
+      );
   }
 }

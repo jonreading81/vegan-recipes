@@ -1,0 +1,41 @@
+{
+  "name": "react-nested-status",
+  "version": "0.1.1",
+  "description": "A nested, stateful status code thing for React. Based on react-document-title.",
+  "main": "index.js",
+  "peerDependencies": {
+    "react": ">=0.11.0 || >=0.13.x"
+  },
+  "scripts": {
+    "test": "mocha",
+    "lint": "jshint index.js test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ambroos/react-nested-status.git"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "react-component",
+    "status",
+    "express",
+    "jsx"
+  ],
+  "author": "Ambroos Vaes <ambroosv@gmail.com> (http://github.com/Ambroos)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ambroos/react-nested-status/issues"
+  },
+  "homepage": "https://github.com/Ambroos/react-nested-status",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "global": "^4.3.0",
+    "jshint": "^2.5.6",
+    "mocha": "^2.0.1",
+    "react": "^0.13.0"
+  },
+  "dependencies": {
+    "react-side-effect": "~0.3.0"
+  }
+}

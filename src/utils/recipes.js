@@ -12,7 +12,7 @@ export function getURL(recipe, action = false) {
   return getURLWithSlug( get(recipe, 'slug'), action);
 }
 
-export function mapRecipesToItems(recipes) {
+export function mapRecipesToItems(recipes = []) {
   const items = [];
   recipes.map(recipe => {
     items.push({

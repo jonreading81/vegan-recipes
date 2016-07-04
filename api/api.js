@@ -18,9 +18,10 @@ const Recipe   = require('models/recipe');
 const router = express.Router();              // get an instance of the express Router
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
+let dbConnected = false, dbError;
 
 io.path('/ws');
-mongoose.connect(config.mongoDBURL);
+
 
 app.use(session({
   secret: 'react and redux rule!!!!',
@@ -33,12 +34,27 @@ app.use(bodyParser.urlencoded({
   extended: true
 })); 
 
+mongoose.connect(config.mongoDBURL, (err) => {
+  if(err){
+    dbError = err;
+  }else{
+    dbConnected = true;
+  }
+});
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-    next(); // make sure we go to the next routes and don't stop here
+  if(dbError){
+    res.json(dbError);
+  }else{
+    next();
+  }
 });
 
+router.get('/status', function(req, res){
+  res.json({status:"connected"});
+     
+});
 
 router.post('/login', function(req, res) {
     handleAction(authentication.login(req), res);

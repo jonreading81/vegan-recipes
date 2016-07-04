@@ -113,6 +113,7 @@
     "redux": "^3.0.4",
     "redux-async-connect": "^1.0.0-rc2",
     "redux-batched-actions": "^0.1.2",
+    "react-nested-status": "./react-nested-status-master",
     "redux-form": "^5.2.5",
     "redux-thunk": "^2.1.0",
     "scroll-behavior": "^0.3.2",
