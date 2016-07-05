@@ -1,6 +1,6 @@
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
-import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
+import {requireMemberOfAnyGroup, requireMemberOfAdminGroup} from './utils/routeValidation';
 import {
     App,
     Home,
@@ -15,23 +15,6 @@ import {
   } from 'containers';
 
 export default (store) => {
-  const requireLogin = (nextState, replace, cb) => {
-    function checkAuth() {
-      const { auth: { user }} = store.getState();
-      if (!user) {
-        // oops, not logged in, so can't be here!
-        replace('/');
-      }
-      cb();
-    }
-
-    if (!isAuthLoaded(store.getState())) {
-      store.dispatch(loadAuth()).then(checkAuth);
-    } else {
-      checkAuth();
-    }
-  };
-
   /**
    * Please keep routes in alphabetical order
    */
@@ -41,16 +24,20 @@ export default (store) => {
       <IndexRoute component={Home}/>
 
       { /* Routes requiring login */ }
-      <Route onEnter={requireLogin}>
+      <Route onEnter={requireMemberOfAnyGroup.bind(null, store)}>
         <Route path="loginSuccess" component={LoginSuccess}/>
       </Route>
       <Route path="login" component={Login}/>
       <Route path="recipe" component={App}>
-        <Route path="add" component={AddRecipe}/>
+        <Route onEnter={requireMemberOfAnyGroup.bind(null, store)}>
+          <Route path="add" component={AddRecipe}/>
+        </Route>
         <Route path="list" component={RecipeList}/>
         <Route path=":recipe" component={ViewRecipe}/>
-        <Route path=":recipe/update" component={UpdateRecipe}/>
-        <Route path=":recipe/delete" component={DeleteRecipe}/>
+        <Route onEnter={requireMemberOfAdminGroup.bind(null, store)}>
+          <Route path=":recipe/update" component={UpdateRecipe}/>
+          <Route path=":recipe/delete" component={DeleteRecipe}/>
+        </Route>
       </Route>
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

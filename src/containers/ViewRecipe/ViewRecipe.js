@@ -5,11 +5,13 @@ import {RecipeDetails} from 'components';
 import {NotFound} from 'containers';
 import {request as requestGet} from 'redux/modules/recipes/view';
 import { asyncConnect } from 'redux-async-connect';
+import UserHelper from 'helpers/User';
 
 @connect(
   (store) => {
     return {
-      recipe: store.viewRecipe.entity
+      recipe: store.viewRecipe.entity,
+      user: new UserHelper(store.auth.user)
     };
   }
 )
@@ -21,14 +23,13 @@ import { asyncConnect } from 'redux-async-connect';
 export default class ViewRecipeContainer extends Component {
 
   static propTypes = {
-    recipe: PropTypes.object
+    recipe: PropTypes.object,
+    user: PropTypes.object
   };
 
   render() {
-    const {recipe} = this.props;
+    const {recipe, user} = this.props;
     let content;
-
-    console.log(recipe);
 
     if (recipe) {
       content = (
@@ -36,6 +37,7 @@ export default class ViewRecipeContainer extends Component {
           <Helmet title="View Recipes"/>
           <div className="container">
             <RecipeDetails recipe={recipe} />
+            {user.isMemberOfGroup('admin') ? <p>hello admin user</p> : <p>hello norm</p>}
            </div>
         </div>
       );

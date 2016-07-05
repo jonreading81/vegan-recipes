@@ -39,10 +39,7 @@ app.use('/', function(req, res, next) {
   }
 });
 
-console.log(router);
 app.use('/', router);
-
-
 
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);

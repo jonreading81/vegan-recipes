@@ -27,7 +27,7 @@ router.route('/recipes')
 
 router.route('/recipes/:recipe_id')
 
-  .get(stormpath.loginRequired, function(req, res) {
+  .get(function(req, res) {
         handleAction(recipes.findBySlug(req.params.recipe_id), res);
   })
 
@@ -35,7 +35,7 @@ router.route('/recipes/:recipe_id')
        handleAction(recipes.findByIdAndRemove(req.params.recipe_id), res);
   })
 
-  .put(function(req, res) {
+  .put(stormpath.groupsRequired(['admin']), function(req, res) {
        handleAction(recipes.findByIdAndUpdate(req.params.recipe_id, req.body), res);
 });
 
