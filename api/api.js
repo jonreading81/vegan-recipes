@@ -1,34 +1,22 @@
 import express from 'express';
-import session from 'express-session';
 import bodyParser from 'body-parser';
 import config from '../src/config';
-import * as authentication  from 'actions/authentication';
-import * as recipes  from 'actions/recipe';
-import handleAction from 'utils/handleAction.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
+import stormpath from './middleware/stormpath';
+import router from "./router";             
 
 const pretty = new PrettyError();
 const app = express();
 const server = new http.Server(app);
 const io = new SocketIo(server);
 const mongoose   = require('mongoose');
-const Recipe   = require('models/recipe');
-const router = express.Router();              // get an instance of the express Router
-const multipart = require('connect-multiparty');
-const multipartMiddleware = multipart();
-let dbConnected = false, dbError;
 
+let dbConnected = false, dbError;
 io.path('/ws');
 
-
-app.use(session({
-  secret: 'react and redux rule!!!!',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 60000 }
-}));
+app.use(stormpath(app));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({  
   extended: true
@@ -43,7 +31,7 @@ mongoose.connect(config.mongoDBURL, (err) => {
 });
 
 // middleware to use for all requests
-router.use(function(req, res, next) {
+app.use('/', function(req, res, next) {
   if(dbError){
     res.json(dbError);
   }else{
@@ -51,57 +39,7 @@ router.use(function(req, res, next) {
   }
 });
 
-router.get('/status', function(req, res){
-  res.json({status:"connected"});
-     
-});
-
-router.post('/login', function(req, res) {
-    handleAction(authentication.login(req), res);
-});
-
-router.get('/logout', function(req, res) {
-    handleAction(authentication.logout(req), res);
-});
-
-router.get('/loadAuth', function(req, res) {
-    handleAction(authentication.loadAuth(req.session.user), res);
-});
-
-router.get('/loadInfo', function(req, res) {
-    handleAction(authentication.loadInfo(), res);
-});
-
-router.route('/recipes')
-
-    .post(multipartMiddleware, function(req, res) {
-      console.log('post data');
-       console.log(req.body, req.files);
-
-       req.body.imageURL=req.files.imageURL.originalFilename;
-     
-       handleAction(recipes.add(req.body), res);        
-    })
-
-    .get(function(req, res) {
-        handleAction(recipes.find(), res);
-    });
-
-router.route('/recipes/:recipe_id')
-
-    // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
-    .get(function(req, res) {
-          handleAction(recipes.findBySlug(req.params.recipe_id), res);
-    })
-
-    .delete(function(req, res) {
-         handleAction(recipes.findByIdAndRemove(req.params.recipe_id), res);
-    })
-
-    .put(function(req, res) {
-         handleAction(recipes.findByIdAndUpdate(req.params.recipe_id, req.body), res);
-    });
-
+console.log(router);
 app.use('/', router);
 
 

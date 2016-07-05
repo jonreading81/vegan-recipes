@@ -17,6 +17,8 @@ import {Error} from 'containers';
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
+
+   // promises.push(dispatch(getAccessToken(key, secret)));
     promises.push(dispatch(getStatus()));
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));

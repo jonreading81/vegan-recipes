@@ -19,6 +19,8 @@ export default class ApiClient {
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
 
+        request.set('Accept', 'application/json');
+        request.type('application/json');
         if (params) {
           request.query(params);
         }
