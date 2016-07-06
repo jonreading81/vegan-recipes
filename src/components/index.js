@@ -13,4 +13,4 @@ export DeleteEntity from './DeleteEntity/DeleteEntity';
 export LoggedInUser from './conditions/LoggedInUser';
 export AdminUser from './conditions/AdminUser';
 export NotLoggedInUser from './conditions/NotLoggedInUser';
-export isDefined from './conditions/isDefined';
+export PropExists from './conditions/PropExists';
