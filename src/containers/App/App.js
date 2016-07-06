@@ -8,11 +8,12 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import {getStatus } from 'redux/modules/api';
-
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
 import {Error} from 'containers';
+import UserHelper from 'helpers/User';
+import {LoggedInUser, NotLoggedInUser, AdminUser} from 'components';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -49,7 +50,7 @@ export default class App extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {
       // login
-      this.props.pushState('/loginSuccess');
+      this.props.pushState('/');
     } else if (this.props.user && !nextProps.user) {
       // logout
       this.props.pushState('/');
@@ -64,6 +65,8 @@ export default class App extends Component {
   render() {
     const {user, apiError} = this.props;
     const styles = require('./App.scss');
+    const myUserHelper = new UserHelper(user);
+
     return (
         <div className={styles.app}>
         <Helmet {...config.app.head}/>
@@ -83,22 +86,27 @@ export default class App extends Component {
              <LinkContainer to="/recipe/list">
                 <NavItem eventKey={1}>Recipes</NavItem>
               </LinkContainer>
-             <LinkContainer to="/recipe/add">
-                <NavItem eventKey={2}>Add Recipe</NavItem>
-              </LinkContainer>
-              {!user &&
-              <LinkContainer to="/login">
-                <NavItem eventKey={3}>Login</NavItem>
-              </LinkContainer>}
-              {user &&
-              <LinkContainer to="/logout">
-                <NavItem eventKey={3} className="logout-link" onClick={this.handleLogout}>
-                  Logout
-                </NavItem>
-              </LinkContainer>}
+              <AdminUser>
+                <LinkContainer to="/recipe/add">
+                  <NavItem eventKey={2}>Add Recipe</NavItem>
+                </LinkContainer>
+              </AdminUser>
+              <NotLoggedInUser>
+                  <LinkContainer to="/login">
+                    <NavItem eventKey={3}>Login</NavItem>
+                  </LinkContainer>
+              </NotLoggedInUser>
+              <LoggedInUser>
+                <LinkContainer to="/logout">
+                  <NavItem eventKey={3} className="logout-link" onClick={this.handleLogout}>
+                    Logout
+                  </NavItem>
+                </LinkContainer>
+               </LoggedInUser>
             </Nav>
-            {user &&
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
+            <LoggedInUser>
+              <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{myUserHelper.getFullName()}</strong>.</p>
+            </LoggedInUser>
           </Navbar.Collapse>
         </Navbar>
 

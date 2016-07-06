@@ -13,8 +13,6 @@ router.get('/status', function(req, res){
 
 router.route('/recipes')
   .post(multipartMiddleware, function(req, res) {
-    console.log('post data');
-     console.log(req.body, req.files);
 
      req.body.imageURL=req.files.imageURL.originalFilename;
    

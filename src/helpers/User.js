@@ -50,6 +50,10 @@ export default class User {
     return get(this.getUser(), 'account', false);
   }
 
+  getFullName() {
+    return get(this.getAccount(), 'fullName', '');
+  }
+
   isLoggedIn() {
     if (this.getAccount()) {
       return true;

@@ -10,7 +10,6 @@ import {
     UpdateRecipe,
     DeleteRecipe,
     Login,
-    LoginSuccess,
     NotFound,
   } from 'containers';
 
@@ -22,16 +21,9 @@ export default (store) => {
     <Route path="/" component={App}>
       { /* Home (main) route */ }
       <IndexRoute component={Home}/>
-
-      { /* Routes requiring login */ }
-      <Route onEnter={requireMemberOfAnyGroup.bind(null, store)}>
-        <Route path="loginSuccess" component={LoginSuccess}/>
-      </Route>
       <Route path="login" component={Login}/>
       <Route path="recipe" component={App}>
-        <Route onEnter={requireMemberOfAnyGroup.bind(null, store)}>
-          <Route path="add" component={AddRecipe}/>
-        </Route>
+        <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="add" component={AddRecipe}/>
         <Route path="list" component={RecipeList}/>
         <Route path=":recipe" component={ViewRecipe}/>
         <Route onEnter={requireMemberOfAdminGroup.bind(null, store)}>

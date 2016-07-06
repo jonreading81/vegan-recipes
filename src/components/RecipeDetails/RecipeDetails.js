@@ -3,6 +3,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Button, ButtonToolbar, Panel, Table} from 'react-bootstrap';
 import get from 'lodash/get';
 import {getURL as getRecipeURL} from 'utils/recipes';
+import {AdminUser} from 'components';
 
 export default class RecipeDetail extends Component {
 
@@ -60,15 +61,16 @@ export default class RecipeDetail extends Component {
           </tbody>
           </Table>
           </Panel>
-
-         <ButtonToolbar>
-          <LinkContainer to={getRecipeURL(recipe, 'update')}>
-            <Button bsSize="large" >Update</Button>
-          </LinkContainer>
-           <LinkContainer to={getRecipeURL(recipe, 'delete')}>
-            <Button bsSize="large" >Delete</Button>
+          <AdminUser>
+            <ButtonToolbar>
+            <LinkContainer to={getRecipeURL(recipe, 'update')}>
+              <Button bsSize="large" >Update</Button>
             </LinkContainer>
-          </ButtonToolbar>
+             <LinkContainer to={getRecipeURL(recipe, 'delete')}>
+              <Button bsSize="large" >Delete</Button>
+              </LinkContainer>
+            </ButtonToolbar>
+          </AdminUser>
       </div>
     );
   }

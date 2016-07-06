@@ -8,6 +8,12 @@ export function email(value) {
   }
 }
 
+export function password(value) {
+  if (! /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value)) {
+    return 'Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Numbers';
+  }
+}
+
 export function required(value) {
   if (isEmpty(value)) {
     return 'Required';

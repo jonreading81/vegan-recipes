@@ -17,30 +17,34 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD:
       return {
         ...state,
-        loading: true
+        loading: true,
+        loadError: null
       };
     case LOAD_SUCCESS:
       return {
         ...state,
         loading: false,
         loaded: true,
-        user: action.result
+        user: action.result,
+        loadError: null
       };
     case LOAD_FAIL:
       return {
         ...state,
         loading: false,
         loaded: false,
-        error: action.error
+        loadError: action.error
       };
     case LOGIN:
       return {
         ...state,
+        loginError: null,
         loggingIn: true
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
+        loginError: null,
         loggingIn: false,
         user: action.result
       };
@@ -84,14 +88,11 @@ export function load() {
   };
 }
 
-export function login(name) {
+export function login(params) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: (client) => client.post('/login', {
-      data: {
-        username: name,
-        password: 'Jon121904'
-      }
+      data: params
     })
   };
 }
