@@ -14,14 +14,6 @@ const io = new SocketIo(server);
 const mongoose   = require('mongoose');
 
 let dbConnected = false, dbError;
-io.path('/ws');
-
-app.use(stormpath(app));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({  
-  extended: true
-})); 
-
 mongoose.connect(config.mongoDBURL, (err) => {
   if(err){
     dbError = err;
@@ -30,14 +22,23 @@ mongoose.connect(config.mongoDBURL, (err) => {
   }
 });
 
+io.path('/ws');
+
+stormpath(app);
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 // middleware to use for all requests
 app.use('/', function(req, res, next) {
   if(dbError){
+    res.status(500);
     res.json(dbError);
   }else{
     next();
   }
 });
+
+
 
 app.use('/', router);
 

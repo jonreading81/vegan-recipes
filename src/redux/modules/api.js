@@ -6,11 +6,12 @@ const GET_TOKEN_SUCCESS = '/api/GET_TOKEN_SUCCESS';
 const GET_TOKEN_FAIL = '/api/GET_TOKEN_FAIL';
 
 const initialState = {
-  key: 'jonreading',
-  secret: 'Jon121904',
+  key: '',
+  secret: '',
   token: '',
   status: false,
-  loading: false
+  loading: false,
+  loaded: false
 };
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -18,13 +19,15 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         status: false,
-        loading: true
+        loading: true,
+        loaded: false
       };
     case STATUS_SUCCESS:
       return {
         ...state,
         status: true,
-        loading: false
+        loading: false,
+        loaded: true
       };
     case STATUS_FAIL:
       return {
@@ -74,4 +77,8 @@ export function getStatus() {
     types: [STATUS, STATUS_SUCCESS, STATUS_FAIL],
     promise: (client) => client.get('/status')
   };
+}
+
+export function isLoaded(state) {
+  return state.api && state.api.loaded;
 }

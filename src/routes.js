@@ -10,6 +10,7 @@ import {
     UpdateRecipe,
     DeleteRecipe,
     Login,
+    Logout,
     NotFound,
   } from 'containers';
 
@@ -21,6 +22,7 @@ export default (store) => {
     <Route path="/" component={App}>
       { /* Home (main) route */ }
       <IndexRoute component={Home}/>
+      <Route path="logout" component={Logout}/>
       <Route path="login" component={Login}/>
       <Route path="recipe" component={App}>
         <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="add" component={AddRecipe}/>

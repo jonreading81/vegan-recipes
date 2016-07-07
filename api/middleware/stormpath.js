@@ -2,7 +2,8 @@ import stormpath from 'express-stormpath';
 
 
 export default function(app) {
-  return stormpath.init(app, {
+
+  const stormpathMiddleware = stormpath.init(app, {
     expand: {
       groups: true
     },
@@ -24,4 +25,23 @@ export default function(app) {
       next();
     }
   });
+
+  app.use(stormpathMiddleware);
+
+   app.get('/auth',  stormpath.getUser, function (req, res) {
+    if (req.user) {
+      res.send({account:req.user});
+    } else {
+      res.status(401);
+      res.send({
+          name: 'Not Authorised',
+          message:'Not Logged in'
+      });
+    }
+  });
+
+ 
+
+  return stormpathMiddleware;
+
 }

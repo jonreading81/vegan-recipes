@@ -12,29 +12,26 @@ router.get('/status', function(req, res){
 });
 
 router.route('/recipes')
-  .post(multipartMiddleware, function(req, res) {
-
-     req.body.imageURL=req.files.imageURL.originalFilename;
-   
-     handleAction(recipes.add(req.body), res);        
+  .post(multipartMiddleware, function(req, res) {    
+    handleAction(recipes.add(req.body, req.files), res);        
   })
 
   .get(function(req, res) {
-      handleAction(recipes.find(), res);
-});
+    handleAction(recipes.find(), res);
+  });
 
 router.route('/recipes/:recipe_id')
 
   .get(function(req, res) {
-        handleAction(recipes.findBySlug(req.params.recipe_id), res);
+    handleAction(recipes.findBySlug(req.params.recipe_id), res);
   })
 
   .delete(function(req, res) {
-       handleAction(recipes.findByIdAndRemove(req.params.recipe_id), res);
+    handleAction(recipes.findByIdAndRemove(req.params.recipe_id), res);
   })
 
-  .put(stormpath.groupsRequired(['admin']), function(req, res) {
-       handleAction(recipes.findByIdAndUpdate(req.params.recipe_id, req.body), res);
+  .put(multipartMiddleware, function(req, res) {
+    handleAction(recipes.findByIdAndUpdate(req.params.recipe_id, req.body, req.files), res);
 });
 
 export default router;

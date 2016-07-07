@@ -1,6 +1,7 @@
 const isEmpty = value => value === undefined || value === null || value === '';
 const join = (rules) => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0 /* first error */ ];
 
+
 export function email(value) {
   // Let's not start a debate on email regex. This is just for an example app!
   if (!isEmpty(value) && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
@@ -60,9 +61,16 @@ export function match(field) {
   };
 }
 
-export function validImage(image) {
-  console.log(image);
-  return 'valid image required';
+export function validImage(fileList) {
+  if (fileList && fileList.length && fileList.length === 1) {
+    const image = fileList.item(0);
+    if (image.size > 1024000) {
+      return 'Image must be less than 1MB';
+    }
+    if (image.type !== 'image/jpeg' && image.type !== 'image/png') {
+      return 'Image must be a JPEG or PNG';
+    }
+  }
 }
 
 export function createValidator(rules) {

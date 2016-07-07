@@ -12,7 +12,7 @@ const resetStateAction = resetAddRecipe();
 @connect(
   (state) => {
     return {
-      recipe: state.addRecipe.recipe,
+      recipe: state.addRecipe.entity,
       isSuccess: state.addRecipe.isSuccess,
       error: state.addRecipe.error
     };

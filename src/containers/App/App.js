@@ -7,24 +7,25 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
-import {getStatus } from 'redux/modules/api';
+import {getStatus, isLoaded as isAPILoaded } from 'redux/modules/api';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
 import {Error} from 'containers';
 import UserHelper from 'helpers/User';
 import {LoggedInUser, NotLoggedInUser, AdminUser} from 'components';
+import get from 'lodash/get';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
 
-   // promises.push(dispatch(getAccessToken(key, secret)));
-    promises.push(dispatch(getStatus()));
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
-
+    if (!isAPILoaded(getState())) {
+      promises.push(dispatch(getStatus()));
+    }
     return Promise.all(promises);
   }
 }])
@@ -111,7 +112,7 @@ export default class App extends Component {
         </Navbar>
 
         <div className={styles.appContent}>
-         {!apiError ? this.props.children : <Error code="500"><p>Cannot connect to API</p></Error > }
+         {!apiError ? this.props.children : <Error code="500"><h2>{get(apiError, 'name')}</h2><p>{get(apiError, 'message')}</p></Error > }
         </div>
       </div>
       );

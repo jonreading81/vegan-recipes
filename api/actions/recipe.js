@@ -1,15 +1,15 @@
 
-var Recipe     = require('../models/recipe');
+var Recipe  = require('../models/recipe');
+import uploadImage from '../utils/uploadImage';
 
 export  function find () {
-    return new Promise((resolve,reject) => {
+  return new Promise((resolve,reject) => { 
+    Recipe.find(function(err, recipes) {
+      if (err) reject(err);
 
- 		Recipe.find(function(err, recipes) {
-            if (err) reject(err);
-
-            resolve(recipes);
-        });
-  	});
+      resolve(recipes);
+    });
+	});
 };
 
 export  function findById (id) {
@@ -17,11 +17,10 @@ export  function findById (id) {
 	return new Promise((resolve,reject) => {
 
  		Recipe.find({ id: id },function(err, recipe) {
-            if (err) reject(err);
-
-            resolve(recipe);
-        });
-  	});
+      if (err) reject(err);
+      resolve(recipe);
+    });
+	});
  	
 };
 
@@ -30,56 +29,61 @@ export  function findByIdAndRemove (id) {
   return new Promise((resolve,reject) => {
 
     Recipe.findByIdAndRemove(id,function(err, recipe) {
-            if (err) reject(err);
-
-             resolve({ message: 'Recipe deleted!' });
-        });
+      if (err) reject(err);
+      resolve({ message: 'Recipe deleted!' });
     });
+  });
   
 };
-
-export  function findByIdAndUpdate (id, data) {
-  return new Promise((resolve,reject) => {
-
-    Recipe.findByIdAndUpdate(id, data, function(err, recipe) {
-            if (err) reject(err);
-
-             resolve(recipe);
-        });
-    });
-  
-};
-
 
 export  function findBySlug (slug) {
 
   return new Promise((resolve,reject) => {
 
     Recipe.find({ slug: slug },function(err, recipes) {
-            if (err) reject(err);
-
-            if(recipes.length==0){
-              reject({message: "Recipe not found"});
-            }else{
-                 resolve(recipes[0]);
-               }
-        });
+      if (err) reject(err);
+      if(recipes.length==0){
+        reject({message: "Recipe not found"});
+      }else{
+           resolve(recipes[0]);
+      }
     });
+  });
   
 };
 
-export function add(params){
-    params=Object.assign({
-      title:''
-    },params);
-	
-  	return new Promise((resolve,reject) => {
-  		let myRecipe = new Recipe(params);
- 
-   		myRecipe.save(function(err) {
-        if (err) reject(err);
-        resolve(myRecipe);       
-           
-      });
-  	});
+export  function findByIdAndUpdate (id, data, files) {
+  return new Promise((resolve,reject) => {
+    delete data.imageURL;
+    Recipe.findByIdAndUpdate(id, data, function(err, recipe) {
+      if (err) reject(err);
+      if(files.imageURL){
+        uploadImageAndUpdateRecipeFilename(files.imageURL, recipe, resolve, reject);
+      }else{
+        resolve(recipe);
+      }
+
+    });
+  });
+  
+};
+
+export function add(data, files){
+  return new Promise((resolve,reject) => {
+		let myRecipe = new Recipe(data); 
+    myRecipe.save((err) => {
+      if (err) reject(err);
+      uploadImageAndUpdateRecipeFilename(files.imageURL, myRecipe, resolve, reject);
+    });		
+	});
+}
+
+function uploadImageAndUpdateRecipeFilename(file, recipe, resolve, reject) {
+  uploadImage(file, recipe.slug).then((filename) => {
+    recipe.imageURL = filename;
+    recipe.save((err) => {
+      if (err) reject(err);
+      resolve(recipe); 
+    });
+  },reject);
 }

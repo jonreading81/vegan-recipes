@@ -21,6 +21,7 @@ export default class RecipeDetail extends Component {
         <p>Author: {get(recipe, 'author')}</p>
         <p>{get(recipe, 'author')}</p>
         <p>{get(recipe, 'imageURL')}</p>
+        <img src={'/images/' + get(recipe, 'imageURL')} />
       </Panel>
 
       <Panel header="Ingredients">
