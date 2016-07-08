@@ -60,7 +60,7 @@ class RecipeForm extends Component {
           </FormGroup>
 
           <FormGroup controlId="description" type="text" field={description}>
-            <ControlLabel>description</ControlLabel>
+            <ControlLabel>Description</ControlLabel>
             <FormControl componentClass="textarea" placeholder="Enter description" {...description}/>
             <FormControl.Feedback />
             <HelpBlock field={description}/>
