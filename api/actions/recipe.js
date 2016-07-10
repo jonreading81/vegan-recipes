@@ -54,11 +54,12 @@ export  function findBySlug (slug) {
 
 export  function findByIdAndUpdate (id, data, files) {
   return new Promise((resolve,reject) => {
-    delete data.imageURL;
+    delete data.image;
+    parseStringifyedData(data);
     Recipe.findByIdAndUpdate(id, data, function(err, recipe) {
       if (err) reject(err);
-      if(files.imageURL){
-        uploadImageAndUpdateRecipeFilename(files.imageURL, recipe, resolve, reject);
+      if(files.image){
+        uploadImageAndUpdateRecipeFilename(files.image, recipe, resolve, reject);
       }else{
         resolve(recipe);
       }
@@ -70,20 +71,28 @@ export  function findByIdAndUpdate (id, data, files) {
 
 export function add(data, files){
   return new Promise((resolve,reject) => {
+    parseStringifyedData(data);
 		let myRecipe = new Recipe(data); 
     myRecipe.save((err) => {
       if (err) reject(err);
-      uploadImageAndUpdateRecipeFilename(files.imageURL, myRecipe, resolve, reject);
+      uploadImageAndUpdateRecipeFilename(files.image, myRecipe, resolve, reject);
     });		
 	});
 }
 
 function uploadImageAndUpdateRecipeFilename(file, recipe, resolve, reject) {
   uploadImage(file, recipe.slug).then((filename) => {
-    recipe.imageURL = filename;
+    recipe.image = filename;
     recipe.save((err) => {
       if (err) reject(err);
       resolve(recipe); 
     });
   },reject);
+}
+
+function parseStringifyedData (data) {
+  data.steps = JSON.parse(data.steps);
+  data.ingredients = JSON.parse(data.ingredients);
+  data.categories = JSON.parse(data.categories);
+  // data.dietSuitability = JSON.parse(data.dietSuitability);
 }

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import FormGroup from 'components/Form/FormGroup';
 import MultiValueFieldActions from 'components/Form/MultiValueFieldActions';
+import {MultiValueField} from 'components';
 import MultiValueFieldAddButton from 'components/Form/MultiValueFieldAddButton';
 import {Button, ButtonToolbar, FormControl, ControlLabel, Col, Row, Panel} from 'react-bootstrap';
 import HelpBlock from 'components/Form/HelpBlock';
@@ -11,10 +12,11 @@ export const fields = [
   'title',
   'description',
   'author',
-  'imageURL',
+  'image',
   'ingredients[].name',
   'ingredients[].quantity',
   'steps[].step',
+  'categories[].category'
 ];
 class RecipeForm extends Component {
 
@@ -27,7 +29,7 @@ class RecipeForm extends Component {
 
   render() {
     const {
-      fields: { title, author, imageURL, description, ingredients, steps},
+      fields: { title, author, image, description, ingredients, steps, categories},
       handleSubmit,
       resetForm,
       submitting
@@ -52,15 +54,15 @@ class RecipeForm extends Component {
             <HelpBlock field={author}/>
           </FormGroup>
 
-          <FormGroup controlId="imageURL" type="text" field={imageURL}>
-            <ControlLabel>ImageURL</ControlLabel>
-            <FormControl type="file" placeholder="Enter ImageURL" {...imageURL} value={ null }/>
+          <FormGroup controlId="image" type="text" field={image}>
+            <ControlLabel>image</ControlLabel>
+            <FormControl type="file" placeholder="Enter image" {...image} value={ null }/>
             <FormControl.Feedback />
-            <HelpBlock field={imageURL}/>
+            <HelpBlock field={image}/>
           </FormGroup>
 
           <FormGroup controlId="description" type="text" field={description}>
-            <ControlLabel>Description</ControlLabel>
+            <ControlLabel>description</ControlLabel>
             <FormControl componentClass="textarea" placeholder="Enter description" {...description}/>
             <FormControl.Feedback />
             <HelpBlock field={description}/>
@@ -99,27 +101,10 @@ class RecipeForm extends Component {
         )}
         </Panel>
         <Panel header="Steps">
-        {!steps.length && <div>No steps</div>}
-        <MultiValueFieldAddButton field={steps} title="Add steps"/>
-        {steps.map((step, index) =>
-          <div key={index} >
-            <Row>
-            <Col xs={12} md={8}>
-            <FormGroup controlId={'step-' + (index + 1)} type="text" field={step.step}>
-              <ControlLabel>Step #{index + 1}</ControlLabel>
-              <FormControl type="input" placeholder="Enter step" {...step.step}/>
-              <FormControl.Feedback />
-              <HelpBlock field={step.step}/>
-            </FormGroup>
-            </Col>
-             <Col xs={12} md={4}>
-              <div className={styles.toolbar}>
-                <MultiValueFieldActions field={steps} index={index} />
-              </div>
-            </Col>
-            </Row>
-          </div>
-        )}
+        <MultiValueField field={steps} pluralName="steps" singularName="step" toolbarClass={styles.toolbar}/>
+        </Panel>
+        <Panel header="Categories">
+        <MultiValueField field={categories} pluralName="categories" singularName="category" toolbarClass={styles.toolbar}/>
         </Panel>
         <ButtonToolbar>
             <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>Submit</Button>

@@ -17,19 +17,20 @@ const recipeSchema   = new Schema({
     	type: String,
     	required: [true, 'whats your name']
     },
-    category:String,
-    imageURL: {
-    	type: String,
-    	required: [true, 'Take a picture of your creation']
+    image: {
+        type: String,
+        required: [true, 'Take a picture of your creation']
     },
-    originalURL: String,
     ingredients:[{
 	    name     : String,
 	    quantity      : String
 	}],
 	steps:[{
 	    step     : String
-	}]
+	}],
+    categories:[{
+        category     : String
+    }]
 });
 
 recipeSchema.plugin(URLSlugs('title'));
