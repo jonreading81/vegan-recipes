@@ -2,7 +2,7 @@ import React, { Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {EntityFormContainer} from 'components';
 import {reset as resetForm} from 'redux-form';
-import {getURL as getRecipeURL} from 'utils/recipes';
+import RecipeHelper from 'helpers/Recipe';
 import {request as requestUpdateRecipe, reset as resetUpdateRecipe} from 'redux/modules/recipes/update';
 import {request as requestGet} from 'redux/modules/recipes/view';
 import {RecipeForm} from 'components';
@@ -61,7 +61,7 @@ export default class UpdateRecipeContainer extends Component {
         resetStateAction = {resetStateAction}
         resetFormAction = {resetFormAction}
         onSuccessCancelActions = {[resetStateAction]}
-        getEntityURL = {getRecipeURL}
+        getEntityURL = {RecipeHelper.getURLWithRecipeData}
         isSuccess = {isSuccess}
         isError = {error ? true : false}
         successMessage = "The Recipe was updated successfully click OK to view the recipe"

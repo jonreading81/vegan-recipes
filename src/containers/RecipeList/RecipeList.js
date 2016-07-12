@@ -2,14 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {ItemsList} from 'components';
-import {mapRecipesToItems} from 'utils/recipes';
+import RecipeHelper from 'helpers/Recipe';
 import { request as requestList} from 'redux/modules/recipes/list';
 import { asyncConnect } from 'redux-async-connect';
 
 @connect(
   (state) => {
     return {
-      items: mapRecipesToItems(state.recipeList.items),
+      items: RecipeHelper.mapToItems(state.recipeList.items),
     };
   }
 )

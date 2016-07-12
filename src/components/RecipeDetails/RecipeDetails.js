@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Button, ButtonToolbar, Panel, Table} from 'react-bootstrap';
 import get from 'lodash/get';
-import {getURL as getRecipeURL} from 'utils/recipes';
+import RecipeHelper from 'helpers/Recipe';
 import {AdminUser} from 'components';
 
 export default class RecipeDetail extends Component {
@@ -13,15 +13,15 @@ export default class RecipeDetail extends Component {
 
   render() {
     const {recipe} = this.props;
+    const myRecipe = new RecipeHelper(recipe);
 
     return (
       <div>
-       <h1>{get(recipe, 'title')}</h1>
-       <Panel header="Recipe Details"> <p>{get(recipe, 'description')}</p>
-        <p>Author: {get(recipe, 'author')}</p>
-        <p>{get(recipe, 'author')}</p>
-        <p>{get(recipe, 'image')}</p>
-        <img src={'/images/' + get(recipe, 'image')} />
+       <h1>{myRecipe.getTitle()}</h1>
+       <Panel header="Recipe Details"> <p>{myRecipe.getDescription()}</p>
+        <p>Author: {myRecipe.getAuthor()}</p>
+        <p>{myRecipe.getImage()}</p>
+        <img src={myRecipe.getImageURL()}/>
       </Panel>
 
       <Panel header="Ingredients">
@@ -34,7 +34,7 @@ export default class RecipeDetail extends Component {
           </tr>
           </thead>
           <tbody>
-          {get(recipe, 'ingredients', []).map((ingredient, index) =>
+          {myRecipe.getIngredients().map((ingredient, index) =>
             <tr>
               <td>{index + 1}</td>
               <td>{get(ingredient, 'name')}</td>
@@ -53,7 +53,7 @@ export default class RecipeDetail extends Component {
             </tr>
           </thead>
           <tbody>
-          {get(recipe, 'steps', []).map((step, index) =>
+          {myRecipe.getSteps().map((step, index) =>
             <tr>
               <td>{index + 1}</td>
               <td>{get(step, 'step')}</td>
@@ -64,10 +64,10 @@ export default class RecipeDetail extends Component {
           </Panel>
           <AdminUser>
             <ButtonToolbar>
-            <LinkContainer to={getRecipeURL(recipe, 'update')}>
+            <LinkContainer to={myRecipe.getUpdateURL()}>
               <Button bsSize="large" >Update</Button>
             </LinkContainer>
-             <LinkContainer to={getRecipeURL(recipe, 'delete')}>
+             <LinkContainer to={myRecipe.getDeleteURL()}>
               <Button bsSize="large" >Delete</Button>
               </LinkContainer>
             </ButtonToolbar>

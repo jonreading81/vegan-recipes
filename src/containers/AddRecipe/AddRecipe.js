@@ -1,13 +1,13 @@
 import React, { Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {reset as resetForm} from 'redux-form';
-import {getURL as getRecipeURL} from 'utils/recipes';
 import { bindActionCreators } from 'redux';
 import { request as requestAddRecipe, reset as resetAddRecipe} from 'redux/modules/recipes/add';
 import {RecipeForm} from 'components';
 import {EntityFormContainer} from 'components';
 const resetFormAction = resetForm('recipeForm');
 const resetStateAction = resetAddRecipe();
+import RecipeHelper from 'helpers/Recipe';
 
 @connect(
   (state) => {
@@ -34,6 +34,7 @@ export default class AddRecipeContainer extends Component {
 
   render() {
     const {recipe, isSuccess, error, onSubmit} = this.props;
+    console.log(RecipeHelper.getURLWithRecipeData);
     return (
       <div>
        <EntityFormContainer
@@ -42,7 +43,7 @@ export default class AddRecipeContainer extends Component {
         resetStateAction = {resetStateAction}
         resetFormAction = {resetFormAction}
         onSuccessCancelActions = {[resetStateAction, resetFormAction]}
-        getEntityURL = {getRecipeURL}
+        getEntityURL = {RecipeHelper.getURLWithRecipeData}
         isSuccess = {isSuccess}
         isError = {error ? true : false}
         successMessage = "The Recipe was added successfully click OK to view the recipe"

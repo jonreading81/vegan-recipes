@@ -1,0 +1,79 @@
+{
+account: {
+href: "https://api.stormpath.com/v1/accounts/3Fheg0gDkoECOZP2DKuzsu",
+username: "jonreading",
+email: "jon.reading.email@gmail.com",
+givenName: "jon",
+middleName: "",
+surname: "reading",
+fullName: "jon reading",
+status: "ENABLED",
+createdAt: "2016-07-05T10:01:18.226Z",
+modifiedAt: "2016-07-05T10:01:18.226Z",
+passwordModifiedAt: "2016-07-05T10:01:18.000Z",
+emailVerificationToken: null,
+customData: {
+href: "https://api.stormpath.com/v1/accounts/3Fheg0gDkoECOZP2DKuzsu/customData",
+createdAt: "2016-07-05T10:01:18.226Z",
+modifiedAt: "2016-07-05T10:01:18.226Z"
+},
+providerData: {
+href: "https://api.stormpath.com/v1/accounts/3Fheg0gDkoECOZP2DKuzsu/providerData"
+},
+directory: {
+href: "https://api.stormpath.com/v1/directories/6RlqbKGdhkvcSbe9g3mYz8"
+},
+tenant: {
+href: "https://api.stormpath.com/v1/tenants/4mKrgO84EmayPXQIAjQNE6"
+},
+groups: {
+href: "https://api.stormpath.com/v1/accounts/3Fheg0gDkoECOZP2DKuzsu/groups",
+offset: 0,
+limit: 25,
+size: 1,
+items: [
+{
+href: "https://api.stormpath.com/v1/groups/38mLk3G3jDaW2GD4Q5Sf9D",
+name: "admin",
+description: null,
+status: "ENABLED",
+createdAt: "2016-07-05T13:21:37.976Z",
+modifiedAt: "2016-07-05T13:21:37.976Z",
+customData: {
+href: "https://api.stormpath.com/v1/groups/38mLk3G3jDaW2GD4Q5Sf9D/customData"
+},
+directory: {
+href: "https://api.stormpath.com/v1/directories/6RlqbKGdhkvcSbe9g3mYz8"
+},
+tenant: {
+href: "https://api.stormpath.com/v1/tenants/4mKrgO84EmayPXQIAjQNE6"
+},
+accounts: {
+href: "https://api.stormpath.com/v1/groups/38mLk3G3jDaW2GD4Q5Sf9D/accounts"
+},
+accountMemberships: {
+href: "https://api.stormpath.com/v1/groups/38mLk3G3jDaW2GD4Q5Sf9D/accountMemberships"
+},
+applications: {
+href: "https://api.stormpath.com/v1/groups/38mLk3G3jDaW2GD4Q5Sf9D/applications"
+}
+}
+]
+},
+applications: {
+href: "https://api.stormpath.com/v1/accounts/3Fheg0gDkoECOZP2DKuzsu/applications"
+},
+groupMemberships: {
+href: "https://api.stormpath.com/v1/accounts/3Fheg0gDkoECOZP2DKuzsu/groupMemberships"
+},
+apiKeys: {
+href: "https://api.stormpath.com/v1/accounts/3Fheg0gDkoECOZP2DKuzsu/apiKeys"
+},
+accessTokens: {
+href: "https://api.stormpath.com/v1/accounts/3Fheg0gDkoECOZP2DKuzsu/accessTokens"
+},
+refreshTokens: {
+href: "https://api.stormpath.com/v1/accounts/3Fheg0gDkoECOZP2DKuzsu/refreshTokens"
+}
+}
+}

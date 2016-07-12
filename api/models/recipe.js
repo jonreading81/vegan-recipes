@@ -28,9 +28,7 @@ const recipeSchema   = new Schema({
 	steps:[{
 	    step     : String
 	}],
-    categories:[{
-        category     : String
-    }]
+    categories:[String]
 });
 
 recipeSchema.plugin(URLSlugs('title'));

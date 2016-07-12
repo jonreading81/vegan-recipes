@@ -8,6 +8,9 @@ import {Button, ButtonToolbar, FormControl, ControlLabel, Col, Row, Panel} from 
 import HelpBlock from 'components/Form/HelpBlock';
 import validation from './validation';
 const validate = values => validation(values);
+import Select from 'components/Form/Select';
+// import get from 'lodash/get';
+
 export const fields = [
   'title',
   'description',
@@ -16,16 +19,17 @@ export const fields = [
   'ingredients[].name',
   'ingredients[].quantity',
   'steps[].step',
-  'categories[].category'
+  'categories'
 ];
-class RecipeForm extends Component {
 
+class RecipeForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
   }
+
 
   render() {
     const {
@@ -37,6 +41,22 @@ class RecipeForm extends Component {
 
     const styles = require('./RecipeForm.scss');
 
+    // selectHelper.getOptionsForField('category',['chocolate,vanilla']);
+    // selectHelper.addPropsToValuesForField('category',categories);
+
+    const FLAVOURS = [
+      { label: 'Chocolate', value: 'chocolate'},
+      { label: 'Vanilla', value: 'vanilla'}
+    ];
+    /*
+    console.log(categories.value);
+    if(categories.value){
+      categories.value.map((cat) => {
+        cat.label = cat.category;
+        cat.id = cat.category;
+      });
+    }
+    */
     return (<form onSubmit={handleSubmit}>
 
         <Panel header="Recipe Details">
@@ -66,6 +86,10 @@ class RecipeForm extends Component {
             <FormControl componentClass="textarea" placeholder="Enter description" {...description}/>
             <FormControl.Feedback />
             <HelpBlock field={description}/>
+          </FormGroup>
+          <FormGroup controlId="categories" type="text" field={categories}>
+            <ControlLabel>Categories</ControlLabel>
+            <Select multi simpleValue {...categories} placeholder="Select Categories" options={FLAVOURS} />
           </FormGroup>
         </Panel>
         <Panel header="Ingredients">
@@ -102,9 +126,6 @@ class RecipeForm extends Component {
         </Panel>
         <Panel header="Steps">
         <MultiValueField field={steps} pluralName="steps" singularName="step" toolbarClass={styles.toolbar}/>
-        </Panel>
-        <Panel header="Categories">
-        <MultiValueField field={categories} pluralName="categories" singularName="category" toolbarClass={styles.toolbar}/>
         </Panel>
         <ButtonToolbar>
             <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>Submit</Button>
