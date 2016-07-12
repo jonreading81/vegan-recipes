@@ -1,6 +1,8 @@
 const isEmpty = value => value === undefined || value === null || value === '';
-const join = (rules) => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0 /* first error */ ];
 import isArray from 'lodash/isArray';
+
+export const joinRules = (rules) => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0 /* first error */ ];
+
 
 export function email(value) {
   // Let's not start a debate on email regex. This is just for an example app!
@@ -77,7 +79,7 @@ export function createValidator(rules) {
   return (data = {}) => {
     const errors = {};
     Object.keys(rules).forEach((key) => {
-      const rule = join([].concat(rules[key])); // concat enables both functions and arrays of functions
+      const rule = joinRules([].concat(rules[key])); // concat enables both functions and arrays of functions
       const error = rule(data[key], data);
       if (isArray(data[key]) && error) {
         errors[key] = [];

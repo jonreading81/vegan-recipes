@@ -56,7 +56,7 @@ export default class RecipeDetail extends Component {
           {myRecipe.getSteps().map((step, index) =>
             <tr>
               <td>{index + 1}</td>
-              <td>{get(step, 'step')}</td>
+              <td>{step}</td>
             </tr>
           )}
           </tbody>

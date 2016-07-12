@@ -1,6 +1,24 @@
 import get from 'lodash/get';
+import forOwn from 'lodash/forOwn';
+import isArray from 'lodash/isArray';
+import {mapSelectValueToArray} from 'utils/forms';
 
 export default class Recipe {
+
+  static formatFormData(data) {
+    console.log(data);
+    data.categories = mapSelectValueToArray(data.categories);
+    const formData = new FormData();
+    forOwn(data, (fieldValue, fieldIndex) => {
+      if (isArray(fieldValue)) {
+        formData.append(fieldIndex, JSON.stringify(fieldValue));
+      }else {
+        formData.append(fieldIndex, fieldValue);
+      }
+    });
+    formData.append('image', data.image[0]);
+    return formData;
+  }
 
   static getURLWithSlug(slug, action = false) {
     let URL = '/recipe/' + slug;

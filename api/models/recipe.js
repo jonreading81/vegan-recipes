@@ -25,9 +25,7 @@ const recipeSchema   = new Schema({
 	    name     : String,
 	    quantity      : String
 	}],
-	steps:[{
-	    step     : String
-	}],
+	steps:[String],
     categories:[String]
 });
 

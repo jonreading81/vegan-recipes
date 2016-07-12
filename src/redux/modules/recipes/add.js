@@ -1,4 +1,4 @@
 import crudModuleCreator from '../crud/add';
-import {formatFormData} from './utils';
-const addModule = crudModuleCreator('recipes', '/recipes', formatFormData);
+import RecipeHelper from 'helpers/Recipe';
+const addModule = crudModuleCreator('recipes', '/recipes', RecipeHelper.formatFormData);
 export default addModule;

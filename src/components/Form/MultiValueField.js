@@ -18,7 +18,7 @@ export default class MultiValueField extends Component {
 
   render() {
     const {field, pluralName, singularName, toolbarClass} = this.props;
-
+    console.log(field);
     return (
       <div>
        {!field.length && <div>No {pluralName}</div>}
@@ -27,11 +27,11 @@ export default class MultiValueField extends Component {
           <div key={index} >
             <Row>
             <Col xs={12} md={8}>
-            <FormGroup controlId={singularName + '-' + (index + 1)} type="text" field={fieldItem[singularName]}>
+            <FormGroup controlId={singularName + '-' + (index + 1)} type="text" field={fieldItem}>
               <ControlLabel>{upperFirst(singularName)} #{index + 1}</ControlLabel>
-              <FormControl type="input" placeholder={'Enter ' + upperFirst(singularName)} {...fieldItem[singularName]}/>
+              <FormControl type="input" placeholder={'Enter ' + upperFirst(singularName)} {...fieldItem}/>
               <FormControl.Feedback />
-              <HelpBlock field={fieldItem[singularName]}/>
+              <HelpBlock field={fieldItem}/>
             </FormGroup>
             </Col>
              <Col xs={12} md={4}>

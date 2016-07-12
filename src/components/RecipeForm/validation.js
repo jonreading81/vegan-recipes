@@ -1,12 +1,8 @@
-import {createValidator, required, maxLength, validImage} from 'utils/validation';
+import {createValidator, required, maxLength, validImage, joinRules} from 'utils/validation';
 
 const ingredientValidator = createValidator({
   name: [required, maxLength(20)],
   quantity: [required, maxLength(5)]
-});
-
-const stepsValidator = createValidator({
-  step: [required, maxLength(255)]
 });
 
 const recipeValidation = createValidator({
@@ -15,7 +11,7 @@ const recipeValidation = createValidator({
   author: [required, maxLength(20)],
   image: [required, validImage],
   ingredients: [(ingredients) => ingredients.map(ingredientValidator)],
-  steps: [(steps) => steps.map(stepsValidator)]
+  steps: [(steps) => steps.map(joinRules([required, maxLength(250)]))]
 });
 
 export default function validate(values) {

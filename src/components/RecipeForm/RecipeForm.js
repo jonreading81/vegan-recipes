@@ -18,7 +18,7 @@ export const fields = [
   'image',
   'ingredients[].name',
   'ingredients[].quantity',
-  'steps[].step',
+  'steps[]',
   'categories'
 ];
 
