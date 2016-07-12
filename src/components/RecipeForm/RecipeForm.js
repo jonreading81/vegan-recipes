@@ -9,7 +9,7 @@ import HelpBlock from 'components/Form/HelpBlock';
 import validation from './validation';
 const validate = values => validation(values);
 import Select from 'components/Form/Select';
-// import get from 'lodash/get';
+import Autosuggest from 'components/Form/Autosuggest/Autosuggest';
 
 export const fields = [
   'title',
@@ -22,6 +22,13 @@ export const fields = [
   'categories'
 ];
 
+const FLAVOURS = [
+      { label: 'Chocolate', value: 'chocolate'},
+      { label: 'Vanilla', value: 'vanilla'}
+];
+
+const SUGGESTIONS = ['one', 'two'];
+
 class RecipeForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
@@ -29,7 +36,6 @@ class RecipeForm extends Component {
     resetForm: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
   }
-
 
   render() {
     const {
@@ -41,28 +47,12 @@ class RecipeForm extends Component {
 
     const styles = require('./RecipeForm.scss');
 
-    // selectHelper.getOptionsForField('category',['chocolate,vanilla']);
-    // selectHelper.addPropsToValuesForField('category',categories);
-
-    const FLAVOURS = [
-      { label: 'Chocolate', value: 'chocolate'},
-      { label: 'Vanilla', value: 'vanilla'}
-    ];
-    /*
-    console.log(categories.value);
-    if(categories.value){
-      categories.value.map((cat) => {
-        cat.label = cat.category;
-        cat.id = cat.category;
-      });
-    }
-    */
     return (<form onSubmit={handleSubmit}>
 
         <Panel header="Recipe Details">
          <FormGroup controlId="title" type="text" field={title}>
             <ControlLabel>Title</ControlLabel>
-            <FormControl type="text" placeholder="Enter title" {...title}/>
+            <Autosuggest className="form-control" suggestions={SUGGESTIONS} field={title}/>
             <FormControl.Feedback />
             <HelpBlock field={title}/>
           </FormGroup>
@@ -125,7 +115,9 @@ class RecipeForm extends Component {
         )}
         </Panel>
         <Panel header="Steps">
-        <MultiValueField field={steps} pluralName="steps" singularName="step" toolbarClass={styles.toolbar}/>
+        <MultiValueField field={steps} pluralName="steps" singularName="step" toolbarClass={styles.toolbar}>
+           <FormControl type="input" placeholder="Enter Step" />
+        </MultiValueField>
         </Panel>
         <ButtonToolbar>
             <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>Submit</Button>

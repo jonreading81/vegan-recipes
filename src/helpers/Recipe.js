@@ -96,11 +96,11 @@ export default class Recipe {
   }
 
   getSteps() {
-    return get(this.getRecipe(), 'steps');
+    return get(this.getRecipe(), 'steps', []);
   }
 
   getIngredients() {
-    return get(this.getRecipe(), 'ingredients');
+    return get(this.getRecipe(), 'ingredients', []);
   }
 
   getListItem() {

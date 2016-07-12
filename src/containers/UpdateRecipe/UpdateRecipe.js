@@ -47,7 +47,7 @@ export default class UpdateRecipeContainer extends Component {
   static propTypes ={
     recipe: PropTypes.object,
     isSuccess: PropTypes.bool,
-    error: PropTypes.object,
+    error: PropTypes.any,
     onSubmit: PropTypes.func
   }
 

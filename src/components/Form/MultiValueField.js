@@ -10,15 +10,21 @@ import upperFirst from 'lodash/upperFirst';
 export default class MultiValueField extends Component {
 
   static propTypes = {
-    field: PropTypes.object,
-    pluralName: PropTypes.string,
+    field: PropTypes.any,
+    children: PropTypes.node,
     singularName: PropTypes.string,
+    pluralName: PropTypes.string,
     toolbarClass: PropTypes.string
+  }
+
+  renderChildren(childProps) {
+    return React.Children.map(this.props.children, child => {
+      return React.cloneElement(child, childProps);
+    });
   }
 
   render() {
     const {field, pluralName, singularName, toolbarClass} = this.props;
-    console.log(field);
     return (
       <div>
        {!field.length && <div>No {pluralName}</div>}
@@ -29,7 +35,7 @@ export default class MultiValueField extends Component {
             <Col xs={12} md={8}>
             <FormGroup controlId={singularName + '-' + (index + 1)} type="text" field={fieldItem}>
               <ControlLabel>{upperFirst(singularName)} #{index + 1}</ControlLabel>
-              <FormControl type="input" placeholder={'Enter ' + upperFirst(singularName)} {...fieldItem}/>
+              {this.renderChildren(fieldItem)}
               <FormControl.Feedback />
               <HelpBlock field={fieldItem}/>
             </FormGroup>

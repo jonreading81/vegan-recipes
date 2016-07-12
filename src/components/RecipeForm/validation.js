@@ -10,8 +10,8 @@ const recipeValidation = createValidator({
   description: [required, maxLength(255)],
   author: [required, maxLength(20)],
   image: [required, validImage],
-  ingredients: [(ingredients) => ingredients.map(ingredientValidator)],
-  steps: [(steps) => steps.map(joinRules([required, maxLength(250)]))]
+  ingredients: [(ingredients = []) => ingredients.map(ingredientValidator)],
+  steps: [(steps = []) => steps.map(joinRules([required, maxLength(250)]))]
 });
 
 export default function validate(values) {

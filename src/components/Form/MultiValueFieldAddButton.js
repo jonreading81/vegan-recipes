@@ -4,7 +4,7 @@ import {Button} from 'react-bootstrap';
 export default class MultiValueFieldActions extends Component {
 
   static propTypes = {
-    field: PropTypes.object,
+    field: PropTypes.any,
     title: PropTypes.string,
   }
 
