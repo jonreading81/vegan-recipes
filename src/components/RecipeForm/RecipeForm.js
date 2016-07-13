@@ -1,12 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import FormGroup from 'components/Form/FormGroup';
-import MultiValueFieldActions from 'components/Form/MultiValueFieldActions';
 import {MultiValueField} from 'components';
-import MultiValueFieldAddButton from 'components/Form/MultiValueFieldAddButton';
-import {Button, ButtonToolbar, FormControl, ControlLabel, Col, Row, Panel} from 'react-bootstrap';
-import HelpBlock from 'components/Form/HelpBlock';
+import {Button, ButtonToolbar, FormControl, ControlLabel, Panel} from 'react-bootstrap';
 import validation from './validation';
+import IngredientInput from './IngredientInput';
 const validate = values => validation(values);
 import Select from 'components/Form/Select';
 import Autosuggest from 'components/Form/Autosuggest/Autosuggest';
@@ -50,32 +48,23 @@ class RecipeForm extends Component {
     return (<form onSubmit={handleSubmit}>
 
         <Panel header="Recipe Details">
-         <FormGroup controlId="title" type="text" field={title}>
+          <FormGroup controlId="title" type="text" field={title}>
             <ControlLabel>Title</ControlLabel>
-            <Autosuggest className="form-control" suggestions={SUGGESTIONS} field={title}/>
-            <FormControl.Feedback />
-            <HelpBlock field={title}/>
+            <FormControl type="text" placeholder="Enter Title" {...title}/>
           </FormGroup>
-
           <FormGroup controlId="author" type="text" field={author}>
             <ControlLabel>Author</ControlLabel>
             <FormControl type="text" placeholder="Enter Author" {...author}/>
-            <FormControl.Feedback />
-            <HelpBlock field={author}/>
           </FormGroup>
 
           <FormGroup controlId="image" type="text" field={image}>
             <ControlLabel>image</ControlLabel>
             <FormControl type="file" placeholder="Enter image" {...image} value={ null }/>
-            <FormControl.Feedback />
-            <HelpBlock field={image}/>
           </FormGroup>
 
           <FormGroup controlId="description" type="text" field={description}>
             <ControlLabel>description</ControlLabel>
             <FormControl componentClass="textarea" placeholder="Enter description" {...description}/>
-            <FormControl.Feedback />
-            <HelpBlock field={description}/>
           </FormGroup>
           <FormGroup controlId="categories" type="text" field={categories}>
             <ControlLabel>Categories</ControlLabel>
@@ -83,40 +72,13 @@ class RecipeForm extends Component {
           </FormGroup>
         </Panel>
         <Panel header="Ingredients">
-        {!ingredients.length && <div>No ingredients</div>}
-        <MultiValueFieldAddButton field={ingredients} title="Add Ingredient"/>
-        {ingredients.map((ingredient, index) =>
-          <div key={index} >
-            <h4>Ingredient #{index + 1}</h4>
-            <Row>
-            <Col xs={12} md={4}>
-            <FormGroup controlId={'ingedient-' + (index + 1) + 'name'} type="text" field={ingredient.name}>
-              <ControlLabel>Name</ControlLabel>
-              <FormControl type="input" placeholder="Enter Name" {...ingredient.name}/>
-              <FormControl.Feedback />
-              <HelpBlock field={ingredient.name}/>
-            </FormGroup>
-            </Col>
-            <Col xs={12} md={4}>
-             <FormGroup controlId={'ingedient-' + (index + 1) + 'quanity'} type="text" field={ingredient.quantity}>
-              <ControlLabel>Quantity</ControlLabel>
-              <FormControl type="input" placeholder="Enter Quantity" {...ingredient.quantity}/>
-              <FormControl.Feedback />
-              <HelpBlock field={ingredient.quantity}/>
-            </FormGroup>
-            </Col>
-            <Col xs={12} md={4}>
-              <div className={styles.toolbar}>
-                <MultiValueFieldActions field={ingredients} index={index} />
-              </div>
-            </Col>
-            </Row>
-          </div>
-        )}
+          <MultiValueField field={ingredients} pluralName="ingredients" singularName="ingredient" toolbarClass={styles.toolbar}>
+            <IngredientInput/>
+          </MultiValueField>
         </Panel>
         <Panel header="Steps">
-        <MultiValueField field={steps} pluralName="steps" singularName="step" toolbarClass={styles.toolbar}>
-           <FormControl type="input" placeholder="Enter Step" />
+        <MultiValueField field={steps} pluralName="steps" singularName="step" >
+          <Autosuggest placeholder="Enter Step" suggestions={SUGGESTIONS} />
         </MultiValueField>
         </Panel>
         <ButtonToolbar>

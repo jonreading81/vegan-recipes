@@ -3,8 +3,11 @@ import React, { Component, PropTypes } from 'react';
 
 export default class CustomAutosuggest extends Component {
   static propTypes = {
-    field: PropTypes.object.isRequired,
-    suggestions: PropTypes.array
+    value: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
+    suggestions: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onBlur: PropTypes.func.isRequired
   };
 
   constructor() {
@@ -21,7 +24,7 @@ export default class CustomAutosuggest extends Component {
   }
 
   onChange(event, { newValue }) {
-    this.props.field.onChange(newValue);
+    this.props.onChange(newValue);
   }
 
   getSuggestions({ value }) {
@@ -46,7 +49,7 @@ export default class CustomAutosuggest extends Component {
 
   render() {
     const theme = require('./Autosuggest.less');
-    const { field} = this.props;
+    const { value, onBlur, placeholder} = this.props;
 
     return (
         <Autosuggest suggestions={this.state.suggestions}
@@ -55,8 +58,11 @@ export default class CustomAutosuggest extends Component {
           renderSuggestion={ ::this.renderSuggestion}
           inputProps={
             {
-              ...field,
-              onChange: ::this.onChange
+              value: value,
+              className: 'form-control',
+              onChange: ::this.onChange,
+              onBlur: onBlur,
+              placeholder: placeholder
             }
           }
           theme={theme}

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import {FormGroup} from 'react-bootstrap';
+import {FormGroup, FormControl} from 'react-bootstrap';
+import HelpBlock from 'components/Form/HelpBlock';
 
 export default class ReduxFormFormGroup extends Component {
 
@@ -24,11 +25,11 @@ export default class ReduxFormFormGroup extends Component {
   render() {
     const {field, controlId, children} = this.props;
     return (
-      <div>
         <FormGroup controlId={controlId} validationState={this.getValidationState(field)}>
-         {children}
+          {children}
+          <FormControl.Feedback />
+          <HelpBlock field={field}/>
         </FormGroup>
-      </div>
     );
   }
 }

@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 
 export default class CustomAutosuggest extends Component {
   static propTypes = {
-    field: PropTypes.object.isRequired,
     suggestions: PropTypes.array
   };
 
@@ -12,7 +11,7 @@ export default class CustomAutosuggest extends Component {
   }
 
   onChange(event, { newValue }) {
-    this.props.field.onChange(newValue);
+    this.props.onChange(newValue);
   }
 
   getSuggestionValue(suggestion) { // when suggestion selected, this function tells
@@ -27,7 +26,7 @@ export default class CustomAutosuggest extends Component {
 
   render() {
     require('./Autosuggest.less');
-    const { field, suggestions} = this.props;
+    const { value, suggestions} = this.props;
     return (
         <Autosuggest suggestions={suggestions}
           onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
@@ -35,7 +34,7 @@ export default class CustomAutosuggest extends Component {
           renderSuggestion={this.renderSuggestion}
           inputProps={
             {
-              ...field,
+              value: value,
               onChange: ::this.onChange
             }
           }/>
