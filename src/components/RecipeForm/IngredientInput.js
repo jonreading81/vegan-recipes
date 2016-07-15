@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import {FormControl, ControlLabel, Col, Row} from 'react-bootstrap';
+import { ControlLabel, Col, Row} from 'react-bootstrap';
 import FormGroup from 'components/Form/FormGroup';
+import Autosuggest from 'components/Form/Autosuggest/Autosuggest';
+
+const IngredientsList = ['Bread', 'Butter'];
+const QuantityList = ['1 cup', 'two cups'];
 
 export default class IngredientInput extends Component {
   static propTypes = {
@@ -17,13 +21,13 @@ export default class IngredientInput extends Component {
         <Col xs={12} md={6}>
         <FormGroup controlId={'ingedient-' + (index + 1) + 'name'} type="text" field={name}>
           <ControlLabel>Name</ControlLabel>
-          <FormControl type="input" placeholder="Enter Name" {...name}/>
+          <Autosuggest placeholder="Enter Name" {...name} suggestions={IngredientsList}/>
         </FormGroup>
         </Col>
         <Col xs={12} md={6}>
          <FormGroup controlId={'ingedient-' + (index + 1) + 'quanity'} type="text" field={quantity}>
           <ControlLabel>Quantity</ControlLabel>
-          <FormControl type="input" placeholder="Enter Quantity" {...quantity}/>
+          <Autosuggest placeholder="Enter Quantity" {...quantity} suggestions={QuantityList}/>
         </FormGroup>
         </Col>
       </Row>

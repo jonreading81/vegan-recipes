@@ -18,10 +18,55 @@ export default class RecipeDetail extends Component {
     return (
       <div>
        <h1>{myRecipe.getTitle()}</h1>
-       <Panel header="Recipe Details"> <p>{myRecipe.getDescription()}</p>
-        <p>Author: {myRecipe.getAuthor()}</p>
-        <p>{myRecipe.getImage()}</p>
         <img src={myRecipe.getImageURL()}/>
+       <Panel header="Recipe Details">
+        <p>Description: {myRecipe.getDescription()}</p>
+        <p>Author: {myRecipe.getAuthor()}</p>
+        <p>Source: {myRecipe.getSourceURL()}</p>
+        <p>Difficulty: {myRecipe.getDifficulty()}</p>
+        <p>Yields: {myRecipe.getYields()}</p>
+      </Panel>
+      <Panel header="Timings">
+          <Table>
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>Preperation Time</td>
+              <td>{myRecipe.getPreperationTime()}</td>
+            </tr>
+            <tr>
+              <td>Cooking Time</td>
+              <td>{myRecipe.getCookingTime()}</td>
+            </tr>
+            <tr>
+              <td>Total Time</td>
+              <td>{myRecipe.getTotalTime()}</td>
+            </tr>
+          </tbody>
+          </Table>
+        </Panel>
+        <Panel header="Categories">
+          <Table>
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+          {myRecipe.getCategories().map((category, index) =>
+            <tr>
+              <td>{index + 1}</td>
+              <td>{category}</td>
+            </tr>
+          )}
+          </tbody>
+        </Table>
       </Panel>
 
       <Panel header="Ingredients">

@@ -8,24 +8,28 @@ import IngredientInput from './IngredientInput';
 const validate = values => validation(values);
 import Select from 'components/Form/Select';
 import Autosuggest from 'components/Form/Autosuggest/Autosuggest';
+import yieldsOptions from './data/yieldsOptions.json';
+import timingOptions from './data/timingOptions.json';
+import difficultyOptions from './data/difficultyOptions.json';
 
 export const fields = [
   'title',
   'description',
   'author',
   'image',
+  'difficulty',
+  'sourceURL',
+  'yields',
+  'preperationTime',
+  'cookingTime',
+  'totalTime',
   'ingredients[].name',
   'ingredients[].quantity',
   'steps[]',
-  'categories'
+  'categories[]'
 ];
 
-const FLAVOURS = [
-      { label: 'Chocolate', value: 'chocolate'},
-      { label: 'Vanilla', value: 'vanilla'}
-];
-
-const SUGGESTIONS = ['one', 'two'];
+const CategoryList = ['Soup', 'Cake'];
 
 class RecipeForm extends Component {
   static propTypes = {
@@ -37,7 +41,21 @@ class RecipeForm extends Component {
 
   render() {
     const {
-      fields: { title, author, image, description, ingredients, steps, categories},
+      fields: {
+        title,
+        author,
+        image,
+        description,
+        ingredients,
+        steps,
+        categories,
+        difficulty,
+        sourceURL,
+        yields,
+        preperationTime,
+        cookingTime,
+        totalTime
+      },
       handleSubmit,
       resetForm,
       submitting
@@ -58,18 +76,48 @@ class RecipeForm extends Component {
           </FormGroup>
 
           <FormGroup controlId="image" type="text" field={image}>
-            <ControlLabel>image</ControlLabel>
+            <ControlLabel>Image</ControlLabel>
             <FormControl type="file" placeholder="Enter image" {...image} value={ null }/>
           </FormGroup>
 
           <FormGroup controlId="description" type="text" field={description}>
-            <ControlLabel>description</ControlLabel>
+            <ControlLabel>Description</ControlLabel>
             <FormControl componentClass="textarea" placeholder="Enter description" {...description}/>
           </FormGroup>
-          <FormGroup controlId="categories" type="text" field={categories}>
-            <ControlLabel>Categories</ControlLabel>
-            <Select multi simpleValue {...categories} placeholder="Select Categories" options={FLAVOURS} />
+
+           <FormGroup controlId="difficulty" type="text" field={difficulty}>
+            <ControlLabel>Difficulty</ControlLabel>
+            <Select simpleValue placeholder="Select Difficulty" options={difficultyOptions} {...difficulty}/>
           </FormGroup>
+
+          <FormGroup controlId="yields" type="text" field={yields}>
+            <ControlLabel>Yields</ControlLabel>
+            <Select simpleValue placeholder="Select Difficulty" options={yieldsOptions} {...yields}/>
+          </FormGroup>
+
+          <FormGroup controlId="sourceURL" type="text" field={sourceURL}>
+            <ControlLabel>Source (URL)</ControlLabel>
+            <FormControl type="text" placeholder="Enter Source" {...sourceURL}/>
+          </FormGroup>
+        </Panel>
+        <Panel header="Timings">
+           <FormGroup controlId="preperationTime" type="text" field={preperationTime}>
+            <ControlLabel>Preperation Time</ControlLabel>
+            <Select simpleValue placeholder="Select Preperation Time" options={timingOptions} {...preperationTime}/>
+          </FormGroup>
+           <FormGroup controlId="cookingTime" type="text" field={cookingTime}>
+            <ControlLabel>Cooking Time</ControlLabel>
+            <Select simpleValue placeholder="Select Cooking Time" options={timingOptions} {...cookingTime}/>
+          </FormGroup>
+           <FormGroup controlId="totalTime" type="text" field={totalTime}>
+            <ControlLabel>Total Time</ControlLabel>
+            <Select simpleValue placeholder="Select Total Time" options={timingOptions} {...totalTime}/>
+          </FormGroup>
+        </Panel>
+        <Panel header="Categories">
+        <MultiValueField field={categories} pluralName="categories" singularName="category" >
+          <Autosuggest placeholder="Enter Category" suggestions={CategoryList}/>
+        </MultiValueField>
         </Panel>
         <Panel header="Ingredients">
           <MultiValueField field={ingredients} pluralName="ingredients" singularName="ingredient" toolbarClass={styles.toolbar}>
@@ -78,7 +126,7 @@ class RecipeForm extends Component {
         </Panel>
         <Panel header="Steps">
         <MultiValueField field={steps} pluralName="steps" singularName="step" >
-          <Autosuggest placeholder="Enter Step" suggestions={SUGGESTIONS} />
+          <FormControl placeholder="Enter Step"/>
         </MultiValueField>
         </Panel>
         <ButtonToolbar>

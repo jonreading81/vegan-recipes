@@ -1,13 +1,13 @@
 import get from 'lodash/get';
 import forOwn from 'lodash/forOwn';
 import isArray from 'lodash/isArray';
-import {mapSelectValueToArray} from 'utils/forms';
+// import {mapSelectValueToArray} from 'utils/forms';
 
 export default class Recipe {
 
   static formatFormData(data) {
     console.log(data);
-    data.categories = mapSelectValueToArray(data.categories);
+    // data.categories = mapSelectValueToArray(data.categories);
     const formData = new FormData();
     forOwn(data, (fieldValue, fieldIndex) => {
       if (isArray(fieldValue)) {
@@ -83,6 +83,30 @@ export default class Recipe {
     return get(this.getRecipe(), 'image');
   }
 
+  getPreperationTime() {
+    return get(this.getRecipe(), 'preperationTime');
+  }
+
+  getCookingTime() {
+    return get(this.getRecipe(), 'cookingTime');
+  }
+
+  getTotalTime() {
+    return get(this.getRecipe(), 'totalTime');
+  }
+
+  getDifficulty() {
+    return get(this.getRecipe(), 'difficulty');
+  }
+
+  getYields() {
+    return get(this.getRecipe(), 'yields');
+  }
+
+  getSourceURL() {
+    return get(this.getRecipe(), 'sourceURL');
+  }
+
   getImageURL() {
     return '/images/' + this.getImage();
   }
@@ -101,6 +125,10 @@ export default class Recipe {
 
   getIngredients() {
     return get(this.getRecipe(), 'ingredients', []);
+  }
+
+  getCategories() {
+    return get(this.getRecipe(), 'categories', []);
   }
 
   getListItem() {

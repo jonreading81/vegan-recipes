@@ -25,11 +25,11 @@ export default class MultiValueField extends Component {
     const {field, pluralName, singularName, toolbarClass} = this.props;
     return (
       <div>
-       {!field.length && <div>No {pluralName}</div>}
-        <MultiValueFieldAddButton field={field} title={'Add ' + upperFirst(pluralName)}/>
+       {!field.length && <h4>No {upperFirst(pluralName)}</h4>}
+        <MultiValueFieldAddButton field={field} title={'Add ' + upperFirst(singularName)}/>
         {field.map((fieldItem, index) =>
           <div key={index} >
-            <h4>{upperFirst(singularName)} #{index + 1}</h4>
+            <h5>{upperFirst(singularName)} #{index + 1}</h5>
             <Row>
               <Col xs={12} md={8}>{this.renderChildren(fieldItem)}</Col>
               <Col xs={12} md={4}>

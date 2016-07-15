@@ -21,10 +21,33 @@ const recipeSchema   = new Schema({
         type: String,
         required: [true, 'Take a picture of your creation']
     },
+    difficulty: {
+        type: String,
+        required: [true, 'How difficult is it?']
+    },
     ingredients:[{
 	    name     : String,
 	    quantity      : String
 	}],
+    yields: {
+        type: String,
+        required: [true, 'How many people can eat it']
+    },
+    preperationTime: {
+        type: String,
+        required: [true, 'How long does it take to prepare']
+    },
+    cookingTime: {
+        type: String,
+        required: [true, 'How long does it take to cook']
+    },
+    totalTime: {
+        type: String,
+        required: [true, 'How long does it take in total to make']
+    },
+    sourceURL: {
+        type: String,
+    },
 	steps:[String],
     categories:[String]
 });
