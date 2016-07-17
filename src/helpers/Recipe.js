@@ -1,13 +1,16 @@
 import get from 'lodash/get';
 import forOwn from 'lodash/forOwn';
 import isArray from 'lodash/isArray';
+import yieldsOptions from 'data/yieldsOptions.json';
+import difficultyOptions from 'data/difficultyOptions.json';
+import timingOptions from 'data/timingOptions.json';
 // import {mapSelectValueToArray} from 'utils/forms';
 
 export default class Recipe {
 
   static formatFormData(data) {
-    console.log(data);
     // data.categories = mapSelectValueToArray(data.categories);
+    console.log(data);
     const formData = new FormData();
     forOwn(data, (fieldValue, fieldIndex) => {
       if (isArray(fieldValue)) {
@@ -53,6 +56,11 @@ export default class Recipe {
       updateURL: this.getUpdateURL(),
       deleteURL: this.getDeleteURL(),
     };
+    this.yieldOption = yieldsOptions.find(option => option.value === get(this.getRecipe(), 'yields'));
+    this.difficultyOption = difficultyOptions.find(option => option.value === get(this.getRecipe(), 'getDifficulty'));
+    this.preperationTimeOption = timingOptions.find(option => option.value === get(this.getRecipe(), 'preperationTime'));
+    this.cookingTimeOption = timingOptions.find(option => option.value === get(this.getRecipe(), 'cookingTime'));
+    this.totalTimeOption = timingOptions.find(option => option.value === get(this.getRecipe(), 'totalTime'));
   }
 
   getRecipe() {
@@ -84,23 +92,23 @@ export default class Recipe {
   }
 
   getPreperationTime() {
-    return get(this.getRecipe(), 'preperationTime');
+    return get(this.preperationTimeOption, 'label');
   }
 
   getCookingTime() {
-    return get(this.getRecipe(), 'cookingTime');
+    return get(this.cookingTimeOption, 'label');
   }
 
   getTotalTime() {
-    return get(this.getRecipe(), 'totalTime');
+    return get(this.totalTimeOption, 'label');
   }
 
   getDifficulty() {
-    return get(this.getRecipe(), 'difficulty');
+    return get(this.difficultyOption, 'label');
   }
 
   getYields() {
-    return get(this.getRecipe(), 'yields');
+    return get(this.yieldOption, 'label');
   }
 
   getSourceURL() {
@@ -125,6 +133,10 @@ export default class Recipe {
 
   getIngredients() {
     return get(this.getRecipe(), 'ingredients', []);
+  }
+
+  getDietarySuitability() {
+    return get(this.getRecipe(), 'dietarySuitability', []);
   }
 
   getCategories() {

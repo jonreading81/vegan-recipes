@@ -26,7 +26,45 @@ export default class RecipeDetail extends Component {
         <p>Difficulty: {myRecipe.getDifficulty()}</p>
         <p>Yields: {myRecipe.getYields()}</p>
       </Panel>
-      <Panel header="Timings">
+      <Panel header="Ingredients">
+        <Table>
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+          </tr>
+          </thead>
+          <tbody>
+          {myRecipe.getIngredients().map((ingredient, index) =>
+            <tr>
+              <td>{index + 1}</td>
+              <td>{get(ingredient, 'name')}</td>
+              <td>{get(ingredient, 'quantity')}</td>
+            </tr>
+          )}
+          </tbody>
+        </Table>
+        </Panel>
+         <Panel header="Steps">
+          <Table>
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Step</th>
+            </tr>
+          </thead>
+          <tbody>
+          {myRecipe.getSteps().map((step, index) =>
+            <tr>
+              <td>{index + 1}</td>
+              <td>{step}</td>
+            </tr>
+          )}
+          </tbody>
+          </Table>
+        </Panel>
+        <Panel header="Timings">
           <Table>
             <thead>
             <tr>
@@ -69,54 +107,34 @@ export default class RecipeDetail extends Component {
         </Table>
       </Panel>
 
-      <Panel header="Ingredients">
-        <Table>
-          <thead>
-          <tr>
-            <th>#</th>
-            <th>Ingredient</th>
-            <th>Quantity</th>
-          </tr>
+      <Panel header="Dietary Suitability">
+          <Table>
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Diet</th>
+            </tr>
           </thead>
           <tbody>
-          {myRecipe.getIngredients().map((ingredient, index) =>
+          {myRecipe.getDietarySuitability().map((category, index) =>
             <tr>
               <td>{index + 1}</td>
-              <td>{get(ingredient, 'name')}</td>
-              <td>{get(ingredient, 'quantity')}</td>
+              <td>{category}</td>
             </tr>
           )}
           </tbody>
         </Table>
         </Panel>
-         <Panel header="Steps">
-          <Table>
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Step</th>
-            </tr>
-          </thead>
-          <tbody>
-          {myRecipe.getSteps().map((step, index) =>
-            <tr>
-              <td>{index + 1}</td>
-              <td>{step}</td>
-            </tr>
-          )}
-          </tbody>
-          </Table>
-          </Panel>
-          <AdminUser>
-            <ButtonToolbar>
-            <LinkContainer to={myRecipe.getUpdateURL()}>
-              <Button bsSize="large" >Update</Button>
+        <AdminUser>
+          <ButtonToolbar>
+          <LinkContainer to={myRecipe.getUpdateURL()}>
+            <Button bsSize="large" >Update</Button>
+          </LinkContainer>
+           <LinkContainer to={myRecipe.getDeleteURL()}>
+            <Button bsSize="large" >Delete</Button>
             </LinkContainer>
-             <LinkContainer to={myRecipe.getDeleteURL()}>
-              <Button bsSize="large" >Delete</Button>
-              </LinkContainer>
-            </ButtonToolbar>
-          </AdminUser>
+          </ButtonToolbar>
+        </AdminUser>
       </div>
     );
   }

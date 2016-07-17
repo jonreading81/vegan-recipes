@@ -80,6 +80,31 @@ export function add(data, files){
 	});
 }
 
+export function diets(){
+  return getDistinctList("dietarySuitability");
+}
+
+export function ingredients(){
+  return getDistinctList("ingredients.name");
+}
+
+export function quantities(){
+  return getDistinctList("ingredients.quantity");
+}
+
+export function categories(){
+  return getDistinctList('categories');
+}
+
+function getDistinctList(property){
+  return new Promise((resolve,reject) => {
+    Recipe.collection.distinct(property, function(err, results){
+      if (err) reject(err);
+        resolve(results);
+    });
+  });
+}
+
 function uploadImageAndUpdateRecipeFilename(file, recipe, resolve, reject) {
   uploadImage(file, recipe.slug).then((filename) => {
     recipe.image = filename;
@@ -94,5 +119,5 @@ function parseStringifyedData (data) {
   data.steps = JSON.parse(data.steps);
   data.ingredients = JSON.parse(data.ingredients);
   data.categories = JSON.parse(data.categories);
-  // data.dietSuitability = JSON.parse(data.dietSuitability);
+  data.dietarySuitability = JSON.parse(data.dietarySuitability);
 }

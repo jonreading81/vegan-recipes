@@ -7,7 +7,10 @@ import {request as requestUpdateRecipe, reset as resetUpdateRecipe} from 'redux/
 import {request as requestGet} from 'redux/modules/recipes/view';
 import {RecipeForm} from 'components';
 const resetFormAction = resetForm('recipeForm');
-
+import { request as requestIngredients} from 'redux/modules/recipes/ingredients';
+import { request as requestQuantities} from 'redux/modules/recipes/quantities';
+import { request as requestCategories} from 'redux/modules/recipes/categories';
+import { request as requestDiets} from 'redux/modules/recipes/diets';
 const resetStateAction = resetUpdateRecipe();
 import get from 'lodash/get';
 import { asyncConnect } from 'redux-async-connect';
@@ -39,9 +42,16 @@ import { asyncConnect } from 'redux-async-connect';
 )
 @asyncConnect([{
   promise: ({params, store: {dispatch}}) => {
-    return dispatch(requestGet(params.recipe));
+    const promises = [];
+    promises.push(dispatch(requestIngredients()));
+    promises.push(dispatch(requestQuantities()));
+    promises.push(dispatch(requestDiets()));
+    promises.push(dispatch(requestCategories()));
+    promises.push(dispatch(requestGet(params.recipe)));
+    return Promise.all(promises);
   }
 }])
+
 export default class UpdateRecipeContainer extends Component {
 
   static propTypes ={

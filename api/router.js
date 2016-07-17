@@ -34,4 +34,21 @@ router.route('/recipes/:recipe_id')
     handleAction(recipes.findByIdAndUpdate(req.params.recipe_id, req.body, req.files), res);
 });
 
+router.route('/ingredients').get(function(req, res) {    
+  handleAction(recipes.ingredients(), res);        
+});
+
+router.route('/quantities').get(function(req, res) {    
+  handleAction(recipes.quantities(), res);        
+});
+
+router.route('/diets').get(function(req, res) {    
+  handleAction(recipes.diets(), res);        
+});
+
+router.route('/categories').get(function(req, res) {    
+  handleAction(recipes.categories(), res);        
+});
+
+
 export default router;

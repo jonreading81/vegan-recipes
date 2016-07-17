@@ -8,9 +8,11 @@ import IngredientInput from './IngredientInput';
 const validate = values => validation(values);
 import Select from 'components/Form/Select';
 import Autosuggest from 'components/Form/Autosuggest/Autosuggest';
-import yieldsOptions from './data/yieldsOptions.json';
-import timingOptions from './data/timingOptions.json';
-import difficultyOptions from './data/difficultyOptions.json';
+import yieldsOptions from 'data/yieldsOptions.json';
+import timingOptions from 'data/timingOptions.json';
+import difficultyOptions from 'data/difficultyOptions.json';
+import { connect } from 'react-redux';
+import get from 'lodash/get';
 
 export const fields = [
   'title',
@@ -26,17 +28,30 @@ export const fields = [
   'ingredients[].name',
   'ingredients[].quantity',
   'steps[]',
-  'categories[]'
+  'categories[]',
+  'dietarySuitability[]'
 ];
 
-const CategoryList = ['Soup', 'Cake'];
-
+@connect(
+  (state) => {
+    return {
+      ingredientList: get(state.ingredients, 'items', []),
+      quantityList: get(state.quantities, 'items', []),
+      categoryList: get(state.categories, 'items', []),
+      dietList: get(state.diets, 'items', []),
+    };
+  }
+)
 class RecipeForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
-    submitting: PropTypes.bool.isRequired
+    submitting: PropTypes.bool.isRequired,
+    ingredientList: PropTypes.array.isRequired,
+    quantityList: PropTypes.array.isRequired,
+    categoryList: PropTypes.array.isRequired,
+    dietList: PropTypes.array.isRequired,
   }
 
   render() {
@@ -49,6 +64,7 @@ class RecipeForm extends Component {
         ingredients,
         steps,
         categories,
+        dietarySuitability,
         difficulty,
         sourceURL,
         yields,
@@ -56,11 +72,14 @@ class RecipeForm extends Component {
         cookingTime,
         totalTime
       },
+      ingredientList,
+      quantityList,
+      categoryList,
+      dietList,
       handleSubmit,
       resetForm,
       submitting
       } = this.props;
-
     const styles = require('./RecipeForm.scss');
 
     return (<form onSubmit={handleSubmit}>
@@ -92,13 +111,23 @@ class RecipeForm extends Component {
 
           <FormGroup controlId="yields" type="text" field={yields}>
             <ControlLabel>Yields</ControlLabel>
-            <Select simpleValue placeholder="Select Difficulty" options={yieldsOptions} {...yields}/>
+            <Select simpleValue placeholder="Select Yields" options={yieldsOptions} {...yields}/>
           </FormGroup>
 
           <FormGroup controlId="sourceURL" type="text" field={sourceURL}>
             <ControlLabel>Source (URL)</ControlLabel>
             <FormControl type="text" placeholder="Enter Source" {...sourceURL}/>
           </FormGroup>
+        </Panel>
+        <Panel header="Ingredients">
+          <MultiValueField field={ingredients} pluralName="ingredients" singularName="ingredient" toolbarClass={styles.toolbar}>
+            <IngredientInput ingredientList={ingredientList} quantityList={quantityList} />
+          </MultiValueField>
+        </Panel>
+        <Panel header="Steps">
+        <MultiValueField field={steps} pluralName="steps" singularName="step" >
+          <FormControl componentClass="textarea" placeholder="Enter Step"/>
+        </MultiValueField>
         </Panel>
         <Panel header="Timings">
            <FormGroup controlId="preperationTime" type="text" field={preperationTime}>
@@ -116,20 +145,15 @@ class RecipeForm extends Component {
         </Panel>
         <Panel header="Categories">
         <MultiValueField field={categories} pluralName="categories" singularName="category" >
-          <Autosuggest placeholder="Enter Category" suggestions={CategoryList}/>
+          <Autosuggest placeholder="Enter Category" suggestions={categoryList}/>
         </MultiValueField>
         </Panel>
-        <Panel header="Ingredients">
-          <MultiValueField field={ingredients} pluralName="ingredients" singularName="ingredient" toolbarClass={styles.toolbar}>
-            <IngredientInput/>
-          </MultiValueField>
-        </Panel>
-        <Panel header="Steps">
-        <MultiValueField field={steps} pluralName="steps" singularName="step" >
-          <FormControl placeholder="Enter Step"/>
+        <Panel header="Dietary Suitability">
+        <MultiValueField field={dietarySuitability} pluralName="diets" singularName="diet" >
+          <Autosuggest placeholder="Enter Diet" suggestions={dietList}/>
         </MultiValueField>
         </Panel>
-        <ButtonToolbar>
+       <ButtonToolbar>
             <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>Submit</Button>
             <Button type="button" bsSize="large" active disabled={submitting} onClick={resetForm} >Reset</Button>
           </ButtonToolbar>

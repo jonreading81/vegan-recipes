@@ -49,7 +49,8 @@ const recipeSchema   = new Schema({
         type: String,
     },
 	steps:[String],
-    categories:[String]
+    categories:[String],
+    dietarySuitability:[String]
 });
 
 recipeSchema.plugin(URLSlugs('title'));

@@ -9,6 +9,10 @@ import {reducer as recipeList} from './recipes/list';
 import {reducer as viewRecipe} from './recipes/view';
 import {reducer as updateRecipe} from './recipes/update';
 import {reducer as deleteRecipe} from './recipes/delete';
+import {reducer as ingredients} from './recipes/ingredients';
+import {reducer as quantities} from './recipes/quantities';
+import {reducer as categories} from './recipes/categories';
+import {reducer as diets} from './recipes/diets';
 
 export default combineReducers({
   routing: routerReducer,
@@ -20,5 +24,9 @@ export default combineReducers({
   viewRecipe,
   updateRecipe,
   deleteRecipe,
+  ingredients,
+  quantities,
+  categories,
+  diets,
   form
 });
