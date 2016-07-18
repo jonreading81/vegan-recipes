@@ -19,7 +19,7 @@ export default class ErrorModal extends Component {
           </Modal.Header>
           <Modal.Body>{children}</Modal.Body>
           <Modal.Footer>
-             <Button onClick={close}>Confirm</Button>
+             <Button onClick={close}>OK</Button>
           </Modal.Footer>
         </Modal>
     );

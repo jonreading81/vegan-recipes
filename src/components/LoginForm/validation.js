@@ -1,9 +1,9 @@
 import {createValidator, required, password} from 'utils/validation';
 
-const recipeValidation = createValidator({
+const loginValidator = createValidator({
   username: [required],
   password: [required, password],
 });
 export default function validate(values) {
-  return recipeValidation(values);
+  return loginValidator(values);
 }

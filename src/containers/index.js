@@ -8,3 +8,4 @@ export AddRecipe from './AddRecipe/AddRecipe';
 export Login from './Login/Login';
 export NotFound from './NotFound/NotFound';
 export Error from './Error/Error';
+export Register from './Register/Register';

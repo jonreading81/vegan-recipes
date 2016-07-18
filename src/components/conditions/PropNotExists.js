@@ -2,7 +2,7 @@ import { Component, PropTypes } from 'react';
 import isUndefined from 'lodash/isUndefined';
 
 
-export default class PropExists extends Component {
+export default class PropNotExists extends Component {
 
   static propTypes = {
     prop: PropTypes.object,
@@ -11,7 +11,7 @@ export default class PropExists extends Component {
 
   render() {
     const {prop, children} = this.props;
-    if (!isUndefined(prop)) {
+    if (isUndefined(prop)) {
       return (children);
     }
     return false;

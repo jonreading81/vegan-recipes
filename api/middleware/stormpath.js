@@ -13,6 +13,9 @@ export default function(app) {
         expand: {
           groups: true
         },
+      },
+      register: {
+        autoLogin: true
       }
     },
     postLoginHandler: (account, req, res, next) => {

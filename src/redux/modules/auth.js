@@ -1,3 +1,4 @@
+import {REQUEST_SUCCESS as REGISTER_SUCCESS} from './register';
 const LOAD = 'auth/LOAD';
 const LOAD_SUCCESS = 'auth/LOAD_SUCCESS';
 const LOAD_FAIL = 'auth/LOAD_FAIL';
@@ -47,6 +48,11 @@ export default function reducer(state = initialState, action = {}) {
         loginError: null,
         loadError: null,
         loggingIn: false,
+        user: action.result
+      };
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
         user: action.result
       };
     case LOGIN_FAIL:

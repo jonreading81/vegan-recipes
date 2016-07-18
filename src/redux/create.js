@@ -7,7 +7,7 @@ import {enableBatching} from 'redux-batched-actions';
 export default function createStore(history, client, data) {
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = routerMiddleware(history);
-
+  const reducer = require('./modules/reducer');
   const middleware = [createMiddleware(client), reduxRouterMiddleware, thunk];
 
   let finalCreateStore;
@@ -23,7 +23,6 @@ export default function createStore(history, client, data) {
     finalCreateStore = applyMiddleware(...middleware)(_createStore);
   }
 
-  const reducer = require('./modules/reducer');
   const store = finalCreateStore(enableBatching(reducer), data);
 
 

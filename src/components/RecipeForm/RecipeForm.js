@@ -38,7 +38,7 @@ export const fields = [
       ingredientList: get(state.ingredients, 'items', []),
       quantityList: get(state.quantities, 'items', []),
       categoryList: get(state.categories, 'items', []),
-      dietList: get(state.diets, 'items', []),
+      dietList: get(state.diets, 'items', [])
     };
   }
 )
@@ -51,14 +51,13 @@ class RecipeForm extends Component {
     ingredientList: PropTypes.array.isRequired,
     quantityList: PropTypes.array.isRequired,
     categoryList: PropTypes.array.isRequired,
-    dietList: PropTypes.array.isRequired,
+    dietList: PropTypes.array.isRequired
   }
 
   render() {
     const {
       fields: {
         title,
-        author,
         image,
         description,
         ingredients,
@@ -83,15 +82,10 @@ class RecipeForm extends Component {
     const styles = require('./RecipeForm.scss');
 
     return (<form onSubmit={handleSubmit}>
-
         <Panel header="Recipe Details">
           <FormGroup controlId="title" type="text" field={title}>
             <ControlLabel>Title</ControlLabel>
             <FormControl type="text" placeholder="Enter Title" {...title}/>
-          </FormGroup>
-          <FormGroup controlId="author" type="text" field={author}>
-            <ControlLabel>Author</ControlLabel>
-            <FormControl type="text" placeholder="Enter Author" {...author}/>
           </FormGroup>
 
           <FormGroup controlId="image" type="text" field={image}>

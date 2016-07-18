@@ -13,7 +13,7 @@ import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
 import {Error} from 'containers';
 import UserHelper from 'helpers/User';
-import {LoggedInUser, NotLoggedInUser, AdminUser} from 'components';
+import {LoggedInUser, NotLoggedInUser} from 'components';
 import get from 'lodash/get';
 
 @asyncConnect([{
@@ -87,11 +87,11 @@ export default class App extends Component {
              <LinkContainer to="/recipe/list">
                 <NavItem eventKey={1}>Recipes</NavItem>
               </LinkContainer>
-              <AdminUser>
+              <LoggedInUser>
                 <LinkContainer to="/recipe/add">
                   <NavItem eventKey={2}>Add Recipe</NavItem>
                 </LinkContainer>
-              </AdminUser>
+              </LoggedInUser>
               <NotLoggedInUser>
                   <LinkContainer to="/login">
                     <NavItem eventKey={3}>Login</NavItem>
@@ -103,7 +103,12 @@ export default class App extends Component {
                     Logout
                   </NavItem>
                 </LinkContainer>
-               </LoggedInUser>
+              </LoggedInUser>
+              <NotLoggedInUser>
+                <LinkContainer to="/register">
+                  <NavItem eventKey={4}>Register</NavItem>
+                </LinkContainer>
+              </NotLoggedInUser>
             </Nav>
             <LoggedInUser>
               <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{myUserHelper.getFullName()}</strong>.</p>

@@ -15,7 +15,7 @@ export default class MultiValueFieldActions extends Component {
       <div>
         <Button onClick={() => {
           field.addField();    // pushes empty child field onto the end of the array
-        }}><i/>{title}
+        }}><i className="fa fa-edit"/> {title}
         </Button>
       </div>
     );

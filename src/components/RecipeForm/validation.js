@@ -9,7 +9,6 @@ const recipeValidation = createValidator({
   title: [required, maxLength(40)],
   description: [required, maxLength(255)],
   difficulty: [required, maxLength(20)],
-  author: [required, maxLength(20)],
   image: [required, validImage],
   yields: [required, maxLength(20)],
   preperationTime: [required, maxLength(20)],

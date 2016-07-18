@@ -12,6 +12,7 @@ import {
     Login,
     Logout,
     NotFound,
+    Register,
   } from 'containers';
 
 export default (store) => {
@@ -24,6 +25,7 @@ export default (store) => {
       <IndexRoute component={Home}/>
       <Route path="logout" component={Logout}/>
       <Route path="login" component={Login}/>
+      <Route path="register" component={Register}/>
       <Route path="recipe" component={App}>
         <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="add" component={AddRecipe}/>
         <Route path="list" component={RecipeList}/>

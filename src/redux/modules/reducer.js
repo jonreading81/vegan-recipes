@@ -13,6 +13,7 @@ import {reducer as ingredients} from './recipes/ingredients';
 import {reducer as quantities} from './recipes/quantities';
 import {reducer as categories} from './recipes/categories';
 import {reducer as diets} from './recipes/diets';
+import register from './register';
 
 export default combineReducers({
   routing: routerReducer,
@@ -28,5 +29,6 @@ export default combineReducers({
   quantities,
   categories,
   diets,
+  register,
   form
 });

@@ -8,13 +8,16 @@ import {EntityFormContainer} from 'components';
 const resetFormAction = resetForm('recipeForm');
 const resetStateAction = resetAddRecipe();
 import RecipeHelper from 'helpers/Recipe';
+import UserHelper from 'helpers/User';
+import get from 'lodash/get';
 
 @connect(
   (state) => {
     return {
       recipe: state.addRecipe.entity,
       isSuccess: state.addRecipe.isSuccess,
-      error: state.addRecipe.error
+      error: state.addRecipe.error,
+      user: get(state.auth, 'user')
     };
   },
   (dispatch) => {
@@ -29,12 +32,16 @@ export default class AddRecipeContainer extends Component {
     recipe: PropTypes.object,
     isSuccess: PropTypes.bool,
     error: PropTypes.object,
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func.isRequired,
+    user: PropTypes.string.isRequired
   }
 
   render() {
-    const {recipe, isSuccess, error, onSubmit} = this.props;
-    console.log(RecipeHelper.getURLWithRecipeData);
+    const {recipe, isSuccess, error, onSubmit, user} = this.props;
+    const author = new UserHelper(user);
+    const initialValues = {
+      author: author.getFullName()
+    };
     return (
       <div>
        <EntityFormContainer
@@ -49,7 +56,7 @@ export default class AddRecipeContainer extends Component {
         successMessage = "The Recipe was added successfully click OK to view the recipe"
         successTitle = "Recipe Added"
         >
-        <RecipeForm onSubmit={onSubmit} />
+        <RecipeForm onSubmit={onSubmit} initialValues={initialValues} />
         </EntityFormContainer>
       </div>
     );

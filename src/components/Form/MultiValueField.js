@@ -26,7 +26,6 @@ export default class MultiValueField extends Component {
     return (
       <div>
        {!field.length && <h4>No {upperFirst(pluralName)}</h4>}
-        <MultiValueFieldAddButton field={field} title={'Add ' + upperFirst(singularName)}/>
         {field.map((fieldItem, index) =>
           <div key={index} >
             <h5>{upperFirst(singularName)} #{index + 1}</h5>
@@ -40,6 +39,7 @@ export default class MultiValueField extends Component {
             </Row>
           </div>
         )}
+        <MultiValueFieldAddButton field={field} title={'Add ' + upperFirst(singularName)}/>
       </div>
     );
   }

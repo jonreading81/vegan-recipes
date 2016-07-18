@@ -57,7 +57,7 @@ export default class Recipe {
       deleteURL: this.getDeleteURL(),
     };
     this.yieldOption = yieldsOptions.find(option => option.value === get(this.getRecipe(), 'yields'));
-    this.difficultyOption = difficultyOptions.find(option => option.value === get(this.getRecipe(), 'getDifficulty'));
+    this.difficultyOption = difficultyOptions.find(option => option.value === get(this.getRecipe(), 'difficulty'));
     this.preperationTimeOption = timingOptions.find(option => option.value === get(this.getRecipe(), 'preperationTime'));
     this.cookingTimeOption = timingOptions.find(option => option.value === get(this.getRecipe(), 'cookingTime'));
     this.totalTimeOption = timingOptions.find(option => option.value === get(this.getRecipe(), 'totalTime'));

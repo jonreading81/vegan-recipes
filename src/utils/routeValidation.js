@@ -5,8 +5,8 @@ import User from '../helpers/User';
 function checkAuth(groups, store, replace, cb) {
   const { auth: { user}} = store.getState();
   const authenticatedUser = new User(user);
-  if (!authenticatedUser.isMemberOfGroups(groups)) {
-    replace('/dd');
+  if (!user || !authenticatedUser.isMemberOfGroups(groups)) {
+    replace('/login');
   }
   cb();
 }

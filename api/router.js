@@ -12,7 +12,7 @@ router.get('/status', function(req, res){
 });
 
 router.route('/recipes')
-  .post(multipartMiddleware, function(req, res) {    
+  .post(stormpath.groupsRequired(['public']), multipartMiddleware, function(req, res) {    
     handleAction(recipes.add(req.body, req.files), res);        
   })
 
@@ -26,11 +26,11 @@ router.route('/recipes/:recipe_id')
     handleAction(recipes.findBySlug(req.params.recipe_id), res);
   })
 
-  .delete(function(req, res) {
+  .delete(stormpath.groupsRequired(['admin']), function(req, res) {
     handleAction(recipes.findByIdAndRemove(req.params.recipe_id), res);
   })
 
-  .put(multipartMiddleware, function(req, res) {
+  .put(stormpath.groupsRequired(['admin']), multipartMiddleware, function(req, res) {
     handleAction(recipes.findByIdAndUpdate(req.params.recipe_id, req.body, req.files), res);
 });
 
