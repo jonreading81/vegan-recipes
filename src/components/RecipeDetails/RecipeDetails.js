@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Button, ButtonToolbar, Panel, Table} from 'react-bootstrap';
+import { Row, Col, Image, Button, ButtonToolbar, Panel, Table} from 'react-bootstrap';
 import get from 'lodash/get';
 import RecipeHelper from 'helpers/Recipe';
 import {AdminUser} from 'components';
@@ -18,8 +18,13 @@ export default class RecipeDetail extends Component {
     return (
       <div>
        <h1>{myRecipe.getTitle()}</h1>
-        <img src={myRecipe.getImageURL()}/>
        <Panel header="Recipe Details">
+         <Row>
+          <Col xs={6} md={4}>
+             <Image src={myRecipe.getImageURL()} thumbnail />
+          </Col>
+        </Row>
+        <br />
         <p>Description: {myRecipe.getDescription()}</p>
         <p>Author: {myRecipe.getAuthor()}</p>
         <p>Source: {myRecipe.getSourceURL()}</p>

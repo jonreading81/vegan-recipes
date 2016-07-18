@@ -32,7 +32,6 @@ function createReducer(entity, defaultActions = getDefaultReducerActions) {
           isSuccess: true
         };
       case getActionType(entity, RESET):
-        console.log('reset');
         return {
           isFetching: false,
           didInvalidate: false,

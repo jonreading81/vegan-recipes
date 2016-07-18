@@ -28,13 +28,13 @@ class LoginForm extends Component {
 
     return (<form onSubmit={handleSubmit}>
         <FormGroup controlId="title" type="text" field={username}>
-          <ControlLabel>Username</ControlLabel>
-          <FormControl type="text" placeholder="Enter Username" {...username}/>
+          <ControlLabel>Email</ControlLabel>
+          <FormControl type="text" placeholder="Enter Email" {...username}/>
         </FormGroup>
 
         <FormGroup controlId="password" type="text" field={password}>
           <ControlLabel>Password</ControlLabel>
-          <FormControl type="text" placeholder="Enter Password" {...password}/>
+          <FormControl type="password" placeholder="Enter Password" {...password}/>
         </FormGroup>
         <ErrorBlock error={formError}/>
         <Button type="submit" disabled={submitting} bsStyle="primary">Login</Button>
