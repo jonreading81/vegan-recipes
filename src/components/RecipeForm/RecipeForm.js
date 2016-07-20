@@ -113,17 +113,7 @@ class RecipeForm extends Component {
             <FormControl type="text" placeholder="Enter Source" {...sourceURL}/>
           </FormGroup>
         </Panel>
-        <Panel header="Ingredients">
-          <MultiValueField field={ingredients} pluralName="ingredients" singularName="ingredient" toolbarClass={styles.toolbar}>
-            <IngredientInput ingredientList={ingredientList} quantityList={quantityList} />
-          </MultiValueField>
-        </Panel>
-        <Panel header="Steps">
-        <MultiValueField field={steps} pluralName="steps" singularName="step" >
-          <FormControl componentClass="textarea" placeholder="Enter Step"/>
-        </MultiValueField>
-        </Panel>
-        <Panel header="Timings">
+         <Panel header="Timings">
            <FormGroup controlId="preperationTime" type="text" field={preperationTime}>
             <ControlLabel>Preperation Time</ControlLabel>
             <Select simpleValue placeholder="Select Preperation Time" options={timingOptions} {...preperationTime}/>
@@ -136,6 +126,16 @@ class RecipeForm extends Component {
             <ControlLabel>Total Time</ControlLabel>
             <Select simpleValue placeholder="Select Total Time" options={timingOptions} {...totalTime}/>
           </FormGroup>
+        </Panel>
+        <Panel header="Ingredients">
+          <MultiValueField field={ingredients} pluralName="ingredients" singularName="ingredient" toolbarClass={styles.toolbar}>
+            <IngredientInput ingredientList={ingredientList} quantityList={quantityList} />
+          </MultiValueField>
+        </Panel>
+        <Panel header="Steps">
+        <MultiValueField field={steps} pluralName="steps" singularName="step" >
+          <FormControl componentClass="textarea" placeholder="Enter Step"/>
+        </MultiValueField>
         </Panel>
         <Panel header="Categories">
         <MultiValueField field={categories} pluralName="categories" singularName="category" >
