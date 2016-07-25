@@ -15,7 +15,7 @@ const recipeValidation = createValidator({
   cookingTime: [required, maxLength(20)],
   totalTime: [required, maxLength(20)],
   ingredients: [(ingredients = []) => ingredients.map(ingredientValidator)],
-  steps: validateList([required, maxLength(250)]),
+  steps: validateList([required, maxLength(1000)]),
   categories: validateList([required, maxLength(20)]),
   dietarySuitability: validateList([required, maxLength(20)])
 });

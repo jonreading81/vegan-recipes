@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import FormGroup from 'components/Form/FormGroup';
-import {MultiValueField} from 'components';
+import {MultiValueField, MultiValueFormControlWrapper} from 'components';
 import {Button, ButtonToolbar, FormControl, ControlLabel, Panel} from 'react-bootstrap';
 import validation from './validation';
 import IngredientInput from './IngredientInput';
@@ -134,17 +134,23 @@ class RecipeForm extends Component {
         </Panel>
         <Panel header="Steps">
         <MultiValueField field={steps} pluralName="steps" singularName="step" >
-          <FormControl componentClass="textarea" placeholder="Enter Step"/>
+          <MultiValueFormControlWrapper id="step">
+            <FormControl componentClass="textarea" placeholder="Enter Step"/>
+          </MultiValueFormControlWrapper>
         </MultiValueField>
         </Panel>
         <Panel header="Categories">
         <MultiValueField field={categories} pluralName="categories" singularName="category" >
-          <Autosuggest placeholder="Enter Category" suggestions={categoryList}/>
+          <MultiValueFormControlWrapper id="category">
+            <Autosuggest placeholder="Enter Category" suggestions={categoryList}/>
+          </MultiValueFormControlWrapper>
         </MultiValueField>
         </Panel>
         <Panel header="Dietary Suitability">
         <MultiValueField field={dietarySuitability} pluralName="diets" singularName="diet" >
-          <Autosuggest placeholder="Enter Diet" suggestions={dietList}/>
+          <MultiValueFormControlWrapper id="diet">
+            <Autosuggest placeholder="Enter Diet" suggestions={dietList}/>
+          </MultiValueFormControlWrapper>
         </MultiValueField>
         </Panel>
        <ButtonToolbar>
