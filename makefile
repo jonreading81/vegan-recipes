@@ -1,14 +1,14 @@
 clean:
-  @npm uninstall 
+	@npm uninstall 
 
 install-npm:
-  @npm install
+	@npm install
 
 build:
-  @npm build
+	@npm build
 
 restore-data:
-  mongorestore --db test ./data
+ 	mongorestore --db test ./data
 
 
 install: install-npm build restore-data
