@@ -8,13 +8,11 @@ build:
 	@npm build
 
 restore-data:
- 	mongorestore --db test ./data
+	mongorestore --db test ./data
 
-
-create-deployment:
-        zip -r deployment.zip ./ -x *.git
+deploy:
+	zip -r deployment.zip ./ -x *.git
 
 install: install-npm build restore-data
-
 
 .PHONY: clean
