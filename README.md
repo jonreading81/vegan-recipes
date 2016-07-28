@@ -1,10 +1,12 @@
 # vegan-recipes
 
-SET ENV FOR STORM PATH: 
+## SET ENV FOR STORM PATH: 
 
+```bash
 export STORMPATH_CLIENT_APIKEY_ID=
 export STORMPATH_CLIENT_APIKEY_SECRET=
 export STORMPATH_APPLICATION_HREF=
+```
 
 ## Installation
 
