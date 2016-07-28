@@ -13,6 +13,6 @@ restore-data:
 deploy:
 	zip -r recipes.zip ./ -x *.git
 
-install: install-npm build restore-data
+install: install-npm restore-data
 
 .PHONY: clean
