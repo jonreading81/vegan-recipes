@@ -1,6 +1,6 @@
 # vegan-recipes
 
-## SET ENV FOR STORM PATH: 
+## Set Env for stormpath: 
 
 ```bash
 export STORMPATH_CLIENT_APIKEY_ID=

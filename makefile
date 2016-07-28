@@ -11,7 +11,7 @@ restore-data:
 	mongorestore --db test ./data
 
 deploy:
-	zip -r deployment.zip ./ -x *.git
+	zip -r recipes.zip ./ -x *.git
 
 install: install-npm build restore-data
 
