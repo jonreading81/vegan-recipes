@@ -5,13 +5,16 @@ install-npm:
 	@npm install
 
 build:
-	@npm build
+	@npm run build
+
+backup-data:
+	mongodump --db test -o ./data
 
 restore-data:
 	mongorestore --db test ./data
 
 deploy:
-	zip -r recipes.zip ./ -x *.git
+	tar -cvf recipes.tar vegan-recipes/
 
 install: install-npm restore-data
 
