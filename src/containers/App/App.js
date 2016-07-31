@@ -48,6 +48,10 @@ export default class App extends Component {
     store: PropTypes.object.isRequired
   };
 
+  state = {
+    navExpanded: false
+  }
+
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {
       // login
@@ -56,6 +60,14 @@ export default class App extends Component {
       // logout
       this.props.pushState('/');
     }
+  }
+
+  onNavItemClick = () => {
+    this.setState({ navExpanded: false });
+  }
+
+  onNavbarToggle = () => {
+    this.setState({ navExpanded: ! this.state.navExpanded });
   }
 
   handleLogout = (event) => {
@@ -67,11 +79,11 @@ export default class App extends Component {
     const {user, apiError} = this.props;
     const styles = require('./App.scss');
     const myUserHelper = new UserHelper(user);
-
+    console.log(this.state);
     return (
         <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Navbar fixedTop>
+        <Navbar fixedTop onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/">
@@ -82,19 +94,19 @@ export default class App extends Component {
             <Navbar.Toggle/>
           </Navbar.Header>
 
-          <Navbar.Collapse eventKey={0}>
+          <Navbar.Collapse autoCollapse eventKey={0}>
             <Nav navbar>
              <LinkContainer to="/recipe/list">
-                <NavItem eventKey={1}>Recipes</NavItem>
+                <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Recipes</NavItem>
               </LinkContainer>
               <LoggedInUser>
                 <LinkContainer to="/recipe/add">
-                  <NavItem eventKey={2}>Add Recipe</NavItem>
+                  <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Recipe</NavItem>
                 </LinkContainer>
               </LoggedInUser>
               <NotLoggedInUser>
                   <LinkContainer to="/login">
-                    <NavItem eventKey={3}>Login</NavItem>
+                    <NavItem onClick={ this.onNavItemClick } eventKey={3}>Login</NavItem>
                   </LinkContainer>
               </NotLoggedInUser>
               <LoggedInUser>
@@ -106,7 +118,7 @@ export default class App extends Component {
               </LoggedInUser>
               <NotLoggedInUser>
                 <LinkContainer to="/register">
-                  <NavItem eventKey={4}>Register</NavItem>
+                  <NavItem onClick={ this.onNavItemClick } eventKey={4}>Register</NavItem>
                 </LinkContainer>
               </NotLoggedInUser>
             </Nav>
