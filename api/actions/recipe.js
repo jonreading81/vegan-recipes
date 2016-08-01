@@ -2,12 +2,12 @@
 var Recipe  = require('../models/recipe');
 import uploadImage from '../utils/uploadImage';
 
-export  function find () {
+export  function find (term, page) {
   return new Promise((resolve,reject) => { 
-    Recipe.find(function(err, recipes) {
+    Recipe.paginate({}, { page: page, limit: 2 }, function(err, result) {
       if (err) reject(err);
 
-      resolve(recipes);
+      resolve(result);
     });
 	});
 };

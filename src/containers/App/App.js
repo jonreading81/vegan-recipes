@@ -79,7 +79,6 @@ export default class App extends Component {
     const {user, apiError} = this.props;
     const styles = require('./App.scss');
     const myUserHelper = new UserHelper(user);
-    console.log(this.state);
     return (
         <div className={styles.app}>
         <Helmet {...config.app.head}/>

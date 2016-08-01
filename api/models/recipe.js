@@ -1,5 +1,6 @@
 const mongoose     = require('mongoose');
 const Schema       = mongoose.Schema;
+const mongoosePaginate = require('mongoose-paginate');
 const URLSlugs = require('mongoose-url-slugs');
 
 
@@ -54,5 +55,6 @@ const recipeSchema   = new Schema({
 });
 
 recipeSchema.plugin(URLSlugs('title'));
+recipeSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Recipe', recipeSchema);

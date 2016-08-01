@@ -32,10 +32,13 @@ function createReducer(entity, defaultActions = getDefaultReducerActions) {
 }
 
 function createRequest(entity, path) {
-  return () => {
+  return (term = 'all', page = 1) => {
+    let requestPath;
+    requestPath = path.replace(':term', term);
+    requestPath = requestPath.replace(':page', page);
     return {
       types: [getActionType(entity, REQUEST), getActionType(entity, REQUEST_SUCCESS), getActionType(entity, REQUEST_FAIL)],
-      promise: (client) => client.get(path)
+      promise: (client) => client.get(requestPath)
     };
   };
 }

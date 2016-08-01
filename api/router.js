@@ -11,14 +11,13 @@ router.get('/status', function(req, res){
   res.json({status:"connected"});
 });
 
-router.route('/recipes')
-  .post(stormpath.groupsRequired(['public']), multipartMiddleware, function(req, res) {    
-    handleAction(recipes.add(req.body, req.files), res);        
-  })
+router.route('/recipes').post(stormpath.groupsRequired(['public']), multipartMiddleware, function(req, res) {    
+  handleAction(recipes.add(req.body, req.files), res);        
+});
 
-  .get(function(req, res) {
-    handleAction(recipes.find(), res);
-  });
+router.route('/recipes/:term/:page').get(function(req, res) {    
+  handleAction(recipes.find(req.params.term,req.params.page), res);      
+});
 
 router.route('/recipes/:recipe_id')
 

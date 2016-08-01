@@ -28,7 +28,7 @@ export default (store) => {
       <Route path="register" component={Register}/>
       <Route path="recipe" component={App}>
         <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="add" component={AddRecipe}/>
-        <Route path="list" component={RecipeList}/>
+        <Route path="list(/:page)" component={RecipeList}/>
         <Route path=":recipe" component={ViewRecipe}/>
         <Route onEnter={requireMemberOfAdminGroup.bind(null, store)}>
           <Route path=":recipe/update" component={UpdateRecipe}/>
