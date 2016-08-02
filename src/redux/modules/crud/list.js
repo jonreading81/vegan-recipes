@@ -11,7 +11,9 @@ function createReducer(entity, defaultActions = getDefaultReducerActions) {
       case getActionType(entity, REQUEST):
         return {
           isFetching: true,
-          didInvalidate: false
+          didInvalidate: false,
+          items: state.items,
+          term: action.term
         };
       case getActionType(entity, REQUEST_FAIL):
         return {
@@ -23,7 +25,8 @@ function createReducer(entity, defaultActions = getDefaultReducerActions) {
         return {
           isFetching: false,
           didInvalidate: false,
-          items: action.result
+          items: action.result,
+          term: state.term
         };
       default:
         return defaultActions(state, action);
@@ -38,7 +41,8 @@ function createRequest(entity, path) {
     requestPath = requestPath.replace(':page', page);
     return {
       types: [getActionType(entity, REQUEST), getActionType(entity, REQUEST_SUCCESS), getActionType(entity, REQUEST_FAIL)],
-      promise: (client) => client.get(requestPath)
+      promise: (client) => client.get(requestPath),
+      term: term
     };
   };
 }

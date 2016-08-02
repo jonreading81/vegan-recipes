@@ -56,5 +56,6 @@ const recipeSchema   = new Schema({
 
 recipeSchema.plugin(URLSlugs('title'));
 recipeSchema.plugin(mongoosePaginate);
+recipeSchema.index({ "author" : 'text' , title: 'text', 'ingredients.name': 'text'});
 
 module.exports = mongoose.model('Recipe', recipeSchema);

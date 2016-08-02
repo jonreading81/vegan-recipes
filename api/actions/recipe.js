@@ -3,8 +3,12 @@ var Recipe  = require('../models/recipe');
 import uploadImage from '../utils/uploadImage';
 
 export  function find (term, page) {
-  return new Promise((resolve,reject) => { 
-    Recipe.paginate({}, { page: page, limit: 2 }, function(err, result) {
+  return new Promise((resolve,reject) => {
+    let query = {};
+    if(term !== 'all'){
+      query =  { $text: { $search: term }};
+    }
+    Recipe.paginate(query, { page: page, limit: 2 }, function(err, result) {
       if (err) reject(err);
 
       resolve(result);
