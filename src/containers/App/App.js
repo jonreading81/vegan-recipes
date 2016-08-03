@@ -95,7 +95,7 @@ export default class App extends Component {
 
           <Navbar.Collapse autoCollapse eventKey={0}>
             <Nav navbar>
-             <LinkContainer to="/recipe/list">
+             <LinkContainer to="/recipe/list/all">
                 <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Recipes</NavItem>
               </LinkContainer>
               <LoggedInUser>

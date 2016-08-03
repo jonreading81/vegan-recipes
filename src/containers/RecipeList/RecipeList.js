@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {ItemsList} from 'components';
-import {Pagination, FormGroup, FormControl, Button} from 'react-bootstrap';
+import {ItemsList, SearchWell} from 'components';
+import {Pagination} from 'react-bootstrap';
 import RecipeHelper from 'helpers/Recipe';
 import { request as requestList} from 'redux/modules/recipes/list';
 import { asyncConnect } from 'redux-async-connect';
@@ -41,15 +41,10 @@ export default class RecipeListContainer extends Component {
     this.props.getRecipes(term, page);
   }
 
-  searchRecipes(event) {
-    event.preventDefault();
-    const term = get(this.state, 'searchTerm', 'all');
+  searchRecipes(term) {
     this.props.getRecipes(term, 1);
   }
 
-  handleSearchChange(event) {
-    this.setState({searchTerm: event.target.value});
-  }
 
   render() {
     const {results} = this.props;
@@ -62,14 +57,14 @@ export default class RecipeListContainer extends Component {
         <Helmet title="Recipes"/>
         <div className="container">
           <h1>Recipes</h1>
-          <form onSubmit={::this.searchRecipes}>
-            <FormGroup>
-            <FormControl ref="search" type="text" placeholder="Search" onChange={::this.handleSearchChange} />
-            </FormGroup>
-            <Button type="submit">Submit</Button>
-          </form>
+          <SearchWell onSubmit={::this.searchRecipes} />
+          <If condition={ recipes.length === 0 }>
+            <h3>No Recipes</h3>
+          </If >
           <ItemsList items={recipeItems}/>
-          <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getRecipes} />
+          <If condition={ pages > 1 }>
+             <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getRecipes} />
+          </If>
          </div>
       </div>
     );

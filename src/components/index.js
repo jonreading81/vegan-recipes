@@ -18,5 +18,6 @@ export PropExists from './conditions/PropExists';
 export PropNotExists from './conditions/PropNotExists';
 export MultiValueField from './Form/MultiValueField';
 export MultiValueFormControlWrapper from './Form/MultiValueFormControlWrapper';
+export SearchWell from './SearchWell/SearchWell';
 
 
