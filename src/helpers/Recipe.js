@@ -115,8 +115,8 @@ export default class Recipe {
     return get(this.getRecipe(), 'sourceURL');
   }
 
-  getImageURL() {
-    return '/images/' + this.getImage();
+  getImageURL(size) {
+    return '/images/' + size + '/' + this.getImage();
   }
 
   getUpdateURL() {

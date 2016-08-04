@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Row, Col, Image, Button, ButtonToolbar, Panel, Table} from 'react-bootstrap';
+import { Image, Button, ButtonToolbar, Panel, Table} from 'react-bootstrap';
 import get from 'lodash/get';
 import RecipeHelper from 'helpers/Recipe';
 import {AdminUser} from 'components';
@@ -19,12 +19,18 @@ export default class RecipeDetail extends Component {
       <div>
        <h1>{myRecipe.getTitle()}</h1>
        <Panel header="Recipe Details">
-         <Row>
-          <Col xs={6} md={4}>
-             <Image src={myRecipe.getImageURL()} thumbnail />
-          </Col>
-        </Row>
-        <br />
+            <Image
+              thumbnail
+              width="100%"
+
+              data-srcset={
+                myRecipe.getImageURL('384x216') + ' 384w, ' +
+                myRecipe.getImageURL('640x360') + ' 640w'
+              }
+              data-sizes="auto"
+              src={myRecipe.getImageURL('128x72')}
+              className="lazyload"
+            />
         <p>Description: {myRecipe.getDescription()}</p>
         <p>Author: {myRecipe.getAuthor()}</p>
         <p>Source: {myRecipe.getSourceURL()}</p>
