@@ -19,17 +19,11 @@ export default class RecipeDetail extends Component {
       <div>
        <h1>{myRecipe.getTitle()}</h1>
        <Panel header="Recipe Details">
-            <Image
-              thumbnail
-              width="100%"
-
-              data-srcset={
+            <Image thumbnail width="100%" data-sizes="auto" src={myRecipe.getImageURL('128x72')} className="lazyload"
+            data-srcset={
                 myRecipe.getImageURL('384x216') + ' 384w, ' +
                 myRecipe.getImageURL('640x360') + ' 640w'
               }
-              data-sizes="auto"
-              src={myRecipe.getImageURL('128x72')}
-              className="lazyload"
             />
         <p>Description: {myRecipe.getDescription()}</p>
         <p>Author: {myRecipe.getAuthor()}</p>
