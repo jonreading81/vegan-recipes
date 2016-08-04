@@ -15,10 +15,7 @@
     "comma-dangle": 0,  // not sure why airbnb turned this on. gross!
     "indent": [2, 2, {"SwitchCase": 1}],
     "no-console": 0,
-    "no-alert": 0,    
-   "jsx-control-statements/jsx-if-condition": 1,
-   "jsx-control-statements/jsx-if-single-child": 1,
-   "jsx-control-statements/jsx-for-single-child": 1
+    "no-alert": 0
   },
   "plugins": [
     "react", "import", "jsx-control-statements"
