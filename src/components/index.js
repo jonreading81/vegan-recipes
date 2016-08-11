@@ -5,6 +5,7 @@
  *
  */
 export ItemsList from './ItemsList/ItemsList';
+export ItemsGrid from './ItemsGrid/ItemsGrid';
 export RecipeForm from './RecipeForm/RecipeForm';
 export LoginForm from './LoginForm/LoginForm';
 export RegisterForm from './RegisterForm/RegisterForm';
@@ -19,5 +20,6 @@ export PropNotExists from './conditions/PropNotExists';
 export MultiValueField from './Form/MultiValueField';
 export MultiValueFormControlWrapper from './Form/MultiValueFormControlWrapper';
 export SearchWell from './SearchWell/SearchWell';
-
+export HeroPanel from './HeroPanel/HeroPanel';
+export ResponsiveImage from './ResponsiveImage/ResponsiveImage';
 

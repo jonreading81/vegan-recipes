@@ -12,7 +12,6 @@ import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
 import {Error} from 'containers';
-import UserHelper from 'helpers/User';
 import {LoggedInUser, NotLoggedInUser} from 'components';
 import get from 'lodash/get';
 
@@ -76,57 +75,52 @@ export default class App extends Component {
   };
 
   render() {
-    const {user, apiError} = this.props;
+    const {apiError} = this.props;
     const styles = require('./App.scss');
-    const myUserHelper = new UserHelper(user);
     return (
         <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Navbar fixedTop onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
+        <Navbar fixedTop className="navbar-custom" fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
           <Navbar.Header>
-            <Navbar.Brand>
-              <IndexLink to="/">
-                <div className={styles.brand}/>
-                <span>{config.app.title}</span>
-              </IndexLink>
-            </Navbar.Brand>
-            <Navbar.Toggle/>
-          </Navbar.Header>
+              <Navbar.Brand>
+                <IndexLink to="/">
+                  <div className={styles.brand}/>
+                  <span>{config.app.title}</span>
+                </IndexLink>
+              </Navbar.Brand>
+              <Navbar.Toggle/>
+            </Navbar.Header>
 
-          <Navbar.Collapse autoCollapse eventKey={0}>
-            <Nav navbar>
-             <LinkContainer to="/recipe/list/all">
-                <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Recipes</NavItem>
-              </LinkContainer>
-              <LoggedInUser>
-                <LinkContainer to="/recipe/add">
-                  <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Recipe</NavItem>
+            <Navbar.Collapse autoCollapse eventKey={0}>
+              <Nav navbar className="navbar-right">
+               <LinkContainer to="/recipe/list/all">
+                  <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Recipes</NavItem>
                 </LinkContainer>
-              </LoggedInUser>
-              <NotLoggedInUser>
-                  <LinkContainer to="/login">
-                    <NavItem onClick={ this.onNavItemClick } eventKey={3}>Login</NavItem>
+                <LoggedInUser>
+                  <LinkContainer to="/recipe/add">
+                    <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Recipe</NavItem>
                   </LinkContainer>
-              </NotLoggedInUser>
-              <LoggedInUser>
-                <LinkContainer to="/logout">
-                  <NavItem eventKey={3} className="logout-link" onClick={this.handleLogout}>
-                    Logout
-                  </NavItem>
-                </LinkContainer>
-              </LoggedInUser>
-              <NotLoggedInUser>
-                <LinkContainer to="/register">
-                  <NavItem onClick={ this.onNavItemClick } eventKey={4}>Register</NavItem>
-                </LinkContainer>
-              </NotLoggedInUser>
-            </Nav>
-            <LoggedInUser>
-              <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{myUserHelper.getFullName()}</strong>.</p>
-            </LoggedInUser>
-          </Navbar.Collapse>
+                </LoggedInUser>
+                <NotLoggedInUser>
+                    <LinkContainer to="/login">
+                      <NavItem onClick={ this.onNavItemClick } eventKey={3}>Login</NavItem>
+                    </LinkContainer>
+                </NotLoggedInUser>
+                <LoggedInUser>
+                  <LinkContainer to="/logout">
+                    <NavItem eventKey={3} className="logout-link" onClick={this.handleLogout}>
+                      Logout
+                    </NavItem>
+                  </LinkContainer>
+                </LoggedInUser>
+                <NotLoggedInUser>
+                  <LinkContainer to="/register">
+                    <NavItem onClick={ this.onNavItemClick } eventKey={4}>Register</NavItem>
+                  </LinkContainer>
+                </NotLoggedInUser>
+              </Nav>
+            </Navbar.Collapse>
         </Navbar>
-
         <div className={styles.appContent}>
          {!apiError ? this.props.children : <Error code="500"><h2>{get(apiError, 'name')}</h2><p>{get(apiError, 'message')}</p></Error > }
         </div>

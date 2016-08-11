@@ -5,6 +5,8 @@ import {RecipeDetails} from 'components';
 import {NotFound} from 'containers';
 import {request as requestGet} from 'redux/modules/recipes/view';
 import { asyncConnect } from 'redux-async-connect';
+import {HeroPanel} from 'components';
+import RecipeHelper from 'helpers/Recipe';
 
 @connect(
   (store) => {
@@ -26,12 +28,14 @@ export default class ViewRecipeContainer extends Component {
 
   render() {
     const {recipe} = this.props;
+    const myRecipeHelper = new RecipeHelper(recipe);
     let content;
 
     if (recipe) {
       content = (
         <div>
           <Helmet title="View Recipes"/>
+           <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={'By ' + myRecipeHelper.getAuthor()}/>
           <div className="container">
             <RecipeDetails recipe={recipe} />
            </div>

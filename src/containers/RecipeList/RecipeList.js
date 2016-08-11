@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {ItemsList, SearchWell} from 'components';
+import {ItemsGrid, SearchWell} from 'components';
 import {Pagination} from 'react-bootstrap';
 import RecipeHelper from 'helpers/Recipe';
 import { request as requestList} from 'redux/modules/recipes/list';
 import { asyncConnect } from 'redux-async-connect';
 import get from 'lodash/get';
 import {push } from 'react-router-redux';
+import {HeroPanel} from 'components';
 
 @connect(
   (state) => {
@@ -55,13 +56,13 @@ export default class RecipeListContainer extends Component {
     return (
       <div>
         <Helmet title="Recipes"/>
+        <HeroPanel image="chocolate-brownie.jpeg" title="Recipes" subTitle="Delecious Recipes"/>
         <div className="container">
-          <h1>Recipes</h1>
           <SearchWell onSubmit={::this.searchRecipes} />
           <If condition={ recipes.length === 0 }>
             <h3>No Recipes</h3>
           </If >
-          <ItemsList items={recipeItems}/>
+          <ItemsGrid items={recipeItems}/>
           <If condition={ pages > 1 }>
              <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getRecipes} />
           </If>

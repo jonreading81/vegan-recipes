@@ -4,13 +4,13 @@ import isArray from 'lodash/isArray';
 import yieldsOptions from 'data/yieldsOptions.json';
 import difficultyOptions from 'data/difficultyOptions.json';
 import timingOptions from 'data/timingOptions.json';
+import ImageHelper from './Image';
 // import {mapSelectValueToArray} from 'utils/forms';
 
 export default class Recipe {
 
   static formatFormData(data) {
     // data.categories = mapSelectValueToArray(data.categories);
-    console.log(data);
     const formData = new FormData();
     forOwn(data, (fieldValue, fieldIndex) => {
       if (isArray(fieldValue)) {
@@ -48,11 +48,13 @@ export default class Recipe {
 
   constructor(recipe = {}) {
     this.recipe = recipe;
+    this.imageHelper = new ImageHelper(this.getImage());
     this.listItem = {
       id: this.getSlug(),
       title: this.getTitle(),
       description: this.getDescription(),
       URL: this.getURL(),
+      thumbnail: this.getImageURL('384x216'),
       updateURL: this.getUpdateURL(),
       deleteURL: this.getDeleteURL(),
     };
@@ -116,7 +118,7 @@ export default class Recipe {
   }
 
   getImageURL(size) {
-    return '/images/' + size + '/' + this.getImage();
+    return this.imageHelper.getImageURL(size);
   }
 
   getUpdateURL() {

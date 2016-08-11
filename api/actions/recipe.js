@@ -8,7 +8,7 @@ export  function find (term, page) {
     if(term !== 'all'){
       query =  { $text: { $search: term }};
     }
-    Recipe.paginate(query, { page: page, limit: 2 }, function(err, result) {
+    Recipe.paginate(query, { page: page, limit: 6 }, function(err, result) {
       if (err) reject(err);
 
       resolve(result);

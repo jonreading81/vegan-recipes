@@ -5,6 +5,8 @@ import {request} from 'redux/modules/register';
 import {RegisterForm} from 'components';
 import { bindActionCreators } from 'redux';
 import get from 'lodash/get';
+import {HeroPanel} from 'components';
+
 
 @connect(
   (state) => {
@@ -30,10 +32,12 @@ export default class Login extends Component {
   render() {
     const {register, error} = this.props;
     return (
-      <div className="container">
-        <Helmet title="Register"/>
-        <h1>Register</h1>
-        <RegisterForm formError={error} onSubmit={register} />
+      <div>
+      <Helmet title="Register"/>
+        <HeroPanel image="chocolate-brownie.jpeg" title="Register" subTitle="Enter your Details" />
+        <div className="container">
+          <RegisterForm formError={error} onSubmit={register} />
+        </div>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import * as authActions from 'redux/modules/auth';
 import {LoginForm} from 'components';
 import { bindActionCreators } from 'redux';
+import {HeroPanel} from 'components';
 
 @connect(
   (state) => {
@@ -30,10 +31,12 @@ export default class Login extends Component {
     const {login, error} = this.props;
     const styles = require('./Login.scss');
     return (
-      <div className={styles.loginPage + ' container'}>
-        <Helmet title="Login"/>
-        <h1>Login</h1>
-        <LoginForm formError={error} onSubmit={login} />
+      <div>
+        <HeroPanel image="chocolate-brownie.jpeg" title="Login" subTitle="Enter your Details" />
+        <div className={styles.loginPage + ' container'}>
+          <Helmet title="Login"/>
+          <LoginForm formError={error} onSubmit={login} />
+        </div>
       </div>
     );
   }
