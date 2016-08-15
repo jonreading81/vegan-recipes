@@ -6,6 +6,19 @@
 
 $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" !default;
 @import url($web-font-path);
+@import 'mixins';
+
+h1, h2, h3, h4 {
+  @include heading();
+}
+h1{
+  font-weight: 100;
+}
+
+p, td{
+  font-family: $font-family-serif;
+}
+
 
 // Navbar =====================================================================
 
@@ -14,7 +27,16 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
   @include box-shadow(0 1px 2px rgba(0,0,0,.3));
 
   &-brand {
+     @include heading();
+     font-weight: 200;
     font-size: 24px;
+  }
+
+  .nav li a {
+       @include heading();
+       font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 1px;
   }
 
   &-inverse {
@@ -622,5 +644,14 @@ input[type="checkbox"],
   font-size:1.2em;
 }
 
+.blur-up {
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  transition: filter 400ms, -webkit-filter 400ms;
+    }
 
+.blur-up.lazyloaded {
+  -webkit-filter: blur(0);
+  filter: blur(0);
+}
  

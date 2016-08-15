@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import {Col, Thumbnail } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import {Row, Col } from 'react-bootstrap';
+import {Link } from 'react-router';
+import { ResponsiveImage} from 'components';
 
 export default class ItemsGrid extends Component {
 
@@ -9,21 +10,29 @@ export default class ItemsGrid extends Component {
   };
 
   render() {
+    const styles = require('./ItemsGrid.scss');
+    let item;
+    let index;
     return (
-      <div>
-       {this.props.items.map((item) =>
-             <Col xs={6} md={4}>
-              <LinkContainer to={item.URL}>
-              <Thumbnail src={item.thumbnail}>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </Thumbnail>
-              </LinkContainer>
+      <Row>
+        <For each="item" index="index" of={ this.props.items}>
+          <Link to={item.URL}>
+          <Col xs={6} md={4} className={styles.promo}>
+            <ResponsiveImage image={item.image}/>
+            <div className={styles.copy}>
               <h4>{item.title}</h4>
-                <p>{item.description}</p>
-            </Col>
-          )}
-      </div>
+              <p>{item.description}</p>
+            </div>
+          </Col>
+          </Link>
+          <If condition={index === 1}>
+            <div className="clearfix visible-xs-block"></div>
+          </If>
+          <If condition={index === 2}>
+            <div className="clearfix visible-md-block visible-lg-block"></div>
+          </If>
+        </For>
+      </Row>
     );
   }
 }

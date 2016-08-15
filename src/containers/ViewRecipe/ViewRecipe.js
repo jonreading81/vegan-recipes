@@ -35,7 +35,7 @@ export default class ViewRecipeContainer extends Component {
       content = (
         <div>
           <Helmet title="View Recipes"/>
-           <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={'By ' + myRecipeHelper.getAuthor()}/>
+           <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
           <div className="container">
             <RecipeDetails recipe={recipe} />
            </div>

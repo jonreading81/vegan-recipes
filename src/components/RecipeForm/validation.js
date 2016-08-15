@@ -7,13 +7,13 @@ const ingredientValidator = createValidator({
 
 const recipeValidation = createValidator({
   title: [required, maxLength(40)],
-  description: [required, maxLength(255)],
+  shortDescription: [required, maxLength(100)],
+  description: [required, maxLength(500)],
   difficulty: [required, maxLength(20)],
   image: [required, validImage],
   yields: [required, maxLength(20)],
   preperationTime: [required, maxLength(20)],
   cookingTime: [required, maxLength(20)],
-  totalTime: [required, maxLength(20)],
   ingredients: [(ingredients = []) => ingredients.map(ingredientValidator)],
   steps: validateList([required, maxLength(1000)]),
   categories: validateList([required, maxLength(20)]),

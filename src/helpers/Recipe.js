@@ -55,6 +55,7 @@ export default class Recipe {
       description: this.getDescription(),
       URL: this.getURL(),
       thumbnail: this.getImageURL('384x216'),
+      image: this.getImage(),
       updateURL: this.getUpdateURL(),
       deleteURL: this.getDeleteURL(),
     };
@@ -81,6 +82,9 @@ export default class Recipe {
     return get(this.getRecipe(), 'description');
   }
 
+  getShortDescription() {
+    return get(this.getRecipe(), 'shortDescription');
+  }
   getTitle() {
     return get(this.getRecipe(), 'title');
   }

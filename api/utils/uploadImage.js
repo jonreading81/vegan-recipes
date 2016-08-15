@@ -17,7 +17,8 @@ export default function uploadImage(image, name) {
         [512,288],
         [640,360],
         [768,432],
-        [1024,576]
+        [1024,576],
+        [1248,702]
       ];
       const filename =  name + '.' + mime.extension(image.type);  
       copyFile(path, './uploads/images/original/' + filename);

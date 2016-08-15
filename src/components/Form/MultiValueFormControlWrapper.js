@@ -16,7 +16,6 @@ export default class MultiValueFormControlWrapper extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { id, index} = this.props;
     return (
         <FormGroup id={id + '-' + index} field={this.props}>

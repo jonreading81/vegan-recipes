@@ -18,7 +18,7 @@ $gray:                   #666 !default;
 $gray-light:             #bbb !default;
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
-$brand-primary:         #00cc66 !default;
+$brand-primary:         #549654 !default;
 $brand-success:         #4CAF50 !default;
 $brand-info:            #9C27B0 !default;
 $brand-warning:         #ff9800 !default;
@@ -46,7 +46,7 @@ $link-hover-decoration: underline !default;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -70,9 +70,9 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)) !default;
 
 //** By default, this inherits from the `<body>`.
 $headings-font-family:    inherit !default;
-$headings-font-weight:    400 !default;
+$headings-font-weight:    200 !default;
 $headings-line-height:    1.1 !default;
-$headings-color:          #444 !default;
+$headings-color:          $gray !default;
 
 
 //== Iconography
@@ -520,6 +520,7 @@ $state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !
 //== Tooltips
 //
 //##
+
 
 //** Tooltip max width
 $tooltip-max-width:           200px !default;

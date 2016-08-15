@@ -16,6 +16,7 @@ import get from 'lodash/get';
 
 export const fields = [
   'title',
+  'shortDescription',
   'description',
   'author',
   'image',
@@ -24,7 +25,6 @@ export const fields = [
   'yields',
   'preperationTime',
   'cookingTime',
-  'totalTime',
   'ingredients[].name',
   'ingredients[].quantity',
   'steps[]',
@@ -59,6 +59,7 @@ class RecipeForm extends Component {
       fields: {
         title,
         image,
+        shortDescription,
         description,
         ingredients,
         steps,
@@ -68,8 +69,7 @@ class RecipeForm extends Component {
         sourceURL,
         yields,
         preperationTime,
-        cookingTime,
-        totalTime
+        cookingTime
       },
       ingredientList,
       quantityList,
@@ -91,6 +91,11 @@ class RecipeForm extends Component {
           <FormGroup controlId="image" type="text" field={image}>
             <ControlLabel>Image</ControlLabel>
             <FormControl type="file" placeholder="Enter image" {...image} value={ null }/>
+          </FormGroup>
+
+           <FormGroup controlId="shortDescription" type="text" field={description}>
+            <ControlLabel>Short Description</ControlLabel>
+            <FormControl componentClass="textarea" placeholder="Enter Short Description" {...shortDescription}/>
           </FormGroup>
 
           <FormGroup controlId="description" type="text" field={description}>
@@ -121,10 +126,6 @@ class RecipeForm extends Component {
            <FormGroup controlId="cookingTime" type="text" field={cookingTime}>
             <ControlLabel>Cooking Time</ControlLabel>
             <Select simpleValue placeholder="Select Cooking Time" options={timingOptions} {...cookingTime}/>
-          </FormGroup>
-           <FormGroup controlId="totalTime" type="text" field={totalTime}>
-            <ControlLabel>Total Time</ControlLabel>
-            <Select simpleValue placeholder="Select Total Time" options={timingOptions} {...totalTime}/>
           </FormGroup>
         </Panel>
         <Panel header="Ingredients">

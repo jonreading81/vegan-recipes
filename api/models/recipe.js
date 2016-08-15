@@ -10,6 +10,10 @@ const recipeSchema   = new Schema({
     	type: String,
     	required: [true, 'Title field is required']
     },
+    shortDescription: {
+        type: String,
+        required: [true, 'Sell it to me']
+    },
     description: {
     	type: String,
     	required: [true, 'Tell us about it']
@@ -41,10 +45,6 @@ const recipeSchema   = new Schema({
     cookingTime: {
         type: String,
         required: [true, 'How long does it take to cook']
-    },
-    totalTime: {
-        type: String,
-        required: [true, 'How long does it take in total to make']
     },
     sourceURL: {
         type: String,
