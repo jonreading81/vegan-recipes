@@ -10,6 +10,7 @@ module.exports = {
   styles: {
     mixins: true,
     core: true,
+    stacked: true,
     icons: true,
     larger: true,
     path: true,

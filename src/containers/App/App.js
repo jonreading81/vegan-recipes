@@ -1,19 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { IndexLink } from 'react-router';
-import { LinkContainer } from 'react-router-bootstrap';
-import Navbar from 'react-bootstrap/lib/Navbar';
-import Nav from 'react-bootstrap/lib/Nav';
-import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
-import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
+import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import {getStatus, isLoaded as isAPILoaded } from 'redux/modules/api';
 import { push } from 'react-router-redux';
-import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
 import {Error} from 'containers';
-import {LoggedInUser, NotLoggedInUser} from 'components';
+import {Footer, NavBar} from 'components';
 import get from 'lodash/get';
+import config from '../../config';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -33,12 +28,11 @@ import get from 'lodash/get';
     user: state.auth.user,
     apiError: state.api.error
   }),
-  {logout, pushState: push})
+  {pushState: push})
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     user: PropTypes.object,
-    logout: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired,
     apiError: PropTypes.object
   };
@@ -46,10 +40,6 @@ export default class App extends Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
-
-  state = {
-    navExpanded: false
-  }
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {
@@ -61,69 +51,17 @@ export default class App extends Component {
     }
   }
 
-  onNavItemClick = () => {
-    this.setState({ navExpanded: false });
-  }
-
-  onNavbarToggle = () => {
-    this.setState({ navExpanded: ! this.state.navExpanded });
-  }
-
-  handleLogout = (event) => {
-    event.preventDefault();
-    this.props.logout();
-  };
-
   render() {
     const {apiError} = this.props;
     const styles = require('./App.scss');
     return (
         <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Navbar fixedTop className="navbar-custom" fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
-          <Navbar.Header>
-              <Navbar.Brand>
-                <IndexLink to="/">
-                  <div className={styles.brand}/>
-                  <span>{config.app.title}</span>
-                </IndexLink>
-              </Navbar.Brand>
-              <Navbar.Toggle/>
-            </Navbar.Header>
-
-            <Navbar.Collapse autoCollapse eventKey={0}>
-              <Nav navbar className="navbar-right">
-               <LinkContainer to="/recipe/list/all">
-                  <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Recipes</NavItem>
-                </LinkContainer>
-                <LoggedInUser>
-                  <LinkContainer to="/recipe/add">
-                    <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Recipe</NavItem>
-                  </LinkContainer>
-                </LoggedInUser>
-                <NotLoggedInUser>
-                    <LinkContainer to="/login">
-                      <NavItem onClick={ this.onNavItemClick } eventKey={3}>Login</NavItem>
-                    </LinkContainer>
-                </NotLoggedInUser>
-                <LoggedInUser>
-                  <LinkContainer to="/logout">
-                    <NavItem eventKey={3} className="logout-link" onClick={this.handleLogout}>
-                      Logout
-                    </NavItem>
-                  </LinkContainer>
-                </LoggedInUser>
-                <NotLoggedInUser>
-                  <LinkContainer to="/register">
-                    <NavItem onClick={ this.onNavItemClick } eventKey={4}>Register</NavItem>
-                  </LinkContainer>
-                </NotLoggedInUser>
-              </Nav>
-            </Navbar.Collapse>
-        </Navbar>
+        <NavBar />
         <div className={styles.appContent}>
          {!apiError ? this.props.children : <Error code="500"><h2>{get(apiError, 'name')}</h2><p>{get(apiError, 'message')}</p></Error > }
         </div>
+         <Footer />
       </div>
       );
   }

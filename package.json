@@ -154,7 +154,7 @@
     "eslint-plugin-import": "^0.8.0",
     "eslint-plugin-react": "^3.5.0",
     "extract-text-webpack-plugin": "^0.9.1",
-    "font-awesome": "^4.4.0",
+    "font-awesome": "^4.6.3",
     "font-awesome-webpack": "0.0.4",
     "json-loader": "^0.5.4",
     "jsx-control-statements": "^3.1.2",

@@ -19,9 +19,26 @@ export default class RecipeDetail extends Component {
     return (
       <Col md="10" mdOffset="1">
       <Row className={styles.details}>
-        <Col xs="12" sm="4"><i className="fa fa-clock-o fa-2x" /><p>Prep: {myRecipe.getPreperationTime()}<br />Cook: {myRecipe.getCookingTime()}</p></Col>
-        <Col xs="12" sm="4"><i className="fa fa-cog  fa-2x" aria-hidden="true" /><p>{myRecipe.getDifficulty()}</p></Col>
-        <Col xs="12" sm="4"><i className="fa fa-male  fa-2x" aria-hidden="true" /><p>Serves {myRecipe.getYields()}</p></Col>
+        <Col xs="12" sm="4">
+        <p className={styles.iconWrapper + ' fa-stack fa-lg'}>
+          <i className="fa fa-circle fa-stack-2x"></i>
+          <i className="fa fa-clock-o fa-stack-1x fa-inverse"></i>
+        </p>
+        <p className={styles.cookingDetail}>Prep: {myRecipe.getPreperationTime()}<br />Cook: {myRecipe.getCookingTime()}</p></Col>
+        <Col xs="12" sm="4">
+        <p className={styles.iconWrapper + ' fa-stack fa-lg'}>
+          <i className="fa fa-circle fa-stack-2x"></i>
+          <i className="fa fa-cutlery fa-stack-1x fa-inverse"></i>
+        </p>
+        <p className={styles.difficultyDetail}>{myRecipe.getDifficulty()}</p>
+        </Col>
+        <Col xs="12" sm="4">
+          <p className={styles.iconWrapper + ' fa-stack fa-lg'}>
+          <i className="fa fa-circle fa-stack-2x"></i>
+          <i className="fa fa-male fa-stack-1x fa-inverse"></i>
+        </p>
+          <p className={styles.servesDetail}>Serves {myRecipe.getYields()}</p>
+        </Col>
       </Row>
       <p className={styles.description}>{myRecipe.getDescription()}</p>
       <Row>
@@ -44,8 +61,8 @@ export default class RecipeDetail extends Component {
           <tbody>
           {myRecipe.getSteps().map((step, index) =>
             <tr>
-              <td>{index + 1}</td>
-              <td>{step}</td>
+              <td className={styles.step}>{index + 1}</td>
+              <td className={styles.step}>{step}</td>
             </tr>
           )}
           </tbody>
@@ -53,7 +70,7 @@ export default class RecipeDetail extends Component {
         </Col>
       </Row>
        <If condition={myRecipe.getSourceURL() !== ''}>
-        <p>Source: <a href={myRecipe.getSourceURL()}>{myRecipe.getSourceURL()}</a></p>
+        <p className={styles.source}>Source: <a href={myRecipe.getSourceURL()}>{myRecipe.getSourceURL()}</a></p>
       </If>
       <AdminUser>
         <ButtonToolbar>

@@ -5,6 +5,7 @@ import * as authActions from 'redux/modules/auth';
 import {LoginForm} from 'components';
 import { bindActionCreators } from 'redux';
 import {HeroPanel} from 'components';
+import {Row, Col} from 'react-bootstrap';
 
 @connect(
   (state) => {
@@ -32,10 +33,15 @@ export default class Login extends Component {
     const styles = require('./Login.scss');
     return (
       <div>
-        <HeroPanel image="chocolate-brownie.jpeg" title="Login" subTitle="Enter your Details" />
+        <Helmet title="Login"/>
+        <HeroPanel image="forest.jpeg" title="Login" />
         <div className={styles.loginPage + ' container'}>
-          <Helmet title="Login"/>
-          <LoginForm formError={error} onSubmit={login} />
+          <Row>
+            <Col sm="6" smOffset="3">
+            <h3>Enter your Details</h3>
+            <LoginForm formError={error} onSubmit={login} />
+            </Col>
+          </Row>
         </div>
       </div>
     );
