@@ -1,17 +1,7 @@
 import  lwip from 'lwip';
+const sizes = require('../data/imageSizes.json');
 
-const sizes= [
-  [128,72],
-  [256,144],
-  [384,216],
-  [512,288],
-  [640,360],
-  [768,432],
-  [1024,576],
-  [1248,702]
-];
-
-const destinationPath =  './uploads/images/';
+const destinationPath =  './static/images/';
 
 export default function convertImage(sourcePath, filename) {
   return new Promise((resolve, reject) => {
