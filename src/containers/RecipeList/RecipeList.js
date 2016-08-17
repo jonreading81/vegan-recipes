@@ -60,7 +60,7 @@ export default class RecipeListContainer extends Component {
         <div className="container">
           <SearchWell onSubmit={::this.searchRecipes} />
           <If condition={ recipes.length === 0 }>
-            <h3>No Recipes</h3>
+            <h4>No Recipes</h4>
           </If >
           <ItemsGrid items={recipeItems}/>
           <If condition={ pages > 1 }>

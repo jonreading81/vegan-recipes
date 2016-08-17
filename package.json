@@ -9,6 +9,7 @@
     "start-prod": "better-npm-run start-prod",
     "start-prod-api": "better-npm-run start-prod-api",
     "build": "better-npm-run build",
+    "convert-images": "better-npm-run convert-images",
     "postinstall": "npm run build",
     "lint": "eslint -c .eslintrc src api",
     "start-dev": "better-npm-run start-dev",
@@ -67,6 +68,13 @@
       "command": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
       "env": {
         "NODE_ENV": "production"
+      }
+    },
+    "convert-images": {
+      "command": "node ./bin/convertImages.js",
+      "env": {
+        "NODE_PATH": "./api",
+        "NODE_ENV": "development"
       }
     }
   },
