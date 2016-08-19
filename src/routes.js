@@ -1,9 +1,11 @@
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
-import {requireMemberOfAnyGroup, requireMemberOfAdminGroup} from './utils/routeValidation';
+// import {requireMemberOfAnyGroup, requireMemberOfAdminGroup} from './utils/routeValidation';
 import {
     App,
     Home,
+    NotFound,
+    /*
     AddRecipe,
     RecipeList,
     ViewRecipe,
@@ -14,9 +16,11 @@ import {
     NotFound,
     Register,
     Welcome
+    */
   } from 'containers';
 
-export default (store) => {
+// export default (store) => {
+export default () => {
   /**
    * Please keep routes in alphabetical order
    */
@@ -24,6 +28,7 @@ export default (store) => {
     <Route path="/" component={App}>
       { /* Home (main) route */ }
       <IndexRoute component={Home}/>
+      {/*
       <Route path="logout" component={Logout}/>
       <Route path="login" component={Login}/>
       <Route path="register" component={Register}/>
@@ -37,7 +42,7 @@ export default (store) => {
           <Route path=":recipe/delete" component={DeleteRecipe}/>
         </Route>
       </Route>
-      { /* Catch all route */ }
+      */}
       <Route path="*" component={NotFound} status={404} />
     </Route>
   );

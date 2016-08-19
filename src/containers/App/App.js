@@ -6,7 +6,7 @@ import {getStatus, isLoaded as isAPILoaded } from 'redux/modules/api';
 import { push } from 'react-router-redux';
 import { asyncConnect } from 'redux-async-connect';
 import {Error} from 'containers';
-import {Footer, NavBar} from 'components';
+import {Footer} from 'components';
 import get from 'lodash/get';
 import config from '../../config';
 
@@ -57,7 +57,6 @@ export default class App extends Component {
     return (
         <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <NavBar />
         <div className={styles.appContent}>
          {!apiError ? this.props.children : <Error code="500"><h2>{get(apiError, 'name')}</h2><p>{get(apiError, 'message')}</p></Error > }
         </div>
