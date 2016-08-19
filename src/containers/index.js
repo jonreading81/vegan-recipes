@@ -6,6 +6,7 @@ export UpdateRecipe from './UpdateRecipe/UpdateRecipe';
 export DeleteRecipe from './DeleteRecipe/DeleteRecipe';
 export AddRecipe from './AddRecipe/AddRecipe';
 export Login from './Login/Login';
+export Welcome from './Welcome/Welcome';
 export NotFound from './NotFound/NotFound';
 export Error from './Error/Error';
 export Register from './Register/Register';

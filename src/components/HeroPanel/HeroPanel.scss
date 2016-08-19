@@ -1,27 +1,43 @@
 @import "~compass-mixins/lib/compass";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
 :global{
     .hero-panel {
       position: relative; 
-      margin-bottom: 12px;
+      margin-top: 64px;
     .hero-panel-type{
       position: absolute;
       margin: auto;
       position: absolute;
       top: 0; left: 0; bottom: 0; right: 0;
       height:80px;
-      width: 75%;
+      width:100%;
       z-index:2;
       text-align: center;   
-      @media only screen and (min-width: 768px) {
-         height:150px;
+
+      @media only screen and (max-width: $screen-sm-max) {
+        height:110px;
       } 
+
+      @media only screen and (min-width: $screen-sm-min) {
+        height:150px;
+      } 
+
+      @media only screen and (min-width: $screen-sm-min) {
+        width: 85%;
+      }
     }
 
     .image-wrapper{
-      max-height: 500px;
+      max-height: 430px;
       overflow:hidden;
       position:relative;
+    }
+
+    &.hero-panel-empty {
+      .image-wrapper{
+          max-height: 260px;
+      }
     }
     .image-wrapper-overlay{
       position: absolute;

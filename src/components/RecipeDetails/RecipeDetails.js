@@ -40,7 +40,7 @@ export default class RecipeDetail extends Component {
           <p className={styles.servesDetail}>Serves {myRecipe.getYields()}</p>
         </Col>
       </Row>
-      <p className={styles.description}>{myRecipe.getDescription()}</p>
+      <p className="intro">{myRecipe.getDescription()}</p>
       <Row>
         <Col xs="12" sm="6">
           <h3>Ingredients</h3>
@@ -75,10 +75,10 @@ export default class RecipeDetail extends Component {
       <AdminUser>
         <ButtonToolbar>
         <LinkContainer to={myRecipe.getUpdateURL()}>
-          <Button bsSize="large" >Update</Button>
+          <Button bsStyle="primary" bsSize="large" >Update</Button>
         </LinkContainer>
          <LinkContainer to={myRecipe.getDeleteURL()}>
-          <Button bsSize="large" >Delete</Button>
+          <Button bsStyle="primary" bsSize="large" >Delete</Button>
           </LinkContainer>
         </ButtonToolbar>
       </AdminUser>

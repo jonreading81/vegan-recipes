@@ -70,7 +70,8 @@ module.exports = {
       'bootstrap-sass!./src/theme/bootstrap.config.js',
       'font-awesome-webpack!./src/theme/font-awesome.config.js',
       './src/client.js',
-      './node_modules/lazysizes/lazysizes.js'
+      './node_modules/lazysizes/lazysizes.js',
+      './node_modules/lazysizes/plugins/attrchange/ls.attrchange.js'
     ]
   },
   output: {

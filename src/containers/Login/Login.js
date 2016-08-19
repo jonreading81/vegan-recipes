@@ -34,11 +34,11 @@ export default class Login extends Component {
     return (
       <div>
         <Helmet title="Login"/>
-        <HeroPanel image="forest.jpeg" title="Login" />
+        <HeroPanel isEmpty image="forest.jpeg" />
         <div className={styles.loginPage + ' container'}>
           <Row>
             <Col sm="6" smOffset="3">
-            <h3>Enter your Details</h3>
+            <h2>Login</h2>
             <LoginForm formError={error} onSubmit={login} />
             </Col>
           </Row>

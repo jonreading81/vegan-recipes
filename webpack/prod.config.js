@@ -22,7 +22,8 @@ module.exports = {
       'bootstrap-sass!./src/theme/bootstrap.config.prod.js',
       'font-awesome-webpack!./src/theme/font-awesome.config.prod.js',
       './src/client.js',
-      './node_modules/lazysizes/lazysizes.js'
+      './node_modules/lazysizes/lazysizes.js',
+      './node_modules/lazysizes/plugins/attrchange/ls.attrchange.js'
     ]
   },
   output: {

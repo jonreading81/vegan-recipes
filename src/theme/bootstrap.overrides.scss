@@ -1,4 +1,5 @@
-
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
 // Paper 3.3.7
 // Bootswatch
@@ -19,6 +20,16 @@ p, td{
   font-family: $font-family-serif;
 }
 
+cite {
+  &:before{
+    content:"- "
+  }
+  display: block;
+  font-style: italic;
+  margin-top: 1.5em;
+
+}
+
 
 // Navbar =====================================================================
 
@@ -27,9 +38,12 @@ p, td{
   @include box-shadow(0 1px 2px rgba(0,0,0,.3));
 
   &-brand {
-     @include heading();
-     font-weight: 200;
+    @include heading();
+    font-weight: 200;
     font-size: 24px;
+    @media(max-width: $screen-xs-max){
+      font-size: 22px;
+    }
   }
 
   .nav li a {
@@ -640,8 +654,29 @@ input[type="checkbox"],
     }
   }
 }
-.body-copy p{
-  font-size:1.2em;
+
+.body-copy {
+  @include make-xs-column(12);
+  @include make-xs-column-offset(0);
+  @include make-md-column(8);
+  @include make-md-column-offset(2);
+  @include make-lg-column(10);
+  @include make-lg-column-offset(1);
+  p{
+     font-size:16px;
+  }
+}
+p.body-copy-first{
+  margin-top: 32px;
+}
+
+.column-small {
+  @include make-sm-column(6);
+  @include make-sm-column-offset(3);
+}
+
+p.important {
+  font-weight: 800;
 }
 
 .blur-up {
