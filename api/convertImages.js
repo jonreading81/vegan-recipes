@@ -6,14 +6,19 @@ const destinationPath = 'static/images/';
 
 console.info('converting Images');
 
-function createDirectorties(){
-  let dir;
-  imageSizes.map((size) => {
-    dir = destinationPath +  size.join('x');
+function createDirectory(dir){ 
     if (!fs.existsSync(dir)){
       fs.mkdirSync(dir);
-      console.info('createDirectorties: '+ dir);
+      console.info('createDirectory: '+ dir);
     }
+}
+
+function createDirectorties(){
+  let dir;
+  createDirectory(destinationPath);
+  imageSizes.map((size) => {
+    dir = destinationPath +  size.join('x');
+    createDirectory(dir);
   });
 }
 
