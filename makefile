@@ -14,7 +14,7 @@ restore-data:
 	mongorestore --db test ./data
 
 deploy:
-	tar -cvf recipes.tar vegan-recipes/
+	tar -cvf recipes.tar ./
 
 install: install-npm restore-data
 
