@@ -31,12 +31,16 @@ export default class Login extends Component {
 
   render() {
     const {register, error} = this.props;
+    const styles = require('./Register.scss');
     return (
       <div>
       <Helmet title="Register"/>
-        <HeroPanel image="chocolate-brownie.jpeg" title="Register" subTitle="Enter your Details" />
-        <div className="container">
-          <RegisterForm formError={error} onSubmit={register} />
+        <HeroPanel isEmpty image="forest.jpeg" />
+        <div className={styles.register + ' container'}>
+          <div className="column-small">
+          <h2>Register</h2>
+           <RegisterForm formError={error} onSubmit={register} />
+          </div>
         </div>
       </div>
     );

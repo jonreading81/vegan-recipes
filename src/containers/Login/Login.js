@@ -5,7 +5,7 @@ import * as authActions from 'redux/modules/auth';
 import {LoginForm} from 'components';
 import { bindActionCreators } from 'redux';
 import {HeroPanel} from 'components';
-import {Row, Col} from 'react-bootstrap';
+import {Row} from 'react-bootstrap';
 
 @connect(
   (state) => {
@@ -37,10 +37,10 @@ export default class Login extends Component {
         <HeroPanel isEmpty image="forest.jpeg" />
         <div className={styles.loginPage + ' container'}>
           <Row>
-            <Col sm="6" smOffset="3">
+            <div className="column-small">
             <h2>Login</h2>
             <LoginForm formError={error} onSubmit={login} />
-            </Col>
+            </div>
           </Row>
         </div>
       </div>

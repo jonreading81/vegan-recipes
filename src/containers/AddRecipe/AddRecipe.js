@@ -4,7 +4,7 @@ import {reset as resetForm} from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { request as requestAddRecipe, reset as resetAddRecipe} from 'redux/modules/recipes/add';
 import {RecipeForm} from 'components';
-import {EntityFormContainer} from 'components';
+import {HeroPanel, EntityFormContainer} from 'components';
 const resetFormAction = resetForm('recipeForm');
 const resetStateAction = resetAddRecipe();
 import RecipeHelper from 'helpers/Recipe';
@@ -44,9 +44,10 @@ export default class AddRecipeContainer extends Component {
     };
     return (
       <div>
+        <HeroPanel isEmpty image="forest.jpeg" />
        <EntityFormContainer
         entity ={recipe}
-        pageTitle = "Add Recipe"
+        pageTitle = "Add New Recipe"
         resetStateAction = {resetStateAction}
         resetFormAction = {resetFormAction}
         onSuccessCancelActions = {[resetStateAction, resetFormAction]}
