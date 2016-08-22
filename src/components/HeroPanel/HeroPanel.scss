@@ -33,6 +33,20 @@
       position:relative;
     }
 
+    cite {
+      &:before{
+        content:"( ";
+      }
+      &:after{
+        content:" )";
+      }
+      display: inline;
+      font-size: 0.75em;
+      a{
+        color:white;
+      }
+    }
+
     &.hero-panel-empty {
       .image-wrapper{
           max-height: 260px;

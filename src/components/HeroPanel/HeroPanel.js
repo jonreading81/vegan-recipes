@@ -7,6 +7,7 @@ export default class HeroPanel extends Component {
 
   static propTypes = {
     title: PropTypes.string.isRequired,
+    children: PropTypes.node,
     type: PropTypes.string,
     isEmpty: PropTypes.bool,
     subTitle: PropTypes.string,
@@ -14,7 +15,7 @@ export default class HeroPanel extends Component {
   }
   render() {
     require('./HeroPanel.scss');
-    const {title, subTitle, image, isEmpty} = this.props;
+    const {title, subTitle, image, isEmpty, children} = this.props;
     const type = get( this.props, 'type', 'site-heading');
     return (
       <header className={!isEmpty ? 'hero-panel' : 'hero-panel hero-panel-empty'} >
@@ -32,6 +33,7 @@ export default class HeroPanel extends Component {
                     <If condition={subTitle}>
                       <span className="subheading">{subTitle}</span>
                     </If>
+                    {children}
                   </div>
               </div>
             </div>
