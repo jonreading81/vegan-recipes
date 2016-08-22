@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import NestedStatus from 'react-nested-status';
+import {HeroPanel} from 'components';
 
 export default class Error extends Component {
 
@@ -13,10 +14,15 @@ export default class Error extends Component {
     const {code, children} = this.props;
     return (
       <NestedStatus code={code}>
-        <div className="container">
-          <h1>Doh Error!</h1>
-          {children}
-        </div>
+           <div>
+       <HeroPanel image="forest.jpeg" isEmpty />
+          <div className="container">
+              <div className="body-copy">
+              <h1>Doh Error</h1>
+              {children}
+              </div>
+          </div>
+      </div>
       </NestedStatus>
     );
   }

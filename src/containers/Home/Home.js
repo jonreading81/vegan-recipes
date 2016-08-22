@@ -17,11 +17,12 @@ export default class Home extends Component {
           <div className="container">
               <div className="body-copy">
               <p className="body-copy-first important">Within India culture, the forest was considered the ideal place for spiritual practice because, in the forest, there are no rules and there are no presiding authorities. The only authority is the chaos of the forest itself.</p>
+              <p>
+              The only rule is what awaits there for each practitioner, uniquely, to discover. Memories of the past and plans for the future, the psychic infrastructure of civilisation, do not apply: they have no bearing and they have no footing.  The forest is about something else.</p>
               <blockquote>
               Uniquely in the forest, the most radical of all human journeys can take place, one which brings us in direct contact with primordial being.
               </blockquote>
-              <p>
-              The only rule is what awaits there for each practitioner, uniquely, to discover. Memories of the past and plans for the future, the psychic infrastructure of civilisation, do not apply: they have no bearing and they have no footing.  The forest is about something else. In the forest, there is only the ever-present possibility of events, encounters, and the insights that emerge directly from reality itself, pure and unpolluted by human wants, expectations, and attitudes.  Uniquely in the forest, the most radical of all human journeys can take place, one which brings us in direct contact with primordial being.
+              <p>In the forest, there is only the ever-present possibility of events, encounters, and the insights that emerge directly from reality itself, pure and unpolluted by human wants, expectations, and attitudes.  Uniquely in the forest, the most radical of all human journeys can take place, one which brings us in direct contact with primordial being.
               </p>
               <cite><a href={dharmaocean}>Reginald A. Ray PhD 2014. The Call of the Forest. In: Touching Enlightenment: finding realization in the body.</a></cite>
               </div>
