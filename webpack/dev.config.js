@@ -71,6 +71,7 @@ module.exports = {
       'font-awesome-webpack!./src/theme/font-awesome.config.js',
       './src/client.js',
       './node_modules/lazysizes/lazysizes.js',
+      './node_modules/picturefill/src/picturefill.js',
       './node_modules/lazysizes/plugins/attrchange/ls.attrchange.js'
     ]
   },
