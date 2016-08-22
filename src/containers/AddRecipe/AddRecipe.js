@@ -47,7 +47,7 @@ export default class AddRecipeContainer extends Component {
         <HeroPanel isEmpty image="forest.jpeg" />
        <EntityFormContainer
         entity ={recipe}
-        pageTitle = "Add New Recipe"
+        pageTitle = "New Recipe"
         resetStateAction = {resetStateAction}
         resetFormAction = {resetFormAction}
         onSuccessCancelActions = {[resetStateAction, resetFormAction]}
