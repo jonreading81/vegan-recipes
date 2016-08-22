@@ -8,7 +8,7 @@
     "start": "concurrent --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",
     "start-prod": "better-npm-run start-prod",
     "start-prod-api": "better-npm-run start-prod-api",
-    "build": "better-npm-run build",
+    "build": "better-npm-run build && npm run convert-images",
     "convert-images": "better-npm-run convert-images",
     "postinstall": "npm run build",
     "lint": "eslint -c .eslintrc src api",
