@@ -30,6 +30,9 @@ cite {
 
 }
 
+blockquote{
+  border-color:lighten($brand-primary, 30%);
+}
 
 // Navbar =====================================================================
 
