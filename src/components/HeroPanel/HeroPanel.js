@@ -8,6 +8,7 @@ export default class HeroPanel extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     children: PropTypes.node,
+    style: PropTypes.string,
     type: PropTypes.string,
     isEmpty: PropTypes.bool,
     subTitle: PropTypes.string,
@@ -15,10 +16,14 @@ export default class HeroPanel extends Component {
   }
   render() {
     require('./HeroPanel.scss');
-    const {title, subTitle, image, isEmpty, children} = this.props;
+    const {title, subTitle, image, isEmpty, children, style} = this.props;
     const type = get( this.props, 'type', 'site-heading');
+    let className = 'hero-panel';
+    if (isEmpty) className += ' hero-panel-empty';
+    if (style) className = className + ' hero-panel-' + style;
+
     return (
-      <header className={!isEmpty ? 'hero-panel' : 'hero-panel hero-panel-empty'} >
+      <header className={className} >
             <div className="image-wrapper">
               <ResponsiveImage image={image}/>
               <div className="image-wrapper-overlay" />
