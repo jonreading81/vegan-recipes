@@ -2,7 +2,7 @@ clean:
 	@npm uninstall 
 
 install-npm:
-	@npm install
+	@npm install --unsafe-perm
 
 build:
 	@npm run build
