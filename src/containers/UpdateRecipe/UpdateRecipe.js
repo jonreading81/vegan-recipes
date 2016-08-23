@@ -7,6 +7,7 @@ import {request as requestUpdateRecipe, reset as resetUpdateRecipe} from 'redux/
 import {request as requestGet} from 'redux/modules/recipes/view';
 import {RecipeForm} from 'components';
 const resetFormAction = resetForm('recipeForm');
+import {HeroPanel} from 'components';
 import { request as requestIngredients} from 'redux/modules/recipes/ingredients';
 import { request as requestQuantities} from 'redux/modules/recipes/quantities';
 import { request as requestCategories} from 'redux/modules/recipes/categories';
@@ -63,8 +64,10 @@ export default class UpdateRecipeContainer extends Component {
 
   render() {
     const {recipe, isSuccess, error, onSubmit} = this.props;
+    const myRecipeHelper = new RecipeHelper(recipe);
     return (
       <div>
+       <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
        <EntityFormContainer
         entity ={recipe}
         pageTitle = "Update Recipe"

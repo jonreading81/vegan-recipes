@@ -5,15 +5,16 @@ export default class MultiValueFieldActions extends Component {
 
   static propTypes = {
     field: PropTypes.any,
+    className: PropTypes.string,
     title: PropTypes.string,
   }
 
   render() {
-    const {field, title} = this.props;
+    const {field, title, className} = this.props;
 
     return (
       <div>
-        <Button onClick={() => {
+        <Button bsClass={className} onClick={() => {
           field.addField();    // pushes empty child field onto the end of the array
         }}><i className="fa fa-edit"/> {title}
         </Button>

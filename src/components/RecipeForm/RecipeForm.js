@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import FormGroup from 'components/Form/FormGroup';
-import {MultiValueField, MultiValueFormControlWrapper} from 'components';
-import {Button, ButtonToolbar, FormControl, ControlLabel, Panel} from 'react-bootstrap';
+import {MultiValueField, MultiValueFormControlWrapper, HorizontalFormControl} from 'components';
+import {Button, ButtonToolbar, FormControl} from 'react-bootstrap';
 import validation from './validation';
 import IngredientInput from './IngredientInput';
 const validate = values => validation(values);
@@ -81,79 +81,82 @@ class RecipeForm extends Component {
       } = this.props;
     const styles = require('./RecipeForm.scss');
 
-    return (<form onSubmit={handleSubmit}>
-        <Panel header="Recipe Details">
+    return (
+      <form horizontal className={styles.form} onSubmit={handleSubmit}>
+       <h2>Recipe Details:</h2>
           <FormGroup controlId="title" type="text" field={title}>
-            <ControlLabel>Title</ControlLabel>
-            <FormControl type="text" placeholder="Enter Title" {...title}/>
+            <HorizontalFormControl label="Title" className={styles.formRow}>
+              <FormControl type="text" placeholder="Enter Title" {...title}/>
+            </HorizontalFormControl>
           </FormGroup>
-
           <FormGroup controlId="image" type="text" field={image}>
-            <ControlLabel>Image</ControlLabel>
-            <FormControl type="file" placeholder="Enter image" {...image} value={ null }/>
+            <HorizontalFormControl label="Select Image" className={styles.formRow}>
+              <FormControl type="file" placeholder="Enter image" {...image} value={ null }/>
+            </HorizontalFormControl>
           </FormGroup>
 
-           <FormGroup controlId="shortDescription" type="text" field={description}>
-            <ControlLabel>Short Description</ControlLabel>
-            <FormControl componentClass="textarea" placeholder="Enter Short Description" {...shortDescription}/>
+           <FormGroup controlId="shortDescription" type="text" field={shortDescription}>
+              <HorizontalFormControl label="Short Description" className={styles.formRow}>
+                <FormControl componentClass="textarea" placeholder="Enter Short Description" {...shortDescription}/>
+              </HorizontalFormControl>
           </FormGroup>
 
-          <FormGroup controlId="description" type="text" field={description}>
-            <ControlLabel>Description</ControlLabel>
-            <FormControl componentClass="textarea" placeholder="Enter description" {...description}/>
+           <FormGroup controlId="description" type="text" field={description}>
+            <HorizontalFormControl label="Description" className={styles.formRow}>
+                <FormControl componentClass="textarea" placeholder="Enter Description" {...description}/>
+             </HorizontalFormControl>
           </FormGroup>
 
            <FormGroup controlId="difficulty" type="text" field={difficulty}>
-            <ControlLabel>Difficulty</ControlLabel>
-            <Select simpleValue placeholder="Select Difficulty" options={difficultyOptions} {...difficulty}/>
+            <HorizontalFormControl label="Difficulty" className={styles.formRow}>
+                  <Select simpleValue placeholder="Select Difficulty" options={difficultyOptions} {...difficulty}/>
+            </HorizontalFormControl>
           </FormGroup>
 
           <FormGroup controlId="yields" type="text" field={yields}>
-            <ControlLabel>Yields</ControlLabel>
-            <Select simpleValue placeholder="Select Yields" options={yieldsOptions} {...yields}/>
+            <HorizontalFormControl label="Serves" className={styles.formRow}>
+              <Select simpleValue placeholder="Select Servers" options={yieldsOptions} {...yields}/>
+           </HorizontalFormControl>
           </FormGroup>
 
           <FormGroup controlId="sourceURL" type="text" field={sourceURL}>
-            <ControlLabel>Source (URL)</ControlLabel>
-            <FormControl type="text" placeholder="Enter Source" {...sourceURL}/>
-          </FormGroup>
-        </Panel>
-         <Panel header="Timings">
+            <HorizontalFormControl label="Source (URL)" className={styles.formRow}>
+              <FormControl type="text" placeholder="Enter Source" {...sourceURL}/>
+            </HorizontalFormControl>
+           </FormGroup>
+         <h2>Timings:</h2>
            <FormGroup controlId="preperationTime" type="text" field={preperationTime}>
-            <ControlLabel>Preperation Time</ControlLabel>
-            <Select simpleValue placeholder="Select Preperation Time" options={timingOptions} {...preperationTime}/>
+            <HorizontalFormControl label="Preperation Time" className={styles.formRow}>
+              <Select simpleValue placeholder="Select Preperation Time" options={timingOptions} {...preperationTime}/>
+            </HorizontalFormControl>
           </FormGroup>
            <FormGroup controlId="cookingTime" type="text" field={cookingTime}>
-            <ControlLabel>Cooking Time</ControlLabel>
-            <Select simpleValue placeholder="Select Cooking Time" options={timingOptions} {...cookingTime}/>
+            <HorizontalFormControl label="Cooking Time" className={styles.formRow}>
+              <Select simpleValue placeholder="Select Cooking Time" options={timingOptions} {...cookingTime}/>
+            </HorizontalFormControl>
           </FormGroup>
-        </Panel>
-        <Panel header="Ingredients">
+          <h2>Ingredients:</h2>
           <MultiValueField field={ingredients} pluralName="ingredients" singularName="ingredient" toolbarClass={styles.toolbar}>
             <IngredientInput ingredientList={ingredientList} quantityList={quantityList} />
           </MultiValueField>
-        </Panel>
-        <Panel header="Steps">
+        <h2>Method:</h2>
         <MultiValueField field={steps} pluralName="steps" singularName="step" >
           <MultiValueFormControlWrapper id="step">
             <FormControl componentClass="textarea" placeholder="Enter Step"/>
           </MultiValueFormControlWrapper>
         </MultiValueField>
-        </Panel>
-        <Panel header="Categories">
+        <h2>Categories:</h2>
         <MultiValueField field={categories} pluralName="categories" singularName="category" >
           <MultiValueFormControlWrapper id="category">
             <Autosuggest placeholder="Enter Category" suggestions={categoryList}/>
           </MultiValueFormControlWrapper>
         </MultiValueField>
-        </Panel>
-        <Panel header="Dietary Suitability">
+        <h2>Dietary Suitability:</h2>
         <MultiValueField field={dietarySuitability} pluralName="diets" singularName="diet" >
           <MultiValueFormControlWrapper id="diet">
             <Autosuggest placeholder="Enter Diet" suggestions={dietList}/>
           </MultiValueFormControlWrapper>
         </MultiValueField>
-        </Panel>
        <ButtonToolbar>
             <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>Submit</Button>
             <Button type="button" bsSize="large" active disabled={submitting} onClick={resetForm} >Reset</Button>

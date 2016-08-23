@@ -23,6 +23,7 @@ export default class MultiValueField extends Component {
 
   render() {
     const {field, pluralName, singularName, toolbarClass} = this.props;
+    const styles = require('./MultiValueField.scss');
     return (
       <div>
        {!field.length && <h4>No {upperFirst(pluralName)}</h4>}
@@ -30,8 +31,8 @@ export default class MultiValueField extends Component {
           <div key={index} >
             <h5>{upperFirst(singularName)} #{index + 1}</h5>
             <Row>
-              <Col xs={12} md={8}>{this.renderChildren(fieldItem)}</Col>
-              <Col xs={12} md={4}>
+              <Col xs={12} sm={8}>{this.renderChildren(fieldItem)}</Col>
+              <Col xs={12} sm={4}>
               <div className={toolbarClass}>
                 <MultiValueFieldActions field={field} index={index} />
               </div>
@@ -39,7 +40,7 @@ export default class MultiValueField extends Component {
             </Row>
           </div>
         )}
-        <MultiValueFieldAddButton field={field} title={'Add ' + upperFirst(singularName)}/>
+        <MultiValueFieldAddButton className={styles.addButton} field={field} title={'Add ' + upperFirst(singularName)}/>
       </div>
     );
   }

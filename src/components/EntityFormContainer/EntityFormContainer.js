@@ -74,7 +74,6 @@ export default class EntityFormContainer extends Component {
       <div>
         <Helmet title={pageTitle}/>
         <div className="container">
-          <h1>{pageTitle}</h1>
           {children}
           <StatusModal show={isError} title="Validation Error" close={resetState}>
             <p>The server returned an error while saving the document</p>

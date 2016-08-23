@@ -17,7 +17,7 @@ export AdminUser from './conditions/AdminUser';
 export NotLoggedInUser from './conditions/NotLoggedInUser';
 export PropExists from './conditions/PropExists';
 export PropNotExists from './conditions/PropNotExists';
-export MultiValueField from './Form/MultiValueField';
+export MultiValueField from './Form/MultiValueField/MultiValueField';
 export EmailInput from './Form/EmailInput';
 export UserInput from './Form/UserInput';
 export PasswordInput from './Form/PasswordInput';
@@ -27,4 +27,4 @@ export HeroPanel from './HeroPanel/HeroPanel';
 export ResponsiveImage from './ResponsiveImage/ResponsiveImage';
 export Footer from './Footer/Footer';
 export NavBar from './NavBar/NavBar';
-
+export HorizontalFormControl from './Form/HorizontalFormControl';

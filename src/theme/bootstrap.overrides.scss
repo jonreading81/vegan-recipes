@@ -103,6 +103,14 @@ cite {
 @include btn(danger,$btn-danger-bg);
 @include btn(link,#fff);
 
+.btn-toolbar{
+  margin-top: 24px;
+  .btn{
+    margin-right: 16px;
+  }
+
+}
+
 .btn {
   text-transform: uppercase;
   border: none;
@@ -673,6 +681,11 @@ p.body-copy-first{
 .column-small {
   @include make-sm-column(6);
   @include make-sm-column-offset(3);
+}
+
+.column-medium {
+  @include make-sm-column(8);
+  @include make-sm-column-offset(2);
 }
 
 p.important {

@@ -16,13 +16,13 @@ export default class IngredientInput extends Component {
     const { name, quantity, index, ingredientList, quantityList } = this.props;
     return (
       <Row>
-        <Col xs={12} md={6}>
+        <Col xs={12} sm={6}>
         <FormGroup controlId={'ingedient-' + (index + 1) + 'name'} type="text" field={name}>
           <ControlLabel>Name</ControlLabel>
           <Autosuggest placeholder="Enter Name" {...name} suggestions={ingredientList}/>
         </FormGroup>
         </Col>
-        <Col xs={12} md={6}>
+        <Col xs={12} sm={6}>
          <FormGroup controlId={'ingedient-' + (index + 1) + 'quanity'} type="text" field={quantity}>
           <ControlLabel>Quantity</ControlLabel>
           <Autosuggest placeholder="Enter Quantity" {...quantity} suggestions={quantityList}/>
