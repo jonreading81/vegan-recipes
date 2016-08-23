@@ -13,8 +13,8 @@ export default class HorizontalFormControl extends Component {
     const {children, label, className} = this.props;
     return (
       <Row className={className}>
-        <Col componentClass={ControlLabel} sm="4">{label}</Col>
-        <Col sm="8">{children}</Col>
+        <Col componentClass={ControlLabel} sm="3">{label}</Col>
+        <Col sm="9">{children}</Col>
       </Row>
     );
   }

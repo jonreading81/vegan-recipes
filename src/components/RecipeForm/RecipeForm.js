@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import FormGroup from 'components/Form/FormGroup';
-import {MultiValueField, MultiValueFormControlWrapper, HorizontalFormControl} from 'components';
+import {MultiValueField, MultiValueFormControlWrapper, HorizontalFormControl, TogglePanel} from 'components';
 import {Button, ButtonToolbar, FormControl} from 'react-bootstrap';
 import validation from './validation';
 import IngredientInput from './IngredientInput';
@@ -43,6 +43,7 @@ export const fields = [
   }
 )
 class RecipeForm extends Component {
+
   static propTypes = {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
@@ -83,7 +84,7 @@ class RecipeForm extends Component {
 
     return (
       <form horizontal className={styles.form} onSubmit={handleSubmit}>
-       <h2>Recipe Details:</h2>
+       <TogglePanel isExpanded title="Recipe Details">
           <FormGroup controlId="title" type="text" field={title}>
             <HorizontalFormControl label="Title" className={styles.formRow}>
               <FormControl type="text" placeholder="Enter Title" {...title}/>
@@ -124,7 +125,8 @@ class RecipeForm extends Component {
               <FormControl type="text" placeholder="Enter Source" {...sourceURL}/>
             </HorizontalFormControl>
            </FormGroup>
-         <h2>Timings:</h2>
+          </TogglePanel>
+          <TogglePanel isExpanded title="Timings">
            <FormGroup controlId="preperationTime" type="text" field={preperationTime}>
             <HorizontalFormControl label="Preperation Time" className={styles.formRow}>
               <Select simpleValue placeholder="Select Preperation Time" options={timingOptions} {...preperationTime}/>
@@ -135,28 +137,33 @@ class RecipeForm extends Component {
               <Select simpleValue placeholder="Select Cooking Time" options={timingOptions} {...cookingTime}/>
             </HorizontalFormControl>
           </FormGroup>
-          <h2>Ingredients:</h2>
+          </TogglePanel>
+          <TogglePanel title="Ingredients">
           <MultiValueField field={ingredients} pluralName="ingredients" singularName="ingredient" toolbarClass={styles.toolbar}>
             <IngredientInput ingredientList={ingredientList} quantityList={quantityList} />
           </MultiValueField>
-        <h2>Method:</h2>
+          </TogglePanel>
+        <TogglePanel title="Method">
         <MultiValueField field={steps} pluralName="steps" singularName="step" >
           <MultiValueFormControlWrapper id="step">
             <FormControl componentClass="textarea" placeholder="Enter Step"/>
           </MultiValueFormControlWrapper>
         </MultiValueField>
-        <h2>Categories:</h2>
+        </TogglePanel>
+        <TogglePanel title="Categories">
         <MultiValueField field={categories} pluralName="categories" singularName="category" >
           <MultiValueFormControlWrapper id="category">
             <Autosuggest placeholder="Enter Category" suggestions={categoryList}/>
           </MultiValueFormControlWrapper>
         </MultiValueField>
-        <h2>Dietary Suitability:</h2>
+        </TogglePanel>
+        <TogglePanel title="Dietary Suitability">
         <MultiValueField field={dietarySuitability} pluralName="diets" singularName="diet" >
           <MultiValueFormControlWrapper id="diet">
             <Autosuggest placeholder="Enter Diet" suggestions={dietList}/>
           </MultiValueFormControlWrapper>
         </MultiValueField>
+        </TogglePanel>
        <ButtonToolbar>
             <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>Submit</Button>
             <Button type="button" bsSize="large" active disabled={submitting} onClick={resetForm} >Reset</Button>

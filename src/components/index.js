@@ -27,4 +27,5 @@ export HeroPanel from './HeroPanel/HeroPanel';
 export ResponsiveImage from './ResponsiveImage/ResponsiveImage';
 export Footer from './Footer/Footer';
 export NavBar from './NavBar/NavBar';
+export TogglePanel from './TogglePanel/TogglePanel';
 export HorizontalFormControl from './Form/HorizontalFormControl';
