@@ -7,7 +7,7 @@ import {request as requestUpdateRecipe, reset as resetUpdateRecipe} from 'redux/
 import {request as requestGet} from 'redux/modules/recipes/view';
 import {RecipeForm} from 'components';
 const resetFormAction = resetForm('recipeForm');
-import {HeroPanel} from 'components';
+import {HeroPanel, Loading} from 'components';
 import { request as requestIngredients} from 'redux/modules/recipes/ingredients';
 import { request as requestQuantities} from 'redux/modules/recipes/quantities';
 import { request as requestCategories} from 'redux/modules/recipes/categories';
@@ -15,11 +15,14 @@ import { request as requestDiets} from 'redux/modules/recipes/diets';
 const resetStateAction = resetUpdateRecipe();
 import get from 'lodash/get';
 import { asyncConnect } from 'redux-async-connect';
+import {Breadcrumb} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 @connect(
   (state) => {
     return {
       recipe: state.viewRecipe.entity,
+      isFetching: state.viewRecipe.isFetching,
       isSuccess: state.updateRecipe.isSuccess,
       error: state.updateRecipe.error
     };
@@ -58,30 +61,49 @@ export default class UpdateRecipeContainer extends Component {
   static propTypes ={
     recipe: PropTypes.object,
     isSuccess: PropTypes.bool,
+    isFetching: PropTypes.bool,
     error: PropTypes.any,
     onSubmit: PropTypes.func
   }
 
   render() {
-    const {recipe, isSuccess, error, onSubmit} = this.props;
+    const {recipe, isSuccess, error, onSubmit, isFetching} = this.props;
     const myRecipeHelper = new RecipeHelper(recipe);
     return (
       <div>
-       <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
-       <EntityFormContainer
-        entity ={recipe}
-        pageTitle = "Update Recipe"
-        resetStateAction = {resetStateAction}
-        resetFormAction = {resetFormAction}
-        onSuccessCancelActions = {[resetStateAction]}
-        getEntityURL = {RecipeHelper.getURLWithRecipeData}
-        isSuccess = {isSuccess}
-        isError = {error ? true : false}
-        successMessage = "The Recipe was updated successfully click OK to view the recipe"
-        successTitle = "Recipe Updated"
-        >
-        <RecipeForm onSubmit={onSubmit} initialValues={recipe} />
-        </EntityFormContainer>
+       <If condition={isFetching}>
+          <Loading />
+      </If>
+      <If condition={!isFetching}>
+         <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
+         <div className="breadcrumb-wrapper">
+               <div className="container">
+                 <Breadcrumb>
+                  <LinkContainer to="/recipe/list/all">
+                    <Breadcrumb.Item>Recipes</Breadcrumb.Item>
+                  </LinkContainer>
+                  <LinkContainer to={myRecipeHelper.getURL()}>
+                    <Breadcrumb.Item>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
+                  </LinkContainer>
+                  <Breadcrumb.Item active>Update</Breadcrumb.Item>
+                </Breadcrumb>
+              </div>
+            </div>
+         <EntityFormContainer
+          entity ={recipe}
+          pageTitle = "Update Recipe"
+          resetStateAction = {resetStateAction}
+          resetFormAction = {resetFormAction}
+          onSuccessCancelActions = {[resetStateAction]}
+          getEntityURL = {RecipeHelper.getURLWithRecipeData}
+          isSuccess = {isSuccess}
+          isError = {error ? true : false}
+          successMessage = "The Recipe was updated successfully click OK to view the recipe"
+          successTitle = "Recipe Updated"
+          >
+          <RecipeForm onSubmit={onSubmit} initialValues={recipe} />
+          </EntityFormContainer>
+        </If>
       </div>
     );
   }

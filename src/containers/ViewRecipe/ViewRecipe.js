@@ -5,13 +5,16 @@ import {RecipeDetails} from 'components';
 import {NotFound} from 'containers';
 import {request as requestGet} from 'redux/modules/recipes/view';
 import { asyncConnect } from 'redux-async-connect';
-import {HeroPanel} from 'components';
+import {HeroPanel, Loading} from 'components';
 import RecipeHelper from 'helpers/Recipe';
+import {Breadcrumb} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 @connect(
   (store) => {
     return {
-      recipe: store.viewRecipe.entity
+      recipe: store.viewRecipe.entity,
+      isFetching: store.viewRecipe.isFetching
     };
   }
 )
@@ -23,11 +26,12 @@ import RecipeHelper from 'helpers/Recipe';
 export default class ViewRecipeContainer extends Component {
 
   static propTypes = {
-    recipe: PropTypes.object
+    recipe: PropTypes.object,
+    isFetching: PropTypes.bool,
   };
 
   render() {
-    const {recipe} = this.props;
+    const {recipe, isFetching} = this.props;
     const myRecipeHelper = new RecipeHelper(recipe);
     let content;
 
@@ -35,10 +39,25 @@ export default class ViewRecipeContainer extends Component {
       content = (
         <div>
           <Helmet title="View Recipes"/>
+          <If condition={isFetching}>
+            <Loading />
+          </If>
+          <If condition={!isFetching}>
            <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
+           <div className="breadcrumb-wrapper">
+             <div className="container">
+               <Breadcrumb>
+                <LinkContainer to="/recipe/list/all">
+                  <Breadcrumb.Item>Recipes</Breadcrumb.Item>
+                </LinkContainer>
+                <Breadcrumb.Item active>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+          </div>
           <div className="container">
             <RecipeDetails recipe={recipe} />
            </div>
+          </If>
         </div>
       );
     }else {

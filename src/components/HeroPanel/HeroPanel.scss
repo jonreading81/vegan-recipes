@@ -32,6 +32,12 @@
       overflow:hidden;
       position:relative;
     }
+    .image-wrapper-holder{
+      padding-top: 56.25%;
+    }
+    img{
+      position:absolute;
+    }
 
     cite {
       &:before{

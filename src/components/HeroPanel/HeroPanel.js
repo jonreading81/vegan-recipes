@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { ResponsiveImage} from 'components';
 import get from 'lodash/get';
+import isUndefined from 'lodash/isUndefined';
 
 export default class HeroPanel extends Component {
 
@@ -21,12 +22,13 @@ export default class HeroPanel extends Component {
       <header className={!isEmpty ? 'hero-panel' : 'hero-panel hero-panel-empty'} >
             <div className="image-wrapper">
               <ResponsiveImage image={image}/>
+              <div className="image-wrapper-holder" />
               <div className="image-wrapper-overlay" />
             </div>
             <div className="hero-panel-type">
               <div className={type}>
                   <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <If condition={title}>
+                    <If condition={!isUndefined(title)}>
                       <h1>{title}</h1>
                       <hr className="small" />
                     </If>
