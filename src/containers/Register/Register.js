@@ -12,7 +12,8 @@ import {HeroPanel} from 'components';
   (state) => {
     return {
       error: get(state.register, 'loadError'),
-      user: get(state.register, 'user')
+      user: get(state.register, 'user'),
+      submitting: get(state.register, 'loading')
     };
   },
   (dispatch) => {
@@ -25,12 +26,13 @@ export default class Login extends Component {
   static propTypes = {
     user: PropTypes.object,
     error: PropTypes.object,
+    submitting: PropTypes.bool,
     register: PropTypes.func
   }
 
 
   render() {
-    const {register, error} = this.props;
+    const {register, error, submitting} = this.props;
     const styles = require('./Register.scss');
     return (
       <div>
@@ -39,7 +41,7 @@ export default class Login extends Component {
         <div className={styles.register + ' container'}>
           <div className="column-small">
           <h2>Register</h2>
-           <RegisterForm formError={error} onSubmit={register} />
+           <RegisterForm formError={error} submitting={submitting} onSubmit={register} />
           </div>
         </div>
       </div>

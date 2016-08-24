@@ -16,6 +16,7 @@ import get from 'lodash/get';
     return {
       recipe: state.addRecipe.entity,
       isSuccess: state.addRecipe.isSuccess,
+      submitting: state.addRecipe.isFetching,
       error: state.addRecipe.error,
       user: get(state.auth, 'user')
     };
@@ -31,13 +32,14 @@ export default class AddRecipeContainer extends Component {
   static propTypes ={
     recipe: PropTypes.object,
     isSuccess: PropTypes.bool,
+    submitting: PropTypes.bool,
     error: PropTypes.object,
     onSubmit: PropTypes.func.isRequired,
     user: PropTypes.string.isRequired
   }
 
   render() {
-    const {recipe, isSuccess, error, onSubmit, user} = this.props;
+    const {recipe, isSuccess, error, onSubmit, user, submitting} = this.props;
     const author = new UserHelper(user);
     const initialValues = {
       author: author.getFullName()
@@ -57,7 +59,7 @@ export default class AddRecipeContainer extends Component {
         successMessage = "The Recipe was added successfully click OK to view the recipe"
         successTitle = "Recipe Added"
         >
-        <RecipeForm onSubmit={onSubmit} initialValues={initialValues} />
+        <RecipeForm onSubmit={onSubmit} initialValues={initialValues} submitting={submitting} />
         </EntityFormContainer>
       </div>
     );

@@ -61,10 +61,15 @@ export default class DeleteRecipeContainer extends Component {
       <div>
         <Helmet title={pageTitle}/>
         <div className="container">
-          <h1>{pageTitle}</h1>
+          <h2>{pageTitle}</h2>
           {children}
           <ButtonToolbar>
-            <Button disabled={submitting} onClick={deleteEntity} bsStyle="primary" bsSize="large" >Confirm</Button>
+            <Button disabled={submitting} onClick={deleteEntity} bsStyle="primary" bsSize="large" >
+            <If condition={submitting}>
+              <i className="fa fa-refresh fa-spin fa-1x fa-fw"></i>&nbsp;
+            </If>
+            Delete
+            </Button>
             <Button disabled={submitting} onClick={cancel} bsSize="large" >Cancel</Button>
           </ButtonToolbar>
            <StatusModal show={isSuccess} close={successRedirect} title={successTitle}>

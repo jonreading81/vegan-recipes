@@ -10,7 +10,8 @@ import {Row} from 'react-bootstrap';
 @connect(
   (state) => {
     return {
-      error: state.auth.loginError
+      error: state.auth.loginError,
+      submitting: state.auth.loading
     };
   },
   (dispatch) => {
@@ -24,12 +25,13 @@ export default class Login extends Component {
     user: PropTypes.object,
     error: PropTypes.object,
     login: PropTypes.func,
-    logout: PropTypes.func
+    logout: PropTypes.func,
+    submitting: PropTypes.bool
   }
 
 
   render() {
-    const {login, error} = this.props;
+    const {login, error, submitting} = this.props;
     const styles = require('./Login.scss');
     return (
       <div>
@@ -39,7 +41,7 @@ export default class Login extends Component {
           <Row>
             <div className="column-small">
             <h2>Login</h2>
-            <LoginForm formError={error} onSubmit={login} />
+            <LoginForm formError={error} submitting={submitting} onSubmit={login} />
             </div>
           </Row>
         </div>

@@ -7,7 +7,7 @@ export default class HeroPanel extends Component {
 
 
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     children: PropTypes.node,
     type: PropTypes.string,
     isEmpty: PropTypes.bool,
@@ -21,7 +21,9 @@ export default class HeroPanel extends Component {
     return (
       <header className={!isEmpty ? 'hero-panel' : 'hero-panel hero-panel-empty'} >
             <div className="image-wrapper">
-              <ResponsiveImage image={image}/>
+              <If condition={!isUndefined(image)}>
+                <ResponsiveImage image={image}/>
+              </If>
               <div className="image-wrapper-holder" />
               <div className="image-wrapper-overlay" />
             </div>

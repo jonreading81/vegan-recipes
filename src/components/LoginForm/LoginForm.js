@@ -37,7 +37,11 @@ class LoginForm extends Component {
           <PasswordInput password={password} />
         </FormGroup>
         <ErrorBlock error={formError}/>
-        <Button type="submit" disabled={submitting} bsSize="large" bsStyle="primary">Login</Button>
+        <Button type="submit" disabled={submitting} bsSize="large" bsStyle="primary">
+          <If condition={submitting}>
+            <i className="fa fa-refresh fa-spin fa-1x fa-fw"></i>&nbsp;
+          </If>
+         Login</Button>
       </form>
     );
   }

@@ -43,10 +43,15 @@ class RegisterForm extends Component {
         </FormGroup>
 
         <FormGroup controlId="password" type="text" field={password}>
-           <PasswordInput email={password} />
+           <PasswordInput password={password} />
         </FormGroup>
         <ErrorBlock error={formError}/>
-        <Button type="submit" disabled={submitting} bsSize="large" bsStyle="primary">Register</Button>
+        <Button type="submit" disabled={submitting} bsSize="large" bsStyle="primary">
+          <If condition={submitting}>
+            <i className="fa fa-refresh fa-spin fa-1x fa-fw"></i>&nbsp;
+          </If>
+          Register
+        </Button>
       </form>
     );
   }

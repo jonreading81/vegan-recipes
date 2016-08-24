@@ -23,6 +23,7 @@ import { LinkContainer } from 'react-router-bootstrap';
     return {
       recipe: state.viewRecipe.entity,
       isFetching: state.viewRecipe.isFetching,
+      submitting: state.updateRecipe.isFetching,
       isSuccess: state.updateRecipe.isSuccess,
       error: state.updateRecipe.error
     };
@@ -62,12 +63,13 @@ export default class UpdateRecipeContainer extends Component {
     recipe: PropTypes.object,
     isSuccess: PropTypes.bool,
     isFetching: PropTypes.bool,
+    submitting: PropTypes.bool,
     error: PropTypes.any,
     onSubmit: PropTypes.func
   }
 
   render() {
-    const {recipe, isSuccess, error, onSubmit, isFetching} = this.props;
+    const {recipe, isSuccess, error, onSubmit, isFetching, submitting} = this.props;
     const myRecipeHelper = new RecipeHelper(recipe);
     return (
       <div>
@@ -101,7 +103,7 @@ export default class UpdateRecipeContainer extends Component {
           successMessage = "The Recipe was updated successfully click OK to view the recipe"
           successTitle = "Recipe Updated"
           >
-          <RecipeForm onSubmit={onSubmit} initialValues={recipe} />
+          <RecipeForm onSubmit={onSubmit} initialValues={recipe} submitting={submitting} />
           </EntityFormContainer>
         </If>
       </div>

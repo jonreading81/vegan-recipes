@@ -165,7 +165,11 @@ class RecipeForm extends Component {
         </MultiValueField>
         </TogglePanel>
        <ButtonToolbar>
-            <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>Submit</Button>
+            <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>
+            <If condition={submitting}>
+              <i className="fa fa-refresh fa-spin fa-1x fa-fw"></i>&nbsp;
+            </If>
+            Submit</Button>
             <Button type="button" bsSize="large" active disabled={submitting} onClick={resetForm} >Reset</Button>
           </ButtonToolbar>
       </form>
