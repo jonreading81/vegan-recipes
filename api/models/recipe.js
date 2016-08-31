@@ -52,6 +52,9 @@ const recipeSchema   = new Schema({
 	steps:[String],
     categories:[String],
     dietarySuitability:[String]
+},
+{
+    timestamps: true
 });
 
 recipeSchema.plugin(URLSlugs('title'));

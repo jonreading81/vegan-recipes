@@ -32,14 +32,36 @@ p.important {
 
 cite {
   &:before{
-    content:"- "
   }
   display: block;
   font-style: italic;
   margin-top: 1.5em;
 
 }
-
+blockquote{
+  position: relative;
+  padding:10px 40px;
+  &:before, &:after {
+    color:#666;
+    font-family:'FontAwesome';
+    font-size:16px;
+  }
+  &:before{
+    content:'\f10d';
+    position:absolute;
+    top:5px;
+    left:8px;
+    display:block;
+}
+  &:after{
+    content:'\f10e';
+    padding-left:20px;
+    display:inline;
+  }
+ 
+  //border-right: 1px solid;
+   border-color:lighten($brand-primary, 30%);
+}
 
 .breadcrumb {
   padding: 8px 0px;
@@ -739,6 +761,10 @@ input[type="checkbox"],
       }
     }
   }
+}
+
+.imageWrapper{
+  position:relative;
 }
 
 .imageOverlay{

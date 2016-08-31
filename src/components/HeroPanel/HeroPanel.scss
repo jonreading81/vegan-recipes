@@ -1,9 +1,46 @@
 @import "~compass-mixins/lib/compass";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+$breakpoint-subheading-visible : 580px;
+$breakpoint-imagecropped : 640px;
+
+@mixin imageFocusBottomAtWidth($width){
+  @include imageFocusAtWidthWithFactor($width, 1);
+}
+
+@mixin imageFocusCenterAtWidth($width){
+  @include imageFocusAtWidthWithFactor($width, 0.5);
+}
+
+@mixin imageFocusAtWidthWithFactor($width, $factor){
+  $containerHeight: 430;
+  $offset : (($width * 0.5625) - $containerHeight) ;
+  @media (min-width: $width){
+    margin-top:$offset * ($factor * -1 ) ;
+    margin-bottom:$offset * $factor;
+  }
+}
 
 :global{
     .hero-panel {
       position: relative; 
+
+     &.hero-panel-image-focus-bottom{        
+        img{
+          @include imageFocusBottomAtWidth(768px);
+          @include imageFocusBottomAtWidth(1024px);
+          @include imageFocusBottomAtWidth(1248px);
+          @include imageFocusBottomAtWidth(1400px);
+        }
+     }
+     &.hero-panel-image-focus-center{        
+        img{
+          @include imageFocusCenterAtWidth(768px);
+          @include imageFocusCenterAtWidth(1024px);
+          @include imageFocusCenterAtWidth(1248px);
+          @include imageFocusCenterAtWidth(1400px);
+        }
+     }
+
     .hero-panel-type{
       position: absolute;
       margin: auto;
@@ -18,7 +55,7 @@
         height:110px;
       } 
 
-      @media only screen and (min-width: $screen-sm-min) {
+      @media only screen and (min-width: $breakpoint-subheading-visible) {
         height:150px;
       } 
 
@@ -87,12 +124,14 @@
       .subheading, hr {
         display: none;
       }
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-subheading-visible) {
+       .subheading, hr {
+        display: block;
+        }
+      }
+      @media only screen and (min-width: $screen-sm-min) {
         h1 {
           font-size: 64px;
-        }
-         .subheading, hr {
-        display: block;
         }
       }
     }

@@ -7,13 +7,15 @@ export default class NotFound extends Component {
   render() {
     return (
       <NestedStatus code={404}>
-        <div>
-          <HeroPanel isEmpty image="forest.jpeg" />
+      <div>
+       <HeroPanel image="forest.jpeg" isEmpty />
           <div className="container">
-            <h1>Doh 404! </h1>
-            <p>Page not found.</p>
+              <div className="body-copy">
+              <h1>Doh 404!</h1>
+               <h2>Page not found.</h2>
+               </div>
           </div>
-        </div>
+      </div>
       </NestedStatus>
     );
   }

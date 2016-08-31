@@ -9,6 +9,7 @@ export default class HeroPanel extends Component {
   static propTypes = {
     title: PropTypes.string,
     children: PropTypes.node,
+    style: PropTypes.string,
     type: PropTypes.string,
     isEmpty: PropTypes.bool,
     subTitle: PropTypes.string,
@@ -18,8 +19,14 @@ export default class HeroPanel extends Component {
     require('./HeroPanel.scss');
     const {title, subTitle, image, isEmpty, children} = this.props;
     const type = get( this.props, 'type', 'site-heading');
+    let className = 'hero-panel';
+    let style = this.props.style;
+    if (isEmpty) className += ' hero-panel-empty';
+    if (!style) style = 'image-focus-center';
+    className = className + ' hero-panel-' + style;
+
     return (
-      <header className={!isEmpty ? 'hero-panel' : 'hero-panel hero-panel-empty'} >
+      <header className={className} >
             <div className="image-wrapper">
               <If condition={!isUndefined(image)}>
                 <ResponsiveImage image={image}/>

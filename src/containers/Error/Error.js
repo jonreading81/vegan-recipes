@@ -14,13 +14,15 @@ export default class Error extends Component {
     const {code, children} = this.props;
     return (
       <NestedStatus code={code}>
-        <div>
-          <HeroPanel isEmpty image="forest.jpeg" />
+           <div>
+       <HeroPanel image="forest.jpeg" isEmpty />
           <div className="container">
-            <h1>Doh Error!</h1>
-            {children}
+              <div className="body-copy">
+              <h1>Doh Error</h1>
+              {children}
+              </div>
           </div>
-       </div>
+      </div>
       </NestedStatus>
     );
   }

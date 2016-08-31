@@ -17,22 +17,22 @@ export default class RecipeDetail extends Component {
     const styles = require('./RecipeDetails.scss');
 
     return (
-      <Col md="10" mdOffset="1">
+      <Col md={10} mdOffset={1}>
       <Row className={styles.details}>
-        <Col xs="12" sm="4">
+        <Col xs={12} sm={4}>
         <p className={styles.iconWrapper + ' fa-stack fa-lg'}>
           <i className="fa fa-circle fa-stack-2x"></i>
           <i className="fa fa-clock-o fa-stack-1x fa-inverse"></i>
         </p>
         <p className={styles.cookingDetail}>Prep: {myRecipe.getPreperationTime()}<br />Cook: {myRecipe.getCookingTime()}</p></Col>
-        <Col xs="12" sm="4">
+        <Col xs={12} sm={4}>
         <p className={styles.iconWrapper + ' fa-stack fa-lg'}>
           <i className="fa fa-circle fa-stack-2x"></i>
           <i className="fa fa-cutlery fa-stack-1x fa-inverse"></i>
         </p>
         <p className={styles.difficultyDetail}>{myRecipe.getDifficulty()}</p>
         </Col>
-        <Col xs="12" sm="4">
+        <Col xs={12} sm={4}>
           <p className={styles.iconWrapper + ' fa-stack fa-lg'}>
           <i className="fa fa-circle fa-stack-2x"></i>
           <i className="fa fa-male fa-stack-1x fa-inverse"></i>
@@ -42,12 +42,12 @@ export default class RecipeDetail extends Component {
       </Row>
       <p className="intro">{myRecipe.getDescription()}</p>
       <Row>
-        <Col xs="12" sm="6">
+        <Col xs={12} sm={6}>
           <h3>Ingredients</h3>
           <Table striped>
             <tbody>
-            {myRecipe.getIngredients().map((ingredient) =>
-              <tr>
+            {myRecipe.getIngredients().map((ingredient, index) =>
+              <tr ey={'ingredient-' + index}>
                 <td>{get(ingredient, 'name')}</td>
                 <td>{get(ingredient, 'quantity')}</td>
               </tr>
@@ -55,12 +55,12 @@ export default class RecipeDetail extends Component {
             </tbody>
           </Table>
         </Col>
-        <Col xs="12" sm="6">
+        <Col xs={12} sm={6}>
           <h3>Method</h3>
           <Table>
           <tbody>
           {myRecipe.getSteps().map((step, index) =>
-            <tr>
+            <tr key={'step-' + index}>
               <td className={styles.step}>{index + 1}</td>
               <td className={styles.step}>{step}</td>
             </tr>

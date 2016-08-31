@@ -39,7 +39,6 @@ function initSocket() {
 function logPageView() {
   ReactGA.set({ page: window.location.pathname });
   ReactGA.pageview(window.location.pathname);
-  console.log(window.location.pathname );
 }
 
 global.socket = initSocket();
