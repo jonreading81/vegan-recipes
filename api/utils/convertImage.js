@@ -9,7 +9,7 @@ export default function convertImage(sourcePath, filename) {
       sizes.map((size, index) => {
         const newPath = destinationPath + size.join('x') + '/' + filename;
 
-        im.resize({
+        im.crop({
           srcPath: sourcePath,
           dstPath: newPath,
           width: size[0],

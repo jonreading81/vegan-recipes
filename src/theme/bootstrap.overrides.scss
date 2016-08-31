@@ -1,5 +1,6 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/grid";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "~compass-mixins/lib/compass";
 
 // Paper 3.3.7
 // Bootswatch
@@ -716,3 +717,19 @@ p.important {
   filter: blur(0);
 }
  
+.imageWrapper{
+  position: relative;
+  &:hover{
+    .imageOverlay{
+      background-color:transparentize(#333, 1);
+    }
+  }
+}
+.imageOverlay{
+  position: absolute;
+  width:100%;
+  padding-top: 56.25%;
+  background-color:transparentize(#333, 0.8);
+  z-index: 1;
+  @include transition(all 0.3s ease-in);
+}

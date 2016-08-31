@@ -14,6 +14,7 @@ import {HeroPanel} from 'components';
   (state) => {
     return {
       results: get(state.recipeList, 'items'),
+      searching: get(state.recipeList, 'isFetching'),
     };
   },
   (dispatch) => {
@@ -33,6 +34,7 @@ export default class RecipeListContainer extends Component {
 
   static propTypes = {
     results: PropTypes.object.isRequired,
+    searching: PropTypes.bool.isRequired,
     params: PropTypes.object.isRequired,
     getRecipes: PropTypes.func.isRequired
   }
@@ -48,7 +50,7 @@ export default class RecipeListContainer extends Component {
 
 
   render() {
-    const {results} = this.props;
+    const {results, searching} = this.props;
     const recipes = get(results, 'docs', []);
     const pages = get(results, 'pages', 0);
     const activePage = parseInt( get(results, 'page', 0), 10);
@@ -58,7 +60,7 @@ export default class RecipeListContainer extends Component {
         <Helmet title="Recipes"/>
         <HeroPanel image="chocolate-brownie.jpeg" title="Recipes" subTitle="Delecious Recipes"/>
         <div className="container">
-          <SearchWell onSubmit={::this.searchRecipes} />
+          <SearchWell searching={searching} onSubmit={::this.searchRecipes} />
           <If condition={ recipes.length === 0 }>
             <h4>No Recipes</h4>
           </If >

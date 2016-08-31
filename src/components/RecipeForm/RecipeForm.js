@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import FormGroup from 'components/Form/FormGroup';
-import {MultiValueField, MultiValueFormControlWrapper, HorizontalFormControl, TogglePanel} from 'components';
+import {MultiValueField, MultiValueFormControlWrapper, HorizontalFormControl, TogglePanel, LoadingButton} from 'components';
 import {Button, ButtonToolbar, FormControl} from 'react-bootstrap';
 import validation from './validation';
 import IngredientInput from './IngredientInput';
@@ -48,7 +48,7 @@ class RecipeForm extends Component {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
-    submitting: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired,
     ingredientList: PropTypes.array.isRequired,
     quantityList: PropTypes.array.isRequired,
     categoryList: PropTypes.array.isRequired,
@@ -78,10 +78,9 @@ class RecipeForm extends Component {
       dietList,
       handleSubmit,
       resetForm,
-      submitting
+      loading,
       } = this.props;
     const styles = require('./RecipeForm.scss');
-
     return (
       <form horizontal className={styles.form} onSubmit={handleSubmit}>
        <TogglePanel isExpanded title="Recipe Details">
@@ -165,12 +164,8 @@ class RecipeForm extends Component {
         </MultiValueField>
         </TogglePanel>
        <ButtonToolbar>
-            <Button type="submit" disabled={submitting} bsStyle="primary" bsSize="large" active>
-            <If condition={submitting}>
-              <i className="fa fa-refresh fa-spin fa-1x fa-fw"></i>&nbsp;
-            </If>
-            Submit</Button>
-            <Button type="button" bsSize="large" active disabled={submitting} onClick={resetForm} >Reset</Button>
+            <LoadingButton submitting={loading} type="submit" bsStyle="primary" bsSize="large" active>Submit</LoadingButton>
+            <Button type="button" bsSize="large" active disabled={loading} onClick={resetForm} >Reset</Button>
           </ButtonToolbar>
       </form>
     );

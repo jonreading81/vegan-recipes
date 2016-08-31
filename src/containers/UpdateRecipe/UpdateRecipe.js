@@ -103,7 +103,7 @@ export default class UpdateRecipeContainer extends Component {
           successMessage = "The Recipe was updated successfully click OK to view the recipe"
           successTitle = "Recipe Updated"
           >
-          <RecipeForm onSubmit={onSubmit} initialValues={recipe} submitting={submitting} />
+          <RecipeForm onSubmit={onSubmit} initialValues={recipe} loading={submitting} />
           </EntityFormContainer>
         </If>
       </div>

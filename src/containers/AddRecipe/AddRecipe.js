@@ -59,7 +59,7 @@ export default class AddRecipeContainer extends Component {
         successMessage = "The Recipe was added successfully click OK to view the recipe"
         successTitle = "Recipe Added"
         >
-        <RecipeForm onSubmit={onSubmit} initialValues={initialValues} submitting={submitting} />
+        <RecipeForm onSubmit={onSubmit} initialValues={initialValues} loading={submitting} />
         </EntityFormContainer>
       </div>
     );

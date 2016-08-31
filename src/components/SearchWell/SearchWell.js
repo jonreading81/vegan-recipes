@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import {FormGroup, FormControl, Button, Col, Row} from 'react-bootstrap';
+import {FormGroup, FormControl, Col, Row} from 'react-bootstrap';
 import get from 'lodash/get';
+import {LoadingButton} from 'components';
 
 export default class SearchWell extends Component {
 
   static propTypes = {
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    searching: PropTypes.bool.isRequired,
   };
 
   handleSearchChange(event) {
@@ -20,6 +22,7 @@ export default class SearchWell extends Component {
 
   render() {
     const styles = require('./SearchWell.scss');
+    const {searching} = this.props;
     return (
       <div className={styles.searchComponent}>
         <h3>Search</h3>
@@ -31,7 +34,7 @@ export default class SearchWell extends Component {
             </FormGroup>
             </Col>
             <Col xs={4} sm="2">
-               <Button className="pull-right" bsStyle="primary" bsSize="large" type="submit">Search</Button>
+               <LoadingButton submitting={searching} className="pull-right" bsStyle="primary" bsSize="large" type="submit">Search</LoadingButton>
             </Col>
           </Row>
         </form>
