@@ -9,6 +9,7 @@ export default class LoadingButton extends Component {
     children: PropTypes.node,
     bsStyle: PropTypes.string,
     bsSize: PropTypes.string,
+    className: PropTypes.string,
     active: PropTypes.bool
   };
 
@@ -19,10 +20,11 @@ export default class LoadingButton extends Component {
       children,
       bsSize,
       bsStyle,
-      active
+      active,
+      className
     } = this.props;
     return (
-     <Button type={type} disabled={submitting} bsStyle={bsStyle} bsSize={bsSize} active={active}>
+     <Button className={className} type={type} disabled={submitting} bsStyle={bsStyle} bsSize={bsSize} active={active}>
         <If condition={submitting}>
           <i className="fa fa-refresh fa-spin fa-1x fa-fw"></i>&nbsp;
         </If>

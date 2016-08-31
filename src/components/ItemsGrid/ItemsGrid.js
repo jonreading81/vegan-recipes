@@ -17,11 +17,11 @@ export default class ItemsGrid extends Component {
       <Row>
         <For each="item" index="index" of={ this.props.items}>
           <Link to={item.URL}>
-          <Col xs={6} md={4} className={styles.promo}>
+          <Col xs={6} md={4} className={'promo-item ' + styles.promo}>
             <div className="imageWrapper">
-             <p className={styles.icon + ' fa-stack fa-lg'}>
+             <p className="icon-recipe fa-stack fa-lg">
               <i className="fa fa-stack-2x"></i>
-              <i className="fa fa-cutlery fa-stack-1x fa-inverse"></i>
+              <i className="fa fa-cutlery fa-stack-1x"></i>
             </p>
             <div className="imageOverlay"/>
               <ResponsiveImage image={item.image}/>

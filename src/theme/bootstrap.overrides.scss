@@ -21,6 +21,15 @@ p, td{
   font-family: $font-family-serif;
 }
 
+p.body-copy-first{
+  margin-top: 32px;
+}
+
+
+p.important {
+  font-weight: 800;
+}
+
 cite {
   &:before{
     content:"- "
@@ -677,6 +686,8 @@ input[type="checkbox"],
   }
 }
 
+// Column styles =================================================================
+
 .body-copy {
   @include make-xs-column(12);
   @include make-xs-column-offset(0);
@@ -687,9 +698,6 @@ input[type="checkbox"],
   p{
      font-size:16px;
   }
-}
-p.body-copy-first{
-  margin-top: 32px;
 }
 
 .column-small {
@@ -702,9 +710,8 @@ p.body-copy-first{
   @include make-sm-column-offset(2);
 }
 
-p.important {
-  font-weight: 800;
-}
+
+// Image effects =================================================================
 
 .blur-up {
   -webkit-filter: blur(5px);
@@ -716,20 +723,52 @@ p.important {
   -webkit-filter: blur(0);
   filter: blur(0);
 }
- 
-.imageWrapper{
+
+// Promos =================================================================
+
+ .promo-item{
   position: relative;
   &:hover{
     .imageOverlay{
       background-color:transparentize(#333, 1);
     }
+    .fa-stack.icon-recipe{
+      background-color:#fff;
+      .fa-cutlery{
+        color:$brand-primary;
+      }
+    }
   }
 }
+
 .imageOverlay{
   position: absolute;
   width:100%;
   padding-top: 56.25%;
   background-color:transparentize(#333, 0.8);
   z-index: 1;
+}
+
+.fa-stack.icon-recipe{
+  .fa-cutlery{
+    color:#fff;
+  }
+  background-color:transparentize($brand-primary, 0.2);
+  font-size: 1.5em;
+  position: absolute;
+  bottom:0;
+  margin-bottom:0 ;
+  z-index: 2;
+  @media only screen and (min-width: $screen-sm-min) {
+    font-size: 2em;
+  }
+
+  @media only screen and (min-width: $screen-md-min) {
+    font-size: 2.5em;
+  } 
+}
+
+.imageOverlay, .fa-stack.icon-recipe, .fa-stack.icon-recipe .fa-cutlery{
   @include transition(all 0.3s ease-in);
 }
+
