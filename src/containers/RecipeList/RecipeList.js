@@ -58,7 +58,7 @@ export default class RecipeListContainer extends Component {
     return (
       <div>
         <Helmet title="Recipes"/>
-        <HeroPanel image="lentil-kale-quinoa-stew.jpeg" title="Recipes" subTitle="Delecious Recipes"/>
+        <HeroPanel image="lentil-kale-quinoa-stew.jpeg" title="Recipes" subTitle="A selection of delecious recipes added by the community."/>
         <div className="container">
           <SearchWell searching={searching} onSubmit={::this.searchRecipes} />
           <If condition={ recipes.length === 0 }>

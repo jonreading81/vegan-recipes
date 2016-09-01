@@ -22,7 +22,7 @@ export default class Welcome extends Component {
   render() {
     const {user} = this.props;
     const myUserHelper = new UserHelper(user);
-    const styles = require('./Welcome.scss');
+    // const styles = require('./Welcome.scss');
     return (
       <div>
         <Helmet title="Welcome"/>
@@ -34,10 +34,10 @@ export default class Welcome extends Component {
               <p className="important">Thank you for being party of this community {myUserHelper.getFirstName()}.</p>
               <blockquote>
               The idea is not that because there are a million people doing the same thing as you, you feel secure because you’re not the odd man out. The idea is more that you are the odd man out in any case, and there are lots of odd men out together.
-              <cite>Chögyam Trungpa Rinpoche, The Path Is The Goal</cite>
-              </blockquote>
+             </blockquote>
+              <cite><a href="https://www.amazon.co.uk/Path-Goal-Handbook-Buddhist-Meditation/dp/1590309103">Chögyam Trungpa Rinpoche, The Path Is The Goal</a></cite>
               <h3>What would you like to do?</h3>
-               <ButtonToolbar bsClass={styles.buttons}>
+               <ButtonToolbar>
                 <LinkContainer to="/recipe/list/all">
                   <Button bsSize="large" >View our Recipes</Button>
                 </LinkContainer>
