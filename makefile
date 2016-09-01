@@ -11,7 +11,7 @@ backup-data:
 	mongodump --db test -o ./data
 
 restore-data:
-	mongorestore --db test ./data
+	mongorestore --db test ./data/test
 
 deploy:
 	tar -cvf recipes.tar ./
