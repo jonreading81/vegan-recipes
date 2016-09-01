@@ -10,6 +10,13 @@ build:
 backup-data:
 	mongodump --db test -o ./data
 
+backup-content:
+	git add .
+	git commit -m 'Added data'
+	git push git push https://github.com/jonreading81/vegan-recipes.git
+
+backup-all: backup-data backup-content
+
 restore-data:
 	mongorestore --db test ./data/test
 
