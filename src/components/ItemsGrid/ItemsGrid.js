@@ -17,7 +17,7 @@ export default class ItemsGrid extends Component {
       <Row>
         <For each="item" index="index" of={ this.props.items}>
           <Link to={item.URL}>
-          <Col xs={6} md={4} className={'promo-item ' + styles.promo}>
+          <Col xs={12} sm={6} md={4} className={'promo-item ' + styles.promo}>
             <div className="imageWrapper">
              <p className="icon-recipe fa-stack fa-lg">
               <i className="fa fa-stack-2x"></i>
@@ -33,7 +33,7 @@ export default class ItemsGrid extends Component {
           </Col>
           </Link>
           <If condition={index === 1}>
-            <div className="clearfix visible-xs-block"></div>
+            <div className="clearfix visible-sm-block"></div>
           </If>
           <If condition={index === 2}>
             <div className="clearfix visible-md-block visible-lg-block"></div>
