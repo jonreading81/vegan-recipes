@@ -11,7 +11,7 @@ export  function find (term, page) {
     Recipe.paginate(query, { 
       sort:{updatedAt: -1}, 
       page: page, 
-      limit: 6, 
+      limit: 12, 
     }, function(err, result) {
       if (err) reject(err);
 
