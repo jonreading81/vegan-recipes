@@ -764,11 +764,18 @@ input[type="checkbox"],
 }
 
 .imageWrapper{
+  background-color: $brand-primary;
+  padding-top: 56.25%;
   position:relative;
+  img{
+    position:absolute;
+    top:0;
+  }
 }
 
 .imageOverlay{
   position: absolute;
+  top:0;
   width:100%;
   padding-top: 56.25%;
   background-color:transparentize(#333, 0.8);
