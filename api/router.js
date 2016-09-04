@@ -5,10 +5,15 @@ const router = express.Router();
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
 import * as recipes  from 'actions/recipe';
+import * as survey  from 'actions/survey';
 import stormpath from 'express-stormpath';
 
 router.get('/status', function(req, res){
   res.json({status:"connected"});
+});
+
+router.post('/survey', function(req, res){
+   handleAction(survey.post(req.body), res);
 });
 
 router.route('/recipes').post(stormpath.groupsRequired(['public']), multipartMiddleware, function(req, res) {    

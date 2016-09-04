@@ -6,7 +6,8 @@ export default class ReduxFormFormGroup extends Component {
 
   static propTypes = {
     controlId: PropTypes.string,
-    children: PropTypes.array,
+    className: PropTypes.string,
+    children: PropTypes.node,
     field: PropTypes.object
   };
 
@@ -23,9 +24,9 @@ export default class ReduxFormFormGroup extends Component {
   }
 
   render() {
-    const {field, controlId, children} = this.props;
+    const {field, controlId, children, className} = this.props;
     return (
-        <FormGroup controlId={controlId} validationState={this.getValidationState(field)}>
+        <FormGroup bsClass={className} controlId={controlId} validationState={this.getValidationState(field)}>
           {children}
           <FormControl.Feedback />
           <HelpBlock field={field}/>

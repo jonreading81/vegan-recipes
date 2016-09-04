@@ -4,6 +4,7 @@ import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 import {reducer as form} from 'redux-form';
 import api from './api';
 import auth from './auth';
+import survey from './survey';
 import {reducer as addRecipe} from './recipes/add';
 import {reducer as recipeList} from './recipes/list';
 import {reducer as viewRecipe} from './recipes/view';
@@ -30,5 +31,6 @@ export default combineReducers({
   categories,
   diets,
   register,
-  form
+  form,
+  survey
 });

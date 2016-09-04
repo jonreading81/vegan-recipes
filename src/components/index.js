@@ -31,5 +31,6 @@ export TogglePanel from './TogglePanel/TogglePanel';
 export Loading from './Loading/Loading';
 export HorizontalFormControl from './Form/HorizontalFormControl';
 export LoadingButton from './Form/LoadingButton';
+export RadioGroup from './Form/RadioGroup';
 
 

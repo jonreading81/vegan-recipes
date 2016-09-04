@@ -13,7 +13,8 @@ import {
     Login,
     Logout,
     Register,
-    Welcome
+    Welcome,
+    Survey
   } from 'containers';
 
 export default (store) => {
@@ -26,6 +27,7 @@ export default (store) => {
       <IndexRoute component={Home}/>
       <Route path="logout" component={Logout}/>
       <Route path="login" component={Login}/>
+      <Route path="survey" component={Survey}/>
       <Route path="register" component={Register}/>
       <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="welcome" component={Welcome}/>
       <Route path="recipe">

@@ -10,3 +10,6 @@ export Welcome from './Welcome/Welcome';
 export NotFound from './NotFound/NotFound';
 export Error from './Error/Error';
 export Register from './Register/Register';
+export Survey from './Survey/Survey';
+
+
