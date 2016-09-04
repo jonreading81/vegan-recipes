@@ -47,7 +47,7 @@ export default class RecipeDetail extends Component {
           <Table striped>
             <tbody>
             {myRecipe.getIngredients().map((ingredient, index) =>
-              <tr ey={'ingredient-' + index}>
+              <tr key={'ingredient-' + index}>
                 <td>{get(ingredient, 'name')}</td>
                 <td>{get(ingredient, 'quantity')}</td>
               </tr>

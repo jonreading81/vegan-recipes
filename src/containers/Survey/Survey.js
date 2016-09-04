@@ -60,7 +60,7 @@ class Survey extends Component {
     return (
     <div>
       <Helmet title="Survey"/>
-        <HeroPanel image="forest.jpeg" isEmpty />
+        <HeroPanel image="butter.jpeg" isEmpty />
         <div className="container">
           <div className="column-medium">
             <If condition={!success}>

@@ -11,7 +11,7 @@ export default function convertImage(sourcePath, filename) {
         const config = {
           srcPath: sourcePath,
           dstPath: newPath,
-          quality:0.7,
+          quality:0.8,
           width: size[0],
           height: size[1]
         };

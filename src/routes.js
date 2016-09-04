@@ -14,7 +14,8 @@ import {
     Logout,
     Register,
     Welcome,
-    Survey
+    Survey,
+    DietaryInformation
   } from 'containers';
 
 export default (store) => {
@@ -27,7 +28,6 @@ export default (store) => {
       <IndexRoute component={Home}/>
       <Route path="logout" component={Logout}/>
       <Route path="login" component={Login}/>
-      <Route path="survey" component={Survey}/>
       <Route path="register" component={Register}/>
       <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="welcome" component={Welcome}/>
       <Route path="recipe">
@@ -38,6 +38,10 @@ export default (store) => {
           <Route path=":recipe/update" component={UpdateRecipe}/>
           <Route path=":recipe/delete" component={DeleteRecipe}/>
         </Route>
+      </Route>
+      <Route path="vegan-butter">
+        <IndexRoute component={DietaryInformation}/>
+        <Route path="survey" component={Survey}/>
       </Route>
       <Route path="*" component={NotFound} status={404} />
     </Route>
