@@ -20,11 +20,15 @@ export default class RecipeDetail extends Component {
       <Col md={10} mdOffset={1}>
       <Row className={styles.details}>
         <Col xs={12} sm={4}>
-        <p className={styles.iconWrapper + ' fa-stack fa-lg'}>
-          <i className="fa fa-circle fa-stack-2x"></i>
-          <i className="fa fa-clock-o fa-stack-1x fa-inverse"></i>
-        </p>
-        <p className={styles.cookingDetail}>Prep: {myRecipe.getPreperationTime()}<br />Cook: {myRecipe.getCookingTime()}</p></Col>
+          <p className={styles.iconWrapper + ' fa-stack fa-lg'}>
+            <i className="fa fa-circle fa-stack-2x"></i>
+            <i className="fa fa-clock-o fa-stack-1x fa-inverse"></i>
+          </p>
+          <p className={styles.cookingDetail}>
+            Prep: {myRecipe.getPreperationTime()}<br />
+            <If condition={myRecipe.getCookingTime() !== 0}>Cook: {myRecipe.getCookingTime()}</If>
+          </p>
+        </Col>
         <Col xs={12} sm={4}>
         <p className={styles.iconWrapper + ' fa-stack fa-lg'}>
           <i className="fa fa-circle fa-stack-2x"></i>
