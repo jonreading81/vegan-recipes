@@ -31,9 +31,9 @@ https://github.com/absoluteorange/Vagrant-for-AOL
 
 Alternatively it can be ran locally it requires:
 
-* NodeJS
-* MongoDb
-* ImageMagick
+* [NodeJS] (https://nodejs.org/en/)
+* [MongoDb](https://www.mongodb.com/)
+* [ImageMagick](http://www.imagemagick.org/)
 
 Obtain Stormpath credentials https://stormpath.com/ and Set Env: 
 
