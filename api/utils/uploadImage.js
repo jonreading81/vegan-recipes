@@ -1,4 +1,5 @@
 import copyFile from '../utils/copyFile';
+import deleteFile from '../utils/deleteFile';
 import get from 'lodash/get';
 import fs from 'fs';
 import  mime from 'mime-types';
@@ -13,10 +14,10 @@ export default function uploadImage(image, name) {
     
       const filename =  name + '.' + mime.extension(image.type);  
       const destination = imagesPath + filename;
-
       copyFile(path, destination)
-        .then(() => convertImage(destination, filename).then(resolve, reject)
-          ,reject);
+        .then(() =>  deleteFile(path))
+        .then(() => convertImage(destination, filename))
+        .then(resolve, reject);
       
     }
     else{
