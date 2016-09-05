@@ -1,5 +1,6 @@
 var GoogleSpreadsheet = require('google-spreadsheet');
 var async = require('async'); 
+var creds = require('../data/google.json');
 
 export function post(data) {
   return new Promise((resolve,reject) => {
@@ -7,7 +8,6 @@ export function post(data) {
     var sheet;
     async.series([
       function setAuth(step) {
-         var creds = require('../data/google.json');
         doc.useServiceAccountAuth(creds, function(err){
         if(err) reject(err);
           step();
