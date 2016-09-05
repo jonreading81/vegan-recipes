@@ -27,7 +27,7 @@ Univeral React / Redux Web Application using cutting edge technologies
 
 The application can be ran and provisioned inside Absolute Orange Vagrant box
 
-https://github.com/jonreading81/Vagrant-for-AOL
+https://github.com/absoluteorange/Vagrant-for-AOL
 
 Alternatively it can be ran locally it requires:
 
