@@ -29,7 +29,7 @@ The application can be ran and provisioned inside Absolute Orange Vagrant box
 
 https://github.com/absoluteorange/Vagrant-for-AOL
 
-Alternatively it can be ran locally it requires:
+Alternatively it can be ran locally it requires (Faster to build):
 
 * [NodeJS] (https://nodejs.org/en/)
 * [MongoDb](https://www.mongodb.com/)
