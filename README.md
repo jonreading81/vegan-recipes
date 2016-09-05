@@ -35,7 +35,7 @@ Alternatively it can be ran locally it requires:
 * MongoDb
 * ImageMagick
 
-Set Env: 
+Obtain Stormpath credentials https://stormpath.com/ and Set Env: 
 
 ```bash
 export STORMPATH_CLIENT_APIKEY_ID=
