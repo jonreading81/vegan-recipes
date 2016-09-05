@@ -4,9 +4,9 @@ import {request as requestGet} from 'redux/modules/recipes/view';
 import { asyncConnect } from 'redux-async-connect';
 import { bindActionCreators } from 'redux';
 import {request as requestDeleteRecipe, reset as resetDeleteRecipe} from 'redux/modules/recipes/delete';
-import {HeroPanel, Loading, DeleteEntity} from 'components';
-import get from 'lodash/get';
+import {HeroPanel, Loading, DeleteEntity, BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
+import get from 'lodash/get';
 import { LinkContainer } from 'react-router-bootstrap';
 import RecipeHelper from 'helpers/Recipe';
 
@@ -70,19 +70,15 @@ export default class DeleteRecipeContainer extends Component {
         </If>
           <If condition={!isFetching}>
           <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
-         <div className="breadcrumb-wrapper">
-               <div className="container">
-                 <Breadcrumb>
-                  <LinkContainer to="/recipe/list/all">
-                    <Breadcrumb.Item>Recipes</Breadcrumb.Item>
-                  </LinkContainer>
-                  <LinkContainer to={myRecipeHelper.getURL()}>
-                    <Breadcrumb.Item>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
-                  </LinkContainer>
-                  <Breadcrumb.Item active>Delete</Breadcrumb.Item>
-                </Breadcrumb>
-              </div>
-            </div>
+          <BreadcrumbContainer>
+            <LinkContainer to="/recipe/list/all">
+              <Breadcrumb.Item>Recipes</Breadcrumb.Item>
+            </LinkContainer>
+            <LinkContainer to={myRecipeHelper.getURL()}>
+              <Breadcrumb.Item>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
+            </LinkContainer>
+            <Breadcrumb.Item active>Delete</Breadcrumb.Item>
+          </BreadcrumbContainer>
           <DeleteEntity
             deleteEntity={deleteRecipe}
             resetStateAction={resetDeleteRecipe()}

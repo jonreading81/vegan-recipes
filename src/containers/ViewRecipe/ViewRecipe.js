@@ -7,6 +7,7 @@ import {request as requestGet} from 'redux/modules/recipes/view';
 import { asyncConnect } from 'redux-async-connect';
 import {HeroPanel, Loading} from 'components';
 import RecipeHelper from 'helpers/Recipe';
+import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -44,16 +45,12 @@ export default class ViewRecipeContainer extends Component {
           </If>
           <If condition={!isFetching}>
            <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
-           <div className="breadcrumb-wrapper">
-             <div className="container">
-               <Breadcrumb>
-                <LinkContainer to="/recipe/list/all">
-                  <Breadcrumb.Item>Recipes</Breadcrumb.Item>
-                </LinkContainer>
-                <Breadcrumb.Item active>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
-              </Breadcrumb>
-            </div>
-          </div>
+           <BreadcrumbContainer>
+            <LinkContainer to="/recipe/list/all">
+              <Breadcrumb.Item>Recipes</Breadcrumb.Item>
+            </LinkContainer>
+            <Breadcrumb.Item active>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
+          </BreadcrumbContainer>
           <div className="container">
             <RecipeDetails recipe={recipe} />
            </div>

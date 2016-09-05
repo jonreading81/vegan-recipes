@@ -8,13 +8,19 @@ import {Nav, Navbar, NavItem } from 'react-bootstrap';
 import {logout } from 'redux/modules/auth';
 
 @connect(
-  null,
-  {logout})
+  (state) => {
+    return {
+      URL: state.routing.locationBeforeTransitions.pathname
+    };
+  },
+  {logout}
+)
 export default class NavBar extends Component {
 
 
   static propTypes = {
     logout: PropTypes.func.isRequired,
+    URL: PropTypes.string.isRequired,
   }
 
   state = {
@@ -36,6 +42,8 @@ export default class NavBar extends Component {
 
   render() {
     const styles = require('./NavBar.scss');
+    const {URL} = this.props;
+    console.log(URL.search('recipe'));
     return (
    <Navbar fixedTop className="navbar-custom" fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
           <Navbar.Header>
@@ -50,7 +58,7 @@ export default class NavBar extends Component {
 
             <Navbar.Collapse autoCollapse eventKey={0}>
               <Nav navbar className="navbar-right">
-               <LinkContainer to="/recipe/list/all">
+               <LinkContainer active={URL.search('recipe') !== -1 && URL !== '/recipe/add' } to="/recipe/list/all">
                   <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Recipes</NavItem>
                 </LinkContainer>
                 <LoggedInUser>

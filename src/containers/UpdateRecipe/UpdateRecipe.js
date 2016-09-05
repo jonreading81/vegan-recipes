@@ -1,13 +1,12 @@
 import React, { Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {EntityFormContainer} from 'components';
+import {EntityFormContainer, HeroPanel, Loading, RecipeForm, BreadcrumbContainer} from 'components';
+import {Breadcrumb} from 'react-bootstrap';
 import {reset as resetForm} from 'redux-form';
 import RecipeHelper from 'helpers/Recipe';
 import {request as requestUpdateRecipe, reset as resetUpdateRecipe} from 'redux/modules/recipes/update';
 import {request as requestGet} from 'redux/modules/recipes/view';
-import {RecipeForm} from 'components';
 const resetFormAction = resetForm('recipeForm');
-import {HeroPanel, Loading} from 'components';
 import { request as requestIngredients} from 'redux/modules/recipes/ingredients';
 import { request as requestQuantities} from 'redux/modules/recipes/quantities';
 import { request as requestCategories} from 'redux/modules/recipes/categories';
@@ -15,7 +14,6 @@ import { request as requestDiets} from 'redux/modules/recipes/diets';
 const resetStateAction = resetUpdateRecipe();
 import get from 'lodash/get';
 import { asyncConnect } from 'redux-async-connect';
-import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 @connect(
@@ -78,19 +76,15 @@ export default class UpdateRecipeContainer extends Component {
       </If>
       <If condition={!isFetching}>
          <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
-         <div className="breadcrumb-wrapper">
-               <div className="container">
-                 <Breadcrumb>
-                  <LinkContainer to="/recipe/list/all">
-                    <Breadcrumb.Item>Recipes</Breadcrumb.Item>
-                  </LinkContainer>
-                  <LinkContainer to={myRecipeHelper.getURL()}>
-                    <Breadcrumb.Item>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
-                  </LinkContainer>
-                  <Breadcrumb.Item active>Update</Breadcrumb.Item>
-                </Breadcrumb>
-              </div>
-            </div>
+         <BreadcrumbContainer>
+            <LinkContainer to="/recipe/list/all">
+            <Breadcrumb.Item>Recipes</Breadcrumb.Item>
+            </LinkContainer>
+            <LinkContainer to={myRecipeHelper.getURL()}>
+            <Breadcrumb.Item>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
+            </LinkContainer>
+            <Breadcrumb.Item active>Update</Breadcrumb.Item>
+          </BreadcrumbContainer>
          <EntityFormContainer
           entity ={recipe}
           pageTitle = "Update Recipe"
