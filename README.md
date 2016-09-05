@@ -31,9 +31,9 @@ https://github.com/jonreading81/Vagrant-for-AOL
 
 Alternatively it can be ran locally it requires:
 
-NodeJS
-MongoDb
-ImageMagick
+* NodeJS
+* MongoDb
+* ImageMagick
 
 Set Env: 
 
