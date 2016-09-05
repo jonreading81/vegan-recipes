@@ -43,7 +43,6 @@ export default class NavBar extends Component {
   render() {
     const styles = require('./NavBar.scss');
     const {URL} = this.props;
-    console.log(URL.search('recipe'));
     return (
    <Navbar fixedTop className="navbar-custom" fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
           <Navbar.Header>
