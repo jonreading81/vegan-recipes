@@ -39,7 +39,7 @@ export default (store) => {
           <Route path=":recipe/delete" component={DeleteRecipe}/>
         </Route>
       </Route>
-      <Route path="vegan-butter">
+      <Route path="plant-butter">
         <IndexRoute component={DietaryInformation}/>
         <Route path="survey" component={Survey}/>
       </Route>
