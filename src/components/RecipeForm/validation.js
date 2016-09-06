@@ -1,7 +1,7 @@
 import {createValidator, required, maxLength, validImage, validateList} from 'utils/validation';
 
 const ingredientValidator = createValidator({
-  name: [required, maxLength(20)],
+  name: [required, maxLength(40)],
   quantity: [required, maxLength(20)]
 });
 
