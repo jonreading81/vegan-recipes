@@ -66,8 +66,8 @@ export function match(field) {
 export function validImage(fileList) {
   if (fileList && fileList.length && fileList.length === 1) {
     const image = fileList.item(0);
-    if (image.size > 2048000) {
-      return 'Image must be less than 2MB';
+    if (image.size > 1024000) {
+      return 'Image must be less than 1MB';
     }
     if (image.type !== 'image/jpeg' && image.type !== 'image/png') {
       return 'Image must be a JPEG or PNG';

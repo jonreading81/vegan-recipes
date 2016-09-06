@@ -25,6 +25,9 @@ deploy:
 	aws s3 cp s3://vegan-recipe-deployments/recipes.tar  s3://vegan-recipe-deployments/recipes.rollback.tar 
 	aws s3 cp recipes.tar  s3://vegan-recipe-deployments
 
+get-google-creds:
+	aws s3 cp s3://vegan-recipe-deployments/creds/google.json  ./api/data/google.json
+
 retrieve-deployment:
 	aws s3 cp s3://vegan-recipe-deployments/recipes.tar ../recipes.tar
 

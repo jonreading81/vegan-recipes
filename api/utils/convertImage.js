@@ -1,7 +1,10 @@
 import  im from 'imagemagick';
 const sizes = require('../data/imageSizes.json');
 const async = require('async'); 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bdcec50a126d4f9c743a74652ab7ed3a55d44e26
 const destinationPath =  './static/images/';
 
 export default function convertImage(sourcePath, filename) {
@@ -12,7 +15,10 @@ export default function convertImage(sourcePath, filename) {
         resolve(filename);
         next();
       }
+<<<<<<< HEAD
 
+=======
+>>>>>>> bdcec50a126d4f9c743a74652ab7ed3a55d44e26
       sizes.map((size, index) => {
         actions.push(function(next){
           const newPath = destinationPath + size.join('x') + '/' + filename;
@@ -31,10 +37,15 @@ export default function convertImage(sourcePath, filename) {
           });
         });
       });
+<<<<<<< HEAD
 
       actions.push(finish);
       async.series(actions);
 
+=======
+      actions.push(finish);
+      async.series(actions);
+>>>>>>> bdcec50a126d4f9c743a74652ab7ed3a55d44e26
     }
     else{
       reject('path and filename must be set');
