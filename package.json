@@ -22,7 +22,7 @@
   },
   "betterScripts": {
     "start-prod": {
-      "command": "node --max_semi_space_size=2 --max_old_space_size=128 ./bin/server.js",
+      "command": "node --max_semi_space_size=2 --max_old_space_size=256 ./bin/server.js",
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
@@ -31,11 +31,7 @@
       }
     },
     "start-prod-api": {
-<<<<<<< HEAD
       "command": "node --max_semi_space_size=2 --max_old_space_size=256 ./bin/api.js",
-=======
-      "command": "node --max_semi_space_size=2 --max_old_space_size=128 ./bin/api.js",
->>>>>>> bdcec50a126d4f9c743a74652ab7ed3a55d44e26
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "production",

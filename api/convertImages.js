@@ -32,7 +32,6 @@ function convertImages(){
     console.info(images);
     images.map((image) => {
       actions.push(function(next){
-        console.log('action');
         if(image !== '.DS_Store') {
           console.info(image);
            convertImage(imagesPath + image, image).then(() => {
