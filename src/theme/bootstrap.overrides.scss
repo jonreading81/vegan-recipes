@@ -66,6 +66,7 @@ blockquote{
 // Breadcrumb =====================================================================
 
 .breadcrumb {
+  float: left;
   @media(min-width: $screen-sm-min){
     float: right;
   }

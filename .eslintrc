@@ -38,6 +38,7 @@
     "socket": true,
     "webpackIsomorphicTools": true,
    "If": true,
-   "For": true
+   "For": true,
+   "When": true
   }
 }

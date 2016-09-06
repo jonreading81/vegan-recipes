@@ -32,12 +32,8 @@ export default class ItemsGrid extends Component {
             </div>
           </Col>
           </Link>
-          <If condition={(index + 1) % 2 === 0}>
-            <div className="clearfix visible-sm-block"></div>
-          </If>
-          <If condition={(index + 1) % 3 === 0}>
-            <div className="clearfix visible-md-block visible-lg-block"></div>
-          </If>
+          {(index + 1) % 2 === 0 ? <div className="clearfix visible-sm-block"></div> : null }
+          {(index + 1) % 3 === 0 ? <div className="clearfix visible-md-block visible-lg-block"></div> : null }
         </For>
       </Row>
     );
