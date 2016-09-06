@@ -19,7 +19,7 @@ const ingredientsData = [
     name: '*rapeseed oil'
   },
   {
-    name: '*cocoa butter'
+    name: '*deodarised cocoa butter'
   },
   {
     name: '*soy milk (hulled soy beans (7.2%), water)'
