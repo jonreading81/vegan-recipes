@@ -69,7 +69,6 @@ export default class DeleteRecipeContainer extends Component {
           <Loading />
         </If>
           <If condition={!isFetching}>
-          <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
           <BreadcrumbContainer>
             <LinkContainer to="/recipe/list/all">
               <Breadcrumb.Item>Recipes</Breadcrumb.Item>
@@ -79,6 +78,7 @@ export default class DeleteRecipeContainer extends Component {
             </LinkContainer>
             <Breadcrumb.Item active>Delete</Breadcrumb.Item>
           </BreadcrumbContainer>
+          <HeroPanel type="post-heading" hasBreadcrumb image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
           <DeleteEntity
             deleteEntity={deleteRecipe}
             resetStateAction={resetDeleteRecipe()}
@@ -88,7 +88,7 @@ export default class DeleteRecipeContainer extends Component {
             isError = {error ? true : false}
             successMessage = "The Recipe was deleted successfully"
             successTitle = "Recipe Deleted"
-            successURL="/recipe/list"
+            successURL="/recipe/list/all"
             >
             <p>Are you sure you would like to delete the following recipe?</p>
             <p>{get(recipe, 'title')}</p>
