@@ -11,7 +11,7 @@ export default class NotFound extends Component {
        <HeroPanel image="forest.jpeg" isEmpty />
           <div className="container">
               <div className="body-copy">
-              <h1>Doh 404!</h1>
+              <h1>404</h1>
                <h2>Page not found.</h2>
                </div>
           </div>

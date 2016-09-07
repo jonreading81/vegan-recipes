@@ -18,7 +18,7 @@ export default class Error extends Component {
        <HeroPanel image="forest.jpeg" isEmpty />
           <div className="container">
               <div className="body-copy">
-              <h1>Doh Error</h1>
+              <h1>Error</h1>
               {children}
               </div>
           </div>
