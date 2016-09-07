@@ -75,16 +75,16 @@ export default class UpdateRecipeContainer extends Component {
           <Loading />
       </If>
       <If condition={!isFetching}>
-         <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
-         <BreadcrumbContainer>
-            <LinkContainer to="/recipe/list/all">
-            <Breadcrumb.Item>Recipes</Breadcrumb.Item>
-            </LinkContainer>
-            <LinkContainer to={myRecipeHelper.getURL()}>
-            <Breadcrumb.Item>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
-            </LinkContainer>
-            <Breadcrumb.Item active>Update</Breadcrumb.Item>
-          </BreadcrumbContainer>
+        <BreadcrumbContainer>
+          <LinkContainer to="/recipe/list/all">
+          <Breadcrumb.Item>Recipes</Breadcrumb.Item>
+          </LinkContainer>
+          <LinkContainer to={myRecipeHelper.getURL()}>
+          <Breadcrumb.Item>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
+          </LinkContainer>
+          <Breadcrumb.Item active>Update</Breadcrumb.Item>
+        </BreadcrumbContainer>
+         <HeroPanel type="post-heading" hasBreadcrumb image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
          <EntityFormContainer
           entity ={recipe}
           pageTitle = "Update Recipe"

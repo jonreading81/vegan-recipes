@@ -44,13 +44,17 @@ export default class ViewRecipeContainer extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-           <HeroPanel type="post-heading" image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
-           <BreadcrumbContainer>
+          <BreadcrumbContainer>
             <LinkContainer to="/recipe/list/all">
               <Breadcrumb.Item>Recipes</Breadcrumb.Item>
             </LinkContainer>
             <Breadcrumb.Item active>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
           </BreadcrumbContainer>
+           <HeroPanel type="post-heading"
+             image={myRecipeHelper.getImage()}
+             title={myRecipeHelper.getTitle()}
+             subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}
+             hasBreadcrumb />
           <div className="container">
             <RecipeDetails recipe={recipe} />
            </div>
