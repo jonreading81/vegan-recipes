@@ -13,25 +13,32 @@ import get from 'lodash/get';
 
 const ingredientsData = [
   {
-    name: '*coconut oil'
+    name: '*coconut oil',
+    amount: ''
   },
   {
-    name: '*rapeseed oil'
+    name: '*rapeseed oil',
+    amount: ''
   },
   {
-    name: '*deodarised cocoa butter'
+    name: '*deodarised cocoa butter',
+    amount: ''
   },
   {
-    name: '*soy milk (hulled soy beans (7.2%), water)'
+    name: '*soy milk (hulled soy beans (7.2%), water)',
+    amount: ''
   },
   {
-    name: 'lecithin liquid'
+    name: 'liquid soya lecithin',
+    amount: ''
   },
   {
-    name: 'vegan lactic acid'
+    name: 'plant based lactic acid',
+    amount: ''
   },
   {
-    name: 'sea salt'
+    name: 'sea salt',
+    amount: ''
   }
 ];
 
@@ -41,10 +48,10 @@ export default class DietInformation extends Component {
     return (
       <div>
         <Helmet title="Product information"/>
-          <HeroPanel image="butter.jpeg" title="Plant based butter" subTitle="Dairy free butter with less saturated fats" style="image-focus-bottom"/>
+          <HeroPanel image="butter.jpeg" title="Butta" subTitle="A butter alternative" style="image-focus-bottom"/>
           <div className="container">
             <div className="body-copy">
-            <p className="body-copy-first important">Please find below all labelling information for our plant based butter.</p>
+            <p className="body-copy-first important">Please find below all labelling information for our Butta.</p>
 
               <Row>
                 <Col xs={12} sm={6}>
@@ -69,8 +76,10 @@ export default class DietInformation extends Component {
                 <p>Call of the Forest<br />
                 193A Munster Road, London, SW6 6BY<br />
                 Email: amy@calloftheforest.com</p>
+                <h3>Usage suggestions</h3>
+                <p>Spreading, cooking and baking</p>
                 <h3>Storage guidelines</h3>
-                <p>Keep refrigerated.  Consume within 3 weeks.  Store in freezer for up to 3 months.</p>
+                <p>Keep refrigerated.  Consume within 3 weeks (see use by date).  Store in freezer for up to 3 months.</p>
               </Col>
 
               <Col xs={12} sm={6}>
@@ -79,14 +88,14 @@ export default class DietInformation extends Component {
                   <thead>
                     <tr>
                       <th>Name</th>
-                      {/* <th>Value</th> */}
+                      <th>Value</th>
                     </tr>
                   </thead>
                   <tbody>
                      {ingredientsData.map((item, index) =>
                       <tr key={'ingredient-' + index}>
                         <td>{get(item, 'name')}</td>
-                        {/* <td>{get(item, 'amount')} </td>*/}
+                        <td>{get(item, 'amount')} </td>
                       </tr>
                     )}
                     <tr>
