@@ -12,3 +12,8 @@ export Error from './Error/Error';
 export Register from './Register/Register';
 export Survey from './Survey/Survey';
 export DietaryInformation from './DietaryInformation/DietaryInformation';
+export ImageList from './ImageList/ImageList';
+export UpdateImage from './UpdateImage/UpdateImage';
+export AddImage from './AddImage/AddImage';
+export DeleteImage from './DeleteImage/DeleteImage';
+

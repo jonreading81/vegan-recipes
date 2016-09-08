@@ -5,6 +5,10 @@ import {reducer as form} from 'redux-form';
 import api from './api';
 import auth from './auth';
 import survey from './survey';
+import {reducer as imageList} from './images/list';
+import {reducer as deleteImage} from './images/delete';
+import {reducer as updateImage} from './images/update';
+import {reducer as addImage} from './images/add';
 import {reducer as addRecipe} from './recipes/add';
 import {reducer as recipeList} from './recipes/list';
 import {reducer as viewRecipe} from './recipes/view';
@@ -32,5 +36,9 @@ export default combineReducers({
   diets,
   register,
   form,
-  survey
+  survey,
+  imageList,
+  updateImage,
+  deleteImage,
+  addImage
 });

@@ -19,9 +19,9 @@ export default class ItemsGrid extends Component {
           <Link to={item.URL}>
           <Col xs={12} sm={6} md={4} className={'promo-item ' + styles.promo}>
             <div className="imageWrapper">
-             <p className="icon-recipe fa-stack fa-lg">
+             <p className="icon-promo fa-stack fa-lg">
               <i className="fa fa-stack-2x"></i>
-              <i className="fa fa-cutlery fa-stack-1x"></i>
+              <i className={'fa fa-' + item.icon + ' fa-stack-1x'}></i>
             </p>
             <div className="imageOverlay"/>
               <ResponsiveImage image={item.image}/>

@@ -15,7 +15,11 @@ import {
     Register,
     Welcome,
     Survey,
-    DietaryInformation
+    DietaryInformation,
+    ImageList,
+    UpdateImage,
+    DeleteImage,
+    AddImage
   } from 'containers';
 
 export default (store) => {
@@ -38,6 +42,12 @@ export default (store) => {
           <Route path=":recipe/update" component={UpdateRecipe}/>
           <Route path=":recipe/delete" component={DeleteRecipe}/>
         </Route>
+      </Route>
+       <Route path="images" onEnter={requireMemberOfAdminGroup.bind(null, store)}>
+         <Route path="list/:term(/:page)" component={ImageList}/>
+        <Route path="add" component={AddImage}/>
+         <Route path=":image" component={UpdateImage}/>
+         <Route path=":image/delete" component={DeleteImage}/>
       </Route>
       <Route path="plant-butter">
         <IndexRoute component={DietaryInformation}/>

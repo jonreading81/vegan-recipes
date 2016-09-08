@@ -766,9 +766,9 @@ input[type="checkbox"],
     .imageOverlay{
       background-color:transparentize(#333, 1);
     }
-    .fa-stack.icon-recipe{
+    .fa-stack.icon-promo{
       background-color:#fff;
-      .fa-cutlery{
+      .fa-stack-1x{
         color:$brand-primary;
       }
     }
@@ -794,8 +794,8 @@ input[type="checkbox"],
   z-index: 1;
 }
 
-.fa-stack.icon-recipe{
-  .fa-cutlery{
+.fa-stack.icon-promo{
+  .fa-stack-1x{
     color:#fff;
   }
   background-color:transparentize($brand-primary, 0.2);
