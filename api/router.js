@@ -5,16 +5,25 @@ const router = express.Router();
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
 import * as recipes  from 'actions/recipe';
+import * as images  from 'actions/image';
 import * as survey  from 'actions/survey';
 import stormpath from 'express-stormpath';
 
+
+/*
+
+-------------------------- API  ------------------
+
+*/
 router.get('/status', function(req, res){
   res.json({status:"connected"});
 });
 
-router.post('/survey', function(req, res){
-   handleAction(survey.post(req.body), res);
-});
+/*
+
+-------------------------- Recipes  ------------------
+
+*/
 
 router.route('/recipes').post(stormpath.groupsRequired(['public']), multipartMiddleware, function(req, res) {    
   handleAction(recipes.add(req.body, req.files), res);        
@@ -52,6 +61,30 @@ router.route('/diets').get(function(req, res) {
 
 router.route('/categories').get(function(req, res) {    
   handleAction(recipes.categories(), res);        
+});
+
+/*
+
+-------------------------- Images  ------------------
+
+*/
+
+router.route('/images').get(stormpath.groupsRequired(['admin']), function(req, res) {    
+  handleAction(images.getAll(), res);        
+});
+
+router.route('/images').post(stormpath.groupsRequired(['admin']), function(req, res) {    
+  handleAction(images.update(req.body, req.files), res);        
+});
+
+/*
+
+-------------------------- Survey  ------------------
+
+*/
+
+router.post('/survey', function(req, res){
+   handleAction(survey.post(req.body), res);
 });
 
 

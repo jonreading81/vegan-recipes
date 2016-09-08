@@ -1,11 +1,7 @@
 import fs from 'fs';
-import convertImage from './utils/convertImage';
-const imageSizes = require('./data/imageSizes.json');
-const imagesPath = 'api/images/';
+import {convertImage, getImages, imagesPath ,sizes as imageSizes} from './utils/images';
 const destinationPath = 'static/images/';
 const async = require('async'); 
-
-
 
 function createDirectory(dir){ 
     if (!fs.existsSync(dir)){
@@ -27,23 +23,17 @@ function createDirectorties(){
 
 function convertImages(){
   console.info('Converting Images');
-  fs.readdir(imagesPath, (err, images) => {
+  getImages().then((images) => {
     let actions = [];
-    console.info(images);
     images.map((image) => {
       actions.push(function(next){
-        if(image !== '.DS_Store') {
-          console.info(image);
-           convertImage(imagesPath + image, image).then(() => {
-            console.info('converted image: '+ image);
-            next();
-           });
-        }else{
+        console.info(imagesPath + image);
+        convertImage(imagesPath + image, image).then(() => {
+          console.info('converted image: '+ image);
           next();
-        }
+        },console);
       });
     });
-     console.info(actions);
     async.series(actions);
   });
 }

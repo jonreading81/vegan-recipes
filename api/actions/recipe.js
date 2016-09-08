@@ -1,6 +1,6 @@
 
 var Recipe  = require('../models/recipe');
-import uploadImage from '../utils/uploadImage';
+import {uploadImage} from '../utils/images';
 
 export  function find (term, page) {
   return new Promise((resolve,reject) => {
