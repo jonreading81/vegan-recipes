@@ -73,13 +73,10 @@ $breakpoint-imagecropped : 640px;
 
     cite {
       &:before{
-        content:"( ";
-      }
-      &:after{
-        content:" )";
+        content:" -";
       }
       display: inline;
-      font-size: 0.75em;
+      font-size: 0.65em;
       a{
         color:white;
       }
@@ -98,6 +95,10 @@ $breakpoint-imagecropped : 640px;
  
       top: 0 ;
       z-index:1;
+    }
+    .audio-wrapper {
+      display: table-row;
+      height: 39px;
     }
     .site-heading,
     .post-heading,

@@ -18,6 +18,7 @@ module.exports = Object.assign({
   mongoDBURL: process.env.mongoURL || 'mongodb://localhost/test',
   app: {
     title: 'Call of the Forest',
+    birdsong: 'audio/birdsong.mp3',
     description: 'Never in all their history have men been able truly to conceive of the world as one: a single sphere',
     head: {
       titleTemplate: 'Call of the Forest',

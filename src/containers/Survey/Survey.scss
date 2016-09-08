@@ -1,8 +1,24 @@
+
+@import 'src/theme/mixins';
+form {
+  legend {
+      @include heading();
+      margin-bottom: 0;
+      padding-top: 2em;
+      border-bottom: none;
+  }
+}
+
 .formGroup{
     margin-top:3em;
     label{
       margin-bottom:1em;
-      //font-size:14px;
-      // font-weight:600;
+      font-size:16px;
+    }
+    p {
+        font-weight: 600;
+    }
+    button {
+        text-transform: capitalize;
     }
 }
