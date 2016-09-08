@@ -1,11 +1,16 @@
-import {createValidator, required, email} from 'utils/validation';
+import {createValidator, required} from 'utils/validation';
 
 const registerValidator = createValidator({
-  name: [required],
-  email: [required, email],
   questionA: [required],
   questionB: [required],
-  questionC: [required]
+  questionC: [required],
+  questionD: [required],
+  questionE: [required],
+  questionF: [required],
+  questionH: [required],
+  questionI: [required],
+  questionJ: [required],
+  questionK: [required]
 
 });
 export default function validate(values) {

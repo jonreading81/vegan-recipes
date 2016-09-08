@@ -233,16 +233,13 @@ class Survey extends Component {
                 <LoadingButton type="submit" submitting={submitting} bsSize="large" bsStyle="primary">Submit</LoadingButton>
                 </ButtonToolbar>
               </form>
-              <h3>Thank you</h3>
-              <blockquote>
-                  Nothing can be done alone and no one can take all the credit
-              </blockquote>
             </If>
             <If condition={success}>
                <h2>Survey Submitted</h2>
-                <div className="body-copy">
-                  <p className="body-copy-first important">Thank you for completing the survey</p>
-                </div>
+               <h3>Thank you</h3>
+               <blockquote>
+               Nothing can be done alone and no one can take all the credit
+               </blockquote>
             </If>
           </div>
         </div>
