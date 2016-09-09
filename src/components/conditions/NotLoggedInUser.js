@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import UserHelper from 'helpers/User';
 
@@ -19,10 +19,11 @@ export default class NotLoggedInUser extends Component {
 
   render() {
     const {user, children} = this.props;
-    if (!user.isLoggedIn()) {
-      return (children);
-    }
-    return false;
+    return (
+      <If condition={!user.isLoggedIn()}>
+        {children}
+      </If>
+    );
   }
 }
 

@@ -3,6 +3,7 @@ import filter from 'lodash/filter';
 import copyFile from './copyFile';
 import deleteFile from './deleteFile';
 import get from 'lodash/get';
+import map from 'lodash/map';
 import  mime from 'mime-types';
 import  im from 'imagemagick';
 const async = require('async'); 
@@ -17,6 +18,38 @@ export const getImages = () => {
     fs.readdir(imagesPath, (err, _images) => {
       if (err) reject(err);
       resolve(filter(_images, (image) => image !== '.DS_Store'));
+    });
+  });
+}
+
+export const searchImage = (search, image) => {
+  if( image.search(search) !== -1){
+    return true;
+  }
+  return false;
+}
+
+
+export const getFilenameFromSlug = (slug) => {
+  const seperator = slug.lastIndexOf('-');
+  const name = slug.substr(0, seperator);
+  const ext = slug.substr(seperator + 1);
+  const image = name + '.' + ext;
+  return image;
+}
+
+export const getImageWithPath = (image) => {
+  return {
+    name: image.slice(0, -5),
+    filename: image,
+    path: imagesPath + image
+  };
+}
+
+export const getImagesWithPath = () => {
+  return new Promise((resolve, reject) => {
+    getImages().then((images) => {
+      resolve(images.map(getImageWithPath));
     });
   });
 }
@@ -40,7 +73,7 @@ export const uploadImage = (image, name) => {
       
     }
     else{
-      reject('path and slug must be set');
+      reject('path and name must be set');
     }
   });
 }

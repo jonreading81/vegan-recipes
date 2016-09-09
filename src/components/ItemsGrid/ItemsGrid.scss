@@ -4,5 +4,13 @@
   p{
     color:$gray;
   }
+  a:hover{
+    text-decoration: none;
+  }
   
+}
+
+.adminToolbar{
+  margin-top: 0;
+  margin-bottom:2em;
 }

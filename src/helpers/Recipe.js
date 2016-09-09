@@ -54,6 +54,7 @@ export default class Recipe {
       title: this.getTitle(),
       description: this.getDescription(),
       URL: this.getURL(),
+      icon: 'cutlery',
       thumbnail: this.getImageURL('384x216'),
       image: this.getImage(),
       updateURL: this.getUpdateURL(),

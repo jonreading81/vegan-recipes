@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import {LoggedInUser, NotLoggedInUser} from 'components';
+import {LoggedInUser, NotLoggedInUser, AdminUser} from 'components';
 import { connect } from 'react-redux';
 import config from '../../config';
 import { IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
-import {Nav, Navbar, NavItem } from 'react-bootstrap';
+import {Nav, Navbar, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import {logout } from 'redux/modules/auth';
 
 @connect(
@@ -65,6 +65,16 @@ export default class NavBar extends Component {
                     <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Recipe</NavItem>
                   </LinkContainer>
                 </LoggedInUser>
+                <AdminUser>
+                  <NavDropdown eventKey={3} title="Images" id="images-dropdown">
+                    <LinkContainer to="/images/list/all">
+                      <MenuItem onClick={ this.onNavItemClick } eventKey={2}>List</MenuItem>
+                    </LinkContainer>
+                    <LinkContainer to="/images/add">
+                      <MenuItem onClick={ this.onNavItemClick } eventKey={2}>Add</MenuItem>
+                    </LinkContainer>
+                  </NavDropdown>
+                </AdminUser>
                 <NotLoggedInUser>
                     <LinkContainer to="/login">
                       <NavItem onClick={ this.onNavItemClick } eventKey={3}>Login</NavItem>

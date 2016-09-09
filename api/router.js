@@ -69,11 +69,21 @@ router.route('/categories').get(function(req, res) {
 
 */
 
-router.route('/images').get(stormpath.groupsRequired(['admin']), function(req, res) {    
-  handleAction(images.getAll(), res);        
+router.route('/images/:term/:page').get(stormpath.groupsRequired(['admin']), function(req, res) {    
+  handleAction(images.getPaginated(req.params.term,req.params.page), res);        
 });
 
-router.route('/images').post(stormpath.groupsRequired(['admin']), function(req, res) {    
+router.route('/images/:image')
+
+  .delete(stormpath.groupsRequired(['admin']), function(req, res) {
+      handleAction(images.deleteImage(req.params.image), res);      
+  })
+
+  .put(stormpath.groupsRequired(['admin']), multipartMiddleware, function(req, res) {
+    handleAction(images.update(req.body, req.files), res);        
+});
+
+router.route('/images').post(stormpath.groupsRequired(['admin']), multipartMiddleware,  function(req, res) {  
   handleAction(images.update(req.body, req.files), res);        
 });
 
