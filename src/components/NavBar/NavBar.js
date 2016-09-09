@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {LoggedInUser, NotLoggedInUser} from 'components';
+import {LoggedInUser, NotLoggedInUser, AdminUser} from 'components';
 import { connect } from 'react-redux';
 import config from '../../config';
 import { IndexLink } from 'react-router';
@@ -65,6 +65,16 @@ export default class NavBar extends Component {
                     <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Recipe</NavItem>
                   </LinkContainer>
                 </LoggedInUser>
+                 <AdminUser>
+                  <LinkContainer to="/images/list/all">
+                    <NavItem onClick={ this.onNavItemClick } eventKey={2}>Images</NavItem>
+                  </LinkContainer>
+                </AdminUser>
+                 <AdminUser>
+                  <LinkContainer to="/images/add">
+                    <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Image</NavItem>
+                  </LinkContainer>
+                </AdminUser>
                 <NotLoggedInUser>
                     <LinkContainer to="/login">
                       <NavItem onClick={ this.onNavItemClick } eventKey={3}>Login</NavItem>

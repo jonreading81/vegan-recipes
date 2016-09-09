@@ -78,11 +78,11 @@ export default class RecipeDetail extends Component {
       </If>
       <AdminUser>
         <ButtonToolbar>
-        <LinkContainer to={myRecipe.getUpdateURL()}>
-          <Button bsStyle="primary" bsSize="large" >Update</Button>
-        </LinkContainer>
-         <LinkContainer to={myRecipe.getDeleteURL()}>
-          <Button bsStyle="primary" bsSize="large" >Delete</Button>
+          <LinkContainer to={myRecipe.getUpdateURL()}>
+            <Button bsStyle="primary" bsSize="large" >Update</Button>
+          </LinkContainer>
+          <LinkContainer to={myRecipe.getDeleteURL()}>
+            <Button bsStyle="primary" bsSize="large" >Delete</Button>
           </LinkContainer>
         </ButtonToolbar>
       </AdminUser>

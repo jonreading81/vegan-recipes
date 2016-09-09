@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import UserHelper from 'helpers/User';
 
@@ -19,10 +19,11 @@ export default class AdminUser extends Component {
 
   render() {
     const {user, children} = this.props;
-    if (user.isMemberOfGroup('admin')) {
-      return (children);
-    }
-    return false;
+    return (
+      <If condition={user.isMemberOfGroup('admin')}>
+        {children}
+      </If>
+    );
   }
 }
 

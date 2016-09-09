@@ -66,7 +66,7 @@ export default class ImageList extends Component {
           <If condition={ images.length === 0 }>
             <h4>No Images</h4>
           </If >
-          <ItemsGrid items={imageItems}/>
+          <ItemsGrid hasAdminActions items={imageItems}/>
            <If condition={ pages > 1 }>
              <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getItems} />
           </If>

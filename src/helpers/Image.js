@@ -41,6 +41,8 @@ export default class ImageHelper {
       id: image,
       icon: 'image',
       description: '',
+      updateURL: this.getURL(),
+      deleteURL: this.getURL() + '/delete',
       URL: this.getURL(),
       path: this.getImageURL(),
       title: this.getName(),
