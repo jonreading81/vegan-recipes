@@ -49,7 +49,7 @@ export default (store) => {
          <Route path=":image" component={UpdateImage}/>
          <Route path=":image/delete" component={DeleteImage}/>
       </Route>
-      <Route path="plant-butter">
+      <Route path="butta">
         <IndexRoute component={DietaryInformation}/>
         <Route path="survey" component={Survey}/>
       </Route>

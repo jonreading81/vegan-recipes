@@ -21,8 +21,10 @@ export default class ImageHelper {
     return items;
   }
   static getImageFromSlug(slug) {
-    let image = slug;
-    image += '.jpeg';
+    const seperator = slug.lastIndexOf('-');
+    const name = slug.substr(0, seperator);
+    const ext = slug.substr(seperator + 1);
+    const image = name + '.' + ext;
     return image;
   }
 
@@ -56,9 +58,10 @@ export default class ImageHelper {
   }
 
   getNameFromImage(image) {
-    const name = this.getSlugFromImage(image);
-    name.replace('-', ' ');
-    return name;
+    const slug = this.getSlugFromImage(image);
+    const seperator = slug.lastIndexOf('-');
+    const name = slug.substr(0, seperator);
+    return name.replace(/-/g, ' ');
   }
 
   getName() {
@@ -66,8 +69,10 @@ export default class ImageHelper {
   }
 
   getSlugFromImage(image) {
-    let slug = image;
-    slug = slug.slice(0, -5);
+    const seperator = image.lastIndexOf('.');
+    const name = image.substr(0, seperator);
+    const ext = image.substr(seperator + 1);
+    const slug = name + '-' + ext;
     return slug;
   }
 

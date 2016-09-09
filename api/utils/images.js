@@ -22,6 +22,22 @@ export const getImages = () => {
   });
 }
 
+export const searchImage = (search, image) => {
+  if( image.search(search) !== -1){
+    return true;
+  }
+  return false;
+}
+
+
+export const getFilenameFromSlug = (slug) => {
+  const seperator = slug.lastIndexOf('-');
+  const name = slug.substr(0, seperator);
+  const ext = slug.substr(seperator + 1);
+  const image = name + '.' + ext;
+  return image;
+}
+
 export const getImageWithPath = (image) => {
   return {
     name: image.slice(0, -5),
@@ -57,7 +73,7 @@ export const uploadImage = (image, name) => {
       
     }
     else{
-      reject('path and slug must be set');
+      reject('path and name must be set');
     }
   });
 }

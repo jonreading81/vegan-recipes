@@ -2,23 +2,18 @@
 import  {
   imagesPath,
   getImagesWithPath,
+  getFilenameFromSlug,
+  searchImage,
   getImages,
   uploadImage,
   deleteImage as _deleteImage } from '../utils/images';
 import paginateArray from '../utils/paginateArray';
 import filter from 'lodash/filter';
 
-const searchImage = (search, image) => {
-  if( image.search(search) !== -1){
-    return true;
-  }
-  return false;
-}
 
 export const getAll = () => {
   return getImages();
 };
-
 
 export const getPaginated = (search, page) => {
   return new Promise((resolve,reject) => {
@@ -37,16 +32,13 @@ export const getPaginated = (search, page) => {
 
 export const update = (data, files) => {
   return new Promise((resolve,reject) => {
-    uploadImage(files.image, data.name).then(filename=> {
-      console.log('resolve');
-      resolve(filename); 
-    },reject);
+    uploadImage(files.image, data.name).then(resolve, reject);
   });
 }
 
-export const deleteImage = (id) => {
+export const deleteImage = (slug) => {
   return new Promise((resolve,reject) => {
-    _deleteImage(id + '.jpeg').then(resolve, reject);
+    _deleteImage(getFilenameFromSlug(slug)).then(resolve, reject);
   });
 }
 
