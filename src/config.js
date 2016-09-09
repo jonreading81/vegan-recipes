@@ -13,6 +13,7 @@ module.exports = Object.assign({
   host: process.env.HOST || 'localhost',
   port: process.env.PORT,
   googleAnlaytics: 'UA-82807918-1',
+  wpAPI: 'http://blog.calloftheforest.com/wp-json/wp/v2/',
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   mongoDBURL: process.env.mongoURL || 'mongodb://localhost/test',
