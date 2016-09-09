@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import config from '../../config';
 import { IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
-import {Nav, Navbar, NavItem } from 'react-bootstrap';
+import {Nav, Navbar, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import {logout } from 'redux/modules/auth';
 
 @connect(
@@ -65,15 +65,15 @@ export default class NavBar extends Component {
                     <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Recipe</NavItem>
                   </LinkContainer>
                 </LoggedInUser>
-                 <AdminUser>
-                  <LinkContainer to="/images/list/all">
-                    <NavItem onClick={ this.onNavItemClick } eventKey={2}>Images</NavItem>
-                  </LinkContainer>
-                </AdminUser>
-                 <AdminUser>
-                  <LinkContainer to="/images/add">
-                    <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Image</NavItem>
-                  </LinkContainer>
+                <AdminUser>
+                  <NavDropdown eventKey={3} title="Images" id="images-dropdown">
+                    <LinkContainer to="/images/list/all">
+                      <MenuItem onClick={ this.onNavItemClick } eventKey={2}>List</MenuItem>
+                    </LinkContainer>
+                    <LinkContainer to="/images/add">
+                      <MenuItem onClick={ this.onNavItemClick } eventKey={2}>Add</MenuItem>
+                    </LinkContainer>
+                  </NavDropdown>
                 </AdminUser>
                 <NotLoggedInUser>
                     <LinkContainer to="/login">
