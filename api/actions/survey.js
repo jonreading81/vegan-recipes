@@ -2,7 +2,9 @@ var GoogleSpreadsheet = require('google-spreadsheet');
 var async = require('async'); 
 var creds = require('../data/google.json');
 
-export function post(data) {
+export function post(data, request) {
+  data.date = new Date();
+  data.ip = (request.headers['x-forwarded-for'] || '').split(',')[0] || request.connection.remoteAddress;
   return new Promise((resolve,reject) => {
     var doc = new GoogleSpreadsheet('1CpGwyOkyYG1aCEowexoPtOOwbzxXoOqDblp00ZSkNjc');
     var sheet;

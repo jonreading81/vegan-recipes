@@ -84,7 +84,7 @@ router.route('/images').post(stormpath.groupsRequired(['admin']), function(req, 
 */
 
 router.post('/survey', function(req, res){
-   handleAction(survey.post(req.body), res);
+   handleAction(survey.post(req.body, req), res);
 });
 
 

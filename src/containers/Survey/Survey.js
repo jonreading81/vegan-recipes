@@ -53,12 +53,13 @@ class Survey extends Component {
     success: PropTypes.bool,
     handleSubmit: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    mysubmitFn: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
   }
 
   render() {
     const {
-      fields: {questionA, questionB, questionC, questionD, questionE, questionF, questionG, questionH, questionI, questionJ, questionK, questionL, questionM, questionN, questionO, questionP},
+fields: {questionA, questionB, questionC, questionD, questionE, questionF, questionG, questionH, questionI, questionJ, questionK, questionL, questionM, questionN, questionO, questionP},
       handleSubmit,
       onSubmit,
       submitting,
@@ -66,27 +67,41 @@ class Survey extends Component {
       success
     } = this.props;
 
+    const submitFn = (event) => handleSubmit(onSubmit)(event)
+      .catch(err => {
+        let errorField;
+        for (errorField in err) {
+          if (err.hasOwnProperty(errorField)) {
+            console.log(errorField);
+            debugger;
+
+            this.refs.errorField.focus();
+            break;
+          }
+        }
+      }
+    );
     const styles = require('./Survey.scss');
 
     return (
-    <div>
-      <Helmet title="Survey"/>
-          <HeroPanel image="butter.jpeg" title="Butta" subTitle="A butter alternative" style="image-focus-bottom"/>
-        <div className="container">
-          <div className="column-medium">
-            <If condition={!success}>
+              <div>
+              <Helmet title="Survey"/>
+              <HeroPanel image="butter.jpeg" title="Butta" subTitle="A replacement made from plants for spreading, cooking and baking" style="image-focus-bottom"/>
+              <div className="container">
+              <div className="column-medium">
+              <If condition={!success}>
               <h2>Survey</h2>
               <p>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={submitFn}>
               <fieldset>
                <legend>First, some questions about you</legend>
-                <FormGroup className={styles.formGroup} controlId="questionA" type="text" field={questionA}>
+                <FormGroup id="questionA" className={styles.formGroup} controlId="questionA" type="text" field={questionA}>
                    <ControlLabel>What is your age group?</ControlLabel>
-                    <RadioGroup {...questionA}>
+                    <RadioGroup {...questionA} ref={questionA}>
                         <Button>1 - 20</Button>
                         <Button>21 - 35</Button>
                         <Button>36 - 50</Button>
-                        <Button>50 and above</Button>
+                        <Button>51 and above</Button>
                     </RadioGroup>
                 </FormGroup>
                 <FormGroup className={styles.formGroup} controlId="questionB" type="text" field={questionB}>
@@ -130,7 +145,7 @@ class Survey extends Component {
                   &nbsp;&nbsp;&nbsp;-&nbsp;Liquid soya lecithin<br />
                   &nbsp;&nbsp;&nbsp;-&nbsp;Plant based lactic acid<br />
                   &nbsp;&nbsp;&nbsp;-&nbsp;Sea salt<br />
-                  Would you be uncomfortable purchasing a butter alternative with any of these ingredients?</ControlLabel>
+                  Would you be uncomfortable purchasing a butter replacement  with any of these ingredients?</ControlLabel>
                     <RadioGroup {...questionF}>
                         <Button>Yes</Button>
                         <Button>No</Button>
@@ -143,7 +158,7 @@ class Survey extends Component {
                    <FormControl componentClass="textarea" placeholder="For example, I am allergic to soya" {...questionG}/>
                 </FormGroup>
                 <FormGroup className={styles.formGroup} controlId="questionH" type="text" field={questionH}>
-                  <ControlLabel>Do you think there are any health benefits of using plant based butter or margarine?</ControlLabel>
+                  <ControlLabel>Do you think there are any health benefits of using plant Butta or margarine?</ControlLabel>
                     <RadioGroup {...questionH}>
                         <Button>Yes</Button>
                         <Button>No</Button>
@@ -151,7 +166,7 @@ class Survey extends Component {
                     </RadioGroup>
                 </FormGroup>
                 <FormGroup className={styles.formGroup} controlId="questionI" type="text" field={questionI}>
-                  <ControlLabel>Do you think there are any environmental benefits of using plant based butter or margarine?</ControlLabel>
+                  <ControlLabel>Do you think there are any environmental benefits of using plant Butta or margarine?</ControlLabel>
                     <RadioGroup {...questionI}>
                         <Button>Yes</Button>
                         <Button>No</Button>
@@ -162,7 +177,7 @@ class Survey extends Component {
                 <fieldset>
                 <legend>Some questions about your experience of Butta</legend>
                 <FormGroup className={styles.formGroup} controlId="questionJ" type="text" field={questionJ}>
-                  <ControlLabel>Did you manage to get Butta home without it spoiling?</ControlLabel>
+                  <ControlLabel>Did you manage to get your Butta home without it spoiling?</ControlLabel>
                     <RadioGroup {...questionJ}>
                         <Button>Yes</Button>
                         <Button>No</Button>
@@ -250,6 +265,7 @@ class Survey extends Component {
 export default reduxForm({
   form: 'surveyForm',
   fields,
-  validate
+  validate,
+  returnRejectedSubmitPromise: true
 })(Survey);
 

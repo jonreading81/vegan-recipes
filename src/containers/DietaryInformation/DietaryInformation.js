@@ -48,7 +48,7 @@ export default class DietInformation extends Component {
     return (
       <div>
         <Helmet title="Product information"/>
-          <HeroPanel image="butter.jpeg" title="Butta" subTitle="A butter alternative" style="image-focus-bottom"/>
+          <HeroPanel image="butter.jpeg" title="Butta" subTitle="A replacement made from plants for spreading, cooking and baking" style="image-focus-bottom"/>
           <div className="container">
             <div className="body-copy">
             <p className="body-copy-first important">Please find below all labelling information for our Butta.</p>

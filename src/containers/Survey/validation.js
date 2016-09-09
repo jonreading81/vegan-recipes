@@ -9,9 +9,7 @@ const registerValidator = createValidator({
   questionF: [required],
   questionH: [required],
   questionI: [required],
-  questionJ: [required],
-  questionK: [required]
-
+  questionJ: [required]
 });
 export default function validate(values) {
   return registerValidator(values);
