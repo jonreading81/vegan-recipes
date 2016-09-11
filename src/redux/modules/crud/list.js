@@ -36,7 +36,6 @@ function createReducer(entity, defaultActions = getDefaultReducerActions) {
 
 function createRequest(entity, path) {
   return (searchTerm = 'all', page = 1) => {
-    console.log(searchTerm);
     let term;
     let requestPath;
     if (searchTerm === '') {

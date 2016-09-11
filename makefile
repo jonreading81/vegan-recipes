@@ -38,6 +38,6 @@ get-latest:
 
 install-latest: get-latest install
 
-deploy-latest: install-latest deploy
+deploy-latest: install-latest get-google-creds deploy
 
 .PHONY: clean
