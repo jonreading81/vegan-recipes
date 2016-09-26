@@ -19,6 +19,8 @@ import {reducer as quantities} from './recipes/quantities';
 import {reducer as categories} from './recipes/categories';
 import {reducer as diets} from './recipes/diets';
 import register from './register';
+import {reducer as articlesList} from './articles/list';
+import {reducer as viewArticle} from './articles/view';
 
 export default combineReducers({
   routing: routerReducer,
@@ -40,5 +42,7 @@ export default combineReducers({
   imageList,
   updateImage,
   deleteImage,
-  addImage
+  addImage,
+  viewArticle,
+  articlesList
 });

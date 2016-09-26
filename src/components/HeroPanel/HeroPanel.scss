@@ -51,6 +51,10 @@ $breakpoint-imagecropped : 640px;
       width:100%;
       top:0;
       z-index:2;
+
+      p{
+         font-family: $font-family-sans-serif;
+      }
     }
 
    .hero-panel-type-lining{
@@ -73,7 +77,7 @@ $breakpoint-imagecropped : 640px;
 
     cite {
       &:before{
-        content:" -";
+        content:" - ";
       }
       display: inline;
       font-size: 0.65em;

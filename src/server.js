@@ -26,7 +26,8 @@ const app = new Express();
 const server = new http.Server(app);
 
 const proxyWP = httpProxy.createProxyServer({
-  changeOrigin:true
+  changeOrigin:true,
+  target: config.wpAPI
 });
 
 const proxyAPI = httpProxy.createProxyServer({
@@ -41,11 +42,6 @@ app.use(favicon(path.join(__dirname, '..', 'static',  'favicon.ico')));
 app.use(Express.static(path.join(__dirname, '..', 'static')));
 
 // Proxy to API server
-app.use('/wp-json', (req, res) => {
-  console.log(config.wpAPI);
-  proxyWP.web(req, res, {target: config.wpAPI});
-});
-
 
 app.use('/api', (req, res) => {
   proxyAPI.web(req, res, {target: targetUrl});

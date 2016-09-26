@@ -1,17 +1,24 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import config from '../src/config';
+import APIConfig from './config';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
 import stormpath from './middleware/stormpath';
-import router from "./router";             
+import router from "./router";
+import httpProxy from 'http-proxy';
 
 const pretty = new PrettyError();
 const app = express();
 const server = new http.Server(app);
 const io = new SocketIo(server);
 const mongoose   = require('mongoose');
+
+const proxyWP = httpProxy.createProxyServer({
+  changeOrigin:true,
+  target: APIConfig.wpAPI
+});
 
 let dbConnected = false, dbError;
 mongoose.connect(config.mongoDBURL, (err) => {
@@ -27,6 +34,11 @@ io.path('/ws');
 stormpath(app);
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
+app.use('/wp-json', (req, res) => {
+  proxyWP.web(req, res, {target: APIConfig.wpAPI});
+});
+
 
 // middleware to use for all requests
 app.use('/', function(req, res, next) {
