@@ -30,7 +30,8 @@ const proxyWP = httpProxy.createProxyServer({
 });
 
 const proxyAPI = httpProxy.createProxyServer({
-  ws: true
+  ws: true,
+  target: targetUrl
 });
 
 
