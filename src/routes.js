@@ -30,6 +30,16 @@ export default (store) => {
     <Route path="/" component={App}>
       { /* Home (main) route */ }
       <IndexRoute component={Home}/>
+      <Route path="butta">
+        <IndexRoute component={DietaryInformation}/>
+        <Route path="survey" component={Survey}/>
+      </Route>
+       <Route path="images" onEnter={requireMemberOfAdminGroup.bind(null, store)}>
+         <Route path="list/:term(/:page)" component={ImageList}/>
+        <Route path="add" component={AddImage}/>
+         <Route path=":image" component={UpdateImage}/>
+         <Route path=":image/delete" component={DeleteImage}/>
+      </Route>
       <Route path="logout" component={Logout}/>
       <Route path="login" component={Login}/>
       <Route path="register" component={Register}/>
@@ -42,16 +52,6 @@ export default (store) => {
           <Route path=":recipe/update" component={UpdateRecipe}/>
           <Route path=":recipe/delete" component={DeleteRecipe}/>
         </Route>
-      </Route>
-       <Route path="images" onEnter={requireMemberOfAdminGroup.bind(null, store)}>
-         <Route path="list/:term(/:page)" component={ImageList}/>
-        <Route path="add" component={AddImage}/>
-         <Route path=":image" component={UpdateImage}/>
-         <Route path=":image/delete" component={DeleteImage}/>
-      </Route>
-      <Route path="butta">
-        <IndexRoute component={DietaryInformation}/>
-        <Route path="survey" component={Survey}/>
       </Route>
       <Route path="*" component={NotFound} status={404} />
     </Route>

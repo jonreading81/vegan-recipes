@@ -53,7 +53,6 @@ class Survey extends Component {
     success: PropTypes.bool,
     handleSubmit: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    mysubmitFn: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
   }
 
@@ -72,10 +71,7 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
         let errorField;
         for (errorField in err) {
           if (err.hasOwnProperty(errorField)) {
-            console.log(errorField);
-            debugger;
-
-            this.refs.errorField.focus();
+            document.getElementById(errorField).focus();
             break;
           }
         }
@@ -95,10 +91,10 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
               <form onSubmit={submitFn}>
               <fieldset>
                <legend>First, some questions about you</legend>
-                <FormGroup id="questionA" className={styles.formGroup} controlId="questionA" type="text" field={questionA}>
+                <FormGroup className={styles.formGroup} controlId="questionA" type="text" field={questionA}>
                    <ControlLabel>What is your age group?</ControlLabel>
-                    <RadioGroup {...questionA} ref={questionA}>
-                        <Button>1 - 20</Button>
+                    <RadioGroup {...questionA}>
+                        <Button id="questionA">1 - 20</Button>
                         <Button>21 - 35</Button>
                         <Button>36 - 50</Button>
                         <Button>51 and above</Button>
@@ -106,7 +102,7 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
                 </FormGroup>
                 <FormGroup className={styles.formGroup} controlId="questionB" type="text" field={questionB}>
                    <ControlLabel>Which county in the UK do you live in?</ControlLabel>
-                   <FormControl type="text" placeholder="For example, London" {...questionB}/>
+                   <FormControl id="questionB" type="text" placeholder="For example, London" {...questionB}/>
                 </FormGroup>
                 </fieldset>
                 <fieldset>
@@ -114,7 +110,7 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
                 <FormGroup className={styles.formGroup} controlId="questionC" type="text" field={questionC}>
                    <ControlLabel>Generally, do you use butter or margarine at home?</ControlLabel>
                     <RadioGroup {...questionC}>
-                        <Button>Butter</Button>
+                        <Button id="questionC">Butter</Button>
                         <Button>Margarine</Button>
                         <Button>I use both</Button>
                         <Button>None of the above</Button>
@@ -123,7 +119,7 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
                 <FormGroup className={styles.formGroup} controlId="questionD" type="text" field={questionD}>
                   <ControlLabel>Which do you prefer, butter or margarine?</ControlLabel>
                     <RadioGroup {...questionD}>
-                        <Button>Butter</Button>
+                        <Button id="questionD">Butter</Button>
                         <Button>Margarine</Button>
                         <Button>It depends</Button>
                         <Button>I have no preference</Button>
@@ -131,7 +127,7 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
                 </FormGroup>
                 <FormGroup className={styles.formGroup} controlId="questionE" type="text" field={questionE}>
                    <ControlLabel>What brands of butter or margarine do you usually buy?</ControlLabel>
-                   <FormControl componentClass="textarea" placeholder="For example, Lurpak or Flora" {...questionE}/>
+                   <FormControl id="questionE" componentClass="textarea" placeholder="For example, Lurpak or Flora" {...questionE}/>
                 </FormGroup>
                 </fieldset>
                 <fieldset>
@@ -147,7 +143,7 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
                   &nbsp;&nbsp;&nbsp;-&nbsp;Sea salt<br />
                   Would you be uncomfortable purchasing a butter replacement  with any of these ingredients?</ControlLabel>
                     <RadioGroup {...questionF}>
-                        <Button>Yes</Button>
+                        <Button id="questionF">Yes</Button>
                         <Button>No</Button>
                         <Button>I don't know</Button>
                     </RadioGroup>
@@ -160,7 +156,7 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
                 <FormGroup className={styles.formGroup} controlId="questionH" type="text" field={questionH}>
                   <ControlLabel>Do you think there are any health benefits of using plant Butta or margarine?</ControlLabel>
                     <RadioGroup {...questionH}>
-                        <Button>Yes</Button>
+                        <Button id="questionH">Yes</Button>
                         <Button>No</Button>
                         <Button>I don't know</Button>
                     </RadioGroup>
@@ -168,7 +164,7 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
                 <FormGroup className={styles.formGroup} controlId="questionI" type="text" field={questionI}>
                   <ControlLabel>Do you think there are any environmental benefits of using plant Butta or margarine?</ControlLabel>
                     <RadioGroup {...questionI}>
-                        <Button>Yes</Button>
+                        <Button id="questionI">Yes</Button>
                         <Button>No</Button>
                         <Button>I don't know</Button>
                     </RadioGroup>
@@ -179,7 +175,7 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
                 <FormGroup className={styles.formGroup} controlId="questionJ" type="text" field={questionJ}>
                   <ControlLabel>Did you manage to get your Butta home without it spoiling?</ControlLabel>
                     <RadioGroup {...questionJ}>
-                        <Button>Yes</Button>
+                        <Button id="questionJ">Yes</Button>
                         <Button>No</Button>
                     </RadioGroup>
                 </FormGroup>

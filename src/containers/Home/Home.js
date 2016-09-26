@@ -11,11 +11,14 @@ export default class Home extends Component {
     return (
       <div>
         <Helmet title="Home"/>
-          <HeroPanel image="forest.jpeg" audio={config.app.birdsong} title={config.app.title} style="image-focus-bottom">
+          <HeroPanel image="forest.jpeg" title={config.app.title} style="image-focus-bottom">
           <span className="subheading">The forest can be a metaphor for a spirit of freedom attainable within any lifestyle <cite><a href={dharmaocean}>DharmaOcean.org</a></cite></span>
           </HeroPanel>
+            <audio controls>
+              <source src={config.app.birdsong} type="audio/mp3" />
+            </audio>
           <div className="container">
-              <div className="body-copy">
+            <div className="body-copy">
               <p className="body-copy-first important">
               What does the forest bring to mind when you quiet your mind and allow your imaginations to roam freely?</p>
               <p>

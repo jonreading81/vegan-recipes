@@ -14,12 +14,11 @@ export default class HeroPanel extends Component {
     isEmpty: PropTypes.bool,
     hasBreadcrumb: PropTypes.bool,
     subTitle: PropTypes.string,
-    image: PropTypes.string.isRequired,
-    audio: PropTypes.string
+    image: PropTypes.string.isRequired
   }
   render() {
     require('./HeroPanel.scss');
-    const {title, subTitle, image, isEmpty, children, hasBreadcrumb, audio} = this.props;
+    const {title, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
     const type = get( this.props, 'type', 'site-heading');
     let className = 'hero-panel';
     let style = this.props.style;
@@ -39,13 +38,6 @@ export default class HeroPanel extends Component {
             </div>
             <div className="hero-panel-type">
               <div className="hero-panel-type-lining">
-                <If condition={!isUndefined(audio)}>
-                  <div className="audio-wrapper">
-                    <audio controls autoPlay>
-                      <source src={audio} type="audio/mp3" />
-                    </audio>
-                  </div>
-                </If>
                 <div className={type}>
                     <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
