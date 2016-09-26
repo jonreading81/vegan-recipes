@@ -7,3 +7,4 @@ webpack-stats.json
 npm-debug.log
 static/images/
 api/data/google.json
+.DS_Store
