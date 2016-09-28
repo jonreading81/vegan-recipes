@@ -1,19 +1,16 @@
 import React, { PropTypes, Component } from 'react';
 import config from '../../config';
-import Helmet from 'react-helmet';
-import {HeroPanel, Loading} from 'components';
+import {Article as ArticleComponent} from 'components';
 import { asyncConnect } from 'redux-async-connect';
 import {connect} from 'react-redux';
 import {request as requestGet} from 'redux/modules/articles/view';
 import get from 'lodash/get';
 import Article from 'helpers/Article';
-import HtmlToReact from 'html-to-react';
-const htmlToReactParser = new HtmlToReact.Parser(React);
 
 @connect(
   (store) => {
     return {
-      article: new Article(get(store.viewArticle, 'entity[0]')),
+      article: new Article(get(store.viewArticle, 'entity.docs[0]')),
       isFetching: get(store.viewRecipe, 'isFetching')
     };
   }
@@ -32,27 +29,12 @@ export default class Home extends Component {
 
   render() {
     const {article, isFetching} = this.props;
-    const contentComponent = htmlToReactParser.parse('<div>' + article.getContent() + '</div>');
-    const subTextComponent = htmlToReactParser.parse('<div>' + article.getSubText() + '</div>');
-    // const styles = require('./Home.scss');
     return (
-      <div>
-        <Helmet title="Home"/>
-         <If condition={isFetching}>
-            <Loading />
-          </If>
-          <If condition={!isFetching}>
-            <HeroPanel image={article.getImage()} title={article.getTitle()}style="image-focus-bottom">
-            {subTextComponent}
-            </HeroPanel>
-            <audio controls>
-              <source src={config.app.birdsong} type="audio/mp3" />
-            </audio>
-            <div className="container">
-              <div className="body-copy">{contentComponent}</div>
-            </div>
-          </If>
-        </div>
+      <ArticleComponent article={article} isFetching={isFetching} heroStyle="image-focus-bottom">
+        <audio controls>
+          <source src={config.app.birdsong} type="audio/mp3" />
+        </audio>
+      </ArticleComponent>
     );
   }
 }

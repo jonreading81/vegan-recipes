@@ -34,30 +34,37 @@ function createReducer(entity, defaultActions = getDefaultReducerActions) {
   };
 }
 
-function createRequest(entity, path) {
-  return (searchTerm = 'all', page = 1) => {
-    let term;
-    let requestPath;
-    if (searchTerm === '') {
-      term = 'all';
-    }else {
-      term = searchTerm;
-    }
+function getSearchTerm(searchTerm) {
+  let term;
+  if (searchTerm === '') {
+    term = 'all';
+  }else {
+    term = searchTerm;
+  }
+  return term;
+}
 
-    requestPath = path.replace(':term', term);
-    requestPath = requestPath.replace(':page', page);
+function defaultParseURL(path, searchTerm, page ) {
+  let requestPath;
+  requestPath = path.replace(':term', getSearchTerm(searchTerm));
+  requestPath = requestPath.replace(':page', page);
+  return requestPath;
+}
+
+function createRequest(entity, path, parseURL) {
+  return (searchTerm = 'all', page = 1) => {
     return {
       types: [getActionType(entity, REQUEST), getActionType(entity, REQUEST_SUCCESS), getActionType(entity, REQUEST_FAIL)],
-      promise: (client) => client.get(requestPath),
-      term: term
+      promise: (client) => client.get(parseURL(path, searchTerm, page)),
+      term: getSearchTerm(searchTerm)
     };
   };
 }
 
 
-export default function create(entity, path, additionalActions) {
+export default function create(entity, path, additionalActions, parseURL = defaultParseURL) {
   return {
     reducer: createReducer(entity, additionalActions),
-    request: createRequest(entity, path)
+    request: createRequest(entity, path, parseURL)
   };
 }

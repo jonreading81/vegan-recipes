@@ -19,7 +19,9 @@ import {
     ImageList,
     UpdateImage,
     DeleteImage,
-    AddImage
+    AddImage,
+    Article,
+    ArticleList
   } from 'containers';
 
 export default (store) => {
@@ -52,6 +54,10 @@ export default (store) => {
           <Route path=":recipe/update" component={UpdateRecipe}/>
           <Route path=":recipe/delete" component={DeleteRecipe}/>
         </Route>
+      </Route>
+      <Route path="article">
+        <Route path="list/:term(/:page)" component={ArticleList} />
+        <Route path=":article" component={Article}/>
       </Route>
       <Route path="*" component={NotFound} status={404} />
     </Route>

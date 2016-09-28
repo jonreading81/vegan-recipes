@@ -7,6 +7,7 @@ const multipartMiddleware = multipart();
 import * as recipes  from 'actions/recipe';
 import * as images  from 'actions/image';
 import * as survey  from 'actions/survey';
+import * as wordpress  from 'actions/wordpress';
 import stormpath from 'express-stormpath';
 
 
@@ -95,6 +96,16 @@ router.route('/images').post(stormpath.groupsRequired(['admin']), multipartMiddl
 
 router.post('/survey', function(req, res){
    handleAction(survey.post(req.body, req), res);
+});
+
+/*
+
+-------------------------- Wordpress  ------------------
+
+*/
+
+router.get('/wp-json*', function(req, res){
+   handleAction(wordpress.get(req), res);
 });
 
 

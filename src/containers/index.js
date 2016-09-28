@@ -16,4 +16,6 @@ export ImageList from './ImageList/ImageList';
 export UpdateImage from './UpdateImage/UpdateImage';
 export AddImage from './AddImage/AddImage';
 export DeleteImage from './DeleteImage/DeleteImage';
+export Article from './Article/Article';
+export ArticleList from './ArticleList/ArticleList';
 
