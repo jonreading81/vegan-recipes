@@ -19,8 +19,9 @@ import {reducer as quantities} from './recipes/quantities';
 import {reducer as categories} from './recipes/categories';
 import {reducer as diets} from './recipes/diets';
 import register from './register';
-import {reducer as articlesList} from './articles/list';
-import {reducer as viewArticle} from './articles/view';
+import {reducer as articlesList} from './wordpress/articles';
+import {reducer as viewPost} from './wordpress/post';
+import {reducer as viewPage} from './wordpress/page';
 
 export default combineReducers({
   routing: routerReducer,
@@ -43,6 +44,7 @@ export default combineReducers({
   updateImage,
   deleteImage,
   addImage,
-  viewArticle,
+  viewPost,
+  viewPage,
   articlesList
 });

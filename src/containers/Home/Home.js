@@ -3,21 +3,21 @@ import config from '../../config';
 import {Article as ArticleComponent} from 'components';
 import { asyncConnect } from 'redux-async-connect';
 import {connect} from 'react-redux';
-import {request as requestGet} from 'redux/modules/articles/view';
+import {request as requestGet} from 'redux/modules/wordpress/page';
 import get from 'lodash/get';
 import Article from 'helpers/Article';
 
 @connect(
   (store) => {
     return {
-      article: new Article(get(store.viewArticle, 'entity.docs[0]')),
-      isFetching: get(store.viewRecipe, 'isFetching')
+      article: new Article(get(store.viewPage, 'entity.docs[0]')),
+      isFetching: get(store.viewPage, 'isFetching')
     };
   }
 )
 @asyncConnect([{
   promise: ({store: {dispatch}}) => {
-    return dispatch( requestGet('article-1'));
+    return dispatch( requestGet('home'));
   }
 }])
 export default class Home extends Component {

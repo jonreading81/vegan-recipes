@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {ItemsGrid, SearchWell} from 'components';
+import {ItemsList, SearchWell} from 'components';
 import {Pagination} from 'react-bootstrap';
 import ArticleHelper from 'helpers/Article';
-import { request as requestList} from 'redux/modules/articles/list';
+import { request as requestList} from 'redux/modules/wordpress/articles';
 import { asyncConnect } from 'redux-async-connect';
 import get from 'lodash/get';
 import {push } from 'react-router-redux';
@@ -55,19 +55,22 @@ export default class ArticleListContainer extends Component {
     const pages = get(results, 'pages', 0);
     const activePage = parseInt( get(results, 'page', 0), 10);
     const articleItems = ArticleHelper.mapToItems(articles);
+    // const styles = require('./ArticleList.scss');
     return (
       <div>
         <Helmet title="Articles"/>
         <HeroPanel image="lentil-kale-quinoa-stew.jpeg" title="Articles" subTitle="A selection of articles"/>
-        <div className="container">
-          <SearchWell searching={searching} onSubmit={::this.searchArticles} />
-          <If condition={ articles.length === 0 }>
-            <h4>No Articles</h4>
-          </If >
-          <ItemsGrid items={articleItems}/>
-          <If condition={ pages > 1 }>
-             <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getArticles} />
-          </If>
+        <div className="container ">
+          <div className="column-large">
+            <SearchWell searching={searching} onSubmit={::this.searchArticles} />
+            <If condition={ articles.length === 0 }>
+              <h4>No Articles</h4>
+            </If >
+            <ItemsList items={articleItems}/>
+            <If condition={ pages > 1 }>
+               <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getArticles} />
+            </If>
+           </div>
          </div>
       </div>
     );

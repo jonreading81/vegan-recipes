@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import {Article as ArticleComponent} from 'components';
 import { asyncConnect } from 'redux-async-connect';
 import {connect} from 'react-redux';
-import {request as requestGet} from 'redux/modules/articles/view';
+import {request as requestGet} from 'redux/modules/wordpress/post';
 import get from 'lodash/get';
 import Article from 'helpers/Article';
 import {BreadcrumbContainer} from 'components';
@@ -12,8 +12,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 @connect(
   (store) => {
     return {
-      articleHelper: new Article(get(store.viewArticle, 'entity.docs[0]')),
-      isFetching: get(store.viewRecipe, 'isFetching')
+      articleHelper: new Article(get(store.viewPost, 'entity.docs[0]')),
+      isFetching: get(store.viewPost, 'isFetching')
     };
   }
 )
