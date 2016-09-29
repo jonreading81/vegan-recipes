@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import config from '../../config';
-import {Article as ArticleComponent} from 'components';
+import {Page} from 'components';
 import { asyncConnect } from 'redux-async-connect';
 import {connect} from 'react-redux';
 import {request as requestGet} from 'redux/modules/wordpress/page';
@@ -30,11 +30,11 @@ export default class Home extends Component {
   render() {
     const {article, isFetching} = this.props;
     return (
-      <ArticleComponent article={article} isFetching={isFetching} heroStyle="image-focus-bottom">
+      <Page article={article} isFetching={isFetching} heroStyle="image-focus-bottom">
         <audio controls>
           <source src={config.app.birdsong} type="audio/mp3" />
         </audio>
-      </ArticleComponent>
+      </Page>
     );
   }
 }
