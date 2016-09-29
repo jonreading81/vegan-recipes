@@ -8,7 +8,7 @@ export default class ItemsGrid extends Component {
 
   static propTypes = {
     items: PropTypes.array.isRequired,
-    hasAdminActions: PropTypes.bool.isRequired
+    hasAdminActions: PropTypes.bool
   };
 
   render() {
@@ -23,11 +23,11 @@ export default class ItemsGrid extends Component {
             <Link to={item.URL}>
             <div>
               <div className="imageWrapper">
-               <p className="icon-promo fa-stack fa-lg">
-                <i className="fa fa-stack-2x"></i>
-                <i className={'fa fa-' + item.icon + ' fa-stack-1x'}></i>
-              </p>
-              <div className="imageOverlay"/>
+                <p className="icon-promo fa-stack fa-lg">
+                  <i className="fa fa-stack-2x"></i>
+                  <i className={'fa fa-' + item.icon + ' fa-stack-1x'}></i>
+                </p>
+                <div className="imageOverlay"/>
                 <ResponsiveImage image={item.image}/>
               </div>
               <div className={styles.copy}>

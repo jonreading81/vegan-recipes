@@ -1,3 +1,23 @@
-.toolbar{
-  float: right;
+@import "src/theme/variables";
+.promo{
+  margin-bottom: 48px;
+}
+.type{
+ p{
+    color:$gray;
+    font-size: 14px;
+  }
+  @media only screen and (min-width: $screen-sm-min) {
+    h4{
+      margin-top: 0;
+    }
+  }
+   @media only screen and (min-width: $screen-lg-min) {
+    h4{
+     font-size: 32px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
 }

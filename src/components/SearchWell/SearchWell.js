@@ -17,7 +17,11 @@ export default class SearchWell extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const term = get(this.state, 'searchTerm', 'all');
-    this.props.onSubmit(term);
+    if (term === '') {
+      this.props.onSubmit('all');
+    }else {
+      this.props.onSubmit(term);
+    }
   }
 
   render() {
@@ -28,12 +32,12 @@ export default class SearchWell extends Component {
         <h3>Search</h3>
         <form onSubmit={::this.handleSubmit}>
           <Row>
-            <Col xs={8} sm="10">
+            <Col xs={8} sm={10}>
             <FormGroup controlId="search">
              <FormControl ref="search" type="text" placeholder="Enter Search Term" onChange={::this.handleSearchChange} />
             </FormGroup>
             </Col>
-            <Col xs={4} sm="2">
+            <Col xs={4} sm={2}>
                <LoadingButton submitting={searching} className="pull-right" bsStyle="primary" bsSize="large" type="submit">Search</LoadingButton>
             </Col>
           </Row>

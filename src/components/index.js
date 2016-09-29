@@ -34,5 +34,7 @@ export LoadingButton from './Form/LoadingButton';
 export RadioGroup from './Form/RadioGroup';
 export BreadcrumbContainer from './Breadcrumb/Breadcrumb';
 export ImageForm from './ImageForm/ImageForm';
+export Article from './Article/Article';
+export Page from './Page/Page';
 
 
