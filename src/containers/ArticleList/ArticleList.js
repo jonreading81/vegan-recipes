@@ -59,7 +59,7 @@ export default class ArticleListContainer extends Component {
     return (
       <div>
         <Helmet title="Articles"/>
-        <HeroPanel image="lentil-kale-quinoa-stew.jpeg" title="Articles" subTitle="A selection of articles"/>
+        <HeroPanel image="sky.jpeg" title="Articles" subTitle="A selection of articles" heroStyle="image-focus-bottom"/>
         <div className="container ">
           <div className="column-large">
             <SearchWell searching={searching} onSubmit={::this.searchArticles} />
