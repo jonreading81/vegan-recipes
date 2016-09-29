@@ -63,6 +63,12 @@ export function match(field) {
   };
 }
 
+export function alphanumeric(value) {
+  if (! /^[a-zA-Z0-9-]*$/.test(value)) {
+    return 'Only Alpha numeric charachters and - permitted';
+  }
+}
+
 export function validImage(fileList) {
   if (fileList && fileList.length && fileList.length === 1) {
     const image = fileList.item(0);

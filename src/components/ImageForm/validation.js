@@ -1,7 +1,7 @@
-import {required, validImage, createValidator, maxLength} from 'utils/validation';
+import {required, validImage, createValidator, maxLength, alphanumeric} from 'utils/validation';
 
 const validator = createValidator({
-  name: [required, maxLength(20)],
+  name: [required, maxLength(20), alphanumeric],
   image: [required, validImage],
 });
 
