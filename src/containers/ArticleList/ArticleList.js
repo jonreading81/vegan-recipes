@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {ItemsList, SearchWell} from 'components';
+import {ItemsList, SearchWell, Loading} from 'components';
 import {Pagination} from 'react-bootstrap';
 import ArticleHelper from 'helpers/Article';
 import { request as requestList} from 'redux/modules/wordpress/articles';
@@ -9,11 +9,16 @@ import { asyncConnect } from 'redux-async-connect';
 import get from 'lodash/get';
 import {push } from 'react-router-redux';
 import {HeroPanel} from 'components';
+import {request as requestPage} from 'redux/modules/wordpress/page';
+import HtmlToReact from 'html-to-react';
+const htmlToReactParser = new HtmlToReact.Parser(React);
 
 @connect(
   (state) => {
     return {
       results: get(state.articlesList, 'items'),
+      page: new ArticleHelper(get(state.viewPage, 'entity.docs[0]')),
+      isFetching: get(state.viewPage, 'isFetching'),
       searching: get(state.articlesList, 'isFetching'),
     };
   },
@@ -25,15 +30,24 @@ import {HeroPanel} from 'components';
     };
   }
 )
-@asyncConnect([{
-  promise: ({params, store: {dispatch}}) => {
-    return dispatch(requestList(params.term, params.page));
+@asyncConnect([
+  {
+    promise: ({store: {dispatch}}) => {
+      return dispatch(requestPage('articles'));
+    }
+  },
+  {
+    promise: ({params, store: {dispatch}}) => {
+      return dispatch(requestList(params.term, params.page));
+    }
   }
-}])
+])
 export default class ArticleListContainer extends Component {
 
   static propTypes = {
     results: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    page: PropTypes.object.isRequired,
     searching: PropTypes.bool.isRequired,
     params: PropTypes.object.isRequired,
     getArticles: PropTypes.func.isRequired
@@ -50,16 +64,23 @@ export default class ArticleListContainer extends Component {
 
 
   render() {
-    const {results, searching} = this.props;
+    const {results, searching, page, isFetching} = this.props;
     const articles = get(results, 'docs', []);
     const pages = get(results, 'pages', 0);
     const activePage = parseInt( get(results, 'page', 0), 10);
     const articleItems = ArticleHelper.mapToItems(articles);
-    // const styles = require('./ArticleList.scss');
+    const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
     return (
       <div>
-        <Helmet title="Articles"/>
-        <HeroPanel image="sky.jpeg" title="Articles" subTitle="A selection of articles produced by the team" heroStyle="image-focus-bottom"/>
+        <Helmet title={page.getTitle()}/>
+          <If condition={isFetching}>
+            <Loading />
+          </If>
+          <If condition={!isFetching}>
+            <HeroPanel image={page.getImage()} title={page.getTitle()} heroStyle="image-focus-bottom">
+               {subTextComponent}
+            </HeroPanel>
+          </If>
         <div className="container ">
           <div className="column-large">
             <SearchWell searching={searching} onSubmit={::this.searchArticles} />
