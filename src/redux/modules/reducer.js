@@ -22,6 +22,11 @@ import register from './register';
 import {reducer as articlesList} from './wordpress/articles';
 import {reducer as viewPost} from './wordpress/post';
 import {reducer as viewPage} from './wordpress/page';
+import {reducer as addInspiration} from './inspiration/add';
+import {reducer as inspirationList} from './inspiration/list';
+import {reducer as viewInspiration} from './inspiration/view';
+import {reducer as updateInspiration} from './inspiration/update';
+import {reducer as deleteInspiration} from './inspiration/delete';
 
 export default combineReducers({
   routing: routerReducer,
@@ -46,5 +51,10 @@ export default combineReducers({
   addImage,
   viewPost,
   viewPage,
-  articlesList
+  articlesList,
+  addInspiration,
+  inspirationList,
+  viewInspiration,
+  updateInspiration,
+  deleteInspiration
 });
