@@ -39,7 +39,7 @@ export default class Inspiration {
       title: this.getTitle(),
       description: this.getQuote(),
       URL: this.getURL(),
-      icon: '',
+      icon: 'bolt',
       thumbnail: this.getImageURL('384x216'),
       image: this.getImage(),
       updateURL: this.getUpdateURL(),
@@ -52,7 +52,6 @@ export default class Inspiration {
   }
 
   getURL(action = false) {
-    console.log(Inspiration.getURLWithSlug( this.getSlug(), action));
     return Inspiration.getURLWithSlug( this.getSlug(), action);
   }
 

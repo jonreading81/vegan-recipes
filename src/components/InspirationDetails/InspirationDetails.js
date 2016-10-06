@@ -16,7 +16,7 @@ export default class RecipeDetail extends Component {
 
     return (
       <Col md={10} mdOffset={1}>
-     <p>{myEntity.getQuote()}</p>
+     <p><blockquote>{myEntity.getQuote()}</blockquote></p>
       <AdminUser>
         <ButtonToolbar>
           <LinkContainer to={myEntity.getUpdateURL()}>

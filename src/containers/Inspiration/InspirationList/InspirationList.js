@@ -39,7 +39,7 @@ import ArticleHelper from 'helpers/Article';
   },
   {
     promise: ({store: {dispatch}}) => {
-      return dispatch(requestPage('recipes'));
+      return dispatch(requestPage('inspiration'));
     }
   },
 ])

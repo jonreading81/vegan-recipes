@@ -53,7 +53,7 @@ export default class ViewInspirationContainer extends Component {
            <HeroPanel type="post-heading"
              image={myHelper.getImage()}
              title={myHelper.getTitle()}
-             subTitle={myHelper.getQuote() + ', by ' + myHelper.getAuthor()}
+             subTitle={'by ' + myHelper.getAuthor()}
              hasBreadcrumb />
           <div className="container">
             <InspirationDetails entity={entity} />
