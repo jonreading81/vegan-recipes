@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {reset as resetForm} from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { request as requestAdd, reset as resetAdd} from 'redux/modules/inspiration/add';
-import {RecipeForm} from 'components';
+import {InspirationForm} from 'components';
 import {HeroPanel, EntityFormContainer} from 'components';
 const resetFormAction = resetForm('recipeForm');
 const resetStateAction = resetAdd();
@@ -27,7 +27,7 @@ import get from 'lodash/get';
     };
   }
 )
-export default class AddRecipeContainer extends Component {
+export default class AddInspirationContainer extends Component {
 
   static propTypes ={
     entity: PropTypes.object,
@@ -53,13 +53,14 @@ export default class AddRecipeContainer extends Component {
         resetStateAction = {resetStateAction}
         resetFormAction = {resetFormAction}
         onSuccessCancelActions = {[resetStateAction, resetFormAction]}
-        getEntityURL = {ViewHelper.getURLWithRecipeData}
+        getEntityURL = {ViewHelper.getURLWithData}
         isSuccess = {isSuccess}
         isError = {error ? true : false}
         successMessage = "The Inspiration was added successfully click OK to view the Inspiration"
         successTitle = "Inspiration Added"
         >
-        <RecipeForm onSubmit={onSubmit} initialValues={initialValues} loading={submitting} />
+        <h2>Inspiration Details</h2>
+        <InspirationForm onSubmit={onSubmit} initialValues={initialValues} loading={submitting} />
         </EntityFormContainer>
       </div>
     );

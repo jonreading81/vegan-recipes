@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {RecipeDetails} from 'components';
+import {InspirationDetails} from 'components';
 import {NotFound} from 'containers';
-import {request as requestGet} from 'redux/modules/recipes/view';
+import {request as requestGet} from 'redux/modules/inspiration/view';
 import { asyncConnect } from 'redux-async-connect';
 import {HeroPanel, Loading} from 'components';
-import RecipeHelper from 'helpers/Recipe';
+import ViewHelper from 'helpers/Inspiration';
 import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -14,49 +14,49 @@ import { LinkContainer } from 'react-router-bootstrap';
 @connect(
   (store) => {
     return {
-      recipe: store.viewRecipe.entity,
-      isFetching: store.viewRecipe.isFetching
+      entity: store.viewInspiration.entity,
+      isFetching: store.viewInspiration.isFetching
     };
   }
 )
 @asyncConnect([{
   promise: ({params, store: {dispatch}}) => {
-    return dispatch( requestGet(params.recipe));
+    return dispatch( requestGet(params.entity));
   }
 }])
-export default class ViewRecipeContainer extends Component {
+export default class ViewInspirationContainer extends Component {
 
   static propTypes = {
-    recipe: PropTypes.object,
+    entity: PropTypes.object,
     isFetching: PropTypes.bool,
   };
 
   render() {
-    const {recipe, isFetching} = this.props;
-    const myRecipeHelper = new RecipeHelper(recipe);
+    const {entity, isFetching} = this.props;
+    const myHelper = new ViewHelper(entity);
     let content;
 
-    if (recipe) {
+    if (entity) {
       content = (
         <div>
-          <Helmet title="View Recipes"/>
+          <Helmet title="View Inspiration"/>
           <If condition={isFetching}>
             <Loading />
           </If>
           <If condition={!isFetching}>
           <BreadcrumbContainer>
-            <LinkContainer to="/recipe/list/all">
-              <Breadcrumb.Item>Recipes</Breadcrumb.Item>
+            <LinkContainer to="/Inspiration/list/all">
+              <Breadcrumb.Item>Inspiration</Breadcrumb.Item>
             </LinkContainer>
-            <Breadcrumb.Item active>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
+            <Breadcrumb.Item active>{myHelper.getTitle()}</Breadcrumb.Item>
           </BreadcrumbContainer>
            <HeroPanel type="post-heading"
-             image={myRecipeHelper.getImage()}
-             title={myRecipeHelper.getTitle()}
-             subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}
+             image={myHelper.getImage()}
+             title={myHelper.getTitle()}
+             subTitle={myHelper.getQuote() + ', by ' + myHelper.getAuthor()}
              hasBreadcrumb />
           <div className="container">
-            <RecipeDetails recipe={recipe} />
+            <InspirationDetails entity={entity} />
            </div>
           </If>
         </div>

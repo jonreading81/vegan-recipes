@@ -1,28 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
-import {request as requestGet} from 'redux/modules/recipes/view';
+import {request as requestGet} from 'redux/modules/inspiration/view';
 import { asyncConnect } from 'redux-async-connect';
 import { bindActionCreators } from 'redux';
-import {request as requestDeleteRecipe, reset as resetDeleteRecipe} from 'redux/modules/recipes/delete';
+import {request as requestDelete, reset as resetDelete} from 'redux/modules/inspiration/delete';
 import {HeroPanel, Loading, DeleteEntity, BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import get from 'lodash/get';
 import { LinkContainer } from 'react-router-bootstrap';
-import RecipeHelper from 'helpers/Recipe';
+import ViewHelper from 'helpers/Inspiration';
 
 @connect(
   (state) => {
     return {
-      recipe: get(state.viewRecipe, 'entity', {}),
-      isFetching: state.viewRecipe.isFetching,
-      submitting: get(state.deleteRecipe, 'isFetching', false),
-      isSuccess: state.deleteRecipe.isSuccess,
-      error: state.deleteRecipe.error
+      entity: get(state.viewInspiration, 'entity', {}),
+      isFetching: state.viewInspiration.isFetching,
+      submitting: get(state.deleteInspiration, 'isFetching', false),
+      isSuccess: state.deleteInspiration.isSuccess,
+      error: state.deleteInspiration.error
     };
   },
   (dispatch) => {
     return {
-      deleteRecipe: bindActionCreators(requestDeleteRecipe, dispatch),
+      deleteEntity: bindActionCreators(requestDelete, dispatch),
     };
   },
   (stateProps, dispatchProps, componentProps) => {
@@ -30,22 +30,22 @@ import RecipeHelper from 'helpers/Recipe';
       ...componentProps,
       ...stateProps,
       ...dispatchProps,
-      deleteRecipe: () => {
-        dispatchProps.deleteRecipe(get(stateProps.recipe, '_id'));
+      deleteEntity: () => {
+        dispatchProps.deleteEntity(get(stateProps.entity, '_id'));
       }
     };
   }
 )
 @asyncConnect([{
   promise: ({params, store: {dispatch}}) => {
-    return dispatch(requestGet(params.recipe));
+    return dispatch(requestGet(params.entity));
   }
 }])
-export default class DeleteRecipeContainer extends Component {
+export default class DeleteInspirationContainer extends Component {
 
   static propTypes = {
-    recipe: PropTypes.object,
-    deleteRecipe: PropTypes.func,
+    entity: PropTypes.object,
+    deleteEntity: PropTypes.func,
     isFetching: PropTypes.bool,
     submitting: PropTypes.bool,
     error: PropTypes.bool,
@@ -54,14 +54,14 @@ export default class DeleteRecipeContainer extends Component {
 
   render() {
     const {
-      recipe,
-      deleteRecipe,
+      entity,
+      deleteEntity,
       submitting,
       isFetching,
       isSuccess,
       error
     } = this.props;
-    const myRecipeHelper = new RecipeHelper(recipe);
+    const myViewHelper = new ViewHelper(entity);
 
     return (
       <div>
@@ -70,28 +70,28 @@ export default class DeleteRecipeContainer extends Component {
         </If>
           <If condition={!isFetching}>
           <BreadcrumbContainer>
-            <LinkContainer to="/recipe/list/all">
-              <Breadcrumb.Item>Recipes</Breadcrumb.Item>
+            <LinkContainer to="/inspiration/list/all">
+              <Breadcrumb.Item>Inspiration</Breadcrumb.Item>
             </LinkContainer>
-            <LinkContainer to={myRecipeHelper.getURL()}>
-              <Breadcrumb.Item>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
+            <LinkContainer to={myViewHelper.getURL()}>
+              <Breadcrumb.Item>{myViewHelper.getTitle()}</Breadcrumb.Item>
             </LinkContainer>
             <Breadcrumb.Item active>Delete</Breadcrumb.Item>
           </BreadcrumbContainer>
-          <HeroPanel type="post-heading" hasBreadcrumb image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
+          <HeroPanel type="post-heading" hasBreadcrumb image={myViewHelper.getImage()} title={myViewHelper.getTitle()} subTitle={', by ' + myViewHelper.getAuthor()}/>
           <DeleteEntity
-            deleteEntity={deleteRecipe}
-            resetStateAction={resetDeleteRecipe()}
-            pageTitle="Delete Recipe"
+            deleteEntity={deleteEntity}
+            resetStateAction={resetDelete()}
+            pageTitle="Delete Inspiration"
             submitting={submitting}
             isSuccess = {isSuccess}
             isError = {error ? true : false}
-            successMessage = "The Recipe was deleted successfully"
-            successTitle = "Recipe Deleted"
-            successURL="/recipe/list/all"
+            successMessage = "The Inspiration was deleted successfully"
+            successTitle = "Inspiration Deleted"
+            successURL="/inspiration/list/all"
             >
-            <p>Are you sure you would like to delete the following recipe?</p>
-            <p>{get(recipe, 'title')}</p>
+            <p>Are you sure you would like to delete the following Inspiration?</p>
+            <p>{myViewHelper.getTitle()}</p>
           </DeleteEntity>
         </If>
       </div>

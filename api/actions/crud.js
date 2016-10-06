@@ -1,5 +1,15 @@
 import {uploadImage} from '../utils/images';
 
+function uploadImageAndUpdateFilename(file, item, resolve, reject) {
+  uploadImage(file, item.slug).then((filename) => {
+    item.image = filename;
+    item.save((err) => {
+      if (err) reject(err);
+      resolve(item); 
+    });
+  },reject);
+}
+
 function find (model, term, page) {
     return new Promise((resolve,reject) => {
       let query = {};
@@ -55,7 +65,7 @@ function findBySlug (model, slug) {
   });
 };
 
-function findByIdAndUpdate (model, id, data, files) {
+function findByIdAndUpdate (model, parseData, id, data, files) {
   return new Promise((resolve,reject) => {
     delete data.image;
     parseData(data);
@@ -71,7 +81,7 @@ function findByIdAndUpdate (model, id, data, files) {
   });
 };
 
-function add(model,data, files){
+function add(model, parseData, data, files){
   return new Promise((resolve,reject) => {
     parseData(data);
     let myModel= new model(data); 
@@ -91,15 +101,7 @@ function getDistinctList(model, property){
   });
 }
 
-function uploadImageAndUpdateFilename(file, item, resolve, reject) {
-  uploadImage(file, recipe.slug).then((filename) => {
-    item.image = filename;
-    item.save((err) => {
-      if (err) reject(err);
-      resolve(item); 
-    });
-  },reject);
-}
+
 
 export const createActions = (model, parseData) => {
   return {

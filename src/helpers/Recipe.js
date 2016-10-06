@@ -1,26 +1,14 @@
 import get from 'lodash/get';
-import forOwn from 'lodash/forOwn';
-import isArray from 'lodash/isArray';
 import yieldsOptions from 'data/yieldsOptions.json';
 import difficultyOptions from 'data/difficultyOptions.json';
 import timingOptions from 'data/timingOptions.json';
 import ImageHelper from './Image';
-// import {mapSelectValueToArray} from 'utils/forms';
+import {formatFormData} from '../utils/forms';
 
 export default class Recipe {
 
   static formatFormData(data) {
-    // data.categories = mapSelectValueToArray(data.categories);
-    const formData = new FormData();
-    forOwn(data, (fieldValue, fieldIndex) => {
-      if (isArray(fieldValue)) {
-        formData.append(fieldIndex, JSON.stringify(fieldValue));
-      }else {
-        formData.append(fieldIndex, fieldValue);
-      }
-    });
-    formData.append('image', data.image[0]);
-    return formData;
+    return formatFormData(data);
   }
 
   static getURLWithSlug(slug, action = false) {

@@ -36,5 +36,7 @@ export BreadcrumbContainer from './Breadcrumb/Breadcrumb';
 export ImageForm from './ImageForm/ImageForm';
 export Article from './Article/Article';
 export Page from './Page/Page';
+export InspirationForm from './InspirationForm/InspirationForm';
+export InspirationDetails from './InspirationDetails/InspirationDetails';
 
 

@@ -1,17 +1,13 @@
 import React, { Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {EntityFormContainer, HeroPanel, Loading, RecipeForm, BreadcrumbContainer} from 'components';
+import {EntityFormContainer, HeroPanel, Loading, InspirationForm, BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import {reset as resetForm} from 'redux-form';
-import RecipeHelper from 'helpers/Recipe';
-import {request as requestUpdateRecipe, reset as resetUpdateRecipe} from 'redux/modules/recipes/update';
-import {request as requestGet} from 'redux/modules/recipes/view';
-const resetFormAction = resetForm('recipeForm');
-import { request as requestIngredients} from 'redux/modules/recipes/ingredients';
-import { request as requestQuantities} from 'redux/modules/recipes/quantities';
-import { request as requestCategories} from 'redux/modules/recipes/categories';
-import { request as requestDiets} from 'redux/modules/recipes/diets';
-const resetStateAction = resetUpdateRecipe();
+import ViewHelper from 'helpers/Inspiration';
+import {request as requestUpdate, reset as resetUpdate} from 'redux/modules/inspiration/update';
+import {request as requestGet} from 'redux/modules/inspiration/view';
+const resetFormAction = resetForm('inspirationForm');
+const resetStateAction = resetUpdate();
 import get from 'lodash/get';
 import { asyncConnect } from 'redux-async-connect';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -19,17 +15,17 @@ import { LinkContainer } from 'react-router-bootstrap';
 @connect(
   (state) => {
     return {
-      recipe: state.viewRecipe.entity,
-      isFetching: state.viewRecipe.isFetching,
-      submitting: state.updateRecipe.isFetching,
-      isSuccess: state.updateRecipe.isSuccess,
-      error: state.updateRecipe.error
+      entity: state.viewInspiration.entity,
+      isFetching: state.viewInspiration.isFetching,
+      submitting: state.updateInspiration.isFetching,
+      isSuccess: state.updateInspiration.isSuccess,
+      error: state.updateInspiration.error
     };
   },
   (dispatch) => {
     return {
       onSubmit: (id, data) => {
-        dispatch(requestUpdateRecipe(id, data));
+        dispatch(requestUpdate(id, data));
       }
     };
   },
@@ -38,7 +34,7 @@ import { LinkContainer } from 'react-router-bootstrap';
       ...stateProps,
       ...dispatchProps,
       onSubmit: (data) => {
-        dispatchProps.onSubmit(get(stateProps.recipe, '_id'), data);
+        dispatchProps.onSubmit(get(stateProps.entity, '_id'), data);
       }
     };
   }
@@ -46,19 +42,15 @@ import { LinkContainer } from 'react-router-bootstrap';
 @asyncConnect([{
   promise: ({params, store: {dispatch}}) => {
     const promises = [];
-    promises.push(dispatch(requestIngredients()));
-    promises.push(dispatch(requestQuantities()));
-    promises.push(dispatch(requestDiets()));
-    promises.push(dispatch(requestCategories()));
-    promises.push(dispatch(requestGet(params.recipe)));
+    promises.push(dispatch(requestGet(params.entity)));
     return Promise.all(promises);
   }
 }])
 
-export default class UpdateRecipeContainer extends Component {
+export default class UpdateInspirationContainer extends Component {
 
   static propTypes ={
-    recipe: PropTypes.object,
+    entity: PropTypes.object,
     isSuccess: PropTypes.bool,
     isFetching: PropTypes.bool,
     submitting: PropTypes.bool,
@@ -67,8 +59,8 @@ export default class UpdateRecipeContainer extends Component {
   }
 
   render() {
-    const {recipe, isSuccess, error, onSubmit, isFetching, submitting} = this.props;
-    const myRecipeHelper = new RecipeHelper(recipe);
+    const {entity, isSuccess, error, onSubmit, isFetching, submitting} = this.props;
+    const myViewHelper = new ViewHelper(entity);
     return (
       <div>
        <If condition={isFetching}>
@@ -76,28 +68,28 @@ export default class UpdateRecipeContainer extends Component {
       </If>
       <If condition={!isFetching}>
         <BreadcrumbContainer>
-          <LinkContainer to="/recipe/list/all">
-          <Breadcrumb.Item>Recipes</Breadcrumb.Item>
+          <LinkContainer to="/inspiration/list/all">
+          <Breadcrumb.Item>Inspiration</Breadcrumb.Item>
           </LinkContainer>
-          <LinkContainer to={myRecipeHelper.getURL()}>
-          <Breadcrumb.Item>{myRecipeHelper.getTitle()}</Breadcrumb.Item>
+          <LinkContainer to={myViewHelper.getURL()}>
+          <Breadcrumb.Item>{myViewHelper.getTitle()}</Breadcrumb.Item>
           </LinkContainer>
           <Breadcrumb.Item active>Update</Breadcrumb.Item>
         </BreadcrumbContainer>
-         <HeroPanel type="post-heading" hasBreadcrumb image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
+         <HeroPanel type="post-heading" hasBreadcrumb image={myViewHelper.getImage()} title={myViewHelper.getTitle()} subTitle={', by ' + myViewHelper.getAuthor()}/>
          <EntityFormContainer
-          entity ={recipe}
-          pageTitle = "Update Recipe"
+          entity ={entity}
+          pageTitle = "Update Inspiration"
           resetStateAction = {resetStateAction}
           resetFormAction = {resetFormAction}
           onSuccessCancelActions = {[resetStateAction]}
-          getEntityURL = {RecipeHelper.getURLWithRecipeData}
+          getEntityURL = {ViewHelper.getURLWithData}
           isSuccess = {isSuccess}
           isError = {error ? true : false}
-          successMessage = "The Recipe was updated successfully click OK to view the recipe"
-          successTitle = "Recipe Updated"
+          successMessage = "The Inspiration was updated successfully click OK to view the Inspiration"
+          successTitle = "Inspiration Updated"
           >
-          <RecipeForm onSubmit={onSubmit} initialValues={recipe} loading={submitting} />
+          <InspirationForm onSubmit={onSubmit} initialValues={entity} loading={submitting} />
           </EntityFormContainer>
         </If>
       </div>

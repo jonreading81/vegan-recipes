@@ -1,12 +1,11 @@
 import get from 'lodash/get';
 import ImageHelper from './Image';
+import {formatFormData} from '../utils/forms';
 
 export default class Inspiration {
 
   static formatFormData(data) {
-    const formData = new FormData();
-    formData.append('image', data.image[0]);
-    return formData;
+    return formatFormData(data);
   }
 
   static getURLWithSlug(slug, action = false) {
@@ -53,6 +52,7 @@ export default class Inspiration {
   }
 
   getURL(action = false) {
+    console.log(Inspiration.getURLWithSlug( this.getSlug(), action));
     return Inspiration.getURLWithSlug( this.getSlug(), action);
   }
 

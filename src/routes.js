@@ -21,7 +21,12 @@ import {
     DeleteImage,
     AddImage,
     Article,
-    ArticleList
+    ArticleList,
+    InspirationList,
+    AddInspiration,
+    ViewInspiration,
+    UpdateInspiration,
+    DeleteInspiration
   } from 'containers';
 
 export default (store) => {
@@ -53,6 +58,15 @@ export default (store) => {
         <Route onEnter={requireMemberOfAdminGroup.bind(null, store)}>
           <Route path=":recipe/update" component={UpdateRecipe}/>
           <Route path=":recipe/delete" component={DeleteRecipe}/>
+        </Route>
+      </Route>
+      <Route path="inspiration">
+        <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="add" component={AddInspiration}/>
+        <Route path="list/:term(/:page)" component={InspirationList} ignoreScrollBehavior/>
+        <Route path=":entity" component={ViewInspiration}/>
+         <Route onEnter={requireMemberOfAdminGroup.bind(null, store)}>
+          <Route path=":entity/update" component={UpdateInspiration}/>
+          <Route path=":entity/delete" component={DeleteInspiration}/>
         </Route>
       </Route>
       <Route path="article">

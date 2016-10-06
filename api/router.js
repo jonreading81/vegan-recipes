@@ -27,7 +27,6 @@ router.get('/status', function(req, res){
 -------------------------- Recipes  ------------------
 
 */
-console.log(recipes);
 addDefaultCrudRoutes('recipes', recipes, router, stormpath, multipartMiddleware);
 
 
