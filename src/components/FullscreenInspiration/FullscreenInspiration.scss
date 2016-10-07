@@ -8,9 +8,15 @@
   height:100%;
   right:0;
   top:0;
-  @media only screen and (min-width: $screen-md-min) {
-   width:30%;
+  @media only screen and (min-width: $screen-lg-min) {
+   width:33%;
    position: absolute;
+  }
+  cite{
+    font-size: 24px;
+  }
+  blockquote{
+    font-size: 18px;
   }
 }
 .quoteWrapperHidden{
