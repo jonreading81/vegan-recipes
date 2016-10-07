@@ -12,10 +12,12 @@ export function mapSelectValueToArray(value) {
 export const formatFormData = (data) => {
   const formData = new FormData();
   forOwn(data, (fieldValue, fieldIndex) => {
-    if (isArray(fieldValue)) {
-      formData.append(fieldIndex, JSON.stringify(fieldValue));
-    }else {
-      formData.append(fieldIndex, fieldValue);
+    if (fieldValue) {
+      if (isArray(fieldValue)) {
+        formData.append(fieldIndex, JSON.stringify(fieldValue));
+      }else {
+        formData.append(fieldIndex, fieldValue);
+      }
     }
   });
   formData.append('image', data.image[0]);

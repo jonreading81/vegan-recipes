@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {InspirationDetails} from 'components';
 import {NotFound} from 'containers';
 import {request as requestGet} from 'redux/modules/inspiration/view';
 import { asyncConnect } from 'redux-async-connect';
-import {HeroPanel, Loading} from 'components';
+import {FullscreenInspiration, Loading} from 'components';
 import ViewHelper from 'helpers/Inspiration';
 import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
@@ -27,8 +26,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 export default class ViewInspirationContainer extends Component {
 
   static propTypes = {
-    entity: PropTypes.object,
-    isFetching: PropTypes.bool,
+    entity: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired
   };
 
   render() {
@@ -50,14 +49,7 @@ export default class ViewInspirationContainer extends Component {
             </LinkContainer>
             <Breadcrumb.Item active>{myHelper.getTitle()}</Breadcrumb.Item>
           </BreadcrumbContainer>
-           <HeroPanel type="post-heading"
-             image={myHelper.getImage()}
-             title={myHelper.getTitle()}
-             subTitle={'by ' + myHelper.getAuthor()}
-             hasBreadcrumb />
-          <div className="container">
-            <InspirationDetails entity={entity} />
-           </div>
+           <FullscreenInspiration image={myHelper.getImage()} quote={myHelper.getQuote()} author={myHelper.getQuoteAuthor()} />
           </If>
         </div>
       );

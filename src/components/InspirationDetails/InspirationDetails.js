@@ -2,12 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import {Button, ButtonToolbar, Col} from 'react-bootstrap';
 import ViewHelper from 'helpers/Inspiration';
-import {AdminUser} from 'components';
+import {AdminUser, ResponsiveImage} from 'components';
 
 export default class RecipeDetail extends Component {
 
   static propTypes = {
-    entity: PropTypes.object.isRequired
+    entity: PropTypes.string.isRequired
   };
 
   render() {
@@ -16,6 +16,9 @@ export default class RecipeDetail extends Component {
 
     return (
       <Col md={10} mdOffset={1}>
+      <div className="fullscreen">
+      <ResponsiveImage image={myEntity.getImage()}/>
+      </div>
      <p><blockquote>{myEntity.getQuote()}</blockquote></p>
       <AdminUser>
         <ButtonToolbar>

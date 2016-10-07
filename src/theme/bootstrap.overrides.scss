@@ -777,6 +777,15 @@ input[type="checkbox"],
   }
 }
 
+.fa-stack.icon-promo{
+  &:hover{
+    background-color:#fff;
+    .fa-stack-1x{
+      color:$brand-primary;
+    }
+  }
+}
+
 .imageWrapper{
   background-color: $brand-primary;
   padding-top: 56.25%;

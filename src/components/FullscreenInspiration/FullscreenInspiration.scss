@@ -1,0 +1,38 @@
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+
+.quoteWrapper{
+  padding:24px;
+  background-color:transparentize(#0071BC, 0.2);
+  color:white;
+  height:100%;
+  right:0;
+  top:0;
+  @media only screen and (min-width: $screen-md-min) {
+   width:30%;
+   position: absolute;
+  }
+}
+.quoteWrapperHidden{
+  display: none;
+}
+
+.icon {
+  cursor: pointer;
+  right:0;
+}
+
+.container{
+  top:40px;
+  position:relative;
+  blockquote{
+    border:none;
+    &:after, &:before{
+      color:white;
+    }
+  }
+}
+
+.imageWrapper{
+  position:relative;
+}

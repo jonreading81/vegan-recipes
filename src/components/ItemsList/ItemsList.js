@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {Row, Col} from 'react-bootstrap';
 import {Link } from 'react-router';
-import { ResponsiveImage} from 'components';
+import { ResponsiveImage, PromoIcon} from 'components';
 
 export default class ItemsList extends Component {
 
@@ -19,10 +19,7 @@ export default class ItemsList extends Component {
           <Link to={item.URL}>
             <Col xs={12} sm={4} md={5}>
               <div className="imageWrapper">
-                <p className="icon-promo fa-stack fa-lg">
-                  <i className="fa fa-stack-2x"></i>
-                  <i className={'fa fa-' + item.icon + ' fa-stack-1x'}></i>
-                </p>
+                <PromoIcon type={item.icon}/>
                 <div className="imageOverlay"/>
                   <ResponsiveImage image={item.image}/>
               </div>
