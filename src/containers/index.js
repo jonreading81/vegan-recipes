@@ -23,4 +23,5 @@ export ViewInspiration from './Inspiration/ViewInspiration/ViewInspiration';
 export UpdateInspiration from './Inspiration/UpdateInspiration/UpdateInspiration';
 export DeleteInspiration from './Inspiration/DeleteInspiration/DeleteInspiration';
 export AddInspiration from './Inspiration/AddInspiration/AddInspiration';
+export InspirationSlideshow from './Inspiration/InspirationSlideshow/InspirationSlideshow';
 

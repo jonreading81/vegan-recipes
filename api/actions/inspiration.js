@@ -12,6 +12,7 @@ Model.syncRandom(function (err, result) {
 const defaultActions = createActions(Model, parseData);
 module.exports = {
   ...defaultActions,
+
   getCollectionWithItem: (slug) => {
     return new Promise((resolve,reject) => {
      Model.find({ slug: slug },function(err, items) {
@@ -27,6 +28,15 @@ module.exports = {
             resolve(items);
           });
         }
+      });
+    });
+  },
+
+  getRandomCollection: () => {
+    return new Promise((resolve,reject) => {
+      Model.findRandom().limit(10).exec(function(err, items) {
+        if (err) reject(err);
+        resolve(items);
       });
     });
   }

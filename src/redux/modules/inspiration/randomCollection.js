@@ -1,3 +1,3 @@
-import crudModuleCreator from '../crud/view';
-const viewModule = crudModuleCreator('inspiration', '/inspiration/collection/');
-export default viewModule;
+import crudModuleCreator from '../crud/list';
+const listModule = crudModuleCreator('inspiration', '/inspiration/random-collection');
+export default listModule;

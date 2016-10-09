@@ -26,7 +26,8 @@ import {
     AddInspiration,
     ViewInspiration,
     UpdateInspiration,
-    DeleteInspiration
+    DeleteInspiration,
+    InspirationSlideshow
   } from 'containers';
 
 export default (store) => {
@@ -62,7 +63,8 @@ export default (store) => {
       </Route>
       <Route path="inspiration">
         <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="add" component={AddInspiration}/>
-        <Route path="list/:term(/:page)" component={InspirationList} ignoreScrollBehavior/>
+        <Route path="slideshow" component={InspirationSlideshow}/>
+        <Route path="list/:term(/:page)" component={InspirationList} />
         <Route path=":entity" component={ViewInspiration}/>
          <Route onEnter={requireMemberOfAdminGroup.bind(null, store)}>
           <Route path=":entity/update" component={UpdateInspiration}/>

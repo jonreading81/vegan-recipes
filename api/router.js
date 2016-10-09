@@ -56,6 +56,11 @@ router.route('/inspiration/collection/:inspiration').get( function(req, res) {
       handleAction(inspiration.getCollectionWithItem(req.params.inspiration), res);
 });
 
+router.route('/inspiration/random-collection').get( function(req, res) {
+    console.log('here');
+      handleAction(inspiration.getRandomCollection(), res);
+});
+
 addDefaultCrudRoutes('inspiration', inspiration, router, stormpath, multipartMiddleware);
 
 

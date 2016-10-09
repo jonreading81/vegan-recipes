@@ -45,7 +45,7 @@ export default class InspirationSlideshow extends Component {
           </div>
         </div>
       </div>
-      <Inspiration image={myHelper.getImage()} quote={myHelper.getQuote()} author={myHelper.getQuoteAuthor()} showQuote/>
+      <Inspiration title={myHelper.getTitle()} image={myHelper.getImage()} quote={myHelper.getQuote()} author={myHelper.getQuoteAuthor()} showQuote/>
       </div>
     );
   }

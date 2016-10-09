@@ -1,8 +1,7 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
 .container{
-  top:40px;
-  position:relative;
+  margin-top:104px;
 
 }
 .navigationWrapper{
@@ -25,6 +24,7 @@
 
 .previous, .next{
  bottom:-1em !important;
+ cursor: pointer;
 }
 
 .next{
