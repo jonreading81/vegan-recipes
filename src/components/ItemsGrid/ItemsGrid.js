@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {Row, Col, Button, ButtonToolbar } from 'react-bootstrap';
 import {Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
-import { ResponsiveImage, PromoIcon} from 'components';
+import { ResponsiveImage, IconButton} from 'components';
 
 export default class ItemsGrid extends Component {
 
@@ -23,7 +23,7 @@ export default class ItemsGrid extends Component {
             <Link to={item.URL}>
             <div>
               <div className="imageWrapper">
-                <PromoIcon type={item.icon}/>
+                <IconButton type={item.icon}/>
                 <div className="imageOverlay"/>
                 <ResponsiveImage image={item.image}/>
               </div>

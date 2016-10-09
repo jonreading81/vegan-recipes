@@ -38,5 +38,6 @@ export Article from './Article/Article';
 export Page from './Page/Page';
 export InspirationForm from './InspirationForm/InspirationForm';
 export InspirationDetails from './InspirationDetails/InspirationDetails';
-export FullscreenInspiration from './FullscreenInspiration/FullscreenInspiration';
-export PromoIcon from './PromoIcon/PromoIcon';
+export Inspiration from './Inspiration/Inspiration';
+export InspirationSlideshow from './InspirationSlideshow/InspirationSlideshow';
+export IconButton from './IconButton/IconButton';

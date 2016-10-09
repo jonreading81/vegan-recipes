@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import {ResponsiveImage, PromoIcon} from 'components';
+import {ResponsiveImage, IconButton} from 'components';
 
-export default class FullscreenInspiration extends Component {
+export default class Inspiration extends Component {
 
   static propTypes = {
     image: PropTypes.string.isRequired,
@@ -12,12 +12,12 @@ export default class FullscreenInspiration extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      showQuote: true
+      showQuote: args.showQuote
     };
   }
 
   getQuoteClass(styles) {
-    return this.state.showQuote ? styles.quoteWrapper + ' ' + styles.quoteWrapperHidden : styles.quoteWrapper;
+    return !this.state.showQuote ? styles.quoteWrapper + ' ' + styles.quoteWrapperHidden : styles.quoteWrapper;
   }
 
   toggleQuote() {
@@ -26,13 +26,13 @@ export default class FullscreenInspiration extends Component {
 
   render() {
     const {image, quote, author} = this.props;
-    const styles = require('./FullscreenInspiration.scss');
+    const styles = require('./Inspiration.scss');
     return (
       <div className={styles.container}>
          <div className={styles.imageWrapper}>
           <ResponsiveImage image={image}/>
           <If condition={quote !== ''}>
-            <PromoIcon type="bolt" onClick={::this.toggleQuote} style={styles.icon} />
+            <IconButton type="bolt" onClick={::this.toggleQuote} style={styles.icon} />
           </If>
         </div>
         <If condition={quote !== ''}>

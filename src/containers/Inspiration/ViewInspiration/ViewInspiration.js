@@ -2,19 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {NotFound} from 'containers';
-import {request as requestGet} from 'redux/modules/inspiration/view';
+import {request as requestGet} from 'redux/modules/inspiration/randomCollection';
 import { asyncConnect } from 'redux-async-connect';
-import {FullscreenInspiration, Loading} from 'components';
-import ViewHelper from 'helpers/Inspiration';
+import {InspirationSlideshow, Loading} from 'components';
 import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import ViewHelper from 'helpers/Inspiration';
 
 @connect(
   (store) => {
     return {
-      entity: store.viewInspiration.entity,
-      isFetching: store.viewInspiration.isFetching
+      items: store.randomInspirationCollection.entity,
+      isFetching: store.randomInspirationCollection.isFetching
     };
   }
 )
@@ -26,20 +26,20 @@ import { LinkContainer } from 'react-router-bootstrap';
 export default class ViewInspirationContainer extends Component {
 
   static propTypes = {
-    entity: PropTypes.object.isRequired,
+    items: PropTypes.array.isRequired,
     isFetching: PropTypes.bool.isRequired
   };
 
   render() {
-    const {entity, isFetching} = this.props;
-    const myHelper = new ViewHelper(entity);
+    const {items, isFetching} = this.props;
     let content;
 
-    if (entity) {
+    if (items && items.length && items.length > 0) {
+      const myHelper = new ViewHelper(items[0]);
       content = (
         <div>
-          <Helmet title="View Inspiration"/>
-          <If condition={isFetching}>
+          <Helmet title = "View Inspiration"/>
+          <If condition = {isFetching}>
             <Loading />
           </If>
           <If condition={!isFetching}>
@@ -49,7 +49,7 @@ export default class ViewInspirationContainer extends Component {
             </LinkContainer>
             <Breadcrumb.Item active>{myHelper.getTitle()}</Breadcrumb.Item>
           </BreadcrumbContainer>
-           <FullscreenInspiration image={myHelper.getImage()} quote={myHelper.getQuote()} author={myHelper.getQuoteAuthor()} />
+           <InspirationSlideshow items={items} />
           </If>
         </div>
       );

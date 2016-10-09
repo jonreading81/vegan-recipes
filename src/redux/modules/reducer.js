@@ -25,6 +25,7 @@ import {reducer as viewPage} from './wordpress/page';
 import {reducer as addInspiration} from './inspiration/add';
 import {reducer as inspirationList} from './inspiration/list';
 import {reducer as viewInspiration} from './inspiration/view';
+import {reducer as randomInspirationCollection} from './inspiration/randomCollection';
 import {reducer as updateInspiration} from './inspiration/update';
 import {reducer as deleteInspiration} from './inspiration/delete';
 
@@ -55,6 +56,7 @@ export default combineReducers({
   addInspiration,
   inspirationList,
   viewInspiration,
+  randomInspirationCollection,
   updateInspiration,
   deleteInspiration
 });

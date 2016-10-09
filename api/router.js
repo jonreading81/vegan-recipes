@@ -52,8 +52,13 @@ router.route('/categories').get(function(req, res) {
 -------------------------- Inspiration  ------------------
 
 */
+router.route('/inspiration/collection/:inspiration').get( function(req, res) {
+      handleAction(inspiration.getCollectionWithItem(req.params.inspiration), res);
+});
 
 addDefaultCrudRoutes('inspiration', inspiration, router, stormpath, multipartMiddleware);
+
+
 
 /*
 

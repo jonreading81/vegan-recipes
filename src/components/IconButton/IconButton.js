@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class PromoIcon extends Component {
+export default class IconButton extends Component {
 
   static propTypes = {
     onClick: PropTypes.func,

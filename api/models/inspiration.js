@@ -2,8 +2,7 @@ const mongoose     = require('mongoose');
 const Schema       = mongoose.Schema;
 const mongoosePaginate = require('mongoose-paginate');
 const URLSlugs = require('mongoose-url-slugs');
-
-
+const random = require('mongoose-random');
 
 const inspirationSchema   = new Schema(
   {
@@ -31,6 +30,7 @@ const inspirationSchema   = new Schema(
 );
 
 inspirationSchema.plugin(URLSlugs('title'));
+inspirationSchema.plugin(random);
 inspirationSchema.plugin(mongoosePaginate);
 inspirationSchema.index({ 
     title: 'text', 
