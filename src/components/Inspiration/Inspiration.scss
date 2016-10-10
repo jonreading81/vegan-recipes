@@ -3,7 +3,6 @@
 
 .quoteWrapper{
   padding:24px;
-  padding-top:33%;
   position: relative;
   background-color:transparentize(#549654, 0.1);
   color:white;
@@ -32,26 +31,20 @@
 }
 
 .quoteLining{
-  position:absolute;
-  height: 100%;
-  top:0;
+  padding:32px 0;
 }
 .quoteWrapperHidden{
   display: none;
 }
 
 .leadQuote{
-
   padding: 0 ;
-  padding-top:56.25%;
   blockquote{
     margin: 0 64px ;
-    font-size: 24px;
   }
   cite{
-    font-size: 28px;
     margin: 0 64px ;
-    margin-top: 20px;
+    margin-top: 24px;
   }
 }
 
@@ -88,5 +81,40 @@
   img{
     position:absolute;
     top:0;
+  }
+}
+
+@media only screen and (min-width: $screen-md-min) {
+  .quoteWrapper{
+    padding-top:30%;
+  }
+  .leadQuote{
+    padding-top:56.25%;
+  }
+  .quoteLining{
+    position:absolute;
+    height: 100%;
+    top:0;
+  }
+
+  .leadQuote{
+    blockquote{
+      font-size: 24px;
+    }
+    cite{
+      font-size: 28px;
+    }
+  }
+}
+
+@media only screen and (min-width: $screen-lg-min) {
+
+  .leadQuote{
+    blockquote{
+      font-size: 30px;
+    }
+    cite{
+      font-size: 34px;
+    }
   }
 }
