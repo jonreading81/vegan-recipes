@@ -19,7 +19,13 @@ export default class Inspiration extends Component {
   }
 
   getQuoteClass(styles) {
-    return !this.state.showQuote ? styles.quoteWrapper + ' ' + styles.quoteWrapperHidden : styles.quoteWrapper;
+    let quoteClass = styles.quoteWrapper;
+    if (!this.props.image || this.props.image === '') {
+      quoteClass = quoteClass + ' ' + styles.leadQuote;
+    }else if (!this.state.showQuote) {
+      quoteClass = quoteClass + ' ' + styles.quoteWrapperHidden;
+    }
+    return quoteClass;
   }
 
   toggleQuote() {
@@ -35,16 +41,24 @@ export default class Inspiration extends Component {
     return (
       <div>
         <div className={styles.container}>
+          <If condition={image && image !== ''}>
            <div className={styles.imageWrapper}>
             <ResponsiveImage image={image}/>
             <If condition={quote !== ''}>
               <IconButton type="bolt" onClick={::this.toggleQuote} style={styles.icon} />
             </If>
-          </div>
+            </div>
+          </If>
           <If condition={quote !== ''}>
             <div className={this.getQuoteClass(styles)}>
-              <blockquote>{quote}</blockquote>
-              <cite>{author}</cite>
+              <div className={styles.quoteLining}>
+                <div className={styles.quoteTypeWrapper}>
+                  <div className={styles.quoteType}>
+                    <blockquote>{quote}</blockquote>
+                    <cite>{author}</cite>
+                  </div>
+                </div>
+              </div>
             </div>
           </If>
         </div>

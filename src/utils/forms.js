@@ -20,6 +20,8 @@ export const formatFormData = (data) => {
       }
     }
   });
-  formData.append('image', data.image[0]);
+  if (isArray(data.image) && data.image.length === 1) {
+    formData.append('image', data.image[0]);
+  }
   return formData;
 };
