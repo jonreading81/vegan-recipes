@@ -5,7 +5,7 @@ import StandaloneQuote from './StandaloneQuote';
 export default class Inspiration extends Component {
 
   static propTypes = {
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     color: PropTypes.string.isRequired,
     quote: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
