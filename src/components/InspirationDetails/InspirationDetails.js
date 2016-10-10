@@ -24,7 +24,7 @@ export default class RecipeDetail extends Component {
         </LinkContainer>
         <Breadcrumb.Item active>{myEntity.getTitle()} </Breadcrumb.Item>
         </BreadcrumbContainer>
-        <Inspiration title={myEntity.getTitle()} image={myEntity.getImage()} quote={myEntity.getQuote()} author={myEntity.getQuoteAuthor()} showQuote/>
+        <Inspiration title={myEntity.getTitle()} image={myEntity.getImage()} quote={myEntity.getQuote()} author={myEntity.getQuoteAuthor()} color={myEntity.getColor()} showQuote/>
         <AdminUser>
           <div className="container">
             <ButtonToolbar>

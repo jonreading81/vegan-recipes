@@ -15,6 +15,22 @@
   }
 }
 
+.green{
+  background-color:transparentize(#549654, 0.1);
+}
+
+.purple{
+  background-color:transparentize(#545496, 0.1);
+}
+
+.red{
+  background-color:transparentize(#965454, 0.1);
+}
+
+.turquoise{
+  background-color:transparentize(#549696, 0.1);
+}
+
 .quoteLining{
   position:absolute;
   height: 100%;
@@ -25,9 +41,16 @@
 }
 
 .leadQuote{
+
+  padding: 0 ;
   padding-top:56.25%;
   blockquote{
+    margin: 0 64px ;
     font-size: 28px;
+  }
+  cite{
+    margin: 0 64px ;
+    margin-top: 20px;
   }
 }
 

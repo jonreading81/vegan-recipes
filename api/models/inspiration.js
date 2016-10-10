@@ -13,6 +13,9 @@ const inspirationSchema   = new Schema(
     image: {
         type: String
     },
+    color: {
+        type: String
+    },
     author:{
       type: String
     },

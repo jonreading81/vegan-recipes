@@ -64,7 +64,7 @@ export default class InspirationSlideshow extends Component {
       </div>
        <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
         <div key={this.state.itemIndex} >
-          <Inspiration toggleQuote={::this.toggleQuote} title={myHelper.getTitle()} image={myHelper.getImage()} quote={myHelper.getQuote()} author={myHelper.getQuoteAuthor()} showQuote={this.state.showQuote}/>
+          <Inspiration toggleQuote={::this.toggleQuote} title={myHelper.getTitle()} image={myHelper.getImage()} quote={myHelper.getQuote()} author={myHelper.getQuoteAuthor()} showQuote={this.state.showQuote} color={myHelper.getColor()}/>
         </div>
       </ReactCSSTransitionReplace>
       </div>

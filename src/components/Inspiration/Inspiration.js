@@ -6,6 +6,7 @@ export default class Inspiration extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
     quote: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     toggleQuote: PropTypes.func
@@ -25,6 +26,7 @@ export default class Inspiration extends Component {
     }else if (!this.state.showQuote) {
       quoteClass = quoteClass + ' ' + styles.quoteWrapperHidden;
     }
+    quoteClass = quoteClass + ' ' + styles[this.props.color];
     return quoteClass;
   }
 

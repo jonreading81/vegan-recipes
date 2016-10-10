@@ -5,9 +5,12 @@ import {HorizontalFormControl, LoadingButton} from 'components';
 import {Button, ButtonToolbar, FormControl} from 'react-bootstrap';
 import validation from './validation';
 const validate = values => validation(values);
+import Select from 'components/Form/Select';
+import colorOptions from 'data/colorOptions.json';
 
 export const fields = [
   'title',
+  'color',
   'author',
   'image',
   'quote',
@@ -26,6 +29,7 @@ class InspirationForm extends Component {
   render() {
     const {
       fields: {
+        color,
         title,
         image,
         quote,
@@ -47,6 +51,12 @@ class InspirationForm extends Component {
         <FormGroup controlId="image" type="text" field={image}>
           <HorizontalFormControl label="Select Image" className={styles.formRow}>
             <FormControl type="file" placeholder="Enter image" {...image} value={ null }/>
+          </HorizontalFormControl>
+        </FormGroup>
+
+        <FormGroup controlId="color" type="text" field={color}>
+          <HorizontalFormControl label="Color" className={styles.formRow}>
+            <Select simpleValue placeholder="Select Colour" options={colorOptions} {...color}/>
           </HorizontalFormControl>
         </FormGroup>
 
