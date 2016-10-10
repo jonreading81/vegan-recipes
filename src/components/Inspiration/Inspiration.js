@@ -1,8 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import {ResponsiveImage, IconButton} from 'components';
-import {BreadcrumbContainer} from 'components';
-import {Breadcrumb} from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
 export default class Inspiration extends Component {
 
@@ -10,7 +7,8 @@ export default class Inspiration extends Component {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     quote: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
+    author: PropTypes.string.isRequired,
+    toggleQuote: PropTypes.func
   };
 
   constructor(...args) {
@@ -26,19 +24,16 @@ export default class Inspiration extends Component {
 
   toggleQuote() {
     this.setState({ showQuote: !this.state.showQuote });
+    if (this.props.toggleQuote) {
+      this.props.toggleQuote(!this.state.showQuote );
+    }
   }
 
   render() {
-    const {image, quote, author, title} = this.props;
+    const {image, quote, author} = this.props;
     const styles = require('./Inspiration.scss');
     return (
       <div>
-        <BreadcrumbContainer>
-        <LinkContainer to="/Inspiration/list/all">
-          <Breadcrumb.Item>Inspiration</Breadcrumb.Item>
-        </LinkContainer>
-        <Breadcrumb.Item active>{title}</Breadcrumb.Item>
-        </BreadcrumbContainer>
         <div className={styles.container}>
            <div className={styles.imageWrapper}>
             <ResponsiveImage image={image}/>
