@@ -25,7 +25,9 @@ export default class ItemsGrid extends Component {
               <div className="imageWrapper">
                 <IconButton type={item.icon}/>
                 <div className="imageOverlay"/>
-                <ResponsiveImage image={item.image}/>
+                 <If condition={item.image && item.image !== ''}>
+                  <ResponsiveImage image={item.image}/>
+                </If>
               </div>
               <div className={styles.copy}>
                 <h4>{item.title}</h4>
