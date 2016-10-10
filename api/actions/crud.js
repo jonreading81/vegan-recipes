@@ -76,7 +76,6 @@ function findByIdAndUpdate (model, parseData, id, data, files) {
       }else{
         resolve(item);
       }
-
     });
   });
 };
@@ -85,10 +84,15 @@ function add(model, parseData, data, files){
   return new Promise((resolve,reject) => {
     parseData(data);
     let myModel= new model(data); 
-    myModel.save((err) => {
+    myModel.save((err, item) => {
       if (err) reject(err);
-      uploadImageAndUpdateFilename(files.image, myModel, resolve, reject);
-    });   
+      if(files.image){
+        uploadImageAndUpdateFilename(files.image, myModel, resolve, reject);
+      }
+      else{
+        resolve(item);
+      }
+    });
   });
 }
 

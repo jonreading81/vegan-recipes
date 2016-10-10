@@ -3,6 +3,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import {Button, ButtonToolbar} from 'react-bootstrap';
 import ViewHelper from 'helpers/Inspiration';
 import {AdminUser, Inspiration} from 'components';
+import {BreadcrumbContainer} from 'components';
+import {Breadcrumb} from 'react-bootstrap';
 
 export default class RecipeDetail extends Component {
 
@@ -16,7 +18,13 @@ export default class RecipeDetail extends Component {
     const styles = require('./InspirationDetails.scss');
     return (
       <div className={styles.container}>
-        <Inspiration title={myEntity.getTitle()} image={myEntity.getImage()} quote={myEntity.getQuote()} author={myEntity.getQuoteAuthor()} showQuote/>
+       <BreadcrumbContainer>
+        <LinkContainer to="/Inspiration/list/all">
+          <Breadcrumb.Item>Inspiration</Breadcrumb.Item>
+        </LinkContainer>
+        <Breadcrumb.Item active>{myEntity.getTitle()} </Breadcrumb.Item>
+        </BreadcrumbContainer>
+        <Inspiration title={myEntity.getTitle()} image={myEntity.getImage()} quote={myEntity.getQuote()} author={myEntity.getQuoteAuthor()} color={myEntity.getColor()} showQuote/>
         <AdminUser>
           <div className="container">
             <ButtonToolbar>

@@ -3,15 +3,10 @@
 
 .quoteWrapper{
   padding:24px;
+  padding-top:33%;
+  position: relative;
   background-color:transparentize(#549654, 0.1);
   color:white;
-  height:100%;
-  right:0;
-  top:0;
-  @media only screen and (min-width: $screen-lg-min) {
-   width:33%;
-   position: absolute;
-  }
   cite{
     font-size: 24px;
   }
@@ -19,8 +14,56 @@
     font-size: 18px;
   }
 }
+
+.green{
+  background-color:transparentize(#549654, 0.1);
+}
+
+.purple{
+  background-color:transparentize(#545496, 0.1);
+}
+
+.red{
+  background-color:transparentize(#965454, 0.1);
+}
+
+.turquoise{
+  background-color:transparentize(#549696, 0.1);
+}
+
+.quoteLining{
+  position:absolute;
+  height: 100%;
+  top:0;
+}
 .quoteWrapperHidden{
   display: none;
+}
+
+.leadQuote{
+
+  padding: 0 ;
+  padding-top:56.25%;
+  blockquote{
+    margin: 0 64px ;
+    font-size: 24px;
+  }
+  cite{
+    font-size: 28px;
+    margin: 0 64px ;
+    margin-top: 20px;
+  }
+}
+
+.quoteTypeWrapper{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.quoteType{
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .icon {

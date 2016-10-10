@@ -53,7 +53,6 @@ function defaultParseURL(path, searchTerm, page ) {
 
 function createRequest(entity, path, parseURL) {
   return (searchTerm = 'all', page = 1) => {
-    console.log(path);
     return {
       types: [getActionType(entity, REQUEST), getActionType(entity, REQUEST_SUCCESS), getActionType(entity, REQUEST_FAIL)],
       promise: (client) => client.get(parseURL(path, searchTerm, page)),

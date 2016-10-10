@@ -11,8 +11,10 @@ const inspirationSchema   = new Schema(
       required: [true, 'Title field is required']
     },
     image: {
-        type: String,
-        required: [true, 'Take a picture of your inspiration']
+        type: String
+    },
+    color: {
+        type: String
     },
     author:{
       type: String

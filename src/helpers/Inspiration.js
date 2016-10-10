@@ -56,6 +56,9 @@ export default class Inspiration {
     return Inspiration.getURLWithSlug( this.getSlug(), action);
   }
 
+  getColor() {
+    return get(this.getInspiration(), 'color', 'blue');
+  }
   getSlug() {
     return get(this.getInspiration(), 'slug');
   }

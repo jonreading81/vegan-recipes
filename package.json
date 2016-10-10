@@ -126,6 +126,7 @@
     "react": "^0.14.8",
     "react-autosuggest": "^3.9.0",
     "react-bootstrap": "^0.29.5",
+    "react-css-transition-replace": "^2.0.1",
     "react-dom": "^0.14.1",
     "react-ga": "^2.1.1",
     "react-helmet": "^2.2.0",
