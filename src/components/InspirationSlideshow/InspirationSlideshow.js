@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Inspiration, IconButton} from 'components';
 import ViewHelper from 'helpers/Inspiration';
-import ReactCSSTransitionReplace from 'react-addons-css-transition-group';
+import ReactCSSTransitionReplace from 'react-css-transition-replace';
 import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -62,7 +62,7 @@ export default class InspirationSlideshow extends Component {
           </div>
         </div>
       </div>
-       <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+       <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
         <div key={this.state.itemIndex} >
           <Inspiration toggleQuote={::this.toggleQuote} title={myHelper.getTitle()} image={myHelper.getImage()} quote={myHelper.getQuote()} author={myHelper.getQuoteAuthor()} showQuote={this.state.showQuote}/>
         </div>
