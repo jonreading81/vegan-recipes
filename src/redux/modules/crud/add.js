@@ -46,7 +46,6 @@ function createReducer(entity, defaultActions = getDefaultReducerActions) {
 
 function createRequest(entity, path, formatData = formatFormData ) {
   return (data) => {
-    console.log(data);
     const formattedData = formatData(data);
     return {
       types: [getActionType(entity, REQUEST), getActionType(entity, REQUEST_SUCCESS), getActionType(entity, REQUEST_FAIL)],

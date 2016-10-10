@@ -43,7 +43,6 @@ function createReducer(entity, defaultActions = getDefaultReducerActions) {
 
 function createRequest(entity, path ) {
   return (id) => {
-    console.log(id);
     return {
       types: [getActionType(entity, REQUEST), getActionType(entity, REQUEST_SUCCESS), getActionType(entity, REQUEST_FAIL)],
       promise: (client) => client.del(path + id)

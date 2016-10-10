@@ -4,7 +4,6 @@ import {ResponsiveImage, IconButton} from 'components';
 export default class ImageWithQuote extends Component {
 
   static propTypes = {
-    title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
     quote: PropTypes.string.isRequired,
@@ -36,8 +35,6 @@ export default class ImageWithQuote extends Component {
     const {image, quote, author, color} = this.props;
     const styles = require('./ImageWithQuote.scss');
     const coreStyles = require('./Inspiration.scss');
-    console.log(styles);
-    console.log(this.getHiddenClass(styles));
     return (
       <div>
         <div className={coreStyles.container}>

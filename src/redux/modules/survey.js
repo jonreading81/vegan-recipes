@@ -35,7 +35,6 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function submit(data) {
-  console.log(data);
   return {
     types: [SUBMIT, SUBMIT_SUCCESS, SUBMIT_FAIL],
     promise: (client) => client.post('/survey',
