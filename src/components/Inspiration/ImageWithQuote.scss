@@ -1,0 +1,34 @@
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+
+.quoteWrapper{
+  padding:24px;
+  position: relative;
+  background-color:transparentize(#549654, 0.1);
+  color:white;
+  cite{
+    font-size: 24px;
+  }
+  blockquote{
+    font-size: 18px;
+  }
+}
+
+.imageWrapper{
+  background-color:transparentize(#549654, 0.1);
+  padding-top:56.25%;
+  position:relative;
+  img{
+    position:absolute;
+    top:0;
+  }
+}
+
+.quoteWrapperHidden{
+  display: none;
+}
+
+@media only screen and (min-width: $screen-sm-min) {
+
+}
+
