@@ -82,5 +82,11 @@
 }
 
 .imageWrapper{
+  background-color:transparentize(#549654, 0.1);
+  padding-top:56.25%;
   position:relative;
+  img{
+    position:absolute;
+    top:0;
+  }
 }
