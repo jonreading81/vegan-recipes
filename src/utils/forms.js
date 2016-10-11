@@ -1,6 +1,7 @@
 import isString from 'lodash/isString';
 import forOwn from 'lodash/forOwn';
 import isArray from 'lodash/isArray';
+import has from 'lodash/has';
 
 export function mapSelectValueToArray(value) {
   if (isString(value)) {
@@ -20,7 +21,7 @@ export const formatFormData = (data) => {
       }
     }
   });
-  if (isArray(data.image) && data.image.length === 1) {
+  if (has(data, 'image[0]')) {
     formData.append('image', data.image[0]);
   }
   return formData;
