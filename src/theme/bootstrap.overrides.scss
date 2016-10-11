@@ -51,8 +51,8 @@ blockquote{
 }
   &:after{
     content:'\f10e';
-    padding-left:20px;
-    display:inline;
+    position:absolute;
+    right:0;
   }
  
   //border-right: 1px solid;

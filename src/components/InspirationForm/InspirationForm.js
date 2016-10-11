@@ -7,6 +7,11 @@ import validation from './validation';
 const validate = values => validation(values);
 import Select from 'components/Form/Select';
 import colorOptions from 'data/colorOptions.json';
+// load theme styles with webpack
+
+// ES module
+import Editor from 'react-medium-editor';
+
 
 export const fields = [
   'title',
@@ -40,6 +45,8 @@ class InspirationForm extends Component {
       loading,
       } = this.props;
     const styles = require('./InspirationForm.scss');
+    require('medium-editor/dist/css/medium-editor.css');
+    require('medium-editor/dist/css/themes/default.css');
     return (
       <form horizontal onSubmit={handleSubmit}>
 
@@ -62,7 +69,9 @@ class InspirationForm extends Component {
 
          <FormGroup controlId="quote" type="text" field={quote}>
             <HorizontalFormControl label="Quote" className={styles.formRow}>
-              <FormControl componentClass="textarea" placeholder="Enter Quote" {...quote}/>
+              <Editor
+                options={{placeholder: 'Enter Quote', mode: Editor.partial, toolbar: {buttons: ['bold', 'italic', 'underline']}}}
+                text={quote.value} onChange={quote.onChange}/>
             </HorizontalFormControl>
         </FormGroup>
 

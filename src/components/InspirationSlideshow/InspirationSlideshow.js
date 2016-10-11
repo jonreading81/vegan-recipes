@@ -5,6 +5,7 @@ import ReactCSSTransitionReplace from 'react-css-transition-replace';
 import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import get from 'lodash/get';
 
 
 export default class InspirationSlideshow extends Component {
@@ -19,6 +20,24 @@ export default class InspirationSlideshow extends Component {
       itemIndex: 0,
       showQuote: true
     };
+    this.bound_keyDown = ::this.keydown;
+  }
+
+  componentDidMount() {
+    console.log(this);
+    console.log('addEventListener');
+    window.addEventListener('keydown', this.bound_keyDown, false);
+  }
+
+  componentWillUnmount() {
+    console.log('removeEventListener');
+    window.removeEventListener('keydown', this.bound_keyDown, false);
+  }
+
+  keydown(event) {
+    const key = get(event, 'key');
+    if (key === 'ArrowRight') this.showNext();
+    if (key === 'ArrowLeft') this.showPrevious();
   }
 
   showNext() {

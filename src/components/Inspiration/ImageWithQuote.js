@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {ResponsiveImage, IconButton} from 'components';
+import HtmlToReact from 'html-to-react';
+const htmlToReactParser = new HtmlToReact.Parser(React);
 
 export default class ImageWithQuote extends Component {
 
@@ -35,6 +37,7 @@ export default class ImageWithQuote extends Component {
     const {image, quote, author, color} = this.props;
     const styles = require('./ImageWithQuote.scss');
     const coreStyles = require('./Inspiration.scss');
+    const quoteComponent = htmlToReactParser.parse('<div>' + quote + '</div>');
     return (
       <div>
         <div className={coreStyles.container}>
@@ -49,7 +52,7 @@ export default class ImageWithQuote extends Component {
               <div className={styles.quoteLining}>
                 <div className={styles.quoteTypeWrapper}>
                   <div className={styles.quoteType}>
-                    <blockquote>{quote}</blockquote>
+                    <blockquote>{quoteComponent}</blockquote>
                     <cite>{author}</cite>
                   </div>
                 </div>
