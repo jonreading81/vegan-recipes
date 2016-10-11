@@ -70,7 +70,7 @@ class InspirationForm extends Component {
          <FormGroup controlId="quote" type="text" field={quote}>
             <HorizontalFormControl label="Quote" className={styles.formRow}>
               <Editor
-                options={{placeholder: 'Enter Quote', mode: Editor.partial, toolbar: {buttons: ['bold', 'italic', 'underline']}}}
+                options={{placeholder: 'Enter Quote', mode: Editor.rich, toolbar: {buttons: ['bold', 'italic', 'underline']}}}
                 text={quote.value} onChange={quote.onChange}/>
             </HorizontalFormControl>
         </FormGroup>

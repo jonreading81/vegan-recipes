@@ -6,7 +6,6 @@ const  parseData =  (data) => {
 }
 
 Model.syncRandom(function (err, result) {
-  console.log(result.updated);
 });
 
 const defaultActions = createActions(Model, parseData);
