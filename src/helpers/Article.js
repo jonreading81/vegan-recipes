@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import ImageHelper from './Image';
+import stripHTML from '../utils/stripHTML';
 
 export default class Article {
 
@@ -22,7 +23,7 @@ export default class Article {
     this.content = get(data, 'content.rendered');
     this.title = get(data, 'title.rendered');
     this.slug = get(data, 'slug');
-    this.description = get(data, 'acf.intro');
+    this.description = stripHTML(get(data, 'acf.intro'));
     this.image = get(data, 'acf.hero_image');
     this.subText = get(data, 'acf.sub_text');
     this.listItem = {
