@@ -14,6 +14,7 @@ export EntityFormContainer from './EntityFormContainer/EntityFormContainer';
 export DeleteEntity from './DeleteEntity/DeleteEntity';
 export LoggedInUser from './conditions/LoggedInUser';
 export AdminUser from './conditions/AdminUser';
+export PublicUser from './conditions/PublicUser';
 export NotLoggedInUser from './conditions/NotLoggedInUser';
 export PropExists from './conditions/PropExists';
 export PropNotExists from './conditions/PropNotExists';

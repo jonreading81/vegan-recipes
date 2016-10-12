@@ -107,7 +107,7 @@ export default class Recipe {
   }
 
   getSourceURL() {
-    return get(this.getRecipe(), 'sourceURL');
+    return get(this.getRecipe(), 'sourceURL', '');
   }
 
   getImageURL(size) {
