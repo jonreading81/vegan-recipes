@@ -41,6 +41,7 @@ export default class Inspiration {
       description: '',
       URL: this.getURL(),
       icon: 'bolt',
+      color: this.getColor(),
       thumbnail: this.getImageURL('384x216'),
       image: this.getImage(),
       updateURL: this.getUpdateURL(),

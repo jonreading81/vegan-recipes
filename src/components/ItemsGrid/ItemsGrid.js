@@ -19,7 +19,7 @@ export default class ItemsGrid extends Component {
       <Row>
         <For each="item" index="index" of={ this.props.items}>
           <Col xs={12} sm={6} md={4} className={styles.promo}>
-            <ImagePromoUnit title={item.title} URL={item.URL} description={item.description} image={item.image} icon={item.icon} />
+            <ImagePromoUnit title={item.title} URL={item.URL} description={item.description} image={item.image} icon={item.icon} color={item.color}/>
             <If condition={hasAdminActions}>
               <ButtonToolbar className={styles.adminToolbar}>
               <LinkContainer to={item.updateURL}>

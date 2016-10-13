@@ -7,18 +7,19 @@ export default class ImagePromoUnit extends Component {
   static propTypes = {
     image: PropTypes.string,
     icon: PropTypes.string.isRequired,
+    color: PropTypes.string,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     URL: PropTypes.string.isRequired
   };
 
   render() {
-    const {title, description, image, icon, URL} = this.props;
+    const {title, description, image, icon, URL, color} = this.props;
     const styles = require('./promoUnit.scss');
     return (
       <div className={styles.promoUnit}>
        <Link to={URL}>
-        <div className={styles.imageWrapper}>
+        <div className={styles.imageWrapper + ' ' + styles[color]}>
           <IconButton type={icon} styles={styles}/>
           <div className={styles.imageOverlay}/>
            <If condition={image && image !== ''}>
