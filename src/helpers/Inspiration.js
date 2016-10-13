@@ -1,8 +1,7 @@
 import get from 'lodash/get';
 import ImageHelper from './Image';
 import {formatFormData} from '../utils/forms';
-import truncate from 'lodash/truncate';
-import striptags from 'striptags';
+// import truncate from 'lodash/truncate';
 
 export default class Inspiration {
 
@@ -39,9 +38,10 @@ export default class Inspiration {
     this.listItem = {
       id: this.getSlug(),
       title: this.getTitle(),
-      description: striptags(truncate(this.getQuote(), {'length': 150})),
+      description: '',
       URL: this.getURL(),
       icon: 'bolt',
+      color: this.getColor(),
       thumbnail: this.getImageURL('384x216'),
       image: this.getImage(),
       updateURL: this.getUpdateURL(),

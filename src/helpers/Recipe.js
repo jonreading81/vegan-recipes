@@ -43,6 +43,7 @@ export default class Recipe {
       description: this.getDescription(),
       URL: this.getURL(),
       icon: 'cutlery',
+      color: 'green',
       thumbnail: this.getImageURL('384x216'),
       image: this.getImage(),
       updateURL: this.getUpdateURL(),
@@ -107,7 +108,7 @@ export default class Recipe {
   }
 
   getSourceURL() {
-    return get(this.getRecipe(), 'sourceURL');
+    return get(this.getRecipe(), 'sourceURL', '');
   }
 
   getImageURL(size) {

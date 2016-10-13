@@ -42,59 +42,80 @@ export default class NavBar extends Component {
 
   render() {
     const styles = require('./NavBar.scss');
-    const {URL} = this.props;
+    // const {URL} = this.props;
     return (
    <Navbar fixedTop className="navbar-custom" fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
-          <Navbar.Header>
-              <Navbar.Brand>
-                <IndexLink to="/">
-                  <div className={styles.brand}/>
-                  <span>{config.app.title}</span>
-                </IndexLink>
-              </Navbar.Brand>
-              <Navbar.Toggle/>
-            </Navbar.Header>
+      <Navbar.Header>
+        <Navbar.Brand>
+          <IndexLink to="/">
+            <div className={styles.brand}/>
+            <span>{config.app.title}</span>
+          </IndexLink>
+        </Navbar.Brand>
+        <Navbar.Toggle/>
+      </Navbar.Header>
+      <Navbar.Collapse autoCollapse eventKey={0}>
+        <Nav navbar className="navbar-right">
 
-            <Navbar.Collapse autoCollapse eventKey={0}>
-              <Nav navbar className="navbar-right">
-               <LinkContainer active={URL.search('recipe') !== -1 && URL !== '/recipe/add' } to="/recipe/list/all">
-                  <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Recipes</NavItem>
-                </LinkContainer>
-                <LoggedInUser>
-                  <LinkContainer to="/recipe/add">
-                    <NavItem onClick={ this.onNavItemClick } eventKey={2}>Add Recipe</NavItem>
-                  </LinkContainer>
-                </LoggedInUser>
-                <AdminUser>
-                  <NavDropdown eventKey={3} title="Images" id="images-dropdown">
-                    <LinkContainer to="/images/list/all">
-                      <MenuItem onClick={ this.onNavItemClick } eventKey={2}>List</MenuItem>
-                    </LinkContainer>
-                    <LinkContainer to="/images/add">
-                      <MenuItem onClick={ this.onNavItemClick } eventKey={2}>Add</MenuItem>
-                    </LinkContainer>
-                  </NavDropdown>
-                </AdminUser>
-                <NotLoggedInUser>
-                    <LinkContainer to="/login">
-                      <NavItem onClick={ this.onNavItemClick } eventKey={3}>Login</NavItem>
-                    </LinkContainer>
-                </NotLoggedInUser>
-                <LoggedInUser>
-                  <LinkContainer to="/logout">
-                    <NavItem eventKey={3} className="logout-link" onClick={this.handleLogout}>
-                      Logout
-                    </NavItem>
-                  </LinkContainer>
-                </LoggedInUser>
-                <NotLoggedInUser>
-                  <LinkContainer to="/register">
-                    <NavItem onClick={ this.onNavItemClick } eventKey={4}>Register</NavItem>
-                  </LinkContainer>
-                </NotLoggedInUser>
-              </Nav>
-            </Navbar.Collapse>
-        </Navbar>
+           <NavDropdown eventKey={2} title="Recipes" id="recipes-dropdown">
+            <LinkContainer to="/recipe/list/all">
+              <MenuItem onClick={ this.onNavItemClick } eventKey={2.1}>List</MenuItem>
+            </LinkContainer>
+            <LinkContainer to="/recipe/add">
+              <MenuItem onClick={ this.onNavItemClick } eventKey={2.2}>Add</MenuItem>
+            </LinkContainer>
+          </NavDropdown>
+
+          <LinkContainer to="/article/list/all">
+            <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={3}>Articles</NavItem>
+          </LinkContainer>
+
+          <NavDropdown eventKey={4} title="Inspiration" id="inspiration-dropdown">
+            <LinkContainer to="/inspiration/slideshow">
+              <MenuItem onClick={ this.onNavItemClick } eventKey={4.1}>Slideshow</MenuItem>
+            </LinkContainer>
+            <LinkContainer to="/inspiration/list/all">
+              <MenuItem onClick={ this.onNavItemClick } eventKey={4.2}>List</MenuItem>
+            </LinkContainer>
+            <LinkContainer to="/inspiration/add">
+              <MenuItem onClick={ this.onNavItemClick } eventKey={4.3}>Add</MenuItem>
+            </LinkContainer>
+          </NavDropdown>
+
+          <AdminUser>
+            <NavDropdown eventKey={5} title="Images" id="images-dropdown">
+              <LinkContainer to="/images/list/all">
+                <MenuItem onClick={ this.onNavItemClick } eventKey={5.1}>List</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/images/add">
+                <MenuItem onClick={ this.onNavItemClick } eventKey={5.2}>Add</MenuItem>
+              </LinkContainer>
+            </NavDropdown>
+          </AdminUser>
+
+          <NotLoggedInUser>
+            <LinkContainer to="/login">
+              <NavItem onClick={ this.onNavItemClick } eventKey={6}>Login</NavItem>
+            </LinkContainer>
+          </NotLoggedInUser>
+
+          <NotLoggedInUser>
+            <LinkContainer to="/register">
+              <NavItem onClick={ this.onNavItemClick } eventKey={7}>Register</NavItem>
+            </LinkContainer>
+          </NotLoggedInUser>
+
+          <LoggedInUser>
+            <LinkContainer to="/logout">
+              <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
+                Logout
+              </NavItem>
+            </LinkContainer>
+          </LoggedInUser>
+
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
     );
   }
 }

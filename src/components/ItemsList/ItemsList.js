@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {Row, Col} from 'react-bootstrap';
-import {Link } from 'react-router';
-import { ResponsiveImage, IconButton} from 'components';
+import {ArticlePromoUnit} from 'components';
 
 export default class ItemsList extends Component {
 
@@ -12,26 +10,13 @@ export default class ItemsList extends Component {
   render() {
     const styles = require('./ItemsList.scss');
     let item;
+    let index;
     return (
         <div>
-        <For each="item" of={ this.props.items}>
-         <Row className={'promo-item ' + styles.promo}>
-          <Link to={item.URL}>
-            <Col xs={12} sm={4} md={5}>
-              <div className="imageWrapper">
-                <IconButton type={item.icon}/>
-                <div className="imageOverlay"/>
-                  <ResponsiveImage image={item.image}/>
-              </div>
-            </Col>
-            <Col xs={12} sm={8} md={7} className={styles.type}>
-              <div>
-                <h4>{item.title}</h4>
-                <p>{item.description}</p>
-              </div>
-            </Col>
-          </Link>
-        </Row>
+        <For each="item" index="index" of={ this.props.items}>
+         <div key={'item' + index} className={styles.promo}>
+           <ArticlePromoUnit title={item.title} URL={item.URL} description={item.description} image={item.image} icon={item.icon} />
+        </div>
       </For>
       </div>
     );
