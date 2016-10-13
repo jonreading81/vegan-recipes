@@ -76,8 +76,8 @@ export default class InspirationSlideshow extends Component {
       <div className={styles.navigationWrapper}>
         <div className={styles.navigation}>
           <div className={styles.iconWrapper}>
-            <IconButton onClick={::this.showPrevious} type="arrow-left" style={styles.previous}/>
-            <IconButton onClick={::this.showNext} type="arrow-right" style={styles.next}/>
+            <IconButton onClick={::this.showPrevious} type="arrow-left" styles={{iconWrapper: styles.previous}}/>
+            <IconButton onClick={::this.showNext} type="arrow-right" styles={{iconWrapper: styles.next}}/>
           </div>
         </div>
       </div>
