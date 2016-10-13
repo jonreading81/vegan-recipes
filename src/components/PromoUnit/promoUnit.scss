@@ -1,0 +1,50 @@
+@import "src/theme/variables";
+@import "~compass-mixins/lib/compass";
+
+.promoUnit{
+  position: relative;
+  p{
+    color:$gray;
+  }
+  a:hover{
+    text-decoration: none;
+    .imageOverlay{
+      background-color:transparentize(#333, 1);
+    }
+    .iconWrapper{
+      background-color:#fff;
+    }
+    .icon{
+        color:$brand-primary;
+    }
+  }
+}
+
+.imageOverlay, .iconWrapper, .icon{
+  @include transition(all 0.3s ease-in);
+}
+
+
+.imageWrapper{
+  background-color: $brand-primary;
+  padding-top: 56.25%;
+  position:relative;
+  img{
+    position:absolute;
+    top:0;
+  }
+}
+
+.imageOverlay{
+  position: absolute;
+  top:0;
+  width:100%;
+  padding-top: 56.25%;
+  background-color:transparentize(#333, 0.8);
+  z-index: 1;
+}
+
+
+.textImage{
+  color:white;
+}
