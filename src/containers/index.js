@@ -11,7 +11,7 @@ export NotFound from './NotFound/NotFound';
 export Error from './Error/Error';
 export Register from './Register/Register';
 export Survey from './Survey/Survey';
-export DietaryInformation from './DietaryInformation/DietaryInformation';
+export AboutButta from './AboutButta/AboutButta';
 export ImageList from './Images/ImageList/ImageList';
 export UpdateImage from './Images/UpdateImage/UpdateImage';
 export AddImage from './Images/AddImage/AddImage';
