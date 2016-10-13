@@ -42,3 +42,7 @@ export InspirationDetails from './InspirationDetails/InspirationDetails';
 export Inspiration from './Inspiration/Inspiration';
 export InspirationSlideshow from './InspirationSlideshow/InspirationSlideshow';
 export IconButton from './IconButton/IconButton';
+export ImagePromoUnit from './PromoUnit/ImagePromoUnit';
+export ArticlePromoUnit from './PromoUnit/ArticlePromoUnit';
+export CenteredContent from './CenteredContent/CenteredContent';
+export AbsoluteCenteredContent from './CenteredContent/AbsoluteCenteredContent';

@@ -16,7 +16,7 @@ const htmlToReactParser = new HtmlToReact.Parser(React);
 @connect(
   (state) => {
     return {
-      results: get(state.articlesList, 'items'),
+      results: get(state.articlesList, 'items', []),
       page: new ArticleHelper(get(state.viewPage, 'entity.docs[0]')),
       isFetching: get(state.viewPage, 'isFetching'),
       searching: get(state.articlesList, 'isFetching'),

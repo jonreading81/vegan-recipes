@@ -25,7 +25,7 @@ export default class Article extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel image={article.getImage()} title={article.getTitle()} style={heroStyle}>
+            <HeroPanel image={article.getImage()} title={article.getTitle()} style={heroStyle} hasBreadcrumb>
             {subTextComponent}
             </HeroPanel>
             {children}

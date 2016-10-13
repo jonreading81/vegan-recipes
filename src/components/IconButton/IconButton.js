@@ -5,16 +5,23 @@ export default class IconButton extends Component {
   static propTypes = {
     onClick: PropTypes.func,
     type: PropTypes.string.isRequired,
-    style: PropTypes.string
+    styles: PropTypes.object
   };
 
   render() {
-    const {type, onClick, style} = this.props;
+    const {type, onClick} = this.props;
+
+    const _styles = {
+      iconWrapper: '',
+      icon: '',
+      ...this.props.styles
+    };
+    const styles = require('./iconButton.scss');
     return (
-      <p className={'icon-promo fa-stack fa-lg ' + style}
+      <p className={'fa-stack fa-lg ' + styles.iconWrapper + ' ' + _styles.iconWrapper}
         onClick={onClick}>
         <i className="fa fa-stack-2x"></i>
-        <i className={'fa fa-' + type + ' fa-stack-1x'}></i>
+        <i className={'fa fa-' + type + ' fa-stack-1x ' + styles.icon + ' ' + _styles.icon}></i>
       </p>
     );
   }
