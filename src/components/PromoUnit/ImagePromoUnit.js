@@ -26,7 +26,7 @@ export default class ImagePromoUnit extends Component {
             <ResponsiveImage image={image}/>
           </If>
           <If condition={!image || image === ''}>
-            <AbsoluteCenteredContent alignCenter>
+            <AbsoluteCenteredContent alignCenter styles={{absoluteWrapper: styles.absoluteTextWrapper}}>
               <h4 className={styles.textImage}>{title}</h4>
             </AbsoluteCenteredContent>
           </If>

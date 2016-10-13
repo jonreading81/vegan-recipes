@@ -10,10 +10,11 @@ export default class ItemsList extends Component {
   render() {
     const styles = require('./ItemsList.scss');
     let item;
+    let index;
     return (
         <div>
-        <For each="item" of={ this.props.items}>
-         <div className={styles.promo}>
+        <For each="item" index="index" of={ this.props.items}>
+         <div key={'item' + index} className={styles.promo}>
            <ArticlePromoUnit title={item.title} URL={item.URL} description={item.description} image={item.image} icon={item.icon} />
         </div>
       </For>
