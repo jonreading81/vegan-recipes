@@ -16,7 +16,7 @@ export default class IconButton extends Component {
       icon: '',
       ...this.props.styles
     };
-    const styles = require('./iconButton.scss');
+    const styles = require('./IconButton.scss');
     return (
       <p className={'fa-stack fa-lg ' + styles.iconWrapper + ' ' + _styles.iconWrapper}
         onClick={onClick}>
