@@ -48,15 +48,18 @@ blockquote{
     top:5px;
     left:8px;
     display:block;
-}
-  &:after{
-    content:'\f10e';
-    position:absolute;
-    right:0;
   }
- 
-  //border-right: 1px solid;
-   border-color:lighten($brand-primary, 30%);
+  p {
+    &:after{
+      color:#666;
+      font-family:'FontAwesome';
+      font-size:16px;
+      content:'\f10e';
+      right: -10px;
+      position: relative;
+    }
+  }
+
 }
 
 // Breadcrumb =====================================================================
