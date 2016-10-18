@@ -26,6 +26,7 @@ p.important {
   font-weight: 800;
 }
 
+
 cite {
   &:before{
   }
@@ -55,8 +56,9 @@ blockquote{
       font-family:'FontAwesome';
       font-size:16px;
       content:'\f10e';
-      right: -10px;
+      right: -15px;
       position: relative;
+      vertical-align: 0.625em;
     }
   }
 
@@ -731,6 +733,9 @@ input[type="checkbox"],
   @include make-lg-column-offset(1);
   p{
      font-size:16px;
+     &.footnote {
+         font-size: 13px;
+     }
   }
   img{
     width:100%;

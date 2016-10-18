@@ -9,6 +9,11 @@
   blockquote, cite{
     font-size: 18px;
     margin: 0 32px ;
+    p {
+      &:after{
+         color:white;
+      }
+    }
   }
   cite{
     font-size: 22px;

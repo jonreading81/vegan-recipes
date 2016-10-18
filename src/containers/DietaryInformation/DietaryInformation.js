@@ -13,31 +13,31 @@ import get from 'lodash/get';
 
 const ingredientsData = [
   {
-    name: '*coconut oil',
+    name: '*Coconut oil',
+    amount: '27%'
+  },
+  {
+    name: '*Canola oil',
+    amount: '26%'
+  },
+  {
+    name: '*Deodarised cocoa butter',
+    amount: '21%'
+  },
+  {
+    name: '*Soy milk (hulled soy beans (7.2%), water)',
     amount: ''
   },
   {
-    name: '*rapeseed oil',
+    name: 'Liquid soya lecithin',
     amount: ''
   },
   {
-    name: '*deodarised cocoa butter',
+    name: 'Plant based lactic acid',
     amount: ''
   },
   {
-    name: '*soy milk (hulled soy beans (7.2%), water)',
-    amount: ''
-  },
-  {
-    name: 'liquid soya lecithin',
-    amount: ''
-  },
-  {
-    name: 'plant based lactic acid',
-    amount: ''
-  },
-  {
-    name: 'sea salt',
+    name: 'Sea salt',
     amount: ''
   }
 ];
@@ -51,7 +51,7 @@ export default class DietInformation extends Component {
           <HeroPanel image="butter.jpeg" title="Butta" subTitle="A replacement made from plants for spreading, cooking and baking" style="image-focus-bottom"/>
           <div className="container">
             <div className="body-copy">
-            <p className="body-copy-first important">Please find below all labelling information for our Butta.</p>
+            <p className="body-copy-first important">Please find below labelling information for classic Butta.</p>
 
               <Row>
                 <Col xs={12} sm={6}>
@@ -73,7 +73,7 @@ export default class DietInformation extends Component {
                   </tbody>
                 </Table> */}
                 <h3>Manufactured by</h3>
-                <p>Call of the Forest<br />
+                <p>Butter Foods Ltd<br />
                 193A Munster Road, London, SW6 6BY<br />
                 Email: amy@calloftheforest.com</p>
                 <h3>Usage suggestions</h3>
@@ -98,14 +98,11 @@ export default class DietInformation extends Component {
                         <td>{get(item, 'amount')} </td>
                       </tr>
                     )}
-                    <tr>
-                        <td>* Organic ingredients</td>
-                    </tr>
-                    <tr>
-                        <td>Free from dairy and gluten</td>
-                    </tr>
                   </tbody>
                 </Table>
+                <p className="footnote">* Non-GMO organic ingredients<br />
+                Free from dairy and gluten<br />
+                <bold>Contains soy</bold></p>
               </Col>
           </Row>
           </div>
