@@ -26,6 +26,7 @@ p.important {
   font-weight: 800;
 }
 
+
 cite {
   &:before{
   }
@@ -49,14 +50,15 @@ blockquote{
     left:8px;
     display:block;
   }
-  p {
+  p:last-of-type {
     &:after{
       color:#666;
       font-family:'FontAwesome';
       font-size:16px;
       content:'\f10e';
-      right: -10px;
+      right: -15px;
       position: relative;
+      vertical-align: 0.625em;
     }
   }
 
@@ -732,6 +734,9 @@ input[type="checkbox"],
   p, dt{
      font-size:16px;
      line-height: 2em;
+     &.footnote {
+         font-size: 13px;
+     }
   }
   img{
     width:100%;

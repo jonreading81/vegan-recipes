@@ -31,6 +31,8 @@ import {
     InspirationSlideshow
   } from 'containers';
 
+console.log(DietaryInformation);
+
 export default (store) => {
   /**
    * Please keep routes in alphabetical order
