@@ -722,9 +722,11 @@ input[type="checkbox"],
 }
 
 // Column styles =================================================================
-
+.body-copy, .column-small, .column-medium, .column-large{
+   padding-top: 24px;
+}
 .body-copy {
-  padding-top: 32px;
+
   @include make-xs-column(12);
   @include make-xs-column-offset(0);
   @include make-md-column(8);

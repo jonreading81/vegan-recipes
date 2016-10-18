@@ -38,7 +38,7 @@ export default class AboutButta extends Component {
       <div>
         <Helmet title="About Butta"/>
         <If condition={!isFetching}>
-          <ButtaPage selected="about">{contentComponent} </ButtaPage>
+          <ButtaPage style="body-copy" selected="about">{contentComponent} </ButtaPage>
         </If>
       </div>
     );

@@ -15,7 +15,7 @@ import {
     Register,
     Welcome,
     Survey,
-    DietaryInformation,
+    ButtaLabel,
     AboutButta,
     ImageList,
     UpdateImage,
@@ -31,8 +31,6 @@ import {
     InspirationSlideshow
   } from 'containers';
 
-console.log(DietaryInformation);
-
 export default (store) => {
   /**
    * Please keep routes in alphabetical order
@@ -44,7 +42,7 @@ export default (store) => {
       <Route path="butta">
         <IndexRoute component={AboutButta}/>
         <Route path="survey" component={Survey}/>
-        <Route path="label" component={DietaryInformation}/>
+        <Route path="label" component={ButtaLabel}/>
       </Route>
        <Route path="images" onEnter={requireMemberOfAdminGroup.bind(null, store)}>
          <Route path="list/:term(/:page)" component={ImageList}/>

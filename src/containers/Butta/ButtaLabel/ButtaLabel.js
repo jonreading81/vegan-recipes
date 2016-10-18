@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import {HeroPanel} from 'components';
+import {ButtaPage} from 'components';
 import {Table, Row, Col} from 'react-bootstrap';
 import get from 'lodash/get';
-
-/* const nutritionalData = [
-  {
-    name: '',
-    amount: '%',
-  }
-]; */
 
 const ingredientsData = [
   {
@@ -42,36 +35,17 @@ const ingredientsData = [
   }
 ];
 
-export default class DietInformation extends Component {
+export default class ButtaLabel extends Component {
+
   render() {
-    // const styles = require('./Home.scss');
     return (
       <div>
-        <Helmet title="Product information"/>
-          <HeroPanel image="butter.jpeg" title="Butta" subTitle="A replacement made from plants for spreading, cooking and baking" style="image-focus-bottom"/>
-          <div className="container">
-            <div className="body-copy">
-            <p className="body-copy-first important">Please find below labelling information for classic Butta.</p>
+        <Helmet title="Butta Label"/>
+        <ButtaPage style="body-copy" selected="label">
+           <p className="body-copy-first important">Please find below labelling information for classic Butta.</p>
 
-              <Row>
-                <Col xs={12} sm={6}>
-                {/* <h3>Nutrition</h3>
-                 <Table striped>
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Value</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {nutritionalData.map((item, index) =>
-                      <tr key={'ingredient-' + index}>
-                        <td>{get(item, 'name')}</td>
-                        <td>{get(item, 'amount')}</td>
-                      </tr>
-                    )}
-                  </tbody>
-                </Table> */}
+            <Row>
+              <Col xs={12} sm={6}>
                 <h3>Manufactured by</h3>
                 <p>Butter Foods Ltd<br />
                 193A Munster Road, London, SW6 6BY<br />
@@ -105,8 +79,7 @@ export default class DietInformation extends Component {
                 <bold>Contains soy</bold></p>
               </Col>
           </Row>
-          </div>
-        </div>
+        </ButtaPage>
       </div>
     );
   }

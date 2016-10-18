@@ -13,11 +13,11 @@ export default class ButtaNavigation extends Component {
     const {selected} = this.props;
     return (
       <Nav bsStyle="tabs" justified activeKey={1}>
-        <LinkContainer to="/butta">
-          <NavItem active={selected === 'about'} eventKey={1}>About</NavItem>
+        <LinkContainer active={selected === 'about'} to="/butta">
+          <NavItem eventKey={1}>About</NavItem>
         </LinkContainer>
-        <LinkContainer to="butta/label">
-          <NavItem active={selected === 'label'} eventKey={2}>Dietary Information</NavItem>
+        <LinkContainer active={selected === 'label'} to="butta/label">
+          <NavItem eventKey={2}>Dietary Information</NavItem>
         </LinkContainer>
       </Nav>
     );
