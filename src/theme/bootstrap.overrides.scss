@@ -727,10 +727,11 @@ input[type="checkbox"],
   @include make-xs-column-offset(0);
   @include make-md-column(8);
   @include make-md-column-offset(2);
-  @include make-lg-column(10);
-  @include make-lg-column-offset(1);
-  p{
+  @include make-lg-column(9);
+  @include make-lg-column-offset(2);
+  p, dt{
      font-size:16px;
+     line-height: 2em;
   }
   img{
     width:100%;

@@ -1,3 +1,4 @@
+@import "src/theme/variables";
 .footer {
   padding: 30px 0 65px;
 }
@@ -11,10 +12,10 @@
 }
 
 .socialLink{
-  color:#549654;
+  color:#666;
   font-size: 2em;
   &:hover{
-    color:#666;
+    color: $brand-primary;
   }
 
 }
