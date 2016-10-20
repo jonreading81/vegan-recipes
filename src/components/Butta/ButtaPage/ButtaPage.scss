@@ -1,19 +1,41 @@
 @import "src/theme/variables";
+@import "~compass-mixins/lib/compass";
 
 :global{
   .presentation{
     h1{
-      font-weight: 400;
+      font-weight: 150;
     }
 
+
     h2, h3,h4{
-      margin-top: 2em;
+      margin-top: 1em;
     }
     .container-fluid{
-      display: flex;
+      //display: flex;
     }
-    .row-space{
-      margin-top:6em;
+
+    p{
+      font-size: 16px;
+    }
+
+    .react-parallax {
+      margin: 32px 0;
+      height:350px;
+      h1{
+        color:white;
+        font-size: 74px;
+         font-weight: 100;
+         //font-family: $font-family-serif;
+        text-align:center;
+      }
+    }
+
+    .react-parallax-content{
+       height:350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .color-green{
@@ -35,8 +57,8 @@
       }
     }
     .intro-1, .intro-2, .intro-3{
-      font-weight: 500;
-      font-family:$font-family-sans-serif;
+      font-weight: 400;
+      //font-family:$font-family-sans-serif;
     }
     .intro-1{
       font-size: 28px;
@@ -56,6 +78,11 @@
       font-size: 1.8em;
     }
 
+    .image-center{
+      display: block;
+      margin: 0 auto;
+    }
+
     .list-1{
       font-size: 20px;
     }
@@ -67,6 +94,22 @@
     .list-3{
       font-size: 16px;
     }
+
+    .promo{
+      margin-top:3em;
+      background-color:$red;
+      padding: 16px;
+      min-height: 560px;
+      h3,h4,  p ,em {
+         color:white !important;
+      }
+    }
+
+    .promo-image-wrapper{
+      background-color:white;
+      width:100%;
+      padding:40px;
+    }
   }
 }
 .wallpaper1 ,.wallpaper2{
@@ -75,7 +118,7 @@
   }
 
   @media only screen and (min-width: $screen-md-min) {
-    align-items: stretch;
+    //align-items: stretch;
     background-repeat: repeat-y;
   }
 }
