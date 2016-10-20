@@ -1,15 +1,117 @@
 @import "src/theme/variables";
 
+:global{
+  .presentation{
+    h1{
+      font-weight: 400;
+    }
+
+    h2, h3,h4{
+      margin-top: 2em;
+    }
+    .container-fluid{
+      display: flex;
+    }
+    .row-space{
+      margin-top:6em;
+    }
+
+    .color-green{
+      color:$green;
+    }
+    .color-purple{
+      color:$purple;
+    }
+    .color-red{
+      color:$red;
+    }
+    .color-turquoise{
+      color:$turquoise;
+    }
+    .show-grid{
+      .col-md-1, .col-md-4, .col-md-6, .col-md-8{
+      background-color: rgba(86,61,124,.15);
+      border: 1px solid rgba(86,61,124,.2);
+      }
+    }
+    .intro-1, .intro-2, .intro-3{
+      font-weight: 500;
+      font-family:$font-family-sans-serif;
+    }
+    .intro-1{
+      font-size: 28px;
+    }
+
+    .intro-2{
+      font-size: 24px;
+    }
+
+    .intro-3{
+      font-size: 20px;
+    }
+    em.pullout{
+      font-size: 1.4em;
+    }
+    em.pullout-super{
+      font-size: 1.8em;
+    }
+
+    .list-1{
+      font-size: 20px;
+    }
+
+    .list-2{
+      font-size: 18px;
+    }
+
+    .list-3{
+      font-size: 16px;
+    }
+  }
+}
+.wallpaper1 ,.wallpaper2{
+  @media only screen and (max-width: $screen-sm-max) {
+    display: none;
+  }
+
+  @media only screen and (min-width: $screen-md-min) {
+    align-items: stretch;
+    background-repeat: repeat-y;
+  }
+}
+
+.wallpaper1 {
+  background-image:url("./wallpaper1.png");
+}
+
+.wallpaper2 {
+  background-image:url("./wallpaper2.png");
+}
+
+
 .content{
   i{
-    margin-right:0.5em;
+    // margin-right:0.25em;
+    //font-size: 1.5em;
+  }
+  dt{
+    font-size: 40px;
+     font-family: $font-family-sans-serif;
+     font-weight: 300;
+     text-transform: uppercase;
+     line-height: 1.5em;
+     margin-bottom:0.5em;
+  }
+  p{
+    font-size: 20px;
+    // margin-top:1em;
   }
 }
 
 .logo{
   background-image:url("./butta.jpeg");
   background-size: contain;
-  height:80px;
+  height:100px;
   background-repeat: no-repeat;
   display:block;
   text-indent:-9999px;

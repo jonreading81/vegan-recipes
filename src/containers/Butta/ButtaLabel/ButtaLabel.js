@@ -41,7 +41,7 @@ export default class ButtaLabel extends Component {
     return (
       <div>
         <Helmet title="Butta Label"/>
-        <ButtaPage style="body-copy" selected="label">
+        <ButtaPage selected="label">
            <p className="body-copy-first important">Please find below labelling information for classic Butta.</p>
 
             <Row>
