@@ -815,4 +815,16 @@ input[type="checkbox"],
 }
 
 
+/* ---------------- parallax --------------- */
+
+.react-parallax-background, .react-parallax-background-children{
+  width: 100%;
+}
+
+.react-parallax-background{
+  position:relative;
+}
+
+
+
 

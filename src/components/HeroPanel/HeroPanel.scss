@@ -67,6 +67,15 @@ $breakpoint-imagecropped : 640px;
       overflow:hidden;
       position:relative;
     }
+
+    .react-parallax {
+      position:absolute !important;
+      height:100%;
+      width:100%;
+    }
+    .react-parallax-background-children{
+      margin-top: -16px
+    }
     .image-wrapper-holder{
       padding-top: 56.25%;
       background:#333;
