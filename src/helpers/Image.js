@@ -63,7 +63,8 @@ export default class ImageHelper {
     const slug = this.getSlugFromImage(image);
     const seperator = slug.lastIndexOf('-');
     const name = slug.substr(0, seperator);
-    return name.replace(/-/g, ' ');
+    return name;
+    // return name.replace(/-/g, ' ');
   }
 
   getName() {

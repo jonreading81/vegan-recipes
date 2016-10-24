@@ -46,3 +46,5 @@ export ImagePromoUnit from './PromoUnit/ImagePromoUnit';
 export ArticlePromoUnit from './PromoUnit/ArticlePromoUnit';
 export CenteredContent from './CenteredContent/CenteredContent';
 export AbsoluteCenteredContent from './CenteredContent/AbsoluteCenteredContent';
+export ButtaNavigation from './Butta/ButtaNavigation/ButtaNavigation';
+export ButtaPage from './Butta/ButtaPage/ButtaPage';

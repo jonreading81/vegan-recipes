@@ -1,0 +1,189 @@
+@import "src/theme/variables";
+@import "~compass-mixins/lib/compass";
+
+$parallaxHeight:450px;
+
+@mixin sectionColor($color) {
+  h1,h2,h2, em.pullout, em.pullout-super{
+    color:$color;
+  }
+  .promo{
+      background-color:$color;
+    }
+}
+
+:global{
+  .presentation{
+    h2, h3,h4{
+      margin-top: 1em;
+    }
+
+    p{
+      font-size: 16px;
+    }
+
+    .color-green{
+      color:$green;
+    }
+    .color-purple{
+      color:$purple;
+    }
+    .color-red{
+      color:$red;
+    }
+    .color-turquoise{
+      color:$turquoise;
+    }
+
+    .section-color-green{
+      @include sectionColor($green);
+    }
+    .section-color-purple{
+      @include sectionColor($purple);
+    }
+    .section-color-red{
+      @include sectionColor($red);
+    }
+    .section-color-turquoise{
+      @include sectionColor($turquoise);
+    }
+    
+    .intro-list .intro{
+        font-weight: 400;
+      margin-top: 2em;
+    }
+
+    .intro-1{
+      font-size: 24px;
+    }
+
+    .intro-2{
+      font-size: 20px;
+    }
+
+    .intro-3{
+      font-size: 18px;
+    }
+
+    em.pullout{
+      font-size: 1.4em;
+    }
+    em.pullout-super{
+      font-size: 1.8em;
+    }
+
+    .image-center{
+      display: block;
+      margin: 0 auto;
+    }
+
+    .list-1{
+      font-size: 20px;
+    }
+
+    .list-2{
+      font-size: 18px;
+    }
+
+    .list-3{
+      font-size: 16px;
+    }
+
+    .promo{
+      margin-top:3em;
+      padding: 16px;
+      min-height: 560px;
+      h3,h4,  p ,em {
+         color:white !important;
+      }
+    }
+
+    .promo-image-wrapper{
+      background-color:white;
+      width:100%;
+      padding:40px;
+    }
+
+    .react-parallax {
+      margin-top: 32px;
+      height:$parallaxHeight;
+      h2{
+        color:white;
+        margin-top: 0;
+        font-size: 70px;
+         font-weight: 100;
+        text-align:center;
+      }
+    }
+
+    .react-parallax-content{
+      height:$parallaxHeight;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .parallax-background-overlay{
+      background-color: rgba(black,0.2);
+      padding-top:56.25%;
+      position:absolute;
+      width:100%;
+      top:0;
+    }
+  }
+}
+ @media only screen and (min-width: $screen-md-min) {
+  .background2, .background3, .background4{
+     position: relative;
+    &:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 141px;
+      z-index: 0;
+      background-repeat: no-repeat;
+      background-position: 50% 0;
+      background-size: cover;
+    }
+
+  }
+  .background2{
+    &:before {
+      left: 20px;
+      opacity: 0.4;
+      width: 600px;
+      height: 437px;
+      background-image:url("./background1.png");
+    }
+  }
+  .background3{
+   &:before {
+      right: 20px;
+      width: 600px;
+      height: 454px;
+      opacity: 0.3;
+      background-image:url("./background2.png");
+    }
+  }
+  .background4{
+     &:before {
+      right: 20px;
+      width: 600px;
+      height: 432px;
+      opacity: 0.3;
+      background-image:url("./background3.png");
+    }
+  }
+}
+
+.logo{
+  background-image:url("./butta.jpeg");
+  background-size: contain;
+  height:100px;
+  background-repeat: no-repeat;
+  display:block;
+  text-indent:-9999px;
+  margin-top:0.5em;
+}

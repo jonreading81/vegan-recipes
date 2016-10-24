@@ -26,6 +26,7 @@ p.important {
   font-weight: 800;
 }
 
+
 cite {
   &:before{
   }
@@ -48,15 +49,19 @@ blockquote{
     top:5px;
     left:8px;
     display:block;
-}
-  &:after{
-    content:'\f10e';
-    position:absolute;
-    right:0;
   }
- 
-  //border-right: 1px solid;
-   border-color:lighten($brand-primary, 30%);
+  p:last-of-type {
+    &:after{
+      color:#666;
+      font-family:'FontAwesome';
+      font-size:16px;
+      content:'\f10e';
+      right: -15px;
+      position: relative;
+      vertical-align: 0.625em;
+    }
+  }
+
 }
 
 // Breadcrumb =====================================================================
@@ -717,17 +722,23 @@ input[type="checkbox"],
 }
 
 // Column styles =================================================================
-
+.body-copy, .column-small, .column-medium, .column-large{
+   padding-top: 24px;
+}
 .body-copy {
-  padding-top: 32px;
+
   @include make-xs-column(12);
   @include make-xs-column-offset(0);
   @include make-md-column(8);
   @include make-md-column-offset(2);
-  @include make-lg-column(10);
-  @include make-lg-column-offset(1);
-  p{
+  @include make-lg-column(9);
+  @include make-lg-column-offset(2);
+  p, dt{
      font-size:16px;
+     line-height: 2em;
+     &.footnote {
+         font-size: 13px;
+     }
   }
   img{
     width:100%;
@@ -802,6 +813,18 @@ input[type="checkbox"],
 .cross-fade-height {
   transition: height 700ms ease-in-out;
 }
+
+
+/* ---------------- parallax --------------- */
+
+.react-parallax-background, .react-parallax-background-children{
+  width: 100%;
+}
+
+.react-parallax-background{
+  position:relative;
+}
+
 
 
 

@@ -5,15 +5,20 @@
   padding:24px;
   position: relative;
   background-color:transparentize(#549654, 0.1);
-  color:white;
+  color:black;
   cite{
     font-size: 24px;
   }
   blockquote{
     font-size: 18px;
     margin-bottom:0.5em;
+    p {
+      &:after{
+         color:white;
+      }
+    }
   }
-  p{
+  p {
     margin-bottom: 0.5em;
   }
 }
