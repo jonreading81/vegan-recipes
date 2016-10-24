@@ -1,6 +1,8 @@
 @import "src/theme/variables";
 @import "~compass-mixins/lib/compass";
 
+$parallaxHeight:450px;
+
 @mixin sectionColor($color) {
   h1,h2,h2, em.pullout, em.pullout-super{
     color:$color;
@@ -104,7 +106,7 @@
 
     .react-parallax {
       margin-top: 32px;
-      height:350px;
+      height:$parallaxHeight;
       h2{
         color:white;
         margin-top: 0;
@@ -115,7 +117,7 @@
     }
 
     .react-parallax-content{
-      height:350px;
+      height:$parallaxHeight;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -132,15 +134,49 @@
     }
   }
 }
+ @media only screen and (min-width: $screen-md-min) {
+  .background2, .background3, .background4{
+     position: relative;
+    &:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 141px;
+      z-index: 0;
+      background-repeat: no-repeat;
+      background-position: 50% 0;
+      background-size: cover;
+    }
 
-.withBackground{
-   @media only screen and (min-width: $screen-md-min) {
-    background-image:url("./wallpaper1.png"), url("./wallpaper2.png");
-    background-position:top left 20px,top right 20px ;
-    background-repeat:repeat-y,repeat-y;
+  }
+  .background2{
+    &:before {
+      left: 20px;
+      opacity: 0.4;
+      width: 600px;
+      height: 437px;
+      background-image:url("./background1.png");
+    }
+  }
+  .background3{
+   &:before {
+      right: 20px;
+      width: 600px;
+      height: 454px;
+      opacity: 0.3;
+      background-image:url("./background2.png");
+    }
+  }
+  .background4{
+     &:before {
+      right: 20px;
+      width: 600px;
+      height: 432px;
+      opacity: 0.3;
+      background-image:url("./background3.png");
+    }
   }
 }
-
 
 .logo{
   background-image:url("./butta.jpeg");

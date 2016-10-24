@@ -18,6 +18,7 @@ export default class ButtaPage extends Component {
       children: [],
       parallax: false
     };
+    const backgrounds = [styles.background1, styles.background2, styles.background3, styles.background4];
     sections.push(section);
 
     children.map((child) => {
@@ -46,10 +47,10 @@ export default class ButtaPage extends Component {
             </div>
           </div>
         </div>
-        <div className={styles.withBackground}>
-          {sections.map((_section) =>
+        <div>
+          {sections.map((_section, index) =>
             <div>
-              <div className={'container-fluid'}>
+              <div className={'container-fluid ' + backgrounds[index]}>
                 <div className="row">
                   <div className={'col-md-8 col-md-offset-2'}>
                     {_section.children.map((child) => child)}
