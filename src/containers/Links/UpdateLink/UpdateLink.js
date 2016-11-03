@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {EntityFormContainer, HeroPanel, Loading, LinkForm, BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import {reset as resetForm} from 'redux-form';
-import ViewHelper from 'helpers/link';
+import ViewHelper from 'helpers/Link';
 import {request as requestUpdate, reset as resetUpdate} from 'redux/modules/links/update';
 import {request as requestGet} from 'redux/modules/links/view';
 const resetFormAction = resetForm('linkForm');
@@ -68,11 +68,8 @@ export default class UpdateLinkContainer extends Component {
       </If>
       <If condition={!isFetching}>
         <BreadcrumbContainer>
-          <LinkContainer to="/links/list/all">
-          <Breadcrumb.Item>Inspiration</Breadcrumb.Item>
-          </LinkContainer>
-          <LinkContainer to={myViewHelper.getURL()}>
-          <Breadcrumb.Item>{myViewHelper.getTitle()}</Breadcrumb.Item>
+          <LinkContainer to="/link/list/all">
+          <Breadcrumb.Item>Links</Breadcrumb.Item>
           </LinkContainer>
           <Breadcrumb.Item active>Update</Breadcrumb.Item>
         </BreadcrumbContainer>

@@ -70,11 +70,8 @@ export default class DeleteInspirationContainer extends Component {
         </If>
           <If condition={!isFetching}>
           <BreadcrumbContainer>
-            <LinkContainer to="/inspiration/list/all">
-              <Breadcrumb.Item>Inspiration</Breadcrumb.Item>
-            </LinkContainer>
-            <LinkContainer to={myViewHelper.getURL()}>
-              <Breadcrumb.Item>{myViewHelper.getTitle()}</Breadcrumb.Item>
+            <LinkContainer to="/link/list/all">
+              <Breadcrumb.Item>Link</Breadcrumb.Item>
             </LinkContainer>
             <Breadcrumb.Item active>Delete</Breadcrumb.Item>
           </BreadcrumbContainer>

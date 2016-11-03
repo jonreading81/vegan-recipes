@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {ItemsGrid, SearchWell, Loading} from 'components';
 import {Pagination} from 'react-bootstrap';
-import viewHelper from 'helpers/Inspiration';
-import { request as requestList} from 'redux/modules/inspiration/list';
+import viewHelper from 'helpers/Link';
+import { request as requestList} from 'redux/modules/links/list';
 import { asyncConnect } from 'redux-async-connect';
 import get from 'lodash/get';
 import {push } from 'react-router-redux';
@@ -17,8 +17,8 @@ import ArticleHelper from 'helpers/Article';
 @connect(
   (state) => {
     return {
-      results: get(state.inspirationList, 'items'),
-      searching: get(state.inspirationList, 'isFetching'),
+      results: get(state.linkList, 'items'),
+      searching: get(state.linkList, 'isFetching'),
       isFetching: get(state.viewPage, 'isFetching'),
       page: new ArticleHelper(get(state.viewPage, 'entity.docs[0]')),
     };
@@ -26,7 +26,7 @@ import ArticleHelper from 'helpers/Article';
   (dispatch) => {
     return {
       getInspiration: (term, page) => {
-        dispatch(push('/inspiration/list/' + term + '/' + page));
+        dispatch(push('/link/list/' + term + '/' + page));
       }
     };
   }
@@ -39,11 +39,11 @@ import ArticleHelper from 'helpers/Article';
   },
   {
     promise: ({store: {dispatch}}) => {
-      return dispatch(requestPage('inspiration'));
+      return dispatch(requestPage('links'));
     }
   },
 ])
-export default class InspirationListContainer extends Component {
+export default class LinkListContainer extends Component {
 
   static propTypes = {
     results: PropTypes.object.isRequired,
@@ -54,12 +54,12 @@ export default class InspirationListContainer extends Component {
     page: PropTypes.object.isRequired,
   }
 
-  getInspiration(page) {
+  getPage(page) {
     const term = get(this.props.params, 'term', '');
     this.props.getInspiration(term, page);
   }
 
-  searchInspiration(term) {
+  search(term) {
     this.props.getInspiration(term, 1);
   }
 
@@ -73,7 +73,7 @@ export default class InspirationListContainer extends Component {
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
     return (
       <div>
-        <Helmet title="Recipes"/>
+        <Helmet title="Links"/>
          <If condition={isFetching}>
             <Loading />
           </If>
@@ -83,13 +83,13 @@ export default class InspirationListContainer extends Component {
             </HeroPanel>
           </If>
          <div className="container">
-          <SearchWell searching={searching} onSubmit={::this.searchInspiration} />
+          <SearchWell searching={searching} onSubmit={::this.search} />
           <If condition={ items.length === 0 }>
-            <h4>No Inspiration</h4>
+            <h4>No Links</h4>
           </If >
-          <ItemsGrid items={items}/>
+          <ItemsGrid hasAdminActions items={items}/>
           <If condition={ pages > 1 }>
-             <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getInspiration} />
+             <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getPage} />
           </If>
          </div>
       </div>

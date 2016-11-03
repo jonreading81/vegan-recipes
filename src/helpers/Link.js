@@ -7,7 +7,6 @@ import has from 'lodash/has';
 export default class Link {
 
   static formatFormData(data) {
-    console.log(data);
     const formattedType = [];
     data.type.map((item) => {
       if (has(item, 'value')) {
@@ -15,7 +14,6 @@ export default class Link {
       }
     });
     data.type = formattedType;
-    console.log(data);
     return formatFormData(data);
   }
 
@@ -54,7 +52,7 @@ export default class Link {
       title: this.getTitle(),
       description: '',
       URL: this.getExternalURL(),
-      icon: 'bolt',
+      icon: 'external-link',
       color: 'blue',
       thumbnail: this.getImageURL('384x216'),
       image: this.getImage(),

@@ -30,7 +30,9 @@ import {
     DeleteInspiration,
     InspirationSlideshow,
     AddLink,
-    UpdateLink
+    UpdateLink,
+    DeleteLink,
+    LinkList
   } from 'containers';
 
 export default (store) => {
@@ -78,6 +80,8 @@ export default (store) => {
        <Route path="link">
         <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="add" component={AddLink}/>
         <Route path=":entity/update" component={UpdateLink}/>
+        <Route path=":entity/delete" component={DeleteLink}/>
+        <Route path="list/:term(/:page)" component={LinkList} />
       </Route>
       <Route path="article">
         <Route path="list/:term(/:page)" component={ArticleList} />
