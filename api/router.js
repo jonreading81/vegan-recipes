@@ -6,6 +6,7 @@ const router = express.Router();
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
 import * as recipes  from 'actions/recipe';
+import * as links  from 'actions/links';
 import * as inspiration  from 'actions/inspiration';
 import * as images  from 'actions/image';
 import * as survey  from 'actions/survey';
@@ -63,6 +64,14 @@ router.route('/inspiration/random-collection').get( function(req, res) {
 
 addDefaultCrudRoutes('inspiration', inspiration, router, stormpath, multipartMiddleware);
 
+
+/*
+
+-------------------------- Images  ------------------
+
+*/
+
+addDefaultCrudRoutes('links', links, router, stormpath, multipartMiddleware);
 
 
 /*

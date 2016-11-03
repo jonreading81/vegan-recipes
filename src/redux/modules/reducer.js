@@ -28,6 +28,11 @@ import {reducer as viewInspiration} from './inspiration/view';
 import {reducer as randomInspirationCollection} from './inspiration/randomCollection';
 import {reducer as updateInspiration} from './inspiration/update';
 import {reducer as deleteInspiration} from './inspiration/delete';
+import {reducer as addLink} from './links/add';
+import {reducer as linkList} from './links/list';
+import {reducer as viewLink} from './links/view';
+import {reducer as updateLink} from './links/update';
+import {reducer as deleteLink} from './links/delete';
 
 export default combineReducers({
   routing: routerReducer,
@@ -58,5 +63,10 @@ export default combineReducers({
   viewInspiration,
   randomInspirationCollection,
   updateInspiration,
-  deleteInspiration
+  deleteInspiration,
+  linkList,
+  addLink,
+  viewLink,
+  updateLink,
+  deleteLink,
 });

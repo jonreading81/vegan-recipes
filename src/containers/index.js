@@ -25,4 +25,6 @@ export UpdateInspiration from './Inspiration/UpdateInspiration/UpdateInspiration
 export DeleteInspiration from './Inspiration/DeleteInspiration/DeleteInspiration';
 export AddInspiration from './Inspiration/AddInspiration/AddInspiration';
 export InspirationSlideshow from './Inspiration/InspirationSlideshow/InspirationSlideshow';
+export AddLink from './Links/AddLink/AddLink';
+export UpdateLink from './Links/UpdateLink/UpdateLink';
 

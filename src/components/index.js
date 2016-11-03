@@ -48,3 +48,4 @@ export CenteredContent from './CenteredContent/CenteredContent';
 export AbsoluteCenteredContent from './CenteredContent/AbsoluteCenteredContent';
 export ButtaNavigation from './Butta/ButtaNavigation/ButtaNavigation';
 export ButtaPage from './Butta/ButtaPage/ButtaPage';
+export LinkForm from './LinkForm/LinkForm';
