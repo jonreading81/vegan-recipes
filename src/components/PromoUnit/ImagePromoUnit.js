@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {Link } from 'react-router';
+import {Link } from 'components';
 import { ResponsiveImage, IconButton, AbsoluteCenteredContent} from 'components';
 
 export default class ImagePromoUnit extends Component {
