@@ -2,7 +2,7 @@ import {createValidator, required, maxLength, validImage, isURL} from 'utils/val
 
 const validator = createValidator({
   title: [required, maxLength(40)],
-  description: [required, maxLength(255)],
+  description: [required, maxLength(500)],
   URL: [required, isURL],
   image: [ validImage],
 });
