@@ -21,14 +21,16 @@ export default class ItemsGrid extends Component {
           <Col xs={12} sm={6} md={4} className={styles.promo}>
             <ImagePromoUnit title={item.title} URL={item.URL} description={item.description} image={item.image} icon={item.icon} color={item.color}/>
             <AdminUser>
-              <ButtonToolbar className={styles.adminToolbar}>
-              <LinkContainer to={item.updateURL}>
-                <Button bsStyle="primary" bsSize="large" >Update</Button>
-              </LinkContainer>
-              <LinkContainer to={item.deleteURL}>
-                <Button bsStyle="primary" bsSize="large" >Delete</Button>
-              </LinkContainer>
-              </ButtonToolbar>
+              <If condition={hasAdminActions}>
+                <ButtonToolbar className={styles.adminToolbar}>
+                <LinkContainer to={item.updateURL}>
+                  <Button bsStyle="primary" bsSize="large" >Update</Button>
+                </LinkContainer>
+                <LinkContainer to={item.deleteURL}>
+                  <Button bsStyle="primary" bsSize="large" >Delete</Button>
+                </LinkContainer>
+                </ButtonToolbar>
+              </If>
             </AdminUser>
           </Col>
           {(index + 1) % 2 === 0 ? <div className="clearfix visible-sm-block"></div> : null }
