@@ -50,7 +50,7 @@ export default class Link {
     this.listItem = {
       id: this.getSlug(),
       title: this.getTitle(),
-      description: '',
+      description: this.getDescription(),
       URL: this.getExternalURL(),
       icon: 'external-link',
       color: 'blue',
