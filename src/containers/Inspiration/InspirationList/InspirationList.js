@@ -73,7 +73,7 @@ export default class InspirationListContainer extends Component {
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
     return (
       <div>
-        <Helmet title="Recipes"/>
+        <Helmet title="Inspiration"/>
          <If condition={isFetching}>
             <Loading />
           </If>

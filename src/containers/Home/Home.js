@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {request as requestGet} from 'redux/modules/wordpress/page';
 import get from 'lodash/get';
 import Article from 'helpers/Article';
+import Helmet from 'react-helmet';
 
 @connect(
   (store) => {
@@ -31,6 +32,7 @@ export default class Home extends Component {
     const {article, isFetching} = this.props;
     return (
       <Page article={article} isFetching={isFetching} heroStyle="image-focus-bottom">
+        <Helmet title="Home" />
         <audio controls>
           <source src={config.app.birdsong} type="audio/mp3" />
         </audio>
