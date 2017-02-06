@@ -1,6 +1,6 @@
 require('babel-polyfill');
 
-const description = 'The forests are calling us to return to our authentic selves. It is not so much giving up on our modern culture but more that we now take the time to listen to our inner selves, to feel rather than think, to be rather than do. Then we hear our hearts calling for our freedom, a freedom that we are all seeking.';
+const description = 'Call of the forest is a platform dedicated to helping raise the conciousness of ourselves and those around us';
 const environment = {
   development: {
     isProduction: false
@@ -22,10 +22,11 @@ module.exports = Object.assign({
     birdsong: 'audio/birdsong.mp3',
     description: description,
     head: {
-      titleTemplate: 'Call of the Forest',
+      titleTemplate: 'Call of the Forest - %s',
+      defaultTitle: 'Call of the Forest',
       meta: [
       {name: 'description', content: description},
-      {name: 'keywords', content: 'Forest, meditation, veganism, spirtuality, recipes, conciousness'},
+      {name: 'keywords', content: 'yoga, meditation, vegan, spirtuality, recipes'},
       {charset: 'utf-8'},
       {property: 'og:site_name', content: 'Call of the Forest'},
       {property: 'og:image', content: ''},

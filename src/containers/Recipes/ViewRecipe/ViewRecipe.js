@@ -39,7 +39,7 @@ export default class ViewRecipeContainer extends Component {
     if (recipe) {
       content = (
         <div>
-          <Helmet title="View Recipes"/>
+          <Helmet title = {myRecipeHelper.getTitle()}/>
           <If condition={isFetching}>
             <Loading />
           </If>

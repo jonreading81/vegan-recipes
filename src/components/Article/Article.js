@@ -20,7 +20,10 @@ export default class Article extends Component {
     const subTextComponent = htmlToReactParser.parse('<div>' + article.getSubText() + '</div>');
     return (
       <div>
-        <Helmet title={article.getTitle()}/>
+        <Helmet title={article.getTitle()}
+          meta={[
+            {name: 'description', content: article.getDescription()}
+          ]}/>
          <If condition={isFetching}>
             <Loading />
           </If>
