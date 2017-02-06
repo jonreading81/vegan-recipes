@@ -73,7 +73,11 @@ export default class RecipeListContainer extends Component {
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
     return (
       <div>
-        <Helmet title="Recipes"/>
+        <Helmet title="Recipes"
+          meta={[
+            {name: 'description', content: 'List of delicious recipes'},
+            {name: 'keywords', content: 'vegan, recipes'}
+          ]}/>
          <If condition={isFetching}>
             <Loading />
           </If>

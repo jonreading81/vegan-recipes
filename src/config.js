@@ -1,6 +1,6 @@
 require('babel-polyfill');
 
-const description = 'The forests are calling us to return to our authentic selves. It is not so much giving up on our modern culture but more that we now take the time to listen to our inner selves.';
+const description = 'Call of the forest is a platform dedicated to helping raise the conciousness of ourselves and those around us';
 const environment = {
   development: {
     isProduction: false
