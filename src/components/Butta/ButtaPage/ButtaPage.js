@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import {ButtaNavigation, ResponsiveImage} from 'components';
+// import {ButtaNavigation, ResponsiveImage} from 'components';
+import {ResponsiveImage} from 'components';
 import { Parallax, Background } from 'react-parallax';
 
 export default class ButtaPage extends Component {
@@ -11,7 +12,8 @@ export default class ButtaPage extends Component {
   };
 
   render() {
-    const {selected, children} = this.props;
+    // const {selected, children} = this.props;
+    const {children} = this.props;
     const styles = require('./ButtaPage.scss');
     const sections = [];
     let section = {
@@ -39,7 +41,7 @@ export default class ButtaPage extends Component {
 
     return (
       <div className="presentation">
-        <ButtaNavigation selected={selected}/>
+        { /* <ButtaNavigation selected={selected}/> */ }
         <div className="container-fluid">
           <div className="row">
            <div className={'col-md-10 col-md-offset-2'}>
