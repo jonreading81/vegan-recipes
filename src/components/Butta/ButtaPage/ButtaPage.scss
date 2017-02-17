@@ -12,7 +12,6 @@ $parallaxHeight:450px;
     }
 }
 
-@include font-face ($name: 'milkshake', $font-files: 'fonts/milkshake-webfont.woff, fonts/milkshake-webfont.woff2, fonts/milkshake-webfont.ttf, fonts/milkshake-webfont.svg, fonts/milkshake-webfont.eot', $eot: true); 
 
 a, a:focus, a:hover {
     color: #965454;
@@ -23,7 +22,7 @@ a, a:focus, a:hover {
 }
 
 h1 {
-    font-family: milkshake;
+    font-family: "milkshake";
     text-transform: capitalize;
     color: $blue;
     font-size: 130px;
