@@ -24,7 +24,7 @@ export default class ButtaPage extends Component {
     sections.push(section);
 
     children.map((child) => {
-      if (child.type === 'hr') {
+      if (child.type === 'parallax') {
         section.parallax = {
           image: child.props.image,
           children: child.props.children

@@ -33,13 +33,15 @@ export default class AboutButta extends Component {
 
   render() {
     const {page, isFetching} = this.props;
-    const contentComponent = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
-    console.log(contentComponent);
+    const content = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
+    // console.log(content.props.children);
     return (
       <div>
         <Helmet title="About Butta"/>
         <If condition={!isFetching}>
-          <ButtaPage selected="about">{contentComponent.props.children}</ButtaPage>
+          <ButtaPage selected="about">
+            {content.props.children.map((child) => child)}
+        </ButtaPage>
         </If>
       </div>
     );
