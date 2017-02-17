@@ -13,34 +13,35 @@ $parallaxHeight:450px;
 }
 
 
-a, a:focus, a:hover {
-    color: #965454;
-    
-    a:focus, a:hover {
-        text-decoration: underline;
-    }
-}
-
-h1 {
-    font-family: "milkshake";
-    text-transform: capitalize;
-    color: $blue;
-    font-size: 130px;
-    margin-bottom: 0;
-}
-
-h2 a, h2 a:focus, h2 a:hover {
-    font-size: 10px;
-    color: white;
-    font-weight: 500;
-}
-
-em.pullout, em.pullout-super{
-  color:$gray;
-}
-
 :global{
   .presentation{
+    
+    a, a:focus, a:hover {
+        color: #965454;
+        
+        a:focus, a:hover {
+            text-decoration: underline;
+        }
+    }
+
+    h1 {
+        font-family: "milkshake";
+        text-transform: capitalize;
+        color: $blue;
+        font-size: 130px;
+        margin-bottom: 0;
+    }
+
+    h2 a, h2 a:focus, h2 a:hover {
+        font-size: 10px;
+        color: white;
+        font-weight: 500;
+    }
+
+    em.pullout, em.pullout-super{
+      color:$gray;
+    }
+
     h2, h3,h4{
       margin-top: 1em;
     }
