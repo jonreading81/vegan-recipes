@@ -33,3 +33,6 @@ export function requireMemberOfAdminGroup(store, nextState, replace, cb) {
   requireMemberOfGroups(['admin'], store, nextState, replace, cb);
 }
 
+export function requireMemberOfButtaGroup(store, nextState, replace, cb) {
+  requireMemberOfGroups(['butta'], store, nextState, replace, cb);
+}
