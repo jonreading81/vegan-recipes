@@ -58,7 +58,6 @@ router.route('/inspiration/collection/:inspiration').get( function(req, res) {
 });
 
 router.route('/inspiration/random-collection').get( function(req, res) {
-    console.log('here');
       handleAction(inspiration.getRandomCollection(), res);
 });
 

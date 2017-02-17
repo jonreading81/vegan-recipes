@@ -7,7 +7,7 @@ export default class ButtaPage extends Component {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
-    selected: PropTypes.string.isRequired,
+    // selected: PropTypes.string.isRequired,
     style: PropTypes.string
   };
 
@@ -45,7 +45,8 @@ export default class ButtaPage extends Component {
         <div className="container-fluid">
           <div className="row">
            <div className={'col-md-10 col-md-offset-2'}>
-              <h1 className={styles.logo}>Butta</h1>
+              { /* <h1 className={styles.logo}>Butta</h1> */ }
+              <h1>Butta</h1>
             </div>
           </div>
         </div>
