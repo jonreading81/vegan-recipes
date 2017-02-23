@@ -23,7 +23,7 @@ a, a:focus, a:hover {
 }
 
 h1 {
-    font-family: milkshake;
+    font-family: "milkshake";
     text-transform: capitalize;
     color: $blue;
     font-size: 130px;
@@ -217,7 +217,7 @@ em.pullout, em.pullout-super{
       width: 600px;
       height: 454px;
       opacity: 0.3;
-      background-image:url("./background2.png");
+      //background-image:url("./background2.png");
     }
   }
   .background4{
