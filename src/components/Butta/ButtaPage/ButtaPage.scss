@@ -12,15 +12,17 @@ $parallaxHeight:450px;
     }
 }
 
-@include font-face ($name: 'milkshake', $font-files: 'fonts/milkshake-webfont.woff, fonts/milkshake-webfont.woff2, fonts/milkshake-webfont.ttf, fonts/milkshake-webfont.svg, fonts/milkshake-webfont.eot', $eot: true); 
 
-a, a:focus, a:hover {
-    color: #965454;
+:global{
+  .presentation{
     
-    a:focus, a:hover {
-        text-decoration: underline;
+    a, a:focus, a:hover {
+        color: #965454;
+        
+        a:focus, a:hover {
+            text-decoration: underline;
+        }
     }
-}
 
 h1 {
     font-family: "milkshake";
@@ -30,18 +32,16 @@ h1 {
     margin-bottom: 0;
 }
 
-h2 a, h2 a:focus, h2 a:hover {
-    font-size: 10px;
-    color: white;
-    font-weight: 500;
-}
+    h2 a, h2 a:focus, h2 a:hover {
+        font-size: 10px;
+        color: white;
+        font-weight: 500;
+    }
 
-em.pullout, em.pullout-super{
-  color:$gray;
-}
+    em.pullout, em.pullout-super{
+      color:$gray;
+    }
 
-:global{
-  .presentation{
     h2, h3,h4{
       margin-top: 1em;
     }
@@ -226,7 +226,7 @@ em.pullout, em.pullout-super{
       width: 600px;
       height: 432px;
       opacity: 0.3;
-      background-image:url("./background3.png");
+      //background-image:url("./background3.png");
     }
   }
 }
