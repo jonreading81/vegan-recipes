@@ -32,7 +32,8 @@ import {
     AddLink,
     UpdateLink,
     DeleteLink,
-    LinkList
+    LinkList,
+    JonProfile
   } from 'containers';
 
 export default (store) => {
@@ -82,6 +83,9 @@ export default (store) => {
         <Route path=":entity/update" component={UpdateLink}/>
         <Route path=":entity/delete" component={DeleteLink}/>
         <Route path="list/:term(/:page)" component={LinkList} />
+      </Route>
+      <Route path="jon-reading">
+        <Route path="yoga/:page" component={JonProfile} />
       </Route>
       <Route path="article">
         <Route path="list/:term(/:page)" component={ArticleList} />
