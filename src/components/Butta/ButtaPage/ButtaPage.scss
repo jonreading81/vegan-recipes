@@ -24,13 +24,13 @@ $parallaxHeight:450px;
         }
     }
 
-    h1 {
-        font-family: "milkshake";
-        text-transform: capitalize;
-        color: $blue;
-        font-size: 130px;
-        margin-bottom: 0;
-    }
+h1 {
+    font-family: "milkshake";
+    text-transform: capitalize;
+    color: $blue;
+    font-size: 130px;
+    margin-bottom: 0;
+}
 
     h2 a, h2 a:focus, h2 a:hover {
         font-size: 10px;
@@ -217,7 +217,7 @@ $parallaxHeight:450px;
       width: 600px;
       height: 454px;
       opacity: 0.3;
-      background-image:url("./background2.png");
+      //background-image:url("./background2.png");
     }
   }
   .background4{
@@ -226,7 +226,7 @@ $parallaxHeight:450px;
       width: 600px;
       height: 432px;
       opacity: 0.3;
-      background-image:url("./background3.png");
+      //background-image:url("./background3.png");
     }
   }
 }
