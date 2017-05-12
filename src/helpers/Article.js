@@ -26,6 +26,7 @@ export default class Article {
     this.description = stripHTML(get(data, 'acf.intro'));
     this.image = get(data, 'acf.hero_image');
     this.subText = get(data, 'acf.sub_text');
+    this.sidePanel = get(data, 'acf.side_panel');
     this.listItem = {
       id: this.getSlug(),
       title: this.getTitle(),
@@ -52,6 +53,10 @@ export default class Article {
 
   getSlug() {
     return this.slug;
+  }
+
+  getSidePanel() {
+    return this.sidePanel;
   }
 
   getDescription() {

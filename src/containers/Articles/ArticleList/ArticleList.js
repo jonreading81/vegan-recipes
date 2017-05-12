@@ -38,7 +38,7 @@ const htmlToReactParser = new HtmlToReact.Parser(React);
   },
   {
     promise: ({params, store: {dispatch}}) => {
-      return dispatch(requestList(params.term, params.page));
+      return dispatch(requestList([2, params.term], params.page));
     }
   }
 ])

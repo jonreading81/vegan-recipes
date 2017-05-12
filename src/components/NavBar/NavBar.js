@@ -56,6 +56,9 @@ export default class NavBar extends Component {
       </Navbar.Header>
       <Navbar.Collapse autoCollapse eventKey={0}>
         <Nav navbar className="navbar-right">
+          <LinkContainer to="/yoga/jon-reading/">
+            <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Yoga</NavItem>
+          </LinkContainer>
 
            <NavDropdown eventKey={2} title="Recipes" id="recipes-dropdown">
             <LinkContainer to="/recipe/list/all">
@@ -66,19 +69,18 @@ export default class NavBar extends Component {
             </LinkContainer>
           </NavDropdown>
 
-          <LinkContainer to="/article/list/all">
-            <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={3}>Articles</NavItem>
-          </LinkContainer>
-
           <NavDropdown eventKey={4} title="Inspiration" id="inspiration-dropdown">
             <LinkContainer to="/inspiration/slideshow">
               <MenuItem onClick={ this.onNavItemClick } eventKey={4.1}>Slideshow</MenuItem>
             </LinkContainer>
+            <LinkContainer to="/link/list/all">
+              <MenuItem onClick={ this.onNavItemClick } eventKey={4.2}>Links</MenuItem>
+            </LinkContainer>
             <LinkContainer to="/inspiration/list/all">
-              <MenuItem onClick={ this.onNavItemClick } eventKey={4.2}>List</MenuItem>
+              <MenuItem onClick={ this.onNavItemClick } eventKey={4.3}>List</MenuItem>
             </LinkContainer>
             <LinkContainer to="/inspiration/add">
-              <MenuItem onClick={ this.onNavItemClick } eventKey={4.3}>Add</MenuItem>
+              <MenuItem onClick={ this.onNavItemClick } eventKey={4.4}>Add</MenuItem>
             </LinkContainer>
           </NavDropdown>
 

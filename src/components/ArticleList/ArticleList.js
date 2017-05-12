@@ -1,0 +1,67 @@
+import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
+import {ItemsGrid, Loading} from 'components';
+import {Pagination} from 'react-bootstrap';
+import {HeroPanel} from 'components';
+import HtmlToReact from 'html-to-react';
+const htmlToReactParser = new HtmlToReact.Parser(React);
+import ArticleHelper from 'helpers/Article';
+
+
+export default class ArticleList extends Component {
+
+  static propTypes = {
+    meta: PropTypes.object.isRequired,
+    page: PropTypes.object.isRequired,
+    articles: PropTypes.array.isRequired,
+    pages: PropTypes.number.isRequired,
+    activePage: PropTypes.number.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    getArticles: PropTypes.func.isRequired,
+  }
+
+  getArticles(page) {
+    this.props.getArticles(page);
+  }
+
+  render() {
+    const {articles, page, isFetching, meta, pages, activePage} = this.props;
+    const title = page.getTitle();
+    const articleItems = ArticleHelper.mapToItems(articles);
+    const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
+    const sidePanelComponent = htmlToReactParser.parse('<div>' + page.getSidePanel() + '</div>');
+    const contentComponent = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
+
+    return (
+      <div>
+        <Helmet title={title}
+          meta={[
+            {meta}
+          ]}/>
+         <If condition={isFetching}>
+            <Loading />
+          </If>
+          <If condition={!isFetching}>
+            <HeroPanel image={page.getImage()} title={title}>
+               {subTextComponent}
+            </HeroPanel>
+             <div className="container">
+             <div className="side-panel">{sidePanelComponent}</div>
+              <div className="body-panel">{contentComponent}</div>
+            </div>
+          </If>
+         <div className="container ">
+          <div className="column-large">
+            <If condition={ articles.length === 0 }>
+              <h4>No Articles</h4>
+            </If >
+            <ItemsGrid items={articleItems}/>
+            <If condition={ pages > 1 }>
+               <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getArticles} />
+            </If>
+           </div>
+         </div>
+      </div>
+    );
+  }
+}

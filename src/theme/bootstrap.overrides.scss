@@ -734,18 +734,12 @@ input[type="checkbox"],
 }
 
 // Column styles =================================================================
-.body-copy, .column-small, .column-medium, .column-large{
+.body-copy, .column-small, .column-medium, .column-large, .side-panel, .body-panel{
    padding-top: 24px;
 }
-.body-copy {
 
-  @include make-xs-column(12);
-  @include make-xs-column-offset(0);
-  @include make-md-column(8);
-  @include make-md-column-offset(2);
-  @include make-lg-column(9);
-  @include make-lg-column-offset(2);
-  p, dt{
+.body-copy,.body-panel,.side-panel {
+   p, dt{
      font-size:16px;
      line-height: 2em;
      &.footnote {
@@ -755,8 +749,33 @@ input[type="checkbox"],
   img{
     width:100%;
   }
+
 }
 
+.body-copy {
+
+  @include make-xs-column(12);
+  @include make-xs-column-offset(0);
+  @include make-md-column(8);
+  @include make-md-column-offset(2);
+  @include make-lg-column(9);
+  @include make-lg-column-offset(2);
+}
+
+.side-panel {
+
+  @include make-xs-column(12);
+  @include make-md-column(4);
+  @include make-lg-column(3);
+  @include make-lg-column-offset(1);
+}
+
+.body-panel {
+
+  @include make-xs-column(12);
+  @include make-md-column(8);
+  @include make-lg-column(7);
+}
 .column-small {
   @include make-sm-column(6);
   @include make-sm-column-offset(3);

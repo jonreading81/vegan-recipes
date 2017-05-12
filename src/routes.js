@@ -84,8 +84,8 @@ export default (store) => {
         <Route path=":entity/delete" component={DeleteLink}/>
         <Route path="list/:term(/:page)" component={LinkList} />
       </Route>
-      <Route path="jon-reading">
-        <Route path="yoga/:page" component={JonProfile} />
+      <Route path="yoga">
+        <Route path="jon-reading(/:page)" component={JonProfile} />
       </Route>
       <Route path="article">
         <Route path="list/:term(/:page)" component={ArticleList} />

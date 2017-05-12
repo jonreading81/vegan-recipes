@@ -29,5 +29,5 @@ export AddLink from './Links/AddLink/AddLink';
 export UpdateLink from './Links/UpdateLink/UpdateLink';
 export DeleteLink from './Links/DeleteLink/DeleteLink';
 export LinkList from './Links/LinkList/LinkList';
-export JonProfile from './JonProfile/JonProfile';
+export JonProfile from './Profile/JonReading';
 
