@@ -47,8 +47,8 @@ export default class ArticleList extends Component {
                {subTextComponent}
             </HeroPanel>
              <div className="container">
-              <div className="side-panel">{sidePanelComponent}</div>
               <div className="body-panel">{contentComponent}</div>
+              <div className="side-panel">{sidePanelComponent}</div>
             </div>
           </If>
          <div className="container ">

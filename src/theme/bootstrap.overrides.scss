@@ -116,7 +116,7 @@ blockquote{
   &-brand {
     @include heading();
     font-weight: 200;
-    font-size: 22px;
+    font-size: 24px;
     @media(max-width: $screen-xs-max){
       font-size: 22px;
     }
@@ -126,7 +126,7 @@ blockquote{
      font-family: $font-family-sans-serif;
        @include heading();
        font-weight: 500;
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 1px;
   }
 
