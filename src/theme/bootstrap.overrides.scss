@@ -29,13 +29,20 @@ h1{
   font-weight: 100;
 }
 
-p, td{
+p, td, li{
   font-family: $font-family-serif;
 }
 
 
 p.important {
   font-weight: 800;
+}
+
+ul.no-style{
+  padding-left: 1.5em;
+  li{
+    list-style-type:none;
+  }
 }
 
 
@@ -109,13 +116,14 @@ blockquote{
   &-brand {
     @include heading();
     font-weight: 200;
-    font-size: 24px;
+    font-size: 22px;
     @media(max-width: $screen-xs-max){
       font-size: 22px;
     }
   }
 
   .nav li a {
+     font-family: $font-family-sans-serif;
        @include heading();
        font-weight: 500;
       font-size: 13px;
@@ -739,7 +747,7 @@ input[type="checkbox"],
 }
 
 .body-copy,.body-panel,.side-panel {
-   p, dt{
+   p, dt,li{
      font-size:16px;
      line-height: 2em;
      &.footnote {

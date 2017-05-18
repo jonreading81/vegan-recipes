@@ -62,6 +62,7 @@ export default class JonProfile extends Component {
             {name: 'keywords', content: 'yoga, hatha'}
           ]}
           page={page}
+          articlesTitle="Jons Articles"
           articles={articles}
           pages={pages}
           activePage={activePage}

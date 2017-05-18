@@ -13,6 +13,7 @@ export default class ArticleList extends Component {
   static propTypes = {
     meta: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
+    articlesTitle: PropTypes.string.isRequired,
     articles: PropTypes.array.isRequired,
     pages: PropTypes.number.isRequired,
     activePage: PropTypes.number.isRequired,
@@ -25,7 +26,7 @@ export default class ArticleList extends Component {
   }
 
   render() {
-    const {articles, page, isFetching, meta, pages, activePage} = this.props;
+    const {articles, page, isFetching, meta, pages, activePage, articlesTitle} = this.props;
     const title = page.getTitle();
     const articleItems = ArticleHelper.mapToItems(articles);
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
@@ -46,7 +47,7 @@ export default class ArticleList extends Component {
                {subTextComponent}
             </HeroPanel>
              <div className="container">
-             <div className="side-panel">{sidePanelComponent}</div>
+              <div className="side-panel">{sidePanelComponent}</div>
               <div className="body-panel">{contentComponent}</div>
             </div>
           </If>
@@ -54,6 +55,9 @@ export default class ArticleList extends Component {
           <div className="column-large">
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>
+            </If >
+            <If condition={ articles.length !== 0 }>
+              <h3>{articlesTitle}</h3>
             </If >
             <ItemsGrid items={articleItems}/>
             <If condition={ pages > 1 }>
