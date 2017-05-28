@@ -22,7 +22,7 @@ module.exports = Object.assign({
     birdsong: 'audio/birdsong.mp3',
     description: description,
     head: {
-      titleTemplate: 'Call of the Forest - %s',
+      titleTemplate: '%s | Call of the Forest',
       defaultTitle: 'Call of the Forest',
       meta: [
       {name: 'description', content: description},
