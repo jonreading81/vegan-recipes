@@ -7,7 +7,7 @@ const  parseData =  (data) => {
 
 const getPaginatedItemPromise = (_item,query,index) => {
   return new Promise((resolve, reject) => {
-    Model.findOne({_id: query}).sort({_id: index}).exec(function(err, item) {
+    Model.findOne({updatedAt: query}).sort({updatedAt: index}).exec(function(err, item) {
       if (err) reject(err);
       resolve(item);
     });
@@ -49,7 +49,7 @@ module.exports = {
           reject({message: "Item not found"});
         }else{
           const item = items[0];
-          Promise.all([getPaginatedItemPromise(item,{$lt: item._id},-1), getPaginatedItemPromise(item,{$gt: item._id},1)]).then(values => { 
+          Promise.all([getPaginatedItemPromise(item,{$lt: item.updatedAt},-1), getPaginatedItemPromise(item,{$gt: item.updatedAt},1)]).then(values => { 
             resolve({
               prev: values[0],
               item:item,
