@@ -6,18 +6,20 @@ import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import get from 'lodash/get';
+import { browserHistory } from 'react-router';
 
 
 export default class InspirationSlideshow extends Component {
 
   static propTypes = {
-    items: PropTypes.array.isRequired
+    item: PropTypes.object.isRequired,
+    next: PropTypes.object,
+    prev: PropTypes.object,
   };
 
   constructor(...args) {
     super(...args);
     this.state = {
-      itemIndex: 0,
       showQuote: true
     };
     this.bound_keyDown = ::this.keydown;
@@ -41,19 +43,19 @@ export default class InspirationSlideshow extends Component {
   }
 
   showNext() {
-    let index = this.state.itemIndex + 1;
-    if (index === this.props.items.length) {
-      index = 0;
+    const { next} = this.props;
+    if (next) {
+      const nextItem = new ViewHelper(next);
+      browserHistory.push(nextItem.getURL());
     }
-    this.setState({ itemIndex: index});
   }
 
   showPrevious() {
-    let index = this.state.itemIndex - 1;
-    if (index < 0) {
-      index = this.props.items.length - 1;
+    const { prev} = this.props;
+    if (prev) {
+      const prevItem = new ViewHelper(prev);
+      browserHistory.push(prevItem.getURL());
     }
-    this.setState({ itemIndex: index});
   }
 
   toggleQuote(showQuote) {
@@ -61,8 +63,10 @@ export default class InspirationSlideshow extends Component {
   }
 
   render() {
-    const {items} = this.props;
-    const myHelper = new ViewHelper(items[this.state.itemIndex]);
+    const {item, next, prev} = this.props;
+    const slideshowItem = new ViewHelper(item);
+    const nextItem = new ViewHelper(next);
+    const prevItem = new ViewHelper(prev);
     const styles = require('./InspirationSlideshow.scss');
 
     return (
@@ -71,19 +75,27 @@ export default class InspirationSlideshow extends Component {
         <LinkContainer to="/Inspiration/list/all">
           <Breadcrumb.Item>Inspiration</Breadcrumb.Item>
         </LinkContainer>
-        <Breadcrumb.Item active>Slideshow</Breadcrumb.Item>
+        <Breadcrumb.Item active>{slideshowItem.getTitle()}</Breadcrumb.Item>
         </BreadcrumbContainer>
       <div className={styles.navigationWrapper}>
         <div className={styles.navigation}>
           <div className={styles.iconWrapper}>
-            <IconButton onClick={::this.showPrevious} type="arrow-left" styles={{iconWrapper: styles.previous}}/>
-            <IconButton onClick={::this.showNext} type="arrow-right" styles={{iconWrapper: styles.next}}/>
+          <If condition={prev}>
+            <LinkContainer to={prevItem.getURL()}>
+            <IconButton type="arrow-left" styles={{iconWrapper: styles.previous}}/>
+            </LinkContainer>
+          </If>
+          <If condition={next}>
+            <LinkContainer to={nextItem.getURL()}>
+            <IconButton type="arrow-right" styles={{iconWrapper: styles.next}}/>
+            </LinkContainer>
+          </If>
           </div>
         </div>
       </div>
        <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
-        <div key={this.state.itemIndex} >
-          <Inspiration toggleQuote={::this.toggleQuote} title={myHelper.getTitle()} image={myHelper.getImage()} quote={myHelper.getQuote()} author={myHelper.getQuoteAuthor()} showQuote={this.state.showQuote} color={myHelper.getColor()}/>
+        <div key={slideshowItem.getSlug()} >
+          <Inspiration toggleQuote={::this.toggleQuote} title={slideshowItem.getTitle()} image={slideshowItem.getImage()} quote={slideshowItem.getQuote()} author={slideshowItem.getQuoteAuthor()} showQuote={this.state.showQuote} color={slideshowItem.getColor()}/>
         </div>
       </ReactCSSTransitionReplace>
       </div>

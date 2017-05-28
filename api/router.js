@@ -57,6 +57,10 @@ router.route('/inspiration/collection/:inspiration').get( function(req, res) {
       handleAction(inspiration.getCollectionWithItem(req.params.inspiration), res);
 });
 
+router.route('/inspiration/slideshow-item/:inspiration').get( function(req, res) {
+      handleAction(inspiration.getSlideshowItem(req.params.inspiration), res);
+});
+
 router.route('/inspiration/random-collection').get( function(req, res) {
       handleAction(inspiration.getRandomCollection(), res);
 });

@@ -75,9 +75,6 @@ export default class NavBar extends Component {
           </LinkContainer>
 
           <NavDropdown eventKey={4} title="Inspiration" id="inspiration-dropdown">
-            <LinkContainer to="/inspiration/slideshow">
-              <MenuItem onClick={ this.onNavItemClick } eventKey={4.1}>Slideshow</MenuItem>
-            </LinkContainer>
             <LinkContainer to="/inspiration/list/all">
               <MenuItem onClick={ this.onNavItemClick } eventKey={4.2}>List</MenuItem>
             </LinkContainer>

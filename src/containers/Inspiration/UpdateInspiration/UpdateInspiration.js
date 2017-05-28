@@ -15,7 +15,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 @connect(
   (state) => {
     return {
-      entity: state.viewInspiration.entity,
+      entity: state.viewInspiration.entity.item,
       isFetching: state.viewInspiration.isFetching,
       submitting: state.updateInspiration.isFetching,
       isSuccess: state.updateInspiration.isSuccess,

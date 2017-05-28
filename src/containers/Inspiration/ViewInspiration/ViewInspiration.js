@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import {NotFound} from 'containers';
 import {request as requestGet} from 'redux/modules/inspiration/view';
 import { asyncConnect } from 'redux-async-connect';
-import {InspirationDetails, Loading} from 'components';
+import {InspirationSlideshow, Loading} from 'components';
 import ViewHelper from 'helpers/Inspiration';
 
 @connect(
@@ -29,10 +29,10 @@ export default class ViewInspirationContainer extends Component {
 
   render() {
     const {entity, isFetching} = this.props;
-    const myHelper = new ViewHelper(entity);
     let content;
 
     if (entity) {
+      const myHelper = new ViewHelper(entity.item);
       content = (
         <div>
           <Helmet title = {myHelper.getTitle()}/>
@@ -40,7 +40,7 @@ export default class ViewInspirationContainer extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <InspirationDetails entity={entity} />
+            <InspirationSlideshow item={entity.item} prev={entity.prev} next={entity.next} />
           </If>
         </div>
       );

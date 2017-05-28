@@ -80,8 +80,10 @@ export default (store) => {
       </Route>
        <Route path="link">
         <Route onEnter={requireMemberOfAnyGroup.bind(null, store)} path="add" component={AddLink}/>
-        <Route path=":entity/update" component={UpdateLink}/>
-        <Route path=":entity/delete" component={DeleteLink}/>
+        <Route onEnter={requireMemberOfAdminGroup.bind(null, store)}>
+          <Route path=":entity/update" component={UpdateLink}/>
+          <Route path=":entity/delete" component={DeleteLink}/>
+        </Route>
         <Route path="list/:term(/:page)" component={LinkList} />
       </Route>
       <Route path="yoga">
