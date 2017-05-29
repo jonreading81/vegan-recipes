@@ -16,12 +16,15 @@ import customScroll from 'utils/customScroll';
 import getRoutes from './routes';
 import ReactGA from 'react-ga';
 import config from './config';
+import Perf from 'react-addons-perf';
 
 const client = new ApiClient();
 const _browserHistory = useScroll(browserHistory, customScroll);
 const dest = document.getElementById('content');
 const store = createStore(_browserHistory, client, window.__data);
 const history = syncHistoryWithStore(_browserHistory, store);
+
+window.Perf = Perf;
 
 function initSocket() {
   const socket = io('', {path: '/ws'});
@@ -66,6 +69,7 @@ if (process.env.NODE_ENV !== 'production') {
     console.error('Server-side React render was discarded. Make sure that your initial render does not contain any client-side code.');
   }
 }
+Perf.printWasted();
 
 if (__DEVTOOLS__ && !window.devToolsExtension) {
   const DevTools = require('./containers/DevTools/DevTools');
