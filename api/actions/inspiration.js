@@ -51,9 +51,9 @@ module.exports = {
           const item = items[0];
           Promise.all([getPaginatedItemPromise(item,{$lt: item.updatedAt},-1), getPaginatedItemPromise(item,{$gt: item.updatedAt},1)]).then(values => { 
             resolve({
-              prev: values[0],
+              prev: values[1],
               item:item,
-              next: values[1]
+              next: values[0]
             });
           });
          
