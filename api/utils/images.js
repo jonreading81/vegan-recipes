@@ -68,8 +68,11 @@ export const uploadImage = (image, name) => {
       const destination = imagesPath + filename;
       copyFile(path, destination)
         .then(() =>  deleteFile(path))
-        .then(() => convertImage(destination, filename))
-        .then(resolve, reject);
+        .then(() => {
+          console.log('resolve');
+          convertImage(destination, filename);
+          resolve(filename);
+        });
       
     }
     else{

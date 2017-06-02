@@ -6,13 +6,14 @@ import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import get from 'lodash/get';
+// import isundefined from 'lodash/isUndefined';
 import { browserHistory } from 'react-router';
 
 
 export default class InspirationSlideshow extends Component {
 
   static propTypes = {
-    item: PropTypes.object.isRequired,
+    item: PropTypes.object,
     next: PropTypes.object,
     prev: PropTypes.object,
   };
@@ -26,16 +27,23 @@ export default class InspirationSlideshow extends Component {
   }
 
   componentDidMount() {
-    console.log(this);
-    console.log('addEventListener');
     window.addEventListener('keydown', this.bound_keyDown, false);
   }
 
-  componentWillUnmount() {
-    console.log('removeEventListener');
-    window.removeEventListener('keydown', this.bound_keyDown, false);
+  shouldComponentUpdate(nextProps) {
+    const NEXT_ITEM = new ViewHelper(nextProps.item);
+    const CURRENT_ITEM = new ViewHelper(this.props.item);
+
+    if (get(nextProps, 'item') &&
+      NEXT_ITEM.getTitle() !== CURRENT_ITEM.getTitle() ) {
+      return true;
+    }
+    return false;
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.bound_keyDown, false);
+  }
   keydown(event) {
     const key = get(event, 'key');
     if (key === 'ArrowRight') this.showNext();
