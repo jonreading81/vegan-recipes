@@ -8,29 +8,27 @@ import ErrorBlock from 'components/Form/ErrorBlock';
 import validation from './validation';
 import {LoadingButton} from 'components';
 const validate = values => validation(values);
-import {ControlLabel, Button, ButtonToolbar, FormControl} from 'react-bootstrap';
+import {ControlLabel, ButtonToolbar, FormControl, Checkbox} from 'react-bootstrap';
 import {submit} from 'redux/modules/survey';
 import { bindActionCreators } from 'redux';
 import get from 'lodash/get';
 
 const fields = [
-  'questionA',
-  'questionB',
-  'questionC',
-  'questionD',
-  'questionE',
-  'questionF',
-  'questionG',
-  'questionH',
-  'questionI',
-  'questionJ',
-  'questionK',
-  'questionL',
-  'questionM',
-  'questionN',
-  'questionO',
-  'questionP'
+  'question1',
+  'question2',
+  'question3',
+  'question4',
+  'question5',
+  'question6',
+  'question7',
+  'question8',
+  'question9',
+  'question10',
+  'question11',
+  'question12',
+  'question13'
 ];
+
 @connect(
   (state) => {
     return {
@@ -58,7 +56,7 @@ class Survey extends Component {
 
   render() {
     const {
-fields: {questionA, questionB, questionC, questionD, questionE, questionF, questionG, questionH, questionI, questionJ, questionK, questionL, questionM, questionN, questionO, questionP},
+fields: {question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13},
       handleSubmit,
       onSubmit,
       submitting,
@@ -78,7 +76,6 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
       }
     );
     const styles = require('./Survey.scss');
-
     return (
               <div>
               <Helmet title="Survey"/>
@@ -90,151 +87,122 @@ fields: {questionA, questionB, questionC, questionD, questionE, questionF, quest
               <p>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
               <form onSubmit={submitFn}>
               <fieldset>
-               <legend>First, some questions about you</legend>
-                <FormGroup className={styles.formGroup} controlId="questionA" type="text" field={questionA}>
+               <legend></legend>
+               <FormGroup className={styles.formGroup} controlId="question1" type="text" field={question1}>
+                   <ControlLabel>What is your sex?</ControlLabel>
+                    <RadioGroup {...question1}>
+                        <input type="radio" id="question1" name="question1">Female</input>
+                        <input type="radio" name="question1">Male</input>
+                    </RadioGroup>
+                </FormGroup>
+                <FormGroup className={styles.formGroup} controlId="question2" type="text" field={question2}>
                    <ControlLabel>What is your age group?</ControlLabel>
-                    <RadioGroup {...questionA}>
-                        <Button id="questionA">1 - 20</Button>
-                        <Button>21 - 35</Button>
-                        <Button>36 - 50</Button>
-                        <Button>51 and above</Button>
+                    <RadioGroup {...question2}>
+                        <input type="radio" id="question2" name="question2">18 - 34</input>
+                        <input type="radio" name="question2">35 - 44</input>
+                        <input type="radio" name="question2">45 - 54</input>
+                        <input type="radio" name="question2">55 and above</input>
                     </RadioGroup>
                 </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionB" type="text" field={questionB}>
-                   <ControlLabel>Which county in the UK do you live in?</ControlLabel>
-                   <FormControl id="questionB" type="text" placeholder="For example, London" {...questionB}/>
+                <FormGroup className={styles.formGroup} controlId="question3" type="text" field={question3}>
+                   <ControlLabel>Where do you live?</ControlLabel>
+                    <FormControl componentClass="textarea" placeholder="I live in ..." {...question3}/>
+                </FormGroup>
+                <FormGroup className={styles.formGroup} controlId="question4" type="text" field={question4}>
+                   <ControlLabel>What is your occupation?</ControlLabel>
+                   <FormControl componentClass="textarea" placeholder="My occupation is ..." {...question4}/>
+                </FormGroup>
+            	<FormGroup className={styles.formGroup} controlId="question5" type="text" field={question5}>
+                   <ControlLabel>Do you have any dietary preferences or allergies?</ControlLabel>
+                    <RadioGroup {...question5}>
+                        <Checkbox id="question5">Vegetarian</Checkbox>
+                        <Checkbox>Vegan</Checkbox>
+                        <Checkbox>Gluten free</Checkbox>
+                        <Checkbox>Lactose intolerant</Checkbox>
+                        <Checkbox>Soy allergy</Checkbox>
+                        <Checkbox>Nut allergy</Checkbox>
+                        <Checkbox>Other, please detail below</Checkbox>
+                        <FormControl componentClass="textarea" placeholder="Other dietary preferences or allergies" />
+                    </RadioGroup>
+                </FormGroup>
+                <FormGroup className={styles.formGroup} controlId="question6" type="text" field={question6}>
+                  <ControlLabel>Generally, do you do your own food shopping?</ControlLabel>
+                    <RadioGroup {...question6}>
+                        <input type="radio" id="question6" name="question6">Yes</input>
+                        <input type="radio" name="question6">No</input>
+                        <input type="radio" name="question6">It is split between my partner and I</input>
+                    </RadioGroup>
+                </FormGroup>
+                <FormGroup className={styles.formGroup} controlId="question7" type="text" field={question7}>
+                   <ControlLabel>Generally do you buy butter or margarine?</ControlLabel>
+                   <RadioGroup {...question7}>
+                        <input type="radio" id="question7" name="question7">Butter</input>
+                        <input type="radio" name="question7">Margarine</input>
+                        <input type="radio" name="question7">Both</input>
+                        <input type="radio" name="question7">None</input>
+                    </RadioGroup>
+                </FormGroup>
+                <FormGroup className={styles.formGroup} controlId="question8" type="text" field={question8}>
+                   <ControlLabel>Do you use plant oil as a replacement for butter or margarine?</ControlLabel>
+                   <RadioGroup {...question8}>
+                        <input type="radio" id="question8" name="question8">Always</input>
+                        <input type="radio" name="question8">Sometimes</input>
+                        <input type="radio" name="question8">Never</input>
+                    </RadioGroup>
+                </FormGroup>
+            </fieldset>
+            <fieldset>
+                <legend>What do you generally prefer for?</legend>
+                <FormGroup className={styles.formGroup} controlId="question9" type="text" field={question9}>
+                   <ControlLabel>Spreading on bread or toast</ControlLabel>
+                   <RadioGroup {...question9}>
+                        <Checkbox id="question9">I dont spread</Checkbox>
+                        <Checkbox>Butter</Checkbox>
+                        <Checkbox>Margarine</Checkbox>
+                        <Checkbox>Oil, please state your preference</Checkbox>
+                        <FormControl componentClass="textarea" placeholder="The oil I prefer is ..." />
+                    </RadioGroup>
+                </FormGroup>
+                <FormGroup className={styles.formGroup} controlId="question10" type="text" field={question10}>
+                   <ControlLabel>Cooking</ControlLabel>
+                   <RadioGroup {...question10}>
+                        <Checkbox id="question10">I dont cook</Checkbox>
+                        <Checkbox>Butter</Checkbox>
+                        <Checkbox>Margarine</Checkbox>
+                        <Checkbox>Oil, please state your preference</Checkbox>
+                        <FormControl componentClass="textarea" placeholder="The oil I prefer is ..." />
+                    </RadioGroup>
+                </FormGroup>
+                <FormGroup className={styles.formGroup} controlId="question11" type="text" field={question11}>
+                   <ControlLabel>Melting on vegetables</ControlLabel>
+                   <RadioGroup {...question11}>
+                        <Checkbox id="question11">I dont melt on veges</Checkbox>
+                        <Checkbox>Butter</Checkbox>
+                        <Checkbox>Margarine</Checkbox>
+                        <Checkbox>Oil, please state your preference</Checkbox>
+                        <FormControl componentClass="textarea" placeholder="The oil I prefer is ..." />
+                    </RadioGroup>
+                </FormGroup>
+                <FormGroup className={styles.formGroup} controlId="question12" type="text" field={question12}>
+                   <ControlLabel>Baking</ControlLabel>
+                   <RadioGroup {...question12}>
+                        <Checkbox id="question12">I dont bake</Checkbox>
+                        <Checkbox>Butter</Checkbox>
+                        <Checkbox>Margarine</Checkbox>
+                        <Checkbox>Oil, please state your preference</Checkbox>
+                        <FormControl componentClass="textarea" placeholder="The oil I prefer is ..." />
+                    </RadioGroup>
                 </FormGroup>
                 </fieldset>
                 <fieldset>
-                <legend>Some questions about how you use butter or margarine at home</legend>
-                <FormGroup className={styles.formGroup} controlId="questionC" type="text" field={questionC}>
-                   <ControlLabel>Generally, do you use butter or margarine at home?</ControlLabel>
-                    <RadioGroup {...questionC}>
-                        <Button id="questionC">Butter</Button>
-                        <Button>Margarine</Button>
-                        <Button>I use both</Button>
-                        <Button>None of the above</Button>
-                    </RadioGroup>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionD" type="text" field={questionD}>
-                  <ControlLabel>Which do you prefer, butter or margarine?</ControlLabel>
-                    <RadioGroup {...questionD}>
-                        <Button id="questionD">Butter</Button>
-                        <Button>Margarine</Button>
-                        <Button>It depends</Button>
-                        <Button>I have no preference</Button>
-                    </RadioGroup>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionE" type="text" field={questionE}>
-                   <ControlLabel>What brands of butter or margarine do you usually buy?</ControlLabel>
-                   <FormControl id="questionE" componentClass="textarea" placeholder="For example, Lurpak or Flora" {...questionE}/>
-                </FormGroup>
-                </fieldset>
-                <fieldset>
-                <legend>Some questions about Butta</legend>
-                <FormGroup className={styles.formGroup} controlId="questionF" type="text" field={questionF}>
-                  <ControlLabel>The ingredients of Butta are:<br />
-                  &nbsp;&nbsp;&nbsp;-&nbsp;Organic coconut oil<br />
-                  &nbsp;&nbsp;&nbsp;-&nbsp;Organic rapeseed oil<br />
-                  &nbsp;&nbsp;&nbsp;-&nbsp;Organic deodarised cocoa butter<br />
-                  &nbsp;&nbsp;&nbsp;-&nbsp;Organic soy milk<br />
-                  &nbsp;&nbsp;&nbsp;-&nbsp;Liquid soya lecithin<br />
-                  &nbsp;&nbsp;&nbsp;-&nbsp;Plant based lactic acid<br />
-                  &nbsp;&nbsp;&nbsp;-&nbsp;Sea salt<br />
-                  Would you be uncomfortable purchasing a butter replacement  with any of these ingredients?</ControlLabel>
-                    <RadioGroup {...questionF}>
-                        <Button id="questionF">Yes</Button>
-                        <Button>No</Button>
-                        <Button>I don't know</Button>
-                    </RadioGroup>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionG" type="text" field={questionG}>
-                   <ControlLabel>If you answered yes to the question above, please answer the following question, otherwise skip this one. <br />
-                   Please list which ingredients you are uncomfortable with and why.</ControlLabel>
-                   <FormControl componentClass="textarea" placeholder="For example, I am allergic to soya" {...questionG}/>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionH" type="text" field={questionH}>
-                  <ControlLabel>Do you think there are any health benefits of using plant Butta or margarine?</ControlLabel>
-                    <RadioGroup {...questionH}>
-                        <Button id="questionH">Yes</Button>
-                        <Button>No</Button>
-                        <Button>I don't know</Button>
-                    </RadioGroup>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionI" type="text" field={questionI}>
-                  <ControlLabel>Do you think there are any environmental benefits of using plant Butta or margarine?</ControlLabel>
-                    <RadioGroup {...questionI}>
-                        <Button id="questionI">Yes</Button>
-                        <Button>No</Button>
-                        <Button>I don't know</Button>
-                    </RadioGroup>
-                </FormGroup>
-                </fieldset>
-                <fieldset>
-                <legend>Some questions about your experience of Butta</legend>
-                <FormGroup className={styles.formGroup} controlId="questionJ" type="text" field={questionJ}>
-                  <ControlLabel>Did you manage to get your Butta home without it spoiling?</ControlLabel>
-                    <RadioGroup {...questionJ}>
-                        <Button id="questionJ">Yes</Button>
-                        <Button>No</Button>
-                    </RadioGroup>
-                </FormGroup>
-                <p></p>
-                <FormGroup className={styles.formGroup} controlId="questionK" type="text" field={questionK}>
-                  <ControlLabel>Assuming that you did manage to get the sample home safely, please answer the following questions.  Otherwise, just submit the form using the button below.<br />
-                  How did you taste test your sample of Butta?</ControlLabel>
-                  <FormControl componentClass="textarea" placeholder="For example, on toast" {...questionK}/>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionL" type="text" field={questionL}>
-                  <ControlLabel>Rate your experience of using Butta as a substitute for what you traditionally use.</ControlLabel>
-                  <p>Where 1 is 'Very good' and 5 is 'Very bad'</p>
-                    <RadioGroup {...questionL} >
-                        <Button>1</Button>
-                        <Button>2</Button>
-                        <Button>3</Button>
-                        <Button>4</Button>
-                        <Button>5</Button>
-                        <Button>I dont know</Button>
-                    </RadioGroup>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionM" type="text" field={questionM}>
-                  <ControlLabel>Overall how much do you think Butta looks and feels like butter?</ControlLabel>
-                  <p>Where 1 is 'It is extremely like butter' and 5 is 'It is not at all like butter'</p>
-                    <RadioGroup {...questionM} >
-                        <Button>1</Button>
-                        <Button>2</Button>
-                        <Button>3</Button>
-                        <Button>4</Button>
-                        <Button>5</Button>
-                        <Button>I dont know</Button>
-                    </RadioGroup>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionN" type="text" field={questionN}>
-                  <ControlLabel>Overall how would you rate the taste of Butta compared to butter?</ControlLabel>
-                  <p>Where 1 is 'The taste is better' and 5 is 'The taste is worse'</p>
-                    <RadioGroup {...questionN} >
-                        <Button>1</Button>
-                        <Button>2</Button>
-                        <Button>3</Button>
-                        <Button>4</Button>
-                        <Button>5</Button>
-                        <Button>I dont know</Button>
-                    </RadioGroup>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionO" type="text" field={questionO}>
-                  <ControlLabel>Is there anything about the taste of Butta that you do not like?</ControlLabel>
-                  <FormControl componentClass="textarea" placeholder="For example, it was too salty" {...questionO}/>
-                </FormGroup>
-                <FormGroup className={styles.formGroup} controlId="questionP" type="text" field={questionP}>
-                  <ControlLabel>Rate the overall quality of Butta.</ControlLabel>
-                  <p>Where 1 is 'Very good' and 5 is 'Very bad'</p>
-                    <RadioGroup {...questionP} >
-                        <Button>1</Button>
-                        <Button>2</Button>
-                        <Button>3</Button>
-                        <Button>4</Button>
-                        <Button>5</Button>
-                        <Button>I dont know</Button>
+                <legend>Please answer true, false or I dont know to the following questions</legend>
+                <FormGroup className={styles.formGroup} controlId="question13" type="text" field={question13}>
+                  <ControlLabel>Butter is generally higher in fat than margarine?</ControlLabel>
+                  <RadioGroup {...question13}>
+                   		<input type="radio" id="question13" name="question13">True</input>
+                        <input type="radio" name="question13">False</input>
+                        <input type="radio" name="question13">Niether</input>
+                        <input type="radio" name="question13">I dont know</input>
                     </RadioGroup>
                 </FormGroup>
                 </fieldset>
