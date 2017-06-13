@@ -21,6 +21,7 @@ export PropExists from './conditions/PropExists';
 export PropNotExists from './conditions/PropNotExists';
 export MultiValueField from './Form/MultiValueField/MultiValueField';
 export EmailInput from './Form/EmailInput';
+export EmailInput from './Form/OptionGroup';
 export UserInput from './Form/UserInput';
 export PasswordInput from './Form/PasswordInput';
 export MultiValueFormControlWrapper from './Form/MultiValueFormControlWrapper';
