@@ -17,24 +17,7 @@ export default class RadioGroup extends Component {
 
 
   updateValue(val) {
-    console.log(val);
-    const values = [];
-    if (this.props.multi) {
-      let key;
-      let ref;
-      for (key in this.refs) {
-        if (this.refs.hasOwnProperty(key)) {
-          ref = this.refs[key].props;
-          if ((ref.checked && val !== ref.children) || (!ref.checked && val === ref.children)) {
-            values.push(ref.children);
-          }
-        }
-      }
-    } else {
-      values.push(val);
-    }
-
-    this.props.onChange(values.join(DELIMETER));
+    this.props.onChange(val);
   }
 
   renderChildren() {
@@ -53,7 +36,7 @@ export default class RadioGroup extends Component {
   }
   render() {
     const { name, value, otherOption} = this.props;
-    console.log('other', otherOption);
+    // console.log('other', otherOption);
     return (
       <div>
         <ButtonGroup>{this.renderChildren()}</ButtonGroup>

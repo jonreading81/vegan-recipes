@@ -11,7 +11,7 @@ module.exports = function (config) {
         },
         reporters: [ 'mocha' ],
         // webpack configuration
-        webpack: require("./webpack/dev.config.js"),
+        webpack: require("./webpack/test.config.js"),
         webpackMiddleware: {
             //stats: "errors-only"
         },
