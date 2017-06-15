@@ -32,17 +32,15 @@ describe('<FacadeOptionItem/>', function () {
  
 
   it('should pass id and onChange and value to CheckBoxOptionItem', function () {
-    const id = 'test-id';
     const value = 'value';
     const onChange = () => {};
     const wrapper = shallow(
-      <FacadeOptionItem id={id} onChange={onChange} value={value}>
+      <FacadeOptionItem onChange={onChange} value={value}>
         <Checkbox/>
       </FacadeOptionItem>
     );
     const props = wrapper.find(CheckBoxOptionItem).last().props();
 
-    expect(props.id).to.equal(id);
     expect(props.value).to.equal(value);
     expect(props.onChange).to.equal(onChange);
   });
@@ -58,17 +56,15 @@ describe('<FacadeOptionItem/>', function () {
   });
 
   it('should pass id and onChange and value to RadioOptionItem', function () {
-    const id = 'test-id';
     const value = 'value';
     const onChange = () => {};
     const wrapper = shallow(
-      <FacadeOptionItem id={id} onChange={onChange} value={value}>
+      <FacadeOptionItem  onChange={onChange} value={value}>
         <input type="radio"/>
       </FacadeOptionItem>
     );
     const props = wrapper.find(RadioOptionItem).last().props();
 
-    expect(props.id).to.equal(id);
     expect(props.value).to.equal(value);
     expect(props.onChange).to.equal(onChange);
   });

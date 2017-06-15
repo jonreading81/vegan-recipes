@@ -19,73 +19,56 @@ describe('<OptionGroup/>', function () {
     expect(wrapper.find(OptionItemFacade)).to.have.length(3);
   });
 
-  it('should set id on OptionItemFacade based on child id', function () {
-    const id = "test";
+  it('should pass the value to OptionItemFacade', function () {
+    const value = 'value';
     const wrapper = shallow(
-      <OptionGroup>
-        <Checkbox id={id}/>
+      <OptionGroup value={value}>
+        <Checkbox/>
+        <Checkbox/>
+        <Checkbox/>
       </OptionGroup>
     );
 
-    expect(wrapper.find(OptionItemFacade).first().props().id).equal(id);
+    expect(wrapper.find(OptionItemFacade).last().props().value).to.equal(value);
   });
 
-  it('should set value on optionItem', function () {
-    const wrapper = shallow(
-      <OptionGroup value ='test:val'>
-        <Checkbox id='test' />
-      </OptionGroup>
-    );
 
-    expect(wrapper.find(OptionItemFacade).first().props().value).equal('val');
-  });
-
-  it('should only allow single value within group by default', function () {
+  it('should submuit single value within group by default using valueStringHelper', function () {
     const onChange = sinon.spy();
+    const getItemValueString = sinon.stub();
+    const id = "id";
+    const itemValue = "value";
+    const newValue = 'new value';
+
+    getItemValueString.returns(newValue);
     const wrapper = shallow(
-      <OptionGroup value ='prop1:val' onChange={onChange} >
-        <Checkbox id='test' />
+      <OptionGroup valueStringHelper={{getItemValueString:getItemValueString}}onChange={onChange} >
+        <Checkbox/>
       </OptionGroup>
     );
 
-    wrapper.instance().onItemChanged('test', true);
-    expect(onChange.args[0][0]).to.equal('test');
+    wrapper.instance().onItemChanged(id, itemValue);
+    expect(getItemValueString.calledWith(id, itemValue)).to.be.true;
+    expect(onChange.args[0][0]).to.equal(newValue);
   });
 
-  it('should remove item from value if already set', function () {
+   it('should allow multiple values within group if multiValue property set using valueStringHelper', function () {
     const onChange = sinon.spy();
+    const getMultiValueString = sinon.stub();
+    const id = "id";
+    const value = "value";
+    const itemValue = "value";
+    const newValue = 'new value';
+    getMultiValueString.returns(newValue);
     const wrapper = shallow(
-      <OptionGroup value ='test' onChange={onChange} >
-        <Checkbox id='test' />
+      <OptionGroup multiValue valueStringHelper={{getMultiValueString:getMultiValueString}} value={value} onChange={onChange} >
+        <Checkbox/>
       </OptionGroup>
     );
 
-    wrapper.instance().onItemChanged('test', false);
-    expect(onChange.args[0][0]).to.equal('');
-  });
-
-   it('should update item value if already set and value specified', function () {
-    const onChange = sinon.spy();
-    const wrapper = shallow(
-      <OptionGroup value ='test' onChange={onChange} >
-        <Checkbox id='test' />
-      </OptionGroup>
-    );
-
-    wrapper.instance().onItemChanged('test', 'val1');
-    expect(onChange.args[0][0]).to.equal('test:val1');
-  });
-
-  it('should allow multiple values within group if multiValue property set', function () {
-    const onChange = sinon.spy();
-    const wrapper = shallow(
-      <OptionGroup multiValue value ='prop1:val' onChange={onChange} >
-        <Checkbox id='test' />
-      </OptionGroup>
-    );
-
-    wrapper.instance().onItemChanged('test', true);
-    expect(onChange.args[0][0]).to.equal('prop1:val/test');
+    wrapper.instance().onItemChanged(id, itemValue);
+    expect(getMultiValueString.calledWith(value, id, itemValue)).to.be.true;
+    expect(onChange.args[0][0]).to.equal(newValue);
   });
 
 });

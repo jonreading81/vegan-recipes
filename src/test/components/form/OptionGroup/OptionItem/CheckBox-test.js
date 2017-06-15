@@ -5,34 +5,38 @@ import {Checkbox} from 'react-bootstrap';
 import CheckBoxOptionItem from 'components/Form/OptionGroup/OptionItem/CheckBox';
 import {FormControl} from 'react-bootstrap';
 
-const getWrapper = (id, onChange, checked) => {
+const getWrapper = (id, onChange, value) => {
+  const getValueFromValueString = sinon.stub();
+  getValueFromValueString.returns(value);
   return shallow(
-      <CheckBoxOptionItem id={id} onChange={onChange} value={checked}>
-        <Checkbox />
+      <CheckBoxOptionItem onChange={onChange} value={value} valueStringHelper={{getValueFromValueString:getValueFromValueString}}>
+        <Checkbox>{id}</Checkbox>
       </CheckBoxOptionItem>
     );
 }
 
-describe('<CheckBoxOptionItem/>', function () {
-
-  it('should set checkbox to checked if value set to true', function () {
-    const wrapper = getWrapper('', null, true);
-    const props = wrapper.find(Checkbox).last().props();
-    expect(props.checked).to.equal(true);
-  });
-
-  it('should trigger a change event with the id and value of the child checkbox when changed', function () {
+describe.only('<CheckBoxOptionItem/>', function () {
+  
+  it('should determine id and value using checkbox content', function () {
     const onChange = sinon.spy();
     const id = 'test-id';
     const wrapper = getWrapper(id, onChange, false);
 
     wrapper.find(Checkbox).last().simulate('change');
-    expect(onChange.calledWith(id, true)).to.be.true;
+    expect(onChange.calledWith(id,true)).to.be.true;
   });
+
+
+  it('should set checkbox to checked if value set to true', function () {
+    const wrapper = getWrapper('test', null, true);
+    const props = wrapper.find(Checkbox).last().props();
+    expect(props.checked).to.equal(true);
+  });
+
 
   it('should trigger a change event passing false if checkbox already checked', function () {
     const onChange = sinon.spy();
-    const id = 'test-id';
+    const id = 'test';
     const wrapper = getWrapper(id, onChange, true);
 
     wrapper.find(Checkbox).last().simulate('change');
@@ -51,13 +55,12 @@ describe('<CheckBoxOptionItem/>', function () {
     });
 
     it('should set the value of the input', function () {
-      const value = 'value';
       const wrapper = shallow(
-        <CheckBoxOptionItem value={value}>
-          <Checkbox explain/>
+        <CheckBoxOptionItem value={'test:val'}>
+          <Checkbox explain>test</Checkbox>
         </CheckBoxOptionItem>
       );
-      expect(wrapper.find(FormControl).props().value).to.equal(value);
+      expect(wrapper.find(FormControl).props().value).to.equal('val');
     });
 
     it('should set the placeholder of the FormControl using explain property', function () {
@@ -90,8 +93,8 @@ describe('<CheckBoxOptionItem/>', function () {
 
     it('should set the value of FormControl to "" if value true', function () {
       const wrapper = shallow(
-        <CheckBoxOptionItem  value={true} >
-          <Checkbox explain/>
+        <CheckBoxOptionItem  value="test" >
+          <Checkbox explain>test</Checkbox>
         </CheckBoxOptionItem>
       );
       expect(wrapper.find(FormControl).props().value).to.equal('');
@@ -101,8 +104,8 @@ describe('<CheckBoxOptionItem/>', function () {
       const onChange = sinon.spy();
       const id = 'test-id';
       const wrapper = shallow(
-        <CheckBoxOptionItem id={id} onChange={onChange}>
-          <Checkbox explain/>
+        <CheckBoxOptionItem onChange={onChange}>
+          <Checkbox explain>{id}</Checkbox>
         </CheckBoxOptionItem>
       );
       wrapper.find(FormControl).last().simulate('change',{target:{value:'text'}});

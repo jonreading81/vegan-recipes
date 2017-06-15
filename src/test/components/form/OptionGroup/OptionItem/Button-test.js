@@ -4,15 +4,27 @@ import {expect} from 'chai';
 import {Button} from 'react-bootstrap';
 import ButtonOptionItem from 'components/Form/OptionGroup/OptionItem/Button';
 
-const getWrapper = (id, onChange, checked) => {
+const getWrapper = (id, onChange, value) => {
+  const getValueFromValueString = sinon.stub();
+  getValueFromValueString.returns(value);
   return shallow(
-      <ButtonOptionItem id={id} onChange={onChange} value={checked}>
-        <Button />
+      <ButtonOptionItem 
+        valueStringHelper={{getValueFromValueString:getValueFromValueString}}
+        onChange={onChange}>
+        <Button>{id}</Button>
       </ButtonOptionItem>
     );
 }
 
 describe('<ButtonOptionItem/>', function () {
+
+  it('should determine id and value using button content', function () {
+    const onChange = sinon.spy();
+    const id = 'test-id';
+    const wrapper = getWrapper(id, onChange, false);
+    wrapper.find(Button).last().simulate('click');
+    expect(onChange.calledWith(id,true)).to.be.true;
+  });
 
   it('should set active  if value set to true', function () {
     const wrapper = getWrapper('', null, true);
