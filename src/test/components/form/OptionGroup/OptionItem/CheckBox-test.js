@@ -15,7 +15,7 @@ const getWrapper = (id, onChange, value) => {
     );
 }
 
-describe.only('<CheckBoxOptionItem/>', function () {
+describe('<CheckBoxOptionItem/>', function () {
   
   it('should determine id and value using checkbox content', function () {
     const onChange = sinon.spy();
