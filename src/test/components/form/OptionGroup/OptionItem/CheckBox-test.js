@@ -5,11 +5,16 @@ import {Checkbox} from 'react-bootstrap';
 import CheckBoxOptionItem from 'components/Form/OptionGroup/OptionItem/CheckBox';
 import {FormControl} from 'react-bootstrap';
 
-const getWrapper = (id, onChange, value) => {
+
+const getMockStringHelper = (value) => {
   const getValueFromValueString = sinon.stub();
   getValueFromValueString.returns(value);
+  return {getValueFromValueString:getValueFromValueString};
+}
+
+const getWrapper = (id, onChange, value) => {
   return shallow(
-      <CheckBoxOptionItem onChange={onChange} value={value} valueStringHelper={{getValueFromValueString:getValueFromValueString}}>
+      <CheckBoxOptionItem onChange={onChange} value={value} valueStringHelper={getMockStringHelper(value)}>
         <Checkbox>{id}</Checkbox>
       </CheckBoxOptionItem>
     );
@@ -54,10 +59,20 @@ describe('<CheckBoxOptionItem/>', function () {
       expect(wrapper.find(FormControl)).to.have.length(1);
     });
 
+
+    it('should set hidden className of form control if value false', function () {
+      const wrapper = shallow(
+        <CheckBoxOptionItem valueStringHelper={getMockStringHelper(false)}>
+          <Checkbox explain></Checkbox>
+        </CheckBoxOptionItem>
+      );
+      expect(wrapper.find(FormControl).props().className).to.equal('hidden');
+    });
+
     it('should set the value of the input', function () {
       const wrapper = shallow(
-        <CheckBoxOptionItem value={'test:val'}>
-          <Checkbox explain>test</Checkbox>
+        <CheckBoxOptionItem valueStringHelper={getMockStringHelper('val')}>
+          <Checkbox explain></Checkbox>
         </CheckBoxOptionItem>
       );
       expect(wrapper.find(FormControl).props().value).to.equal('val');
@@ -82,18 +97,9 @@ describe('<CheckBoxOptionItem/>', function () {
       expect(wrapper.find(FormControl).props().placeholder).to.equal('Tell me more');
     });
 
-    it('should set the value of FormControl to "" if value undefiend', function () {
-      const wrapper = shallow(
-        <CheckBoxOptionItem  >
-          <Checkbox explain/>
-        </CheckBoxOptionItem>
-      );
-      expect(wrapper.find(FormControl).props().value).to.equal('');
-    });
-
     it('should set the value of FormControl to "" if value true', function () {
       const wrapper = shallow(
-        <CheckBoxOptionItem  value="test" >
+        <CheckBoxOptionItem  valueStringHelper={getMockStringHelper(true)} >
           <Checkbox explain>test</Checkbox>
         </CheckBoxOptionItem>
       );

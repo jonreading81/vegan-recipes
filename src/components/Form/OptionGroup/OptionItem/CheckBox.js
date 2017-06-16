@@ -13,6 +13,7 @@ class CheckBoxOptionItem extends OptionItem {
         onChange: () => onChange(id, !itemValue),
         checked: itemValue
       });
+      const className = (itemValue === false) ? 'hidden' : '';
       const explainValue = (itemValue === false || itemValue === true ) ? '' : itemValue;
       const placeholder = (child.props.explain === true ) ? 'Tell me more' : child.props.explain;
 
@@ -21,6 +22,7 @@ class CheckBoxOptionItem extends OptionItem {
           {newChild}
           <If condition={child.props.explain}>
              <FormControl
+                className={className}
                 componentClass="textarea"
                 value={explainValue}
                 placeholder={placeholder}
