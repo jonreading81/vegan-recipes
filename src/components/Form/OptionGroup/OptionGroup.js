@@ -15,10 +15,10 @@ class OptionGroup extends Component {
   static defaultProps = {
     value: '',
     multiValue: false,
-    valueStringHelper : Object.create(valueStringHelper,
+    valueStringHelper: Object.create(valueStringHelper,
       {
         delimiterA: {value: '/'},
-        delimiterB: {value:  ':'}
+        delimiterB: {value: ':'}
       }
     )
   }

@@ -6,18 +6,17 @@ const valueStingHelper = {
   delimiterB: '',
 
   getItemValueString: function(id, value) {
-
-    if(value === true) {
-      return id;
+    let result;
+    if (value === true) {
+      result = id;
     }else if (!value) {
-      return '';
+      result = '';
     }else {
-      return [id, value].join(this.delimiterB);
+      result = [id, value].join(this.delimiterB);
     }
+    return result;
   },
-
-  getMultiValueString: function(valuesStr, id, value){
-
+  getMultiValueString: function(valuesStr, id, value) {
     const objValues = this.getValuesObjectFromValueString(valuesStr);
     const arrValues = [];
 
@@ -33,9 +32,7 @@ const valueStingHelper = {
       }
     }
     return arrValues.join(this.delimiterA);
-
   },
-
   getValuesObjectFromValueString: function(valuesStr) {
     const objValues = {};
     valuesStr.split(this.delimiterA).forEach((item) => {
@@ -46,17 +43,13 @@ const valueStingHelper = {
     });
     return objValues;
   },
-
   getValueFromValueString: function(valuesStr = '', id) {
     const objValues = this.getValuesObjectFromValueString(valuesStr);
     if (objValues.hasOwnProperty(id)) {
-        return objValues[id];
+      return objValues[id];
     }
     return false;
-
   }
-
-
-}
+};
 
 export default valueStingHelper;

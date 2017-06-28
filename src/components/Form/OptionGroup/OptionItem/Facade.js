@@ -14,7 +14,7 @@ const FacadeOptionItem = ({children, onChange, value}) => {
 
       case Button:
         return (
-          <ButtonOptionItem onChange={onChange}  value={value}>{child}</ButtonOptionItem>
+          <ButtonOptionItem onChange={onChange} value={value}>{child}</ButtonOptionItem>
         );
 
       case 'input':
