@@ -4,6 +4,9 @@ import get from 'lodash/get';
 
 const API_KEY = process.env.OKTA_APITOKEN;
 const OKTA_ORG = process.env.OKTA_ORG;
+const API_URL = `${OKTA_ORG}/api/v1/`;
+const OKTA_AUTH = `SSWS ${API_KEY}`;
+const publiGroupId = '00gaqz9nm7iVmafzW0h7';
 
 const mapOktaGroupToStormPath = function (oktaGroup) {
   let groupName;
@@ -25,9 +28,8 @@ const mapOktaGroupToStormPath = function (oktaGroup) {
 
 
 const appendUserGroupDataToRes = function(user, res) {
-  request.get(`${OKTA_ORG}/api/v1/users/${user.id}/groups/`)
-  .set('Authorization', 'SSWS 00ssdtaAEZNj4lM8mkUpTSKTSlygwnMXeTMe1wpULw')
-  .set('Accept', 'application/json')
+  request.get(`${API_URL}users/${user.id}/groups/`)
+  .set('Authorization', OKTA_AUTH)
   .end(function(err, _res){
       if(err) {
         res.status(500);
@@ -40,6 +42,18 @@ const appendUserGroupDataToRes = function(user, res) {
         user.groups = {items: groups.filter(({name}) => (name !== 'other' ))};
         res.send({account:user});
       }
+  });
+};
+
+const addUserToGroup = function (userId, groupId) {
+  console.log('addUserToGroup');
+  const URL = `${API_URL}groups/${groupId}/users/${userId}`;
+  console.log('URL', URL);
+  request.put(URL)
+  .set('Authorization', OKTA_AUTH)
+  .end(function(err, res){
+    console.log(err);
+    console.log(res);
   });
 }
 
@@ -64,10 +78,8 @@ export default function(app) {
       appendUserGroupDataToRes(user, res);
     },
     postRegistrationHandler: (account, req, res, next) => {
-      /*
-      account.addToGroup('https://api.stormpath.com/v1/groups/2xofCJhC8PbXFHXAAM2vdf', (err, membership) => {
-      });
-      */
+      console.log('post login handler');
+      addUserToGroup(account.id, publiGroupId);
       next();
     }
   });
