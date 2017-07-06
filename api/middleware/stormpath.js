@@ -26,7 +26,6 @@ const mapOktaGroupToStormPath = function (oktaGroup) {
   return {name: groupName};
 };
 
-
 const appendUserGroupDataToRes = function(user, res) {
   request.get(`${API_URL}users/${user.id}/groups/`)
   .set('Authorization', OKTA_AUTH)
@@ -55,21 +54,13 @@ const addUserToGroup = function (userId, groupId) {
     console.log(err);
     console.log(res);
   });
-}
+};
 
 export default function(app) {
 
   const stormpathMiddleware = stormpath.init(app, {
-    expand: {
-      groups: true
-    },
     web: {
       produces: ['application/json'],
-       me: {
-        expand: {
-          groups: true
-        },
-      },
       register: {
         autoLogin: true
       }
@@ -86,7 +77,7 @@ export default function(app) {
 
   app.use(stormpathMiddleware);
 
-   app.get('/auth',  stormpath.getUser, function (req, res) {
+  app.get('/auth',  stormpath.getUser, function (req, res) {
     if (req.user) {
       appendUserGroupDataToRes(req.user, res);
     } else {
@@ -97,6 +88,6 @@ export default function(app) {
       });
     }
   });
+  
   return stormpathMiddleware;
-
 }
