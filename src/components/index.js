@@ -54,3 +54,4 @@ export ButtaPage from './Butta/ButtaPage/ButtaPage';
 export LinkForm from './LinkForm/LinkForm';
 export Link from './Link/Link';
 export ArticleList from './ArticleList/ArticleList';
+export SortableList from './SortableList/SortableList';

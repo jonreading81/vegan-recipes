@@ -34,10 +34,10 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function submit(data) {
+export function submit(data, id) {
   return {
     types: [SUBMIT, SUBMIT_SUCCESS, SUBMIT_FAIL],
-    promise: (client) => client.post('/survey',
+    promise: (client) => client.post('/survey/' + id,
       {
         data: data
       }

@@ -1,17 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import { reduxForm } from 'redux-form';
-import {connect} from 'react-redux';
 import {HeroPanel, RadioGroup} from 'components';
+import {LoadingButton} from 'components';
 import FormGroup from 'components/Form/FormGroup';
 import ErrorBlock from 'components/Form/ErrorBlock';
 import validation from './validation';
-import {LoadingButton} from 'components';
-const validate = values => validation(values);
+import googleSurvey from 'hoc/GoogleSurvey';
 import {ControlLabel, ButtonToolbar, FormControl, Checkbox} from 'react-bootstrap';
-import {submit} from 'redux/modules/survey';
-import { bindActionCreators } from 'redux';
-import get from 'lodash/get';
+const validate = values => validation(values);
+
 
 const fields = [
   'question1',
@@ -29,52 +26,25 @@ const fields = [
   'question13'
 ];
 
-@connect(
-  (state) => {
-    return {
-      submitting: get(state.survey, 'loading'),
-      error: get(state.survey, 'loadError'),
-      success: get(state.survey, 'success')
-    };
-  },
-  (dispatch) => {
-    return {
-      onSubmit: bindActionCreators(submit, dispatch)
-    };
-  }
-)
 class Survey extends Component {
 
   static propTypes = {
     fields: PropTypes.object.isRequired,
     error: PropTypes.object,
     success: PropTypes.bool,
-    handleSubmit: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired,
+    submitFn: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
   }
 
   render() {
     const {
-fields: {question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13},
-      handleSubmit,
-      onSubmit,
+      fields: {question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13},
       submitting,
       error,
+      submitFn,
       success
     } = this.props;
 
-    const submitFn = (event) => handleSubmit(onSubmit)(event)
-      .catch(err => {
-        let errorField;
-        for (errorField in err) {
-          if (err.hasOwnProperty(errorField)) {
-            document.getElementById(errorField).focus();
-            break;
-          }
-        }
-      }
-    );
     const styles = require('./Survey.scss');
     return (
               <div>
@@ -226,10 +196,4 @@ fields: {question1, question2, question3, question4, question5, question6, quest
   }
 }
 
-export default reduxForm({
-  form: 'surveyForm',
-  fields,
-  validate,
-  returnRejectedSubmitPromise: true
-})(Survey);
-
+export default googleSurvey(Survey, '1CpGwyOkyYG1aCEowexoPtOOwbzxXoOqDblp00ZSkNjc', fields, validate);
