@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {submit} from 'redux/modules/survey';
 import get from 'lodash/get';
 
-export default function(ComposedComponent, googleId, fields, validate) {
+export default function(ComposedComponent, googleId, fields, initialValues = {}, validate) {
   class GoogleSurvey extends Component {
     static propTypes = {
       fields: PropTypes.object.isRequired,
@@ -41,7 +41,7 @@ export default function(ComposedComponent, googleId, fields, validate) {
     }
   }
 
-  const mapStateTopProps = (state) => {
+  const mapStateToProps = (state) => {
     return {
       submitting: get(state.survey, 'loading'),
       error: get(state.survey, 'loadError'),
@@ -52,7 +52,6 @@ export default function(ComposedComponent, googleId, fields, validate) {
   const mapDispatchToProps = (dispatch) => {
     return {
       onSubmit: (data) => {
-        console.log(data);
         dispatch(submit(data, googleId));
       }
     };
@@ -62,8 +61,9 @@ export default function(ComposedComponent, googleId, fields, validate) {
     form: 'surveyForm',
     fields,
     validate,
+    initialValues,
     returnRejectedSubmitPromise: true
   })(
-    connect(mapStateTopProps, mapDispatchToProps)(GoogleSurvey)
+    connect(mapStateToProps, mapDispatchToProps)(GoogleSurvey)
   );
 }

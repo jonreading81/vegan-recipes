@@ -1,20 +1,12 @@
-/* eslint react/prop-types: 0 */
 import React, {Component, PropTypes} from 'react';
-import { sortable } from 'react-sortable';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
-
-function ListItem(props) {
-  return (
-     <ListGroupItem {...props}>{props.children}</ListGroupItem>
-  );
-}
-
-const SortableListItem = sortable(ListItem);
+import { ListGroup } from 'react-bootstrap';
+import SortableListItem from './SortableListItem';
 
 class SortableList extends Component {
 
   static propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    onChange: PropTypes.func
   };
 
   constructor(props) {
@@ -27,11 +19,10 @@ class SortableList extends Component {
 
   updateState(obj) {
     this.setState(obj);
-    console.log(obj);
+    this.props.onChange(obj);
   }
 
   render() {
-    const childProps = { className: 'myClass1' };
     const listItems = this.state.data.items.map((item, idx) => {
       return (
         <SortableListItem
@@ -41,7 +32,6 @@ class SortableList extends Component {
           draggingIndex={this.state.draggingIndex}
           sortId={idx}
           outline="list"
-          childProps={childProps}
           >{item}</SortableListItem>
       );
     }, this);

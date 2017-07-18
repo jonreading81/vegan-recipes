@@ -1,17 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {HeroPanel} from 'components';
-import {LoadingButton, SortableList} from 'components';
-import ErrorBlock from 'components/Form/ErrorBlock';
-import validation from './nameValidation';
+import {SortableListField} from 'components';
+import validation from './validation/name';
 import googleSurvey from 'hoc/GoogleSurvey';
-import {ButtonToolbar} from 'react-bootstrap';
+import SurveyHeader from './helpers/surveyHeader';
+import SurveySuccess from './helpers/SurveySuccess';
+import SurveyFormFooter from './helpers/SurveyFormFooter';
 const validate = values => validation(values);
-
 
 const fields = [
   'name'
 ];
+
+const initalValues = {
+  name: 'butta,better,amy'
+};
 
 class ButtaName extends Component {
 
@@ -25,25 +28,18 @@ class ButtaName extends Component {
 
   render() {
     const {
+      fields: {name},
       submitting,
       error,
       submitFn,
       success
     } = this.props;
 
-    const data = {
-      items: [
-        'test',
-        'test2',
-        'test3'
-      ]
-    };
-
     // const styles = require('./Survey.scss');
     return (
               <div>
               <Helmet title="Survey"/>
-              <HeroPanel image="butter.jpeg" title="Butta" subTitle="A replacement made from plants for spreading, cooking and baking" style="image-focus-bottom"/>
+              <SurveyHeader />
               <div className="container">
               <div className="column-medium">
               <If condition={!success}>
@@ -51,21 +47,13 @@ class ButtaName extends Component {
               <p>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
               <form onSubmit={submitFn}>
               <fieldset>
-               <SortableList data={data} />
+               <SortableListField {...name} />
                 </fieldset>
-
-                <ErrorBlock error={error}/>
-                <ButtonToolbar>
-                <LoadingButton type="submit" submitting={submitting} bsSize="large" bsStyle="primary">Submit</LoadingButton>
-                </ButtonToolbar>
+                <SurveyFormFooter submitting={submitting} error={error} />
               </form>
             </If>
             <If condition={success}>
-               <h2>Survey Submitted</h2>
-               <h3>Thank you</h3>
-               <blockquote>
-               Nothing can be done alone and no one can take all the credit
-               </blockquote>
+               <SurveySuccess />
             </If>
           </div>
         </div>
@@ -73,4 +61,4 @@ class ButtaName extends Component {
   }
 }
 
-export default googleSurvey(ButtaName, '19O7SYQdMnzlNdLZ9pNb8UIRiowWgRiqMP0u_rcRJGBk', fields, validate);
+export default googleSurvey(ButtaName, '19O7SYQdMnzlNdLZ9pNb8UIRiowWgRiqMP0u_rcRJGBk', fields, initalValues, validate);

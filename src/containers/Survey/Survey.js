@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {HeroPanel, RadioGroup} from 'components';
-import {LoadingButton} from 'components';
+import {RadioGroup} from 'components';
 import FormGroup from 'components/Form/FormGroup';
-import ErrorBlock from 'components/Form/ErrorBlock';
-import validation from './validation';
+import validation from './validation/survey';
 import googleSurvey from 'hoc/GoogleSurvey';
-import {ControlLabel, ButtonToolbar, FormControl, Checkbox} from 'react-bootstrap';
+import SurveyHeader from './helpers/surveyHeader';
+import SurveySuccess from './helpers/SurveySuccess';
+import SurveyFormFooter from './helpers/SurveyFormFooter';
+import {ControlLabel, FormControl, Checkbox} from 'react-bootstrap';
 const validate = values => validation(values);
 
 
@@ -49,7 +50,7 @@ class Survey extends Component {
     return (
               <div>
               <Helmet title="Survey"/>
-              <HeroPanel image="butter.jpeg" title="Butta" subTitle="A replacement made from plants for spreading, cooking and baking" style="image-focus-bottom"/>
+              <SurveyHeader />
               <div className="container">
               <div className="column-medium">
               <If condition={!success}>
@@ -176,19 +177,11 @@ class Survey extends Component {
                     </RadioGroup>
                 </FormGroup>
                 </fieldset>
-                <ErrorBlock error={error}/>
-
-                <ButtonToolbar>
-                <LoadingButton type="submit" submitting={submitting} bsSize="large" bsStyle="primary">Submit</LoadingButton>
-                </ButtonToolbar>
+                <SurveyFormFooter submitting={submitting} error={error} />
               </form>
             </If>
             <If condition={success}>
-               <h2>Survey Submitted</h2>
-               <h3>Thank you</h3>
-               <blockquote>
-               Nothing can be done alone and no one can take all the credit
-               </blockquote>
+              <SurveySuccess />
             </If>
           </div>
         </div>
@@ -196,4 +189,4 @@ class Survey extends Component {
   }
 }
 
-export default googleSurvey(Survey, '1CpGwyOkyYG1aCEowexoPtOOwbzxXoOqDblp00ZSkNjc', fields, validate);
+export default googleSurvey(Survey, '1CpGwyOkyYG1aCEowexoPtOOwbzxXoOqDblp00ZSkNjc', fields, {}, validate);
