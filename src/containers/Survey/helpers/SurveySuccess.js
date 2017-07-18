@@ -6,7 +6,7 @@ function surveySuccess() {
       <h2>Survey Submitted</h2>
       <h3>Thank you</h3>
       <blockquote>
-      Nothing can be done alone and no one can take all the credit
+      <p>Nothing can be done alone and no one can take all the credit</p>
       </blockquote>
   </div>
   );
