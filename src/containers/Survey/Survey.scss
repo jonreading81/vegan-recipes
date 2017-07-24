@@ -22,3 +22,16 @@ form {
         text-transform: capitalize;
     }
 }
+
+.top5{
+  span {
+    color:white;
+    &:nth-child(-n + 5) {
+      background-color: green;
+    }
+    &:nth-child(n + 6) {
+      background-color: red;
+    }
+
+  }
+}

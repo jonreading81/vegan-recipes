@@ -14,6 +14,13 @@ describe('<SortableListField/>', function () {
     expect(wrapper.find(SortableList)).to.have.length(1);
   });
 
+  it('shouldpass on className', function () {
+    const wrapper = shallow(
+      <SortableListField className="test" value={'test'}/>
+    );
+    expect(wrapper.find(SortableList).prop('className')).to.equal('test');
+  });
+
   it('should convert value prop to data field', function () {
     const expectedData = {
       items: ['test', 'test2']

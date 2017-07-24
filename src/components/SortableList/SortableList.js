@@ -6,6 +6,7 @@ class SortableList extends Component {
 
   static propTypes = {
     data: PropTypes.object.isRequired,
+    className: PropTypes.string,
     onChange: PropTypes.func
   };
 
@@ -23,6 +24,7 @@ class SortableList extends Component {
   }
 
   render() {
+    const className = (this.props.className) ? 'sortable-list ' + this.props.className : 'sortable-list';
     const listItems = this.state.data.items.map((item, idx) => {
       return (
         <SortableListItem
@@ -37,7 +39,7 @@ class SortableList extends Component {
     }, this);
 
     return (
-      <ListGroup>{listItems}</ListGroup>
+      <ListGroup className={className}>{listItems}</ListGroup>
     );
   }
 }

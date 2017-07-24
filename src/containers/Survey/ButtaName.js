@@ -13,7 +13,7 @@ const fields = [
 ];
 
 const initalValues = {
-  name: 'butta,better,amy'
+  name: 'butta,better,amy,aya,satya,halo'
 };
 
 class ButtaName extends Component {
@@ -35,7 +35,11 @@ class ButtaName extends Component {
       success
     } = this.props;
 
-    // const styles = require('./Survey.scss');
+    const styles = require('./Survey.scss');
+    const names = name.value.split(',').splice(0, 5);
+
+    const nameQuestions = names.map(_name => <h2>{_name}</h2>);
+
     return (
               <div>
               <Helmet title="Survey"/>
@@ -47,7 +51,9 @@ class ButtaName extends Component {
               <p>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
               <form onSubmit={submitFn}>
               <fieldset>
-               <SortableListField {...name} />
+                  <label>Order these by preference</label>
+               <SortableListField {...name} className={styles.top5}/>
+               {nameQuestions}
                 </fieldset>
                 <SurveyFormFooter submitting={submitting} error={error} />
               </form>

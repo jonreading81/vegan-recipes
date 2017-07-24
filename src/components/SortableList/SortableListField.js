@@ -18,7 +18,7 @@ class SortableListField extends Component {
       items: this.props.value.split(',')
     };
     return (
-      <SortableList onChange={this.onChange.bind(this)} data={data}/>
+      <SortableList className={this.props.className} onChange={this.onChange.bind(this)} data={data}/>
     );
   }
 }

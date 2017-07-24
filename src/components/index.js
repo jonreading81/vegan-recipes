@@ -57,3 +57,4 @@ export ArticleList from './ArticleList/ArticleList';
 export SortableList from './SortableList/SortableList';
 export SortableListField from './SortableList/SortableListField';
 export SortableListItem from './SortableList/SortableListItem';
+export PrefixValueInput from './Form/prefixValue';
