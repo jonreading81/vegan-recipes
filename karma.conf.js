@@ -3,12 +3,13 @@ module.exports = function (config) {
         basePath: '',
         frameworks: ['mocha', 'sinon'],
         files: [
-             "src/test/**/*-test.js",
-             "src/components/Form/PrefixValue.js"
+          'src/test/test_index.js'
         ],
         exclude: [],
         preprocessors: {
-            "src/**/*.js": ["webpack"]
+
+          'src/client.js': ['webpack'],
+          'src/test/test_index.js': ["webpack"]
         },
         reporters: [ 'mocha' ],
         // webpack configuration
@@ -23,6 +24,6 @@ module.exports = function (config) {
         browsers: ['Chrome'],
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: true
+        singleRun: false
     });
 };

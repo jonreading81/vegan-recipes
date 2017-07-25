@@ -20,21 +20,8 @@ export default function(ComposedComponent, googleId, fields, initialValues = {},
         handleSubmit,
         onSubmit,
       } = this.props;
-
-      const submitFn = (event) => handleSubmit(onSubmit)(event)
-        .catch(err => {
-          let errorField;
-          for (errorField in err) {
-            if (err.hasOwnProperty(errorField)) {
-              document.getElementById(errorField).focus();
-              break;
-            }
-          }
-        }
-      );
-
       const props = Object.assign({
-        submitFn: submitFn
+        submitFn: (event) => handleSubmit(onSubmit)(event)
       }, this.props);
 
       return (<ComposedComponent {...props} />);

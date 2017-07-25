@@ -1,7 +1,6 @@
-import {createValidator, required} from 'utils/validation';
+import {createValidator} from 'utils/validation';
 
 const registerValidator = createValidator({
-  name: [required]
 });
 export default function validate(values) {
   return registerValidator(values);

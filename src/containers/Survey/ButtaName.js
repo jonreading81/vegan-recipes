@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {SortableListField} from 'components';
+import {SortableList, PrefixValueInput} from 'components';
 import validation from './validation/name';
 import googleSurvey from 'hoc/GoogleSurvey';
 import SurveyHeader from './helpers/surveyHeader';
@@ -9,11 +9,37 @@ import SurveyFormFooter from './helpers/SurveyFormFooter';
 const validate = values => validation(values);
 
 const fields = [
-  'name'
+  'names',
+  'associatedWords1',
+  'associatedWords2',
+  'associatedWords3',
+  'associatedWords4',
+  'associatedWords5',
+  'straplines',
+  'negativeWords1',
+  'negativeWords2',
+  'negativeWords3',
+  'negativeWords4',
+  'negativeWords5',
+  'negativeWords6'
 ];
 
-const initalValues = {
-  name: 'butta,better,amy,aya,satya,halo'
+const nameChoices = {
+  amy: 'Amy',
+  jon: 'Jon',
+  aya: 'Aya',
+  butta: 'Butta',
+  betta: 'Betta',
+  satya: 'Satya'
+};
+
+const strapLinesChoices = {
+  amy: 'Amy Text',
+  jon: 'Jon Text',
+  aya: 'Aya  Text',
+  butta: 'Butta Text',
+  betta: 'Betta Text',
+  satya: 'Satya Text'
 };
 
 class ButtaName extends Component {
@@ -25,10 +51,22 @@ class ButtaName extends Component {
     submitFn: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
   }
+  getPrefixValueField(name, field) {
+    return (
+      <div>
+        <h4>{name}</h4>
+        <PrefixValueInput {...field} prefixValue={name} delimeter={':'} />
+      </div>
+    );
+  }
+
+  getWordFields(arrValues, fieldType) {
+    return arrValues.map((_name, idx) => this.getPrefixValueField(_name, this.props.fields[fieldType + (idx + 1)]));
+  }
 
   render() {
     const {
-      fields: {name},
+      fields: {names, straplines},
       submitting,
       error,
       submitFn,
@@ -36,9 +74,8 @@ class ButtaName extends Component {
     } = this.props;
 
     const styles = require('./Survey.scss');
-    const names = name.value.split(',').splice(0, 5);
-
-    const nameQuestions = names.map(_name => <h2>{_name}</h2>);
+    const allNames = names.value.split(',');
+    const topNames = allNames.slice(0, 5);
 
     return (
               <div>
@@ -51,9 +88,24 @@ class ButtaName extends Component {
               <p>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
               <form onSubmit={submitFn}>
               <fieldset>
-                  <label>Order these by preference</label>
-               <SortableListField {...name} className={styles.top5}/>
-               {nameQuestions}
+                <div className={styles.formGroup}>
+                  <h3>Order these names by preference:</h3>
+                  <SortableList {...names} data={nameChoices} className={styles.top5}/>
+                </div>
+                <div className={styles.formGroup}>
+                  <h3>Associated Words</h3>
+                  <p>Please list any words you associate with the following names</p>
+                  {this.getWordFields(topNames, 'associatedWords')}
+                </div>
+                <div className={styles.formGroup}>
+                  <h3>Order these Strap Lines by preference:</h3>
+                  <SortableList {...straplines} data={strapLinesChoices} className={styles.top5}/>
+                </div>
+                <div className={styles.formGroup}>
+                  <h3>Negative Words</h3>
+                  <p>Please list any words you negatively associate with the following names</p>
+                  {this.getWordFields(allNames, 'negativeWords')}
+                </div>
                 </fieldset>
                 <SurveyFormFooter submitting={submitting} error={error} />
               </form>
@@ -67,4 +119,4 @@ class ButtaName extends Component {
   }
 }
 
-export default googleSurvey(ButtaName, '19O7SYQdMnzlNdLZ9pNb8UIRiowWgRiqMP0u_rcRJGBk', fields, initalValues, validate);
+export default googleSurvey(ButtaName, '19O7SYQdMnzlNdLZ9pNb8UIRiowWgRiqMP0u_rcRJGBk', fields, {}, validate);

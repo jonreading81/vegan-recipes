@@ -20,9 +20,14 @@ class PrefixValue extends Component {
     const {delimeter, prefixValue} = this.props;
     value = value.replace(prefixValue, '');
     value = value.replace(delimeter, '');
+    const props = Object.assign({}, this.props, {
+      onChange: ::this.onInputChange,
+      onBlur: ::this.onInputChange,
+      value: value
+    });
     return (
       <div className="prefix-value-field">
-        <FormControl className="value" onChange={this.onInputChange.bind(this)} value={value}/>
+        <FormControl {...props}/>
       </div>
     );
   }

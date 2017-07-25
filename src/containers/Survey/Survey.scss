@@ -1,5 +1,6 @@
 
 @import 'src/theme/mixins';
+@import 'src/theme/variables';
 form {
   legend {
       @include heading();
@@ -27,10 +28,10 @@ form {
   span {
     color:white;
     &:nth-child(-n + 5) {
-      background-color: green;
+      background-color: $green;
     }
     &:nth-child(n + 6) {
-      background-color: red;
+      background-color: $red;
     }
 
   }

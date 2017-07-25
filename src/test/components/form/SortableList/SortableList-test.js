@@ -1,26 +1,27 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import {expect} from 'chai';
+import chai, {expect} from 'chai';
+import chaiEnzyme from 'chai-enzyme';
 import SortableList from 'components/SortableList/SortableList';
 import SortableListItem from 'components/SortableList/SortableListItem';
 import { ListGroup } from 'react-bootstrap';
+chai.use(chaiEnzyme()) ;
 
 describe('<SortableList/>', function () {
 
   const defaultData = {
-    items: []
   };
 
   it('should wrap items in ListGroup', function () {
     const wrapper = shallow(
-      <SortableList data={defaultData}/>
+      <SortableList value='' data={defaultData}/>
     );
     expect(wrapper.find(ListGroup)).to.have.length(1);
   });
 
   it('have correct class', function () {
     const wrapper = shallow(
-      <SortableList data={defaultData}/>
+      <SortableList value='' data={defaultData}/>
     );
     expect(wrapper.find(ListGroup).prop('className')).to.equal('sortable-list');
   });
@@ -28,38 +29,44 @@ describe('<SortableList/>', function () {
   it('allow className to be added', function () {
 
     const wrapper = shallow(
-      <SortableList className="test" data={defaultData}/>
+      <SortableList value='' className="test" data={defaultData}/>
     );
     expect(wrapper.find(ListGroup).prop('className')).to.equal('sortable-list test');
   });
 
-  it('should create ListGroupItem for each item', function () {
+  describe('listItems', () => {
+
     const data = {
-      items: [
-        'test',
-        'test2',
-        'test3'
-      ]
+        'test':'Test',
+        'test2':'Test 2'
     };
-    const wrapper = shallow(
-      <SortableList data={data} />
-    );
-    expect(wrapper.find(SortableListItem)).to.have.length(3);
+
+    it('should create ListGroupItem for each item', function () {
+      const wrapper = shallow(
+        <SortableList value='' data={data} />
+      );
+      expect(wrapper.find(SortableListItem)).to.have.length(2);
+    });
+
+    it('should display the values provided in the order specified', function () {
+      const wrapper = shallow(
+        <SortableList value='test2,test' data={data} />
+      );
+      expect(wrapper.find(SortableListItem).first().prop('children')).to.equal('Test 2');
+      expect(wrapper.find(SortableListItem).last().prop('children')).to.equal('Test');
+    });
   });
 
-  it('should call onChange event', function () {
+  it('should call onChange event with order key indexes', function () {
     const onChange = sinon.spy();
     const data = {
-      items: [
-        'test',
-        'test2',
-        'test3'
-      ]
+        'test':'Test',
+        'test2':'Test 2'
     };
     const wrapper = shallow(
-      <SortableList data={data} onChange={onChange}/>
+      <SortableList value='' data={data} onChange={onChange}/>
     );
-    wrapper.instance().updateState(data);
-    expect(onChange.args[0][0]).to.deep.equal(data);
+    wrapper.instance().updateState({items: ['Test','Test 2']});
+    expect(onChange.args[0][0]).to.equal('test,test2');
   });
 });
