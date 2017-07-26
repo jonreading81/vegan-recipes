@@ -43,7 +43,7 @@ class SortableList extends Component {
   }
 
   render() {
-    const {value, data} = this.props;
+    const {value, data, childProps} = this.props;
     const className = (this.props.className) ? 'sortable-list ' + this.props.className : 'sortable-list';
     const order = (value.length > 0) ? value.split(',') : Object.keys(data);
     const orderedValues = order.map(val => data[val]);
@@ -52,9 +52,10 @@ class SortableList extends Component {
         <SortableListItem
           key={idx}
           updateState={::this.updateState}
-           items={orderedValues}
+          items={orderedValues}
           draggingIndex={this.state.draggingIndex}
           sortId={idx}
+          childProps={childProps}
           outline="list"
           >{item}</SortableListItem>
       );

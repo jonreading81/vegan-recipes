@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { sortable } from 'react-sortable';
 import { ListGroupItem } from 'react-bootstrap';
 
-function ListItem(props) {
-  return (
-    <ListGroupItem {...props}>{props.children}</ListGroupItem>
-  );
+class ListItem extends Component {
+
+  render() {
+    return (
+      <ListGroupItem {...this.props}>{this.props.children}</ListGroupItem>
+    );
+  }
 }
 
 export default sortable(ListItem);

@@ -52,8 +52,9 @@ class ButtaName extends Component {
     submitting: PropTypes.bool.isRequired
   }
   getPrefixValueField(name, field) {
+    const styles = require('./Survey.scss');
     return (
-      <div>
+      <div className={styles.formGroup}>
         <h4>{name}</h4>
         <PrefixValueInput {...field} prefixValue={name} delimeter={':'} />
       </div>
@@ -85,19 +86,19 @@ class ButtaName extends Component {
               <div className="column-medium">
               <If condition={!success}>
               <h2>Survey</h2>
-              <p>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
-              <form onSubmit={submitFn}>
+              <p className={styles.intro}>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
+              <form className={styles.form} onSubmit={submitFn}>
               <fieldset>
-                <div className={styles.formGroup}>
+                <div className={styles.formGroupCollection}>
                   <h3>Order these names by preference:</h3>
-                  <SortableList {...names} data={nameChoices} className={styles.top5}/>
+                  <SortableList className="test" {...names} data={nameChoices} className={styles.top5}/>
                 </div>
-                <div className={styles.formGroup}>
+                <div className={styles.formGroupCollection}>
                   <h3>Associated Words</h3>
                   <p>Please list any words you associate with the following names</p>
                   {this.getWordFields(topNames, 'associatedWords')}
                 </div>
-                <div className={styles.formGroup}>
+                <div className={styles.formGroupCollection}>
                   <h3>Order these Strap Lines by preference:</h3>
                   <SortableList {...straplines} data={strapLinesChoices} className={styles.top5}/>
                 </div>

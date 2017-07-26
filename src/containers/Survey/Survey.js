@@ -55,7 +55,7 @@ class Survey extends Component {
               <div className="column-medium">
               <If condition={!success}>
               <h2>Survey</h2>
-              <p>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
+              <p className={styles.intro}>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
               <form onSubmit={submitFn}>
               <fieldset>
                <legend></legend>

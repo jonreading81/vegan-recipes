@@ -41,14 +41,21 @@ describe('<SortableList/>', function () {
         'test2':'Test 2'
     };
 
-    it('should create ListGroupItem for each item', function () {
+    it('Create ListGroupItem for each item', function () {
       const wrapper = shallow(
         <SortableList value='' data={data} />
       );
       expect(wrapper.find(SortableListItem)).to.have.length(2);
     });
 
-    it('should display the values provided in the order specified', function () {
+    it('Set childProps on ListGroupItems', function () {
+      const wrapper = shallow(
+        <SortableList childProps={className:'test'} value='' data={data} />
+      );
+      expect(wrapper.find(SortableListItem).first().prop('childProps')).to.deep.equal({className:'test'});
+    });
+
+    it('Display the values provided in the order specified', function () {
       const wrapper = shallow(
         <SortableList value='test2,test' data={data} />
       );
@@ -57,7 +64,7 @@ describe('<SortableList/>', function () {
     });
   });
 
-  it('should call onChange event with order key indexes', function () {
+  it('Call onChange event with order key indexes', function () {
     const onChange = sinon.spy();
     const data = {
         'test':'Test',
