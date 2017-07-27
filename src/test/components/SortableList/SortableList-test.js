@@ -50,7 +50,7 @@ describe('<SortableList/>', function () {
 
     it('Set childProps on ListGroupItems', function () {
       const wrapper = shallow(
-        <SortableList childProps={className:'test'} value='' data={data} />
+        <SortableList childProps={{className:'test'}} value='' data={data} />
       );
       expect(wrapper.find(SortableListItem).first().prop('childProps')).to.deep.equal({className:'test'});
     });

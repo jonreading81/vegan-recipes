@@ -3,7 +3,7 @@
 @import 'src/theme/variables';
 
 .intro {
-  font-size: 2em;
+  font-size: 1.6em;
 }
 
 .form {
@@ -17,39 +17,44 @@
     text-transform: capitalize;
   }
 }
-.formGroupCollection{
-  margin-top:6em;
-}
-.formGroup{
+.formGroup, .formGroupCollection{
   margin-top:2em;
     label{
       margin-bottom:1em;
       font-size:1.6em;
     }
     p {
-      font-size: 1.8em;
-        font-weight: 500;
+      font-size: 1.4em;
     }
     button {
         text-transform: capitalize;
     }
 }
+.formGroupCollection{
+  margin-top:4em;
+}
 
-.top5{
+.top5, .top5Large{
   margin-top: 3.2em;
   span {
-    color:white;
-    font-size: 1.8em;
+
+    font-size: 1.4em;
     &:nth-child(-n + 5) {
+      color:white;
       background-color: lighten($green, 10%);
     }
     &:nth-child(n + 6) {
-      background-color: lighten($red, 10%);
+      //background-color: lighten($red, 10%);
     }
 
   }
 }
 
+.top5Large {
+  span {
+    font-size: 1.6em;
+  }
+}
 :global {
   span.ListItem-dragging{
       background-color: lighten($green, 30%) !important;
