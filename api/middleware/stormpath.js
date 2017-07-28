@@ -23,7 +23,7 @@ export default function(app) {
     },
     postRegistrationHandler: (account, req, res, next) => {
       account.addToGroup('https://api.stormpath.com/v1/groups/2xofCJhC8PbXFHXAAM2vdf', (err, membership) => {
-  
+
       });
       next();
     }
@@ -43,7 +43,7 @@ export default function(app) {
     }
   });
 
- 
+
 
   return stormpathMiddleware;
 

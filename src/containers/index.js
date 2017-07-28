@@ -11,6 +11,7 @@ export NotFound from './NotFound/NotFound';
 export Error from './Error/Error';
 export Register from './Register/Register';
 export Survey from './Survey/Survey';
+export ButtaNameSurvey from './Survey/ButtaName';
 // export ButtaLabel from './Butta/ButtaLabel/ButtaLabel';
 export AboutButta from './Butta/AboutButta/AboutButta';
 export ImageList from './Images/ImageList/ImageList';
@@ -30,4 +31,3 @@ export UpdateLink from './Links/UpdateLink/UpdateLink';
 export DeleteLink from './Links/DeleteLink/DeleteLink';
 export LinkList from './Links/LinkList/LinkList';
 export JonProfile from './Profile/JonReading';
-
