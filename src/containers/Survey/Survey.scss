@@ -38,7 +38,10 @@
   margin-top:3em;
 }
 .sortableItem ,.sortableItemLarge{
-  font-size: 1.0em;
+  font-size: 0.75em;
+  @media only screen and (min-width: $screen-sm-min) {
+      font-size: 1.0em;
+  }
   border: 1px dashed gray;
   padding: 0.5rem 1rem;
   margin-bottom: 0.5rem;
