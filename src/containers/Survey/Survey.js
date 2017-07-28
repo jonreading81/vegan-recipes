@@ -4,7 +4,7 @@ import {RadioGroup} from 'components';
 import FormGroup from 'components/Form/FormGroup';
 import validation from './validation/survey';
 import googleSurvey from 'hoc/GoogleSurvey';
-import SurveyHeader from './helpers/surveyHeader';
+import SurveyHeader from './helpers/SurveyHeader';
 import SurveySuccess from './helpers/SurveySuccess';
 import SurveyFormFooter from './helpers/SurveyFormFooter';
 import {ControlLabel, FormControl, Checkbox} from 'react-bootstrap';

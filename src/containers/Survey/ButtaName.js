@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import {SortableList, PrefixValueInput} from 'components';
 import validation from './validation/name';
 import googleSurvey from 'hoc/GoogleSurvey';
-import SurveyHeader from './helpers/surveyHeader';
+import SurveyHeader from './helpers/SurveyHeader';
 import SurveySuccess from './helpers/SurveySuccess';
 import SurveyFormFooter from './helpers/SurveyFormFooter';
 const styles = require('./Survey.scss');
