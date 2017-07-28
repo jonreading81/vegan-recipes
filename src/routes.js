@@ -48,9 +48,9 @@ export default (store) => {
       <Route path="butta" onEnter={requireMemberOfButtaGroup.bind(null, store)}>>
         <IndexRoute component={AboutButta}/>
         <Route path="survey" component={Survey}/>
-        <Route path="name" component={ButtaNameSurvey}/>
         { /* <Route path="label" component={ButtaLabel}/> */ }
       </Route>
+      <Route path="survey" component={ButtaNameSurvey}/>
        <Route path="images" onEnter={requireMemberOfAdminGroup.bind(null, store)}>
          <Route path="list/:term(/:page)" component={ImageList}/>
         <Route path="add" component={AddImage}/>

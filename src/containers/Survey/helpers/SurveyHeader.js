@@ -3,7 +3,7 @@ import React from 'react';
 
 function surveyHeader() {
   return (
-    <HeroPanel image="butter.jpeg" title="Butta" subTitle="A replacement made from plants for spreading, cooking and baking" style="image-focus-bottom"/>
+    <HeroPanel image="butter-on-table.jpeg" title="Survey" subTitle="Please help us choose a name for our plant-based butter" style="image-focus-bottom"/>
   );
 }
 

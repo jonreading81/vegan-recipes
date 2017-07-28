@@ -11,7 +11,7 @@ describe('<PrefixValue />', () => {
 
   beforeEach(() => {
     wrapper = shallow(
-      <PrefixValue id="test" prefixValue="test" value="test:value" delimeter=":" onChange={onChange}/>
+      <PrefixValue id="test" placeholder="placeholder" prefixValue="test" value="test:value" delimeter=":" onChange={onChange}/>
     );
   })
 
@@ -33,6 +33,10 @@ describe('<PrefixValue />', () => {
 
     it('set id', () => {
       expect(input.first().prop('id')).to.equal('test');
+    });
+
+    it('set placeholder', () => {
+      expect(input.first().prop('placeholder')).to.equal('placeholder');
     });
 
     it('removes the prefixValue and delimeter from the value field of the input', () => {
