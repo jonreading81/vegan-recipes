@@ -117,7 +117,7 @@ class ButtaName extends Component {
               <fieldset>
                 <div className={styles.formGroupCollection}>
                   <h3 tabIndex="0">Drag & Drop these names by preference:</h3>
-                  <SortableList className="test" {...names} data={nameChoices} className={styles.top5Large}/>
+                  <SortableList className={styles.sortableItemContainer} {...names} data={nameChoices} sortableItemClassName={styles.sortableItemLarge} sortableItemDraggingClassName={styles.sortableItemDragging}/>
                 </div>
                 <div className={styles.formGroupCollection}>
                   <h3>Associated Words:</h3>
@@ -126,7 +126,7 @@ class ButtaName extends Component {
                 </div>
                 <div className={styles.formGroupCollection}>
                   <h3 tabIndex="0">Drag & Drop these Strap Lines by preference:</h3>
-                  <SortableList {...straplines} data={strapLinesChoices} className={styles.top5}/>
+                  <SortableList {...straplines} data={strapLinesChoices} className={styles.sortableItemContainer} sortableItemClassName={styles.sortableItem} sortableItemDraggingClassName={styles.sortableItemDragging}/>
                 </div>
                 <div className={styles.formGroupCollection}>
                   <h3>Negative Words:</h3>
