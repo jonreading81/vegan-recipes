@@ -56,3 +56,5 @@ export Link from './Link/Link';
 export ArticleList from './ArticleList/ArticleList';
 export SortableList from './SortableList/SortableList';
 export PrefixValueInput from './Form/prefixValue';
+export AyaNavBar from './AyaNavBar/NavBar';
+export AyaFooter from './Footer/AyaFooter';

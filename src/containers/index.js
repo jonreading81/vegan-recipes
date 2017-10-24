@@ -1,5 +1,8 @@
 export App from './App/App';
+export DefaultApp from './App/Default';
+export AyaApp from './App/Aya';
 export Home from './Home/Home';
+export AyaHome from './Home/AyaHome';
 export RecipeList from './Recipes/RecipeList/RecipeList';
 export ViewRecipe from './Recipes/ViewRecipe/ViewRecipe';
 export UpdateRecipe from './Recipes/UpdateRecipe/UpdateRecipe';
@@ -31,3 +34,4 @@ export UpdateLink from './Links/UpdateLink/UpdateLink';
 export DeleteLink from './Links/DeleteLink/DeleteLink';
 export LinkList from './Links/LinkList/LinkList';
 export JonProfile from './Profile/JonReading';
+export AyaArticles from './Profile/Aya';

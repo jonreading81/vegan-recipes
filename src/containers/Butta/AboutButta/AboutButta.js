@@ -40,7 +40,9 @@ export default class AboutButta extends Component {
         <Helmet title="About Butta"/>
         <If condition={!isFetching}>
           <ButtaPage selected="about">
-            {content.props.children.map((child) => child)}
+            <If condition={content.props.children}>
+                 {content.props.children.map((child) => child)}
+            </If>
         </ButtaPage>
         </If>
       </div>
