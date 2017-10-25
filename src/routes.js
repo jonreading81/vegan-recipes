@@ -37,6 +37,7 @@ import {
     LinkList,
     JonProfile,
     AyaArticles,
+    AyaArticle,
     ButtaNameSurvey
   } from 'containers';
 
@@ -49,7 +50,10 @@ export default (store) => {
         <Route path="/aya" component={AyaApp}>
             <IndexRoute component={AyaHome}/>
             <Route path="about" component={AboutButta} />
-            <Route path="articles" component={AyaArticles} />
+            <Route path="article">
+              <Route path="list(/:page)" component={AyaArticles} />
+              <Route path=":article" component={AyaArticle}/>
+            </Route>
             <Route path="*" component={NotFound} status={404} />
         </Route>
         <Route path="/" component={App}>

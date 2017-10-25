@@ -15,6 +15,7 @@ export default class ArticleList extends Component {
     page: PropTypes.object.isRequired,
     articlesTitle: PropTypes.string.isRequired,
     articles: PropTypes.array.isRequired,
+    articleURL: PropTypes.array.isRequired,
     pages: PropTypes.number.isRequired,
     activePage: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
@@ -26,9 +27,9 @@ export default class ArticleList extends Component {
   }
 
   render() {
-    const {articles, page, isFetching, meta, pages, activePage, articlesTitle} = this.props;
+    const {articles, page, isFetching, meta, pages, activePage, articlesTitle, articleURL} = this.props;
     const title = page.getTitle();
-    const articleItems = ArticleHelper.mapToItems(articles);
+    const articleItems = ArticleHelper.mapToItems(articles, {baseURL: articleURL});
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
     const sidePanelComponent = htmlToReactParser.parse('<div>' + page.getSidePanel() + '</div>');
     const contentComponent = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');

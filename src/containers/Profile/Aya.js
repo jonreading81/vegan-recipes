@@ -63,6 +63,7 @@ export default class Aya extends Component {
           ]}
           page={page}
           articlesTitle="Articles"
+          articleURL="/aya/article/"
           articles={articles}
           pages={pages}
           activePage={activePage}
