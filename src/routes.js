@@ -33,8 +33,7 @@ import {
     UpdateLink,
     DeleteLink,
     LinkList,
-    JonProfile,
-    ButtaNameSurvey
+    JonProfile
   } from 'containers';
 
 export default (store) => {
@@ -50,7 +49,6 @@ export default (store) => {
         <Route path="survey" component={Survey}/>
         { /* <Route path="label" component={ButtaLabel}/> */ }
       </Route>
-      <Route path="survey" component={ButtaNameSurvey}/>
        <Route path="images" onEnter={requireMemberOfAdminGroup.bind(null, store)}>
          <Route path="list/:term(/:page)" component={ImageList}/>
         <Route path="add" component={AddImage}/>

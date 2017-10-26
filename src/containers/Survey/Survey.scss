@@ -1,59 +1,24 @@
 
 @import 'src/theme/mixins';
-@import 'src/theme/variables';
-
-.intro {
-  font-size: 1.6em;
-}
-
-.form {
+form {
   legend {
       @include heading();
       margin-bottom: 0;
       padding-top: 2em;
       border-bottom: none;
   }
-  h3, h4 {
-    text-transform: capitalize;
-  }
 }
-.formGroup, .formGroupCollection{
-  margin-top:2em;
+
+.formGroup{
+    margin-top:3em;
     label{
       margin-bottom:1em;
-      font-size:1.6em;
+      font-size:16px;
     }
     p {
-      font-size: 1.4em;
+        font-weight: 600;
     }
     button {
         text-transform: capitalize;
     }
-}
-.formGroupCollection{
-  margin-top:4em;
-}
-
-.sortableItemContainer{
-  margin-top:3em;
-}
-.sortableItem ,.sortableItemLarge{
-  font-size: 1.0em;
-  border: 1px dashed gray;
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
-  background-color: white;
-  cursor: move;
-  opacity:1;
-  &:nth-child(-n + 5) {
-    background-color: lighten($green, 50%);
-  }
-}
-.sortableItemLarge{
-  padding: 0.5em 1em;
-  font-weight: 200;
-  font-size: 1.8em;
-}
-.sortableItemDragging {
-  opacity:0.5;
 }

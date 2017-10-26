@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {RadioGroup} from 'components';
+import { reduxForm } from 'redux-form';
+import {connect} from 'react-redux';
+import {HeroPanel, RadioGroup} from 'components';
 import FormGroup from 'components/Form/FormGroup';
-import validation from './validation/survey';
-import googleSurvey from 'hoc/GoogleSurvey';
-import SurveyHeader from './helpers/SurveyHeader';
-import SurveySuccess from './helpers/SurveySuccess';
-import SurveyFormFooter from './helpers/SurveyFormFooter';
-import {ControlLabel, FormControl, Checkbox} from 'react-bootstrap';
+import ErrorBlock from 'components/Form/ErrorBlock';
+import validation from './validation';
+import {LoadingButton} from 'components';
 const validate = values => validation(values);
-
+import {ControlLabel, ButtonToolbar, FormControl, Checkbox} from 'react-bootstrap';
+import {submit} from 'redux/modules/survey';
+import { bindActionCreators } from 'redux';
+import get from 'lodash/get';
 
 const fields = [
   'question1',
@@ -27,35 +29,62 @@ const fields = [
   'question13'
 ];
 
+@connect(
+  (state) => {
+    return {
+      submitting: get(state.survey, 'loading'),
+      error: get(state.survey, 'loadError'),
+      success: get(state.survey, 'success')
+    };
+  },
+  (dispatch) => {
+    return {
+      onSubmit: bindActionCreators(submit, dispatch)
+    };
+  }
+)
 class Survey extends Component {
 
   static propTypes = {
     fields: PropTypes.object.isRequired,
     error: PropTypes.object,
     success: PropTypes.bool,
-    submitFn: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
   }
 
   render() {
     const {
-      fields: {question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13},
+fields: {question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13},
+      handleSubmit,
+      onSubmit,
       submitting,
       error,
-      submitFn,
       success
     } = this.props;
 
+    const submitFn = (event) => handleSubmit(onSubmit)(event)
+      .catch(err => {
+        let errorField;
+        for (errorField in err) {
+          if (err.hasOwnProperty(errorField)) {
+            document.getElementById(errorField).focus();
+            break;
+          }
+        }
+      }
+    );
     const styles = require('./Survey.scss');
     return (
               <div>
               <Helmet title="Survey"/>
-              <SurveyHeader />
+              <HeroPanel image="butter.jpeg" title="Butta" subTitle="A replacement made from plants for spreading, cooking and baking" style="image-focus-bottom"/>
               <div className="container">
               <div className="column-medium">
               <If condition={!success}>
               <h2>Survey</h2>
-              <p className={styles.intro}>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
+              <p>Thank you for taking time to complete this questionnaire. Each survey is anonymous so please be completely honest about your opinions.</p>
               <form onSubmit={submitFn}>
               <fieldset>
                <legend></legend>
@@ -177,11 +206,19 @@ class Survey extends Component {
                     </RadioGroup>
                 </FormGroup>
                 </fieldset>
-                <SurveyFormFooter submitting={submitting} error={error} />
+                <ErrorBlock error={error}/>
+
+                <ButtonToolbar>
+                <LoadingButton type="submit" submitting={submitting} bsSize="large" bsStyle="primary">Submit</LoadingButton>
+                </ButtonToolbar>
               </form>
             </If>
             <If condition={success}>
-              <SurveySuccess />
+               <h2>Survey Submitted</h2>
+               <h3>Thank you</h3>
+               <blockquote>
+               Nothing can be done alone and no one can take all the credit
+               </blockquote>
             </If>
           </div>
         </div>
@@ -189,4 +226,10 @@ class Survey extends Component {
   }
 }
 
-export default googleSurvey(Survey, '1CpGwyOkyYG1aCEowexoPtOOwbzxXoOqDblp00ZSkNjc', fields, {}, validate);
+export default reduxForm({
+  form: 'surveyForm',
+  fields,
+  validate,
+  returnRejectedSubmitPromise: true
+})(Survey);
+

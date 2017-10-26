@@ -20,7 +20,7 @@ import get from 'lodash/get';
 @asyncConnect([
   {
     promise: ({store: {dispatch}}) => {
-      return dispatch(requestPage('about-butta'));
+      return dispatch(requestPage('about-aya'));
     }
   },
 ])
@@ -37,7 +37,7 @@ export default class AboutButta extends Component {
     // console.log(content.props.children);
     return (
       <div>
-        <Helmet title="About Butta"/>
+        <Helmet title="About Aya"/>
         <If condition={!isFetching}>
           <ButtaPage selected="about">
             {content.props.children.map((child) => child)}
