@@ -1,5 +1,8 @@
 export App from './App/App';
+export DefaultApp from './App/Default';
+export AyaApp from './App/Aya';
 export Home from './Home/Home';
+export AyaHome from './Home/AyaHome';
 export RecipeList from './Recipes/RecipeList/RecipeList';
 export ViewRecipe from './Recipes/ViewRecipe/ViewRecipe';
 export UpdateRecipe from './Recipes/UpdateRecipe/UpdateRecipe';
@@ -18,6 +21,7 @@ export UpdateImage from './Images/UpdateImage/UpdateImage';
 export AddImage from './Images/AddImage/AddImage';
 export DeleteImage from './Images/DeleteImage/DeleteImage';
 export Article from './Articles/Article/Article';
+export AyaArticle from './Articles/Article/AyaArticle';
 export ArticleList from './Articles/ArticleList/ArticleList';
 export InspirationList from './Inspiration/InspirationList/InspirationList';
 export ViewInspiration from './Inspiration/ViewInspiration/ViewInspiration';
@@ -30,4 +34,4 @@ export UpdateLink from './Links/UpdateLink/UpdateLink';
 export DeleteLink from './Links/DeleteLink/DeleteLink';
 export LinkList from './Links/LinkList/LinkList';
 export JonProfile from './Profile/JonReading';
-
+export AyaArticles from './Profile/Aya';

@@ -22,22 +22,23 @@ export default class ButtaPage extends Component {
     };
     const backgrounds = [styles.background1, styles.background2, styles.background3, styles.background4];
     sections.push(section);
-
-    children.map((child) => {
-      if (child.type === 'parallax') {
-        section.parallax = {
-          image: child.props.image,
-          children: child.props.children
-        };
-        section = {
-          children: [],
-          parallax: false
-        };
-        sections.push(section);
-      }else {
-        section.children.push(child);
-      }
-    });
+    if (Array.isArray(children)) {
+      children.map((child) => {
+        if (child.type === 'parallax') {
+          section.parallax = {
+            image: child.props.image,
+            children: child.props.children
+          };
+          section = {
+            children: [],
+            parallax: false
+          };
+          sections.push(section);
+        }else {
+          section.children.push(child);
+        }
+      });
+    }
 
     return (
       <div className="presentation">
@@ -76,4 +77,3 @@ export default class ButtaPage extends Component {
     );
   }
 }
-

@@ -34,7 +34,7 @@ export default class ArticleContainer extends Component {
     return (
       <ArticleComponent article={articleHelper} isFetching={isFetching} >
          <BreadcrumbContainer>
-          <LinkContainer to={'/article/list/all'}>
+          <LinkContainer to={'/aya/article/list'}>
             <Breadcrumb.Item>Articles</Breadcrumb.Item>
           </LinkContainer>
           <Breadcrumb.Item active>{articleHelper.getTitle()}</Breadcrumb.Item>

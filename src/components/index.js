@@ -52,3 +52,10 @@ export ButtaPage from './Butta/ButtaPage/ButtaPage';
 export LinkForm from './LinkForm/LinkForm';
 export Link from './Link/Link';
 export ArticleList from './ArticleList/ArticleList';
+<<<<<<< HEAD
+=======
+export SortableList from './SortableList/SortableList';
+export PrefixValueInput from './Form/prefixValue';
+export AyaNavBar from './AyaNavBar/NavBar';
+export AyaFooter from './Footer/AyaFooter';
+>>>>>>> 70227ae34c5cc86ef5c87e01724cc57d842bf959

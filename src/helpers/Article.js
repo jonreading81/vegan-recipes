@@ -4,21 +4,21 @@ import stripHTML from '../utils/stripHTML';
 
 export default class Article {
 
-  static mapToItems(articles = []) {
+  static mapToItems(articles = [], config) {
     const items = [];
     articles.map(article => {
-      const myArticle = new Article(article);
+      const myArticle = new Article(article, config);
       items.push(myArticle.getListItem());
     });
     return items;
   }
 
-  static getURLWithSlug(slug) {
-    const URL = '/article/' + slug;
+  static getURLWithSlug(slug, baseURL = '/article/') {
+    const URL = baseURL + slug;
     return URL;
   }
 
-  constructor(data) {
+  constructor(data, { baseURL } = {} ) {
     this.imageHelper = new ImageHelper(this.getImage());
     this.content = get(data, 'content.rendered');
     this.title = get(data, 'title.rendered');
@@ -31,15 +31,15 @@ export default class Article {
       id: this.getSlug(),
       title: this.getTitle(),
       description: this.getDescription(),
-      URL: this.getURL(),
+      URL: this.getURL(baseURL),
       icon: 'newspaper-o',
       thumbnail: this.getImageURL('384x216'),
       image: this.getImage()
     };
   }
 
-  getURL() {
-    return Article.getURLWithSlug( this.getSlug());
+  getURL(baseURL) {
+    return Article.getURLWithSlug( this.getSlug(), baseURL);
   }
 
   getImageURL(size) {
@@ -79,4 +79,3 @@ export default class Article {
     return this.listItem;
   }
 }
-
