@@ -46,7 +46,7 @@ export default (store) => {
    * Please keep routes in alphabetical order
    */
   return (
-   <Route component={DefaultApp}>
+      <Route component={DefaultApp}>
         <Route path="/aya" component={AyaApp}>
             <IndexRoute component={AyaHome}/>
             <Route path="about" component={AboutButta} />

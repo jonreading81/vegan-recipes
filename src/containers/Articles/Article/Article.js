@@ -26,7 +26,7 @@ export default class ArticleContainer extends Component {
 
   static propTypes = {
     articleHelper: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool,
+    isFetching: PropTypes.bool
   }
 
   render() {
@@ -34,7 +34,7 @@ export default class ArticleContainer extends Component {
     return (
       <ArticleComponent article={articleHelper} isFetching={isFetching} >
          <BreadcrumbContainer>
-          <LinkContainer to={'/article/list/all'}>
+          <LinkContainer to="/article/list/all">
             <Breadcrumb.Item>Articles</Breadcrumb.Item>
           </LinkContainer>
           <Breadcrumb.Item active>{articleHelper.getTitle()}</Breadcrumb.Item>

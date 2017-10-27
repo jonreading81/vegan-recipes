@@ -107,7 +107,7 @@ router.route('/images').post(stormpath.groupsRequired(['admin']), multipartMiddl
 
 */
 
-router.post('/survey', function(req, res){
+router.post('/survey/:id', function(req, res){
    handleAction(survey.post(req.body, req), res);
 });
 

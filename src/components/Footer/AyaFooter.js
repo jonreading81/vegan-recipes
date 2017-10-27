@@ -32,7 +32,7 @@ export default class Footer extends Component {
                             </a>
                         </li>
                         <li>
-                            <a className={styles.socialLink} href="">
+                            <a className={styles.socialLink} href="https://instagram.com/ayaplantbased">
                                 <span className="fa-stack fa-lg">
                                     <i className="fa fa-circle fa-stack-2x"></i>
                                     <i className="fa fa-instagram fa-stack-1x fa-inverse"></i>
@@ -40,7 +40,7 @@ export default class Footer extends Component {
                             </a>
                         </li>
                     </ul>
-                    <p className={styles.copyright + ' text-muted'}>Copyright © Call of the Forest 2016</p>
+                    <p className={styles.copyright + ' text-muted'}>Copyright © Aya Foods Ltd 2017</p>
                 </div>
             </div>
         </div>

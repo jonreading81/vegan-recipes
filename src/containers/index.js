@@ -14,6 +14,7 @@ export NotFound from './NotFound/NotFound';
 export Error from './Error/Error';
 export Register from './Register/Register';
 export Survey from './Survey/Survey';
+export ButtaNameSurvey from './Survey/ButtaName';
 // export ButtaLabel from './Butta/ButtaLabel/ButtaLabel';
 export AboutButta from './Butta/AboutButta/AboutButta';
 export ImageList from './Images/ImageList/ImageList';
