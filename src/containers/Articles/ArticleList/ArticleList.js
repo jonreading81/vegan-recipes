@@ -12,6 +12,7 @@ import {HeroPanel} from 'components';
 import {request as requestPage} from 'redux/modules/wordpress/page';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
+const articleURL = '/article/';
 
 @connect(
   (state) => {
@@ -68,7 +69,7 @@ export default class ArticleListContainer extends Component {
     const articles = get(results, 'docs', []);
     const pages = get(results, 'pages', 0);
     const activePage = parseInt( get(results, 'page', 0), 10);
-    const articleItems = ArticleHelper.mapToItems(articles);
+    const articleItems = ArticleHelper.mapToItems(articles, { baseURL: articleURL });
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
     return (
       <div>
