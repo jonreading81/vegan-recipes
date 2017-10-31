@@ -9,22 +9,11 @@
   font-size: 14px;
   text-align: center;
   margin-bottom: 0;
-  .Aya {
-    color: #40947d;
-  }
 }
 
 .socialLink{
-  color:#666;
-  font-size: 2em;
+  color: #40947d;
   &:hover{
-    color: $brand-primary;
+    color: darken(#40947d, 6.5%);
   }
 }
-
-.Aya{
-    color: #40947d;
-    &:hover{
-     color: darken(#40947d, 6.5%);
-    }
-  }

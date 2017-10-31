@@ -1,20 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-// import {ButtaNavigation, ResponsiveImage} from 'components';
 import {ResponsiveImage} from 'components';
 import { Parallax, Background } from 'react-parallax';
 
-export default class ButtaPage extends Component {
+export default class AyaRetailPage extends Component {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
-    // selected: PropTypes.string.isRequired,
     style: PropTypes.string
   };
 
   render() {
-    // const {selected, children} = this.props;
     const {children} = this.props;
-    const styles = require('./ButtaPage.scss');
+    const styles = require('./AyaRetailPage.scss');
     const sections = [];
     let section = {
       children: [],
@@ -42,12 +39,10 @@ export default class ButtaPage extends Component {
 
     return (
       <div className="presentation">
-        { /* <ButtaNavigation selected={selected}/> */ }
         <div className="container-fluid">
           <div className="row">
            <div className={'col-md-10 col-md-offset-2'}>
-              { /* <h1 className={styles.logo}>Butta</h1> */ }
-              <h1>Butta</h1>
+              <h1>Aya</h1>
             </div>
           </div>
         </div>
