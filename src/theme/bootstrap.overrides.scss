@@ -10,18 +10,6 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 @import url($web-font-path);
 @import 'mixins';
 
-@font-face {
-    font-family: 'milkshake';
-    src: url('fonts/milkshake-webfont.eot');
-    src: url('fonts/milkshake-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/milkshake-webfont.woff2') format('woff2'),
-         url('fonts/milkshake-webfont.woff') format('woff'),
-         url('fonts/milkshake-webfont.ttf') format('truetype'),
-         url('fonts/milkshake-webfont.svg#milkshakeregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 h1, h2, h3, h4 {
   @include heading();
 }
@@ -862,4 +850,62 @@ input[type="checkbox"],
 
 .react-parallax-background{
   position:relative;
+}
+
+
+
+/*----------------------AYA--------------------*/
+@font-face {
+    font-family: 'brandon-blk';
+    src: url('fonts/brandon_blk-webfont.eot');
+    src: url('fonts/brandon_blk-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/brandon_blk-webfont.woff2') format('woff2'),
+         url('fonts/brandon_blk-webfont.woff') format('woff'),
+         url('fonts/brandon_blk-webfont.ttf') format('truetype'),
+         url('fonts/brandon_blk-webfont.svg#brandon-blk') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'brandon-bold';
+    src: url('fonts/brandon_grotesque_bold-webfont.eot');
+    src: url('fonts/brandon_grotesque_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/brandon_grotesque_bold-webfont.woff2') format('woff2'),
+         url('fonts/brandon_grotesque_bold-webfont.woff') format('woff'),
+         url('fonts/brandon_grotesque_bold-webfont.ttf') format('truetype'),
+         url('fonts/brandon_grotesque_bold-webfont.svg#brandon-bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'brandon-light';
+    src: url('fonts/brandon_light-webfont.eot');
+    src: url('fonts/brandon_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/brandon_light-webfont.woff2') format('woff2'),
+         url('fonts/brandon_light-webfont.woff') format('woff'),
+         url('fonts/brandon_light-webfont.ttf') format('truetype'),
+         url('fonts/brandon_light-webfont.svg#brandon-light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'brandon-medium';
+    src: url('fonts/brandon_med-webfont.eot');
+    src: url('fonts/brandon_med-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/brandon_med-webfont.woff2') format('woff2'),
+         url('fonts/brandon_med-webfont.woff') format('woff'),
+         url('fonts/brandon_med-webfont.ttf') format('truetype'),
+         url('fonts/brandon_med-webfont.svg#brandon-med') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*** A HREFS ****/
+a {
+    color: $aya-green;
+    :hover,
+    :focus {
+    	color: darken($aya-green, 6.5%);
+	}
 }

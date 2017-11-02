@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Helmet from 'react-helmet';
-import {HeroPanel, Loading} from 'components';
+import {Loading} from 'components';
 import {request as requestPage} from 'redux/modules/wordpress/page';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
@@ -36,19 +35,21 @@ export default class AyaAbout extends Component {
     const {page, isFetching, children} = this.props;
     const content = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
+    const styles = require('./AyaContact.scss');
     return (
       <div>
-        <Helmet title={page.getTitle()} />
         <If condition={isFetching}>
           <Loading />
         </If>
         <If condition={!isFetching}>
-            <HeroPanel image={page.getImage()} title={page.getTitle()} style="image-focus-button">
-              {subTextComponent}
-            </HeroPanel>
+            {subTextComponent}
             {children}
             <div className="container">
-              <div className="body-copy">{content}</div>
+              <div className="column-large">
+                <div className={styles.contact}>
+                  {content}
+                </div>
+              </div>
             </div>
         </If>
       </div>
