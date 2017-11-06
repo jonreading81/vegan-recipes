@@ -1,0 +1,99 @@
+@import "~compass-mixins/lib/compass";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+
+:global {
+    .navbar-header {
+        width: 100%;
+        margin-left: 0!important;
+        margin-right: 0!important;
+    }
+    .navbar-brand {
+        height: 150px;
+        margin-left: 0!important;
+        margin-right: 0;
+        padding-bottom: 0;
+        margin-bottom: 15px;
+        padding-top: 0;
+        @media only screen and (max-width: $screen-sm-min) {
+            padding-top: 0;
+            margin-bottom: 0;
+            height: 170px;
+        }
+        width: 100%;
+    }
+    .navbar-toggle {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .navbar-collapse {
+        @media only screen and (min-width: $screen-sm-min) {
+            text-align:center;
+            .nav {
+                display: inline-block;
+                float: none!important;
+            }
+        }
+    }
+    .navbar-default .navbar-nav > li > a {
+        border-bottom: 2px solid transparent;
+        @media only screen and (min-width: $screen-sm-min) {
+            padding-top: 0;
+        }
+        @media only screen and (max-width: $screen-sm-min) {
+            border-bottom: none;
+        }
+    }
+    .navbar-default .navbar-nav {
+        @media only screen and (max-width: $screen-sm-min) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+    .navbar-default .navbar-nav > a {
+        padding-bottom: 0;
+    }
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > .active > a:focus {
+        background-color: transparent;
+        border-bottom: 2px solid #bb3d62;
+        color: #bb3d62;
+        @media only screen and (max-width: $screen-sm-min) {
+            border-bottom: none;
+        }
+    }
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus {
+        border-bottom: 2px solid #bb3d62;
+        @media only screen and (max-width: $screen-sm-min) {
+            border-bottom: none;
+        }
+    }
+    .navbar-default .navbar-nav > .active > a:after,
+    .navbar-default .navbar-nav > .active > a:hover:after,
+    .navbar-default .navbar-nav > .active > a:focus:after,
+    .navbar-default .navbar-nav > li > a:hover:after,
+    .navbar-default .navbar-nav > li > a:focus:after {
+        border-bottom: none;
+        @media only screen and (max-width: $screen-sm-min) {
+            border-bottom: 2px solid #bb3d62;
+            transition: border 1s;
+        }
+    }
+    .navbar-default .navbar-nav > li > a:after {
+        @media only screen and (max-width: $screen-sm-min) {
+            content: '';
+            display: block;
+            position: inherit;
+            padding-bottom: 10px;
+            border-bottom: 2px solid transparent;
+            width: 100%;
+        }
+    }
+}
+.logoImg {
+	background-image:url("./AyaLogo.png");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}

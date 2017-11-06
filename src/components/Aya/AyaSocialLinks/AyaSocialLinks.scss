@@ -1,0 +1,15 @@
+@import "src/theme/variables";
+.socialLinks {
+    padding-top: 15px;
+    float: right;
+    @media only screen and (max-width: $screen-sm-min) {
+        float: left;
+    }
+}
+.socialLink {
+  color: #40947d;
+  font-size: 1.25em;
+  &:hover {
+    color: darken(#40947d, 6.5%);
+  }
+}

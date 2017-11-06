@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Helmet from 'react-helmet';
-import {ButtaPage} from 'components';
+import {Loading} from 'components';
 import {request as requestPage} from 'redux/modules/wordpress/page';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
@@ -20,30 +19,38 @@ import get from 'lodash/get';
 @asyncConnect([
   {
     promise: ({store: {dispatch}}) => {
-      return dispatch(requestPage('about-butta'));
+      return dispatch(requestPage('aya-contact'));
     }
   },
 ])
-export default class AboutButta extends Component {
+export default class AyaAbout extends Component {
 
   static propTypes = {
     page: PropTypes.object.isRequired,
+    children: PropTypes.node,
     isFetching: PropTypes.bool.isRequired
   }
 
   render() {
-    const {page, isFetching} = this.props;
+    const {page, isFetching, children} = this.props;
     const content = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
-    // console.log(content.props.children);
+    const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
+    const styles = require('./AyaContact.scss');
     return (
       <div>
-        <Helmet title="About Butta"/>
+        <If condition={isFetching}>
+          <Loading />
+        </If>
         <If condition={!isFetching}>
-          <ButtaPage selected="about">
-            <If condition={content.props.children}>
-                 {content.props.children.map((child) => child)}
-            </If>
-        </ButtaPage>
+            {subTextComponent}
+            {children}
+            <div className="container">
+              <div className="column-large">
+                <div className={styles.contact}>
+                  {content}
+                </div>
+              </div>
+            </div>
         </If>
       </div>
     );

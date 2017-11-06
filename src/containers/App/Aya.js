@@ -17,7 +17,7 @@ export default class App extends Component {
 
   render() {
     const {apiError} = this.props;
-    const styles = require('./App.scss');
+    const styles = require('./AyaApp.scss');
     return (
         <div className={styles.app}>
         <Helmet {...config.app.head}/>

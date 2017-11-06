@@ -1,6 +1,6 @@
 require('babel-polyfill');
 
-const description = 'Call of the forest is a platform dedicated to helping raise the conciousness of ourselves and those around us';
+const description = 'Aya is an organic plantbutter used for spreading, cooking and baking';
 const environment = {
   development: {
     isProduction: false
@@ -25,7 +25,7 @@ module.exports = Object.assign({
       defaultTitle: 'Aya',
       meta: [
       {name: 'description', content: description},
-      {name: 'keywords', content: 'yoga, meditation, vegan, spirtuality, recipes'},
+      {name: 'keywords', content: 'plantbutter, Aya'},
       {charset: 'utf-8'},
       {property: 'og:site_name', content: 'Aya'},
       {property: 'og:image', content: ''},
