@@ -1,14 +1,35 @@
 @import "src/theme/variables";
 .footer {
-  padding: 30px 0 65px;
+    text-align: center;
 }
-
-
+p.quote span {
+  font-family: "brandon-light", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  color: $aya-dark-green;
+}
 .copyright {
-  margin-top: 32px;
-  font-size: 14px;
+  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
   text-align: center;
   margin-bottom: 0;
+}
+ul.standards {
+    margin-bottom: 0;
+    li {
+        height: 50px;
+        width: 60px;
+    }
+}
+.organicLogo, .veganLogo {
+	background-image:url("./LogoVeganSociety.png");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.organicLogo {
+	background-image:url("./LogoSoilAssoc.png");
 }
 
 .socialLink{

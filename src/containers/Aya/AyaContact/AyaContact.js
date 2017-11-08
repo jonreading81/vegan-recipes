@@ -27,12 +27,11 @@ export default class AyaAbout extends Component {
 
   static propTypes = {
     page: PropTypes.object.isRequired,
-    children: PropTypes.node,
     isFetching: PropTypes.bool.isRequired
   }
 
   render() {
-    const {page, isFetching, children} = this.props;
+    const {page, isFetching} = this.props;
     const content = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
     const styles = require('./AyaContact.scss');
@@ -42,12 +41,54 @@ export default class AyaAbout extends Component {
           <Loading />
         </If>
         <If condition={!isFetching}>
-            {subTextComponent}
-            {children}
             <div className="container">
               <div className="column-large">
+                <div className="row text-center page-quote">
+                    {subTextComponent}
+                </div>
+                <h1>Contact</h1>
                 <div className={styles.contact}>
                   {content}
+                  <dl>
+                      <dt>Social Media</dt>
+                      <dd>
+                        <ul className="list-inline">
+                            <li>
+                            <a className="socialLink" href="https://twitter.com/ayaplantbased">
+                                <span className="fa-stack fa-lg">
+                                    <i className="fa fa-circle fa-stack-2x"></i>
+                                    <i className="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                            <a className="socialLink" href="https://instagram.com/ayaplantbased">
+                                <span className="fa-stack fa-lg">
+                                    <i className="fa fa-circle fa-stack-2x"></i>
+                                    <i className="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                            </li>
+                            <span>@ayaplantbased</span>
+                        </ul>
+                      </dd>
+                      <dt>Email</dt>
+                      <dd>
+                        <p>
+                            <a className="socialLink" href="mailto:hello@ayaplantbased.com">
+                                <span className="fa-stack fa-lg">
+                                    <i className="fa fa-circle fa-stack-2x"></i>
+                                    <i className="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                            <span className={styles.emailAddress}><a href="mailto:hello@ayaplantbased.com">hello@ayaplantbased.com</a></span>
+                        </p>
+                      </dd>
+                      <dt>Address</dt>
+                      <dd>
+                        <p>
+                           193A Munster Road, SW6 6BY, London, United Kingdom
+                        </p>
+                      </dd>
+                  </dl>
                 </div>
               </div>
             </div>
