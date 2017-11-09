@@ -22,7 +22,7 @@ export default class App extends Component {
         <div className={styles.app}>
         <Helmet {...config.app.head}/>
         <AyaNavBar />
-        <div className={styles.appContent}>
+        <div className={styles.appContent + ' appAya'}>
          {!apiError ? this.props.children : <Error code="500"><h2>{get(apiError, 'name')}</h2><p>{get(apiError, 'message')}</p></Error > }
         </div>
         <AyaFooter />

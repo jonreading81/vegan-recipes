@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {HeroPanel, Loading} from 'components';
+import {AyaHeroPanel, Loading} from 'components';
 import {request as requestPage} from 'redux/modules/wordpress/page';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
@@ -43,14 +43,11 @@ export default class AyaContact extends Component {
           <Loading />
         </If>
         <If condition={!isFetching}>
-            <HeroPanel image={page.getImage()} title={page.getTitle()} style="image-focus-button">
+            <AyaHeroPanel image={page.getImage()} title={page.getTitle()} style="image-focus-button">
               {subTextComponent}
-            </HeroPanel>
+            </AyaHeroPanel>
             <div className="container">
               <div className="column-large">
-                <div className="row text-center page-quote">
-                    {subTextComponent}
-                </div>
                 <div className={styles.contact}>
                   {content}
                   <dl>
@@ -58,32 +55,20 @@ export default class AyaContact extends Component {
                       <dd>
                         <ul className="list-inline">
                             <li>
-                            <a className="socialLink socialLinkAya" href="https://twitter.com/ayaplantbased">
-                                <span className="fa-stack fa-lg">
-                                    <i className="fa fa-circle fa-stack-2x"></i>
-                                    <i className="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                            <a className="socialLink socialLinkAya" href="https://instagram.com/ayaplantbased">
-                                <span className="fa-stack fa-lg">
-                                    <i className="fa fa-circle fa-stack-2x"></i>
-                                    <i className="fa fa-instagram fa-stack-1x fa-inverse"></i>
-                                </span>
+                            <a href="https://twitter.com/ayaplantbased">https://twitter.com/ayaplantbased
                             </a>
                             </li>
-                            <span>@ayaplantbased</span>
+                            <li>
+                            <a href="https://instagram.com/ayaplantbased">https://instagram.com/ayaplantbased
+                            </a>
+                            </li>
                         </ul>
                       </dd>
                       <dt>Email</dt>
                       <dd>
                         <p>
-                            <a className="socialLink socialLinkAya" href="mailto:hello@ayaplantbased.com">
-                                <span className="fa-stack fa-lg">
-                                    <i className="fa fa-circle fa-stack-2x"></i>
-                                    <i className="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                                </span>
+                            <a href="mailto:hello@ayaplantbased.com">mailto:hello@ayaplantbased.com
                             </a>
-                            <span className={styles.emailAddress}><a href="mailto:hello@ayaplantbased.com">hello@ayaplantbased.com</a></span>
                         </p>
                       </dd>
                       <dt>Address</dt>
