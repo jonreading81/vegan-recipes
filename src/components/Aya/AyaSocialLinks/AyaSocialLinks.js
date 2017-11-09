@@ -13,7 +13,7 @@ export default class AyaSocialLinks extends Component {
         <div className="">
             <ul className={'list-inline text-center'}>
                 <li>
-                    <a className="socialLink" href="https://twitter.com/ayaplantbased">
+                    <a className="socialLink socialLinkAya" href="https://twitter.com/ayaplantbased">
                         <span className="fa-stack fa-lg">
                             <i className="fa fa-circle fa-stack-2x"></i>
                             <i className="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -21,7 +21,7 @@ export default class AyaSocialLinks extends Component {
                     </a>
                 </li>
                 <li>
-                    <a className="socialLink" href="https://instagram.com/ayaplantbased">
+                    <a className="socialLink socialLinkAya" href="https://instagram.com/ayaplantbased">
                         <span className="fa-stack fa-lg">
                             <i className="fa fa-circle fa-stack-2x"></i>
                             <i className="fa fa-instagram fa-stack-1x fa-inverse"></i>
@@ -29,7 +29,7 @@ export default class AyaSocialLinks extends Component {
                     </a>
                 </li>
                 <li>
-                    <a className="socialLink" href="mailto:hello@ayaplantbased.com">
+                    <a className="socialLink socialLinkAya" href="mailto:hello@ayaplantbased.com">
                         <span className="fa-stack fa-lg">
                             <i className="fa fa-circle fa-stack-2x"></i>
                             <i className="fa fa-envelope fa-stack-1x fa-inverse"></i>

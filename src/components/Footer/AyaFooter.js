@@ -7,7 +7,6 @@ export default class Footer extends Component {
   }
   render() {
     const styles = require('./AyaFooter.scss');
-    console.log(styles);
     return (
     <div>
     <hr />

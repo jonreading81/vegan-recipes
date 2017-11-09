@@ -20,6 +20,7 @@ import {
     /* ButtaLabel, */
     AyaRetail,
     AyaAbout,
+    AyaProducts,
     AyaContact,
     ImageList,
     UpdateImage,
@@ -51,7 +52,8 @@ export default (store) => {
       <Route component={DefaultApp}>
         <Route path="/aya" component={AyaApp}>
             <IndexRoute component={AyaHome}/>
-            <Route path="about" component={AyaAbout} />
+            <Route path="ourstory" component={AyaAbout} />
+            <Route path="products" component={AyaProducts} />
             <Route path="retail" component={AyaRetail} />
             <Route path="contact" component={AyaContact} />
             <Route path="article">
