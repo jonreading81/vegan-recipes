@@ -44,69 +44,20 @@
     }
 }
 
-:global {
-    .navbarAya .navbar-nav {
-        @media only screen and (min-width: $screen-sm-min) {
-            display: inline-block;
-            float: none!important;
-        }
+.navbar-nav {
+    @media only screen and (min-width: $screen-sm-min) {
+        display: inline-block;
+        float: none!important;
     }
-    .navbarAya .navbar-nav > li > a {
-        text-decoration: none;
-        border-bottom: 2px solid transparent;
-        @media only screen and (min-width: $screen-sm-min) {
-            padding-top: 0;
-        }
-        @media only screen and (max-width: $screen-sm-min) {
-            border-bottom: none;
-        }
-    }
-    .navbarAya .navbar-nav {
-        @media only screen and (max-width: $screen-sm-min) {
-            margin-left: 0;
-            margin-right: 0;
-        }
-    }
-    .navbarAya .navbar-nav > a {
-        padding-bottom: 0;
-    }
-    .navbarAya .navbar-nav > .active > a,
-    .navbarAya .navbar-nav > .active > a:hover,
-    .navbarAya .navbar-nav > .active > a:focus {
-        background-color: transparent;
-        border-bottom: 2px solid #bb3d62;
-        color: #bb3d62;
-        @media only screen and (max-width: $screen-sm-min) {
-            border-bottom: none;
-        }
-    }
-    .navbarAya .navbar-nav > li > a:hover,
-    .navbarAya .navbar-nav > li > a:focus {
-        border-bottom: 2px solid #bb3d62;
-        @media only screen and (max-width: $screen-sm-min) {
-            border-bottom: none;
-        }
-    }
-    .navbarAya .navbar-nav > .active > a:after,
-    .navbarAya .navbar-nav > .active > a:hover:after,
-    .navbarAya .navbar-nav > .active > a:focus:after,
-    .navbarAya .navbar-nav > li > a:hover:after,
-    .navbarAya .navbar-nav > li > a:focus:after {
-        border-bottom: none;
-        @media only screen and (max-width: $screen-sm-min) {
-            border-bottom: 2px solid #bb3d62;
-            transition: border 1s;
-        }
-    }
-    .navbarAya .navbar-nav > li > a:after {
-        @media only screen and (max-width: $screen-sm-min) {
-            content: '';
-            display: block;
-            position: inherit;
-            padding-bottom: 10px;
-            border-bottom: 2px solid transparent;
-            width: 100%;
-        }
+}
+.navbar-nav > li > a {
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+.navbar-nav {
+    @media only screen and (max-width: $screen-sm-min) {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 .logoImg {
@@ -114,4 +65,31 @@
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
+}
+:global {
+    .aya-navbar-default .navbar-nav > .active > a,
+    .aya-navbar-default .navbar-nav > .active > a:hover,
+    .aya-navbar-default .navbar-nav > .active > a:focus {
+        background-color: transparent;
+        color: #bb3d62;
+    }
+    .aya-navbar-default .navbar-nav > li > a:after {
+        content: '';
+        display: block;
+        position: inherit;
+        padding-bottom: 20px;
+        border-bottom: 2px solid transparent;
+        width: 100%;
+        @media only screen and (max-width: $screen-sm-min) {
+            padding-bottom: 10px;
+        }
+    }
+    .aya-navbar-default .navbar-nav > .active > a:after,
+    .aya-navbar-default .navbar-nav > .active > a:hover:after,
+    .aya-navbar-default .navbar-nav > .active > a:focus:after,
+    .aya-navbar-default .navbar-nav > li > a:hover:after,
+    .aya-navbar-default .navbar-nav > li > a:focus:after {
+            border-bottom: 2px solid #bb3d62;
+            transition: border 1s;
+    }
 }

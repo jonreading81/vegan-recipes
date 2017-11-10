@@ -36,13 +36,13 @@ export default class HeroPanel extends Component {
               <div className="image-wrapper-holder" />
               <div className="image-wrapper-overlay" />
             </div>
-            <div className="hero-panel-type">
+            <div className={`${styles.heroDefaultBg} hero-panel-type`}>
               <div className="hero-panel-type-lining">
-                <div className={type + ' siteHeadingAya'}>
+                <div className={`${type}`}>
                     <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                       <If condition={!isUndefined(title)}>
                         <h1>{title}</h1>
-                        <hr className={styles.hrLeafAya} />
+                        <hr className={`${styles.hrLeaf}`} />
                       </If>
                       <div className="subheading">
                         <If condition={subTitle}>

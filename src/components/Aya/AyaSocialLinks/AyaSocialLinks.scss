@@ -7,14 +7,12 @@
         right: unset;
     }
 }
-:global {
-    a.socialLinkAya,
-    a.socialLinkAya span{
-      color: $aya-green;
-      font-size: 1.25em;
-    }
-    a.socialLinkAya:hover,
-    a.socialLinkAya:hover span {
-      color: darken($aya-green, 15%);
-    }
+a.socialLink,
+a.socialLink span{
+  color: $aya-green;
+  font-size: 1.25em;
+}
+a.socialLink:hover,
+a.socialLink:hover span {
+  color: darken($aya-green, 15%);
 }

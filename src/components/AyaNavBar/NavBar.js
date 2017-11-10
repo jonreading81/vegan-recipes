@@ -42,21 +42,21 @@ export default class NavBar extends Component {
     const styles = require('./NavBar.scss');
     // const {URL} = this.props;
     return (
-   <Navbar fixedTop className={styles.navbar + ' navbarAya navbar-custom'} fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
-      <Navbar.Header className={styles.navbarHeader}>
-        <Navbar.Toggle className={styles.navbarToggle}/>
+   <Navbar fixedTop className={`aya-navbar-default ${styles.navbar} navbar-custom`} fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
+      <Navbar.Header className={`${styles.navbarHeader}`}>
+        <Navbar.Toggle className={`${styles.navbarToggle}`}/>
         <AyaSocialLinks/>
-        <Navbar.Brand className={styles.navbarBrand}>
+        <Navbar.Brand className={`${styles.navbarBrand}`}>
           <IndexLink to="/aya">
-            <div className={styles.logoImg} />
+            <div className={`${styles.logoImg}`} />
             <div className="image-wrapper">
             </div>
             <span className="hidden">{config.app.title}</span>
           </IndexLink>
         </Navbar.Brand>
       </Navbar.Header>
-      <Navbar.Collapse autoCollapse eventKey={0} className={styles.navbarCollapse}>
-        <Nav navbar>
+      <Navbar.Collapse autoCollapse eventKey={0} className={`${styles.navbarCollapse}`}>
+        <Nav navbar className={`${styles['navbar-nav']}`}>
         	<LinkContainer to="/aya/">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Home</NavItem>
             </LinkContainer>

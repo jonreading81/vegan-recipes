@@ -153,11 +153,8 @@ $breakpoint-imagecropped : 640px;
       }
     }
   }
-  .siteHeadingAya {
-    background-color: $aya-green;
-  }
 }
-.hrLeafAya {
+.hrLeaf {
     border-top: 1px solid #fff;
     height: 30px;
     margin-left: 30px;
@@ -180,4 +177,7 @@ $breakpoint-imagecropped : 640px;
          float: right;
          margin-right: -30px;
     }
+}
+.heroDefaultBg{
+    background-color: $aya-green;
 }
