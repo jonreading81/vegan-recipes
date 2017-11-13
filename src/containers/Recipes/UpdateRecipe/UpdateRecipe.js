@@ -84,7 +84,7 @@ export default class UpdateRecipeContainer extends Component {
           </LinkContainer>
           <Breadcrumb.Item active>Update</Breadcrumb.Item>
         </BreadcrumbContainer>
-         <HeroPanel type="post-heading" hasBreadcrumb image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
+         <HeroPanel type="post-heading" hasFixedBreadcrumb image={myRecipeHelper.getImage()} title={myRecipeHelper.getTitle()} subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}/>
          <EntityFormContainer
           entity ={recipe}
           pageTitle = "Update Recipe"

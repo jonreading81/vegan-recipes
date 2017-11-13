@@ -8,6 +8,7 @@ import Article from 'helpers/Article';
 import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import heroStyles from './heroPanel.scss';
 
 @connect(
   (store) => {
@@ -32,8 +33,12 @@ export default class ArticleContainer extends Component {
   render() {
     const {articleHelper, isFetching} = this.props;
     return (
-      <ArticleComponent article={articleHelper} isFetching={isFetching} >
-         <BreadcrumbContainer>
+      <ArticleComponent
+          article={articleHelper}
+          isFetching={isFetching}
+          heroStyles={heroStyles}
+          >
+         <BreadcrumbContainer className="breadcrumb-wrapper--aya">
           <LinkContainer to={'/aya/article/list'}>
             <Breadcrumb.Item>Articles</Breadcrumb.Item>
           </LinkContainer>

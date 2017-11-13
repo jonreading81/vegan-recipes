@@ -59,7 +59,7 @@ export default class UpdateRecipeContainer extends Component {
         </LinkContainer>
         <Breadcrumb.Item active>{myImageHelper.getName()}</Breadcrumb.Item>
       </BreadcrumbContainer>
-       <HeroPanel type="post-heading" title={myImageHelper.getName()} hasBreadcrumb image={image} />
+       <HeroPanel type="post-heading" title={myImageHelper.getName()} hasFixedBreadcrumb image={image} />
        <EntityFormContainer
         pageTitle = "Update Image"
         resetStateAction = {resetStateAction}

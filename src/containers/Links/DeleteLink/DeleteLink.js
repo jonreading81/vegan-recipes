@@ -78,7 +78,7 @@ export default class DeleteInspirationContainer extends Component {
             </LinkContainer>
             <Breadcrumb.Item active>Delete</Breadcrumb.Item>
           </BreadcrumbContainer>
-          <HeroPanel type="post-heading" hasBreadcrumb image={myViewHelper.getImage()} title={myViewHelper.getTitle()} />
+          <HeroPanel type="post-heading" hasFixedBreadcrumb image={myViewHelper.getImage()} title={myViewHelper.getTitle()} />
           <DeleteEntity
             deleteEntity={deleteEntity}
             resetStateAction={resetDelete()}

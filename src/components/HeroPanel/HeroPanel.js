@@ -13,19 +13,19 @@ export default class HeroPanel extends Component {
     styles: PropTypes.object,
     type: PropTypes.string,
     isEmpty: PropTypes.bool,
-    hasBreadcrumb: PropTypes.bool,
+    hasFixedBreadcrumb: PropTypes.bool,
     subTitle: PropTypes.string,
     image: PropTypes.string.isRequired
   }
   render() {
     require('./HeroPanel.scss');
-    const {title, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
+    const {title, subTitle, image, isEmpty, children, hasFixedBreadcrumb} = this.props;
     const styles = this.props.styles || {};
     const type = get( this.props, 'type', 'site-heading');
     let className = 'hero-panel';
     let style = this.props.style;
     if (isEmpty) className += ' hero-panel-empty';
-    if (hasBreadcrumb) className += ' hero-panel-with-breadcrumb';
+    if (hasFixedBreadcrumb) className += ' hero-panel-with-fixed-breadcrumb';
     if (!style) style = 'image-focus-center';
     className = className + ' hero-panel-' + style;
 

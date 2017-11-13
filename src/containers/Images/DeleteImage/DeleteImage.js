@@ -64,7 +64,7 @@ export default class DeleteRecipeContainer extends Component {
           </LinkContainer>
           <Breadcrumb.Item active>Delete</Breadcrumb.Item>
         </BreadcrumbContainer>
-        <HeroPanel type="post-heading" hasBreadcrumb image={myImageHelper.getImage()} title={myImageHelper.getName()} />
+        <HeroPanel type="post-heading" hasFixedBreadcrumb image={myImageHelper.getImage()} title={myImageHelper.getName()} />
         <DeleteEntity
           deleteEntity={deleteImage}
           resetStateAction={resetDeleteImage()}

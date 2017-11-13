@@ -5,12 +5,14 @@ import {Breadcrumb} from 'react-bootstrap';
 export default class BreadcrumbComponent extends Component {
 
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    className: PropTypes.string
   };
   render() {
     const {children} = this.props;
+    const className = this.props.className || '';
     return (
-      <div className="breadcrumb-wrapper">
+      <div className={`breadcrumb-wrapper ${className}`}>
         <div className="container-fluid">
         <Breadcrumb>{children}</Breadcrumb>
         </div>
@@ -18,4 +20,3 @@ export default class BreadcrumbComponent extends Component {
     );
   }
 }
-
