@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {AyaHeroPanel, Loading} from 'components';
+import {HeroPanel, Loading} from 'components';
 import {request as requestPage} from 'redux/modules/wordpress/page';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
@@ -8,6 +8,7 @@ import ArticleHelper from 'helpers/Article';
 import { asyncConnect } from 'redux-async-connect';
 import {connect} from 'react-redux';
 import get from 'lodash/get';
+import heroStyles from '../heroPanel.scss';
 
 @connect(
   (state) => {
@@ -43,9 +44,9 @@ export default class AyaAbout extends Component {
           <Loading />
         </If>
         <If condition={!isFetching}>
-            <AyaHeroPanel image={page.getImage()} title={page.getTitle()} style="image-focus-button">
+            <HeroPanel styles={heroStyles} image={page.getImage()} title={page.getTitle()} style="image-focus-button">
               {subTextComponent}
-            </AyaHeroPanel>
+            </HeroPanel>
             {children}
             <div className="container">
               <div className="body-copy">{content}</div>

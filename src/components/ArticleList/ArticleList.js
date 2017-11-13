@@ -16,6 +16,7 @@ export default class ArticleList extends Component {
     articlesTitle: PropTypes.string.isRequired,
     articles: PropTypes.array.isRequired,
     articleURL: PropTypes.array.isRequired,
+    heroStyles: PropTypes.object,
     pages: PropTypes.number.isRequired,
     activePage: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
@@ -27,7 +28,7 @@ export default class ArticleList extends Component {
   }
 
   render() {
-    const {articles, page, isFetching, meta, pages, activePage, articlesTitle, articleURL} = this.props;
+    const {heroStyles, articles, page, isFetching, meta, pages, activePage, articlesTitle, articleURL} = this.props;
     const title = page.getTitle();
     const articleItems = ArticleHelper.mapToItems(articles, {baseURL: articleURL});
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
@@ -44,7 +45,7 @@ export default class ArticleList extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel image={page.getImage()} title={title}>
+            <HeroPanel styles={heroStyles} image={page.getImage()} title={title}>
                {subTextComponent}
             </HeroPanel>
              <div className="container">
