@@ -1,15 +1,18 @@
 @import "src/theme/variables";
 .socialLinks {
-    padding-top: 15px;
-    float: right;
+    position: absolute;
+    right: 15px;
     @media only screen and (max-width: $screen-sm-min) {
-        float: left;
+        left: 15px;
+        right: unset;
     }
 }
-.socialLink {
-  color: #40947d;
+a.socialLink,
+a.socialLink span{
+  color: $aya-green;
   font-size: 1.25em;
-  &:hover {
-    color: darken(#40947d, 6.5%);
-  }
+}
+a.socialLink:hover,
+a.socialLink:hover span {
+  color: darken($aya-green, 15%);
 }

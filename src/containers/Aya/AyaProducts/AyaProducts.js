@@ -1,32 +1,35 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import { asyncConnect } from 'redux-async-connect';
-import {connect} from 'react-redux';
-import {request as requestGet} from 'redux/modules/wordpress/page';
-import get from 'lodash/get';
+import {AyaHeroPanel, Loading} from 'components';
+import {request as requestPage} from 'redux/modules/wordpress/page';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
 import ArticleHelper from 'helpers/Article';
-import {AyaHeroPanel, Loading} from 'components';
+import { asyncConnect } from 'redux-async-connect';
+import {connect} from 'react-redux';
+import get from 'lodash/get';
 
 @connect(
-  (store) => {
+  (state) => {
     return {
-      page: new ArticleHelper(get(store.viewPage, 'entity.docs[0]')),
-      isFetching: get(store.viewPage, 'isFetching')
+      isFetching: get(state.viewPage, 'isFetching'),
+      page: new ArticleHelper(get(state.viewPage, 'entity.docs[0]')),
     };
   }
 )
-@asyncConnect([{
-  promise: ({store: {dispatch}}) => {
-    return dispatch( requestGet('aya-home'));
-  }
-}])
-export default class Home extends Component {
+@asyncConnect([
+  {
+    promise: ({store: {dispatch}}) => {
+      return dispatch(requestPage('aya-products'));
+    }
+  },
+])
+export default class AyaProducts extends Component {
 
   static propTypes = {
-    page: PropTypes.string.isRequired,
-    isFetching: PropTypes.bool
+    page: PropTypes.object.isRequired,
+    children: PropTypes.node,
+    isFetching: PropTypes.bool.isRequired
   }
 
   render() {

@@ -900,12 +900,3 @@ input[type="checkbox"],
     font-weight: normal;
     font-style: normal;
 }
-
-/*** A HREFS ****/
-a {
-    color: $aya-green;
-    :hover,
-    :focus {
-    	color: darken($aya-green, 6.5%);
-	}
-}

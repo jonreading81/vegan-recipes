@@ -1,94 +1,63 @@
 @import "~compass-mixins/lib/compass";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
-:global {
-    .navbar-header {
-        width: 100%;
-        margin-left: 0!important;
-        margin-right: 0!important;
-    }
-    .navbar-brand {
-        height: 150px;
-        margin-left: 0!important;
-        margin-right: 0;
-        padding-bottom: 0;
-        margin-bottom: 15px;
+.navbar {
+    position: relative;
+    box-shadow: none;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+.navbarHeader {
+    width: 100%;
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+.navbarBrand {
+    height: 150px;
+    margin-left: 0!important;
+    margin-right: 0;
+    padding-bottom: 0;
+    margin-bottom: 15px;
+    padding-top: 0;
+    @media only screen and (max-width: $screen-sm-min) {
         padding-top: 0;
-        @media only screen and (max-width: $screen-sm-min) {
-            padding-top: 0;
-            margin-bottom: 0;
-            height: 170px;
-        }
-        width: 100%;
-    }
-    .navbar-toggle {
-        margin-right: 0;
         margin-bottom: 0;
+        height: 170px;
     }
-    .navbar-collapse {
-        @media only screen and (min-width: $screen-sm-min) {
-            text-align:center;
-            .nav {
-                display: inline-block;
-                float: none!important;
-            }
-        }
+    @media only screen and (max-width: 500px) {
+        position: relative;
+        top: 20px;
+        height: 210px;
     }
-    .navbar-default .navbar-nav > li > a {
-        border-bottom: 2px solid transparent;
-        @media only screen and (min-width: $screen-sm-min) {
-            padding-top: 0;
-        }
-        @media only screen and (max-width: $screen-sm-min) {
-            border-bottom: none;
-        }
+    width: 100%;
+}
+.navbarToggle {
+    position: absolute;
+    right: 15px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.navbarCollapse {
+    @media only screen and (min-width: $screen-sm-min) {
+        text-align:center;
     }
-    .navbar-default .navbar-nav {
-        @media only screen and (max-width: $screen-sm-min) {
-            margin-left: 0;
-            margin-right: 0;
-        }
+}
+
+.navbar-nav {
+    @media only screen and (min-width: $screen-sm-min) {
+        display: inline-block;
+        float: none!important;
     }
-    .navbar-default .navbar-nav > a {
-        padding-bottom: 0;
-    }
-    .navbar-default .navbar-nav > .active > a,
-    .navbar-default .navbar-nav > .active > a:hover,
-    .navbar-default .navbar-nav > .active > a:focus {
-        background-color: transparent;
-        border-bottom: 2px solid #bb3d62;
-        color: #bb3d62;
-        @media only screen and (max-width: $screen-sm-min) {
-            border-bottom: none;
-        }
-    }
-    .navbar-default .navbar-nav > li > a:hover,
-    .navbar-default .navbar-nav > li > a:focus {
-        border-bottom: 2px solid #bb3d62;
-        @media only screen and (max-width: $screen-sm-min) {
-            border-bottom: none;
-        }
-    }
-    .navbar-default .navbar-nav > .active > a:after,
-    .navbar-default .navbar-nav > .active > a:hover:after,
-    .navbar-default .navbar-nav > .active > a:focus:after,
-    .navbar-default .navbar-nav > li > a:hover:after,
-    .navbar-default .navbar-nav > li > a:focus:after {
-        border-bottom: none;
-        @media only screen and (max-width: $screen-sm-min) {
-            border-bottom: 2px solid #bb3d62;
-            transition: border 1s;
-        }
-    }
-    .navbar-default .navbar-nav > li > a:after {
-        @media only screen and (max-width: $screen-sm-min) {
-            content: '';
-            display: block;
-            position: inherit;
-            padding-bottom: 10px;
-            border-bottom: 2px solid transparent;
-            width: 100%;
-        }
+}
+.navbar-nav > li > a {
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+.navbar-nav {
+    @media only screen and (max-width: $screen-sm-min) {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 .logoImg {
@@ -96,4 +65,31 @@
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
+}
+:global {
+    .aya-navbar-default .navbar-nav > .active > a,
+    .aya-navbar-default .navbar-nav > .active > a:hover,
+    .aya-navbar-default .navbar-nav > .active > a:focus {
+        background-color: transparent;
+        color: #bb3d62;
+    }
+    .aya-navbar-default .navbar-nav > li > a:after {
+        content: '';
+        display: block;
+        position: inherit;
+        padding-bottom: 20px;
+        border-bottom: 2px solid transparent;
+        width: 100%;
+        @media only screen and (max-width: $screen-sm-min) {
+            padding-bottom: 10px;
+        }
+    }
+    .aya-navbar-default .navbar-nav > .active > a:after,
+    .aya-navbar-default .navbar-nav > .active > a:hover:after,
+    .aya-navbar-default .navbar-nav > .active > a:focus:after,
+    .aya-navbar-default .navbar-nav > li > a:hover:after,
+    .aya-navbar-default .navbar-nav > li > a:focus:after {
+            border-bottom: 2px solid #bb3d62;
+            transition: border 1s;
+    }
 }

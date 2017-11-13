@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import {Loading} from 'components';
+import Helmet from 'react-helmet';
+import {AyaHeroPanel, Loading} from 'components';
 import {request as requestPage} from 'redux/modules/wordpress/page';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
@@ -23,31 +24,60 @@ import get from 'lodash/get';
     }
   },
 ])
-export default class AyaAbout extends Component {
+export default class AyaContact extends Component {
 
   static propTypes = {
     page: PropTypes.object.isRequired,
-    children: PropTypes.node,
     isFetching: PropTypes.bool.isRequired
   }
 
   render() {
-    const {page, isFetching, children} = this.props;
+    const {page, isFetching} = this.props;
     const content = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
     const styles = require('./AyaContact.scss');
     return (
       <div>
+        <Helmet title={page.getTitle()} />
         <If condition={isFetching}>
           <Loading />
         </If>
         <If condition={!isFetching}>
-            {subTextComponent}
-            {children}
+            <AyaHeroPanel image={page.getImage()} title={page.getTitle()} style="image-focus-button">
+              {subTextComponent}
+            </AyaHeroPanel>
             <div className="container">
               <div className="column-large">
                 <div className={styles.contact}>
                   {content}
+                  <dl>
+                      <dt className={styles.socialMediaList}>Social Media</dt>
+                      <dd>
+                        <ul className="list-inline">
+                            <li>
+                            <a href="https://twitter.com/ayaplantbased">https://twitter.com/ayaplantbased
+                            </a>
+                            </li>
+                            <li>
+                            <a href="https://instagram.com/ayaplantbased">https://instagram.com/ayaplantbased
+                            </a>
+                            </li>
+                        </ul>
+                      </dd>
+                      <dt>Email</dt>
+                      <dd>
+                        <p>
+                            <a href="mailto:hello@ayaplantbased.com">mailto:hello@ayaplantbased.com
+                            </a>
+                        </p>
+                      </dd>
+                      <dt>Address</dt>
+                      <dd>
+                        <p>
+                           193A Munster Road, SW6 6BY, London, United Kingdom
+                        </p>
+                      </dd>
+                  </dl>
                 </div>
               </div>
             </div>

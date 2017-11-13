@@ -1,13 +1,16 @@
 @import 'src/theme/variables';
 
 .contact {
-    text-align: center;
-    margin-top: 15px;
+  font-family: $font-family-serif;
+  font-size: 14px;
 }
-dt {
-    font-family: "brandon-light";
-    color: $aya-red;
-    text-transform: uppercase;
-    font-size: 1.15em;
+.socialMediaList {
+      font-family: "Helvetica Neue", "Brandon-light", Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
+        font-size: 1.15em;
+        font-weight: 500;
+    }
+.emailAddress {
+    margin-left: 5px;
 }
 

@@ -17,7 +17,7 @@ export default class HeroPanel extends Component {
     image: PropTypes.string.isRequired
   }
   render() {
-    require('./AyaHeroPanel.scss');
+    const styles = require('./AyaHeroPanel.scss');
     const {title, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
     const type = get( this.props, 'type', 'site-heading');
     let className = 'hero-panel';
@@ -36,14 +36,13 @@ export default class HeroPanel extends Component {
               <div className="image-wrapper-holder" />
               <div className="image-wrapper-overlay" />
             </div>
-            <div className="hero-panel-type">
+            <div className={`${styles.heroDefaultBg} hero-panel-type`}>
               <div className="hero-panel-type-lining">
-                <div className={type}>
+                <div className={`${type}`}>
                     <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
                       <If condition={!isUndefined(title)}>
                         <h1>{title}</h1>
-                        <hr className="small" />
+                        <hr className={`${styles.hrLeaf}`} />
                       </If>
                       <div className="subheading">
                         <If condition={subTitle}>

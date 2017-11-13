@@ -1,5 +1,6 @@
 @import "~compass-mixins/lib/compass";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import 'src/theme/variables';
 $breakpoint-subheading-visible : 580px;
 $breakpoint-imagecropped : 640px;
 
@@ -23,7 +24,6 @@ $breakpoint-imagecropped : 640px;
 :global{
     .hero-panel {
       position: relative; 
-
      &.hero-panel-image-focus-bottom{        
         img{
           @include imageFocusBottomAtWidth(768px);
@@ -118,7 +118,7 @@ $breakpoint-imagecropped : 640px;
       color: white;
       h1 {
         margin-top: 0;
-        color: white;
+        color: #fff;
         font-size: 50px;
       }
       .subheading{
@@ -153,4 +153,31 @@ $breakpoint-imagecropped : 640px;
       }
     }
   }
+}
+.hrLeaf {
+    border-top: 1px solid #fff;
+    height: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    overflow: visible;
+    &:before, 
+    &:after {
+         background-image: url('./AyaLeaf-left.png');
+         height: 21px;
+         background-repeat: no-repeat;
+         content: ' ';
+         width: 30px;
+         position: relative;
+         bottom: 11px;
+         float: left;
+         margin-left: -30px;
+    }
+    &:after {
+         background-image: url('./AyaLeaf-right.png');
+         float: right;
+         margin-right: -30px;
+    }
+}
+.heroDefaultBg{
+    background-color: $aya-green;
 }
