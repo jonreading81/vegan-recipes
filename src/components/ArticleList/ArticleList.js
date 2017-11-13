@@ -58,7 +58,7 @@ export default class ArticleList extends Component {
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>
             </If >
-            <If condition={ articles.length !== 0 }>
+            <If condition={ articles.length !== 0 && articlesTitle !== ''}>
               <h3>{articlesTitle}</h3>
             </If >
             <ItemsGrid items={articleItems}/>

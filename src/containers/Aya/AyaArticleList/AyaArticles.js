@@ -7,7 +7,7 @@ import get from 'lodash/get';
 import {push } from 'react-router-redux';
 import {request as requestPage} from 'redux/modules/wordpress/page';
 import ArticleHelper from 'helpers/Article';
-import heroStyles from './heroPanel.scss';
+import heroStyles from '../heroPanel.scss';
 
 @connect(
   (state) => {
