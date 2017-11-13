@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { ResponsiveImage} from 'components';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
+import defaultStyles from './default.scss';
 
 export default class HeroPanel extends Component {
 
@@ -13,19 +14,20 @@ export default class HeroPanel extends Component {
     styles: PropTypes.object,
     type: PropTypes.string,
     isEmpty: PropTypes.bool,
-    hasFixedBreadcrumb: PropTypes.bool,
+    hasBreadcrumb: PropTypes.bool,
     subTitle: PropTypes.string,
     image: PropTypes.string.isRequired
   }
   render() {
     require('./HeroPanel.scss');
-    const {title, subTitle, image, isEmpty, children, hasFixedBreadcrumb} = this.props;
-    const styles = this.props.styles || {};
+
+    const {title, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
+    const styles = this.props.styles || defaultStyles;
     const type = get( this.props, 'type', 'site-heading');
     let className = 'hero-panel';
     let style = this.props.style;
     if (isEmpty) className += ' hero-panel-empty';
-    if (hasFixedBreadcrumb) className += ' hero-panel-with-fixed-breadcrumb';
+    if (hasBreadcrumb) className += ` ${styles.hasBreadcrumb}`;
     if (!style) style = 'image-focus-center';
     className = className + ' hero-panel-' + style;
 
