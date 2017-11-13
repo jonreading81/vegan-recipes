@@ -73,7 +73,7 @@ export default class UpdateLinkContainer extends Component {
           </LinkContainer>
           <Breadcrumb.Item active>Update</Breadcrumb.Item>
         </BreadcrumbContainer>
-         <HeroPanel type="post-heading" hasFixedBreadcrumb image={myViewHelper.getImage()} title={myViewHelper.getTitle()}/>
+         <HeroPanel type="post-heading" hasBreadcrumb image={myViewHelper.getImage()} title={myViewHelper.getTitle()}/>
          <EntityFormContainer
           entity ={entity}
           pageTitle = "Update Inspiration"

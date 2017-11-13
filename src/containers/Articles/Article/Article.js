@@ -32,7 +32,7 @@ export default class ArticleContainer extends Component {
   render() {
     const {articleHelper, isFetching} = this.props;
     return (
-      <ArticleComponent article={articleHelper} isFetching={isFetching} hasFixedBreadcrumb>
+      <ArticleComponent article={articleHelper} isFetching={isFetching}>
          <BreadcrumbContainer>
           <LinkContainer to={'/article/list/all'}>
             <Breadcrumb.Item>Articles</Breadcrumb.Item>

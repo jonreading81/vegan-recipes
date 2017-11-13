@@ -54,7 +54,7 @@ export default class ViewRecipeContainer extends Component {
              image={myRecipeHelper.getImage()}
              title={myRecipeHelper.getTitle()}
              subTitle={myRecipeHelper.getShortDescription() + ', by ' + myRecipeHelper.getAuthor()}
-             hasFixedBreadcrumb />
+             hasBreadcrumb />
           <div className="container">
             <RecipeDetails recipe={recipe} />
            </div>

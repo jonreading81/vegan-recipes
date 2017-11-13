@@ -76,7 +76,7 @@ export default class UpdateInspirationContainer extends Component {
           </LinkContainer>
           <Breadcrumb.Item active>Update</Breadcrumb.Item>
         </BreadcrumbContainer>
-         <HeroPanel type="post-heading" hasFixedBreadcrumb image={myViewHelper.getImage()} title={myViewHelper.getTitle()} subTitle={'by ' + myViewHelper.getAuthor()}/>
+         <HeroPanel type="post-heading" hasBreadcrumb image={myViewHelper.getImage()} title={myViewHelper.getTitle()} subTitle={'by ' + myViewHelper.getAuthor()}/>
          <EntityFormContainer
           entity ={entity}
           pageTitle = "Update Inspiration"
