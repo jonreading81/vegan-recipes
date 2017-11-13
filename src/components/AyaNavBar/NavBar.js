@@ -48,7 +48,11 @@ export default class NavBar extends Component {
         <AyaSocialLinks/>
         <Navbar.Brand className={`${styles.navbarBrand}`}>
           <IndexLink to="/aya">
-            <div className={`${styles.logoImg}`} />
+            <div className={`${styles.logoImg}`}>
+            </div>
+            <span className={`${styles.strapline}`}>
+             An organic plantbutter for spreading, cooking and baking
+            </span>
             <div className="image-wrapper">
             </div>
             <span className="hidden">{config.app.title}</span>

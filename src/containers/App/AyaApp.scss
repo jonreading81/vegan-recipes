@@ -2,6 +2,9 @@
 
 .appContent {
   margin:0 0 32px 0;
+  @media only screen and (max-width: 500px) {
+      margin:40px 0 32px 0;
+  }
   h1, h2, h3, h4, h5 {
     font-family: "brandon-bold", Helvetica, Arial, sans-serif;
   }
