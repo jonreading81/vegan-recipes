@@ -26,7 +26,6 @@ export DeleteImage from './Images/DeleteImage/DeleteImage';
 export Article from './Articles/Article/Article';
 export AyaArticle from './Articles/Article/AyaArticle';
 export ArticleList from './Articles/ArticleList/ArticleList';
-export AyaArticleList from './Aya/AyaArticleList/AyaArticles';
 export InspirationList from './Inspiration/InspirationList/InspirationList';
 export ViewInspiration from './Inspiration/ViewInspiration/ViewInspiration';
 export UpdateInspiration from './Inspiration/UpdateInspiration/UpdateInspiration';

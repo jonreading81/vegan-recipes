@@ -47,7 +47,7 @@ export default class HeroPanel extends Component {
                         <h1>{title}</h1>
                         <hr className={`${styles.hr} small`} />
                       </If>
-                      <div className="subheading">
+                      <div className={`${styles.subTitle} subheading`}>
                         <If condition={subTitle}>
                           <p>{subTitle}</p>
                         </If>

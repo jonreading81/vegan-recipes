@@ -54,7 +54,7 @@ export default class AyaContact extends Component {
                   <dl>
                       <dt className={styles.socialMediaList}>Social Media</dt>
                       <dd>
-                        <ul className="list-inline">
+                        <ul>
                             <li>
                             <a href="https://twitter.com/ayaplantbased">https://twitter.com/ayaplantbased
                             </a>
