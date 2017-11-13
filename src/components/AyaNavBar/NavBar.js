@@ -40,7 +40,7 @@ export default class NavBar extends Component {
 
   render() {
     const styles = require('./NavBar.scss');
-    // const {URL} = this.props;
+    const {URL} = this.props;
     return (
    <Navbar fixedTop className={`aya-navbar-default ${styles.navbar} navbar-custom`} fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
       <Navbar.Header className={`${styles.navbarHeader}`}>
@@ -57,7 +57,7 @@ export default class NavBar extends Component {
       </Navbar.Header>
       <Navbar.Collapse autoCollapse eventKey={0} className={`${styles.navbarCollapse}`}>
         <Nav navbar className={`${styles['navbar-nav']}`}>
-        	<LinkContainer to="/aya/">
+        	<LinkContainer active={URL === '/aya'} to="/aya">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Home</NavItem>
             </LinkContainer>
             <LinkContainer to="/aya/products">
