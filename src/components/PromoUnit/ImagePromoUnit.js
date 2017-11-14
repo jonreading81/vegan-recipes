@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import {Link } from 'components';
 import { ResponsiveImage, IconButton, AbsoluteCenteredContent} from 'components';
+import promoStyles from './promoUnit.scss';
 
 export default class ImagePromoUnit extends Component {
 
   static propTypes = {
     image: PropTypes.string,
+    styles: PropTypes.object,
     icon: PropTypes.string.isRequired,
     color: PropTypes.string,
     title: PropTypes.string.isRequired,
@@ -15,7 +17,10 @@ export default class ImagePromoUnit extends Component {
 
   render() {
     const {title, description, image, icon, URL, color} = this.props;
-    const styles = require('./promoUnit.scss');
+    const styles = {
+      ...promoStyles,
+      ...this.props.styles
+    };
     return (
       <div className={styles.promoUnit}>
        <Link to={URL}>

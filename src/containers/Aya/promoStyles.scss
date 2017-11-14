@@ -1,0 +1,29 @@
+@import "src/theme/variables";
+@import "~compass-mixins/lib/compass";
+
+.promoUnit{
+  position: relative;
+  a{
+    text-decoration: none;
+    &:hover{
+
+      .imageOverlay{
+        background-color:transparentize(#333, 1);
+      }
+      .iconWrapper{
+        background-color:#fff;
+      }
+      .icon{
+          color:red;
+      }
+    }
+  }
+}
+
+.iconWrapper {
+    background-color:red;
+}
+
+.iconWrapper, .imageOverlay {
+    @include transition(all 0.3s ease-in);
+}

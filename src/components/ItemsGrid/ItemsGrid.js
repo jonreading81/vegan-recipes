@@ -7,11 +7,12 @@ export default class ItemsGrid extends Component {
 
   static propTypes = {
     items: PropTypes.array.isRequired,
-    hasAdminActions: PropTypes.bool
+    hasAdminActions: PropTypes.bool,
+    promoStyles: PropTypes.object,
   };
 
   render() {
-    const {hasAdminActions} = this.props;
+    const {hasAdminActions, promoStyles} = this.props;
     const styles = require('./ItemsGrid.scss');
     let item;
     let index;
@@ -19,7 +20,15 @@ export default class ItemsGrid extends Component {
       <Row>
         <For each="item" index="index" of={ this.props.items}>
           <Col xs={12} sm={6} md={4} className={styles.promo}>
-            <ImagePromoUnit title={item.title} URL={item.URL} description={item.description} image={item.image} icon={item.icon} color={item.color}/>
+            <ImagePromoUnit
+                title={item.title}
+                URL={item.URL}
+                description={item.description}
+                image={item.image}
+                icon={item.icon}
+                color={item.color}
+                styles={promoStyles}
+            />
             <AdminUser>
               <If condition={hasAdminActions}>
                 <ButtonToolbar className={styles.adminToolbar}>
