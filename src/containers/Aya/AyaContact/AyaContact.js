@@ -63,6 +63,10 @@ export default class AyaContact extends Component {
                             <a href="https://instagram.com/ayaplantbased">https://instagram.com/ayaplantbased
                             </a>
                             </li>
+                            <li>
+                            <a href="https://facebook.com/ayaplantbased">https://facebook.com/ayaplantbased
+                            </a>
+                            </li>
                         </ul>
                       </dd>
                       <dt>Email</dt>

@@ -24,6 +24,7 @@ export default class HeroPanel extends Component {
     const {title, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
     const styles = this.props.styles || defaultStyles;
     const type = get( this.props, 'type', 'site-heading');
+    const imageWrapperHolderClassName = image ? 'image-wrapper-overlay' : 'image-wrapper-overlay--no-image';
     let className = 'hero-panel';
     let style = this.props.style;
     if (isEmpty) className += ' hero-panel-empty';
@@ -38,9 +39,9 @@ export default class HeroPanel extends Component {
                 <ResponsiveImage image={image}/>
               </If>
               <div className="image-wrapper-holder" />
-              <div className="image-wrapper-overlay" />
+              <div className={imageWrapperHolderClassName} />
             </div>
-            <div className={`${styles.defaultBg} hero-panel-type`}>
+            <div className="hero-panel-type">
               <div className="hero-panel-type-lining">
                 <div className={type}>
                     <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">

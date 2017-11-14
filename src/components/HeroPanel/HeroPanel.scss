@@ -1,5 +1,6 @@
 @import "~compass-mixins/lib/compass";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import 'src/theme/variables';
 $breakpoint-subheading-visible : 580px;
 $breakpoint-imagecropped : 640px;
 
@@ -74,7 +75,7 @@ $breakpoint-imagecropped : 640px;
     }
     .image-wrapper-holder{
       padding-top: 56.25%;
-      background:#333;
+      background-color: $aya-green
     }
     img{
       position:absolute;
@@ -104,6 +105,9 @@ $breakpoint-imagecropped : 640px;
 
       top: 0 ;
       z-index:1;
+      &--no-image {
+          background: none;
+      }
     }
     .site-heading,
     .post-heading,

@@ -28,5 +28,17 @@
         font-family: $font-family-serif;
         color: #666;
       }
+      ul.ayaList {
+        li {
+          list-style-image: url('../Aya/images/ayaLeaf-green-left.png');
+
+        }
+      }
+      table { 
+        td {
+          font-size: 16px;
+          line-height: 2em;
+        }
+      }
     }
 }
