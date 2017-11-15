@@ -17,7 +17,6 @@ import {
     Logout,
     Register,
     Welcome,
-    /* ButtaLabel, */
     AyaRetail,
     AyaAbout,
     AyaProducts,

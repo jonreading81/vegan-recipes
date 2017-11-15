@@ -11,11 +11,11 @@ export default class Article extends Component {
     article: PropTypes.object.isRequired,
     children: PropTypes.node,
     isFetching: PropTypes.bool,
-    heroStyle: PropTypes.string
+    heroStyles: PropTypes.string,
   }
 
   render() {
-    const {article, isFetching, heroStyle, children} = this.props;
+    const {article, isFetching, heroStyles, children} = this.props;
     const contentComponent = htmlToReactParser.parse('<div>' + article.getContent() + '</div>');
     const subTextComponent = htmlToReactParser.parse('<div>' + article.getSubText() + '</div>');
     return (
@@ -28,7 +28,7 @@ export default class Article extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel image={article.getImage()} title={article.getTitle()} style={heroStyle} hasBreadcrumb>
+            <HeroPanel image={article.getImage()} title={article.getTitle()} styles={heroStyles} hasBreadcrumb>
             {subTextComponent}
             </HeroPanel>
             {children}

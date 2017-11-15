@@ -1,0 +1,12 @@
+@import 'src/theme/variables';
+
+.breadcrumbwrapper {
+    li a,
+    li span {
+        font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 500;
+        color: #666;
+    }
+}

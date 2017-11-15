@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {Link } from 'react-router';
 import {Col, Row} from 'react-bootstrap';
 import { ResponsiveImage, IconButton} from 'components';
+import promoStyles from './promoUnit.scss';
 
 export default class ArticlePromoUnit extends Component {
 
@@ -10,12 +11,16 @@ export default class ArticlePromoUnit extends Component {
     icon: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    URL: PropTypes.string.isRequired
+    URL: PropTypes.string.isRequired,
+    styles: PropTypes.object,
   };
 
   render() {
     const {title, description, image, icon, URL} = this.props;
-    const styles = require('./promoUnit.scss');
+    const styles = {
+      promoStyles,
+      ...this.props.styles
+    };
     const articleStyles = require('./articlePromoUnit.scss');
     return (
       <div className={styles.promoUnit}>

@@ -1,5 +1,6 @@
 @import "~compass-mixins/lib/compass";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import 'src/theme/variables';
 $breakpoint-subheading-visible : 580px;
 $breakpoint-imagecropped : 640px;
 
@@ -22,9 +23,9 @@ $breakpoint-imagecropped : 640px;
 
 :global{
     .hero-panel {
-      position: relative; 
+      position: relative;
 
-     &.hero-panel-image-focus-bottom{        
+     &.hero-panel-image-focus-bottom{
         img{
           @include imageFocusBottomAtWidth(768px);
           @include imageFocusBottomAtWidth(1024px);
@@ -32,17 +33,13 @@ $breakpoint-imagecropped : 640px;
           @include imageFocusBottomAtWidth(1400px);
         }
      }
-     &.hero-panel-image-focus-center{        
+     &.hero-panel-image-focus-center{
         img{
           @include imageFocusCenterAtWidth(768px);
           @include imageFocusCenterAtWidth(1024px);
           @include imageFocusCenterAtWidth(1248px);
           @include imageFocusCenterAtWidth(1400px);
         }
-     }
-
-     &.hero-panel-with-breadcrumb{  
-       margin-top:104px;
      }
 
     .hero-panel-type{
@@ -78,7 +75,7 @@ $breakpoint-imagecropped : 640px;
     }
     .image-wrapper-holder{
       padding-top: 56.25%;
-      background:#333;
+      background-color: $aya-green
     }
     img{
       position:absolute;
@@ -105,9 +102,12 @@ $breakpoint-imagecropped : 640px;
       width: 100%;
       height: 100%;
       @include background(linear-gradient(rgba(#333, 0.2), rgba(#333, 1)));
- 
+
       top: 0 ;
       z-index:1;
+      &--no-image {
+          background: none;
+      }
     }
     .site-heading,
     .post-heading,
@@ -145,7 +145,7 @@ $breakpoint-imagecropped : 640px;
       h1 {
         font-size: 35px;
       }
-      
+
       @media only screen and (min-width: 768px) {
         h1 {
           font-size: 55px;

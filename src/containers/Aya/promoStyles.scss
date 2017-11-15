@@ -1,0 +1,25 @@
+@import "src/theme/variables";
+@import "~compass-mixins/lib/compass";
+
+.promoUnit{
+  position: relative;
+  a {
+    text-decoration: none;
+    &:hover{
+      .imageOverlay{
+        background-color:transparentize(#333, 1);
+      }
+      .iconWrapper{
+        background-color: darken($aya-green, 15%);
+      }
+    }
+  }
+}
+
+.iconWrapper {
+  background-color: $aya-green;
+}
+
+.iconWrapper, .imageOverlay {
+    @include transition(all 0.3s ease-in);
+}

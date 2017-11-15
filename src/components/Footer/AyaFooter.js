@@ -12,9 +12,7 @@ export default class Footer extends Component {
     <hr />
      <footer className={styles.footer}>
         <div className="container">
-            <div className="row">
-                    <p className={styles.quote}>“The greatness of a nation and its moral progress can be judged by the way its animals are treated.” <span className="text-muted">Mahatma Gandhi</span></p>
-            </div>
+            <p className={styles.quote}>“The greatness of a nation and its moral progress can be judged by the way its animals are treated.” <span className="text-muted">Mahatma Gandhi</span></p>
             <div className="row">
                 <section>
                 <ul className={styles.standards + ' list-inline text-center'}>

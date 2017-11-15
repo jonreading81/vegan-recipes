@@ -7,6 +7,8 @@ import get from 'lodash/get';
 import {push } from 'react-router-redux';
 import {request as requestPage} from 'redux/modules/wordpress/page';
 import ArticleHelper from 'helpers/Article';
+import heroStyles from '../heroPanel.scss';
+import promoStyles from '../promoStyles.scss';
 
 @connect(
   (state) => {
@@ -61,8 +63,11 @@ export default class Aya extends Component {
             {name: 'description', content: 'Aya'},
             {name: 'keywords', content: 'aya'}
           ]}
+          heroStyles={heroStyles}
+          promoStyles={promoStyles}
+          isList
           page={page}
-          articlesTitle="Articles"
+          articlesTitle=""
           articleURL="/aya/article/"
           articles={articles}
           pages={pages}

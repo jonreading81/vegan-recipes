@@ -1,28 +1,44 @@
 @import "src/theme/variables";
-
-.appContent {
-  margin:0 0 32px 0;
-  h1, h2, h3, h4, h5 {
-    font-family: "brandon-bold", Helvetica, Arial, sans-serif;
-  }
-  h1 {
-    font-size: 2em;
-    @media only screen and (min-width: $screen-sm-min) {
-        font-size: 3em;
+:global {
+    .appAya {
+      margin:0 0 32px 0;
+      @media only screen and (max-width: 500px) {
+          margin:40px 0 32px 0;
+      }
+      h1, h2, h3, h4, h5 {
+        font-family: "brandon-bold", Helvetica, Arial, sans-serif;
+      }
+      h1 {
+        font-size: 2em;
+        @media only screen and (min-width: $screen-sm-min) {
+            font-size: 3em;
+        }
+      }
+      a {
+        font-family: $font-family-serif;
+        color: #666;
+        text-decoration: underline;
+      }
+      a:hover,
+      a:focus {
+        text-decoration: none;
+        color: lighten(#666, 6.5%);
+      }
+      span {
+        font-family: $font-family-serif;
+        color: #666;
+      }
+      ul.ayaList {
+        li {
+          list-style-image: url('../Aya/images/ayaLeaf-green-left.png');
+          list-style-position: inside;
+        }
+      }
+      table { 
+        td {
+          font-size: 16px;
+          line-height: 2em;
+        }
+      }
     }
-  }
-  a {
-    font-family: $font-family-serif;
-    color: #666;
-    text-decoration: underline;
-  }
-  a:hover,
-  a:focus {
-    text-decoration: none;
-    color: lighten(#666, 6.5%);
-  }
-  span {
-    font-family: $font-family-serif;
-    color: #666;
-  }
 }

@@ -29,6 +29,14 @@ export default class AyaSocialLinks extends Component {
                     </a>
                 </li>
                 <li>
+                    <a className={styles.socialLink + ' socialLink'} href="https://facebook.com/ayaplantbased">
+                        <span className="fa-stack fa-lg">
+                            <i className="fa fa-circle fa-stack-2x"></i>
+                            <i className="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
                     <a className={styles.socialLink + ' socialLink'} href="mailto:hello@ayaplantbased.com">
                         <span className="fa-stack fa-lg">
                             <i className="fa fa-circle fa-stack-2x"></i>

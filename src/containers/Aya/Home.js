@@ -7,7 +7,8 @@ import get from 'lodash/get';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
 import ArticleHelper from 'helpers/Article';
-import {AyaHeroPanel, Loading} from 'components';
+import {HeroPanel, Loading} from 'components';
+import heroStyles from './heroPanel.scss';
 
 @connect(
   (store) => {
@@ -40,9 +41,9 @@ export default class Home extends Component {
           <Loading />
         </If>
         <If condition={!isFetching}>
-            <AyaHeroPanel image={page.getImage()} title={page.getTitle()} style="image-focus-button">
+            <HeroPanel styles={heroStyles} image={page.getImage()} title={page.getTitle()} style="image-focus-button">
               {subTextComponent}
-            </AyaHeroPanel>
+            </HeroPanel>
             {children}
             <div className="container">
               <div className="body-copy">{content}</div>

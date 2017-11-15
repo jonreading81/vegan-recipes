@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {ItemsGrid, Loading} from 'components';
+import {ItemsList, ItemsGrid, Loading} from 'components';
 import {Pagination} from 'react-bootstrap';
 import {HeroPanel} from 'components';
 import HtmlToReact from 'html-to-react';
@@ -12,10 +12,13 @@ export default class ArticleList extends Component {
 
   static propTypes = {
     meta: PropTypes.object.isRequired,
+    isList: PropTypes.bool,
     page: PropTypes.object.isRequired,
     articlesTitle: PropTypes.string.isRequired,
     articles: PropTypes.array.isRequired,
     articleURL: PropTypes.array.isRequired,
+    heroStyles: PropTypes.object,
+    promoStyles: PropTypes.object,
     pages: PropTypes.number.isRequired,
     activePage: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
@@ -27,7 +30,19 @@ export default class ArticleList extends Component {
   }
 
   render() {
-    const {articles, page, isFetching, meta, pages, activePage, articlesTitle, articleURL} = this.props;
+    const {
+      isList,
+      heroStyles,
+      articles,
+      page,
+      isFetching,
+      meta,
+      pages,
+      activePage,
+      articlesTitle,
+      articleURL,
+      promoStyles
+    } = this.props;
     const title = page.getTitle();
     const articleItems = ArticleHelper.mapToItems(articles, {baseURL: articleURL});
     const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
@@ -44,7 +59,7 @@ export default class ArticleList extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel image={page.getImage()} title={title}>
+            <HeroPanel styles={heroStyles} image={page.getImage()} title={title}>
                {subTextComponent}
             </HeroPanel>
              <div className="container">
@@ -57,10 +72,15 @@ export default class ArticleList extends Component {
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>
             </If >
-            <If condition={ articles.length !== 0 }>
+            <If condition={ articles.length !== 0 && articlesTitle !== ''}>
               <h3>{articlesTitle}</h3>
             </If >
-            <ItemsGrid items={articleItems}/>
+            <If condition={isList}>
+                <ItemsList promoStyles={promoStyles} items={articleItems}/>
+            </If >
+            <If condition={!isList}>
+                <ItemsGrid promoStyles={promoStyles} items={articleItems}/>
+            </If >
             <If condition={ pages > 1 }>
                <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getArticles} />
             </If>
