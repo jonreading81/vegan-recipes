@@ -70,7 +70,7 @@ export default class NavBar extends Component {
             </LinkContainer>
           </NavDropdown>
 
-          <LinkContainer to="/article/list/all">
+          <LinkContainer to="/article">
             <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={3}>Articles</NavItem>
           </LinkContainer>
 

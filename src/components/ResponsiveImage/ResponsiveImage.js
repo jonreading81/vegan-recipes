@@ -15,7 +15,7 @@ export default class ResponsiveImage extends Component {
     return (
        <Image width="100%" data-sizes="auto" src={myImageHelper.getImageURL('128x72')} className="lazyload blur-up"
             data-srcset={
-                myImageHelper.getImageURL('256x154') + ' 256w, ' +
+                myImageHelper.getImageURL('256x144') + ' 256w, ' +
                 myImageHelper.getImageURL('384x216') + ' 384w, ' +
                 myImageHelper.getImageURL('640x360') + ' 640w,' +
                 myImageHelper.getImageURL('768x432') + ' 768w,' +

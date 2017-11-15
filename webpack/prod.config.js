@@ -23,7 +23,7 @@ module.exports = {
       'font-awesome-webpack!./src/theme/font-awesome.config.prod.js',
       './src/client.js',
       './node_modules/lazysizes/lazysizes.js',
-      './node_modules/respimage/respimage.dev.js',
+      './node_modules/respimage/respimage.js',
       './node_modules/lazysizes/plugins/attrchange/ls.attrchange.js'
     ]
   },
