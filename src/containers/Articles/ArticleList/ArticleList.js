@@ -1,49 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {ItemsList, SearchWell, Loading} from 'components';
 import {Pagination} from 'react-bootstrap';
-import ArticleHelper from 'helpers/Article';
-import { request as requestList} from 'redux/modules/wordpress/articles';
-import { asyncConnect } from 'redux-async-connect';
-import get from 'lodash/get';
-import {push } from 'react-router-redux';
 import {HeroPanel} from 'components';
-import {request as requestPage} from 'redux/modules/wordpress/page';
-import HtmlToReact from 'html-to-react';
-const htmlToReactParser = new HtmlToReact.Parser(React);
-const articleURL = '/article/';
+import articleList from 'hoc/ArticleList';
 
-@connect(
-  (state) => {
-    return {
-      results: get(state.articlesList, 'items', []),
-      page: new ArticleHelper(get(state.viewPage, 'entity.docs[0]')),
-      isFetching: get(state.viewPage, 'isFetching'),
-      searching: get(state.articlesList, 'isFetching'),
-    };
-  },
-  (dispatch) => {
-    return {
-      getArticles: (term, page) => {
-        dispatch(push('/article/search/' + term + '/' + page));
-      }
-    };
-  }
-)
-@asyncConnect([
-  {
-    promise: ({store: {dispatch}}) => {
-      return dispatch(requestPage('articles'));
-    }
-  },
-  {
-    promise: ({params: {term = 'all', page}, store: {dispatch}}) => {
-      return dispatch(requestList([2, term], page));
-    }
-  }
-])
-export default class ArticleListContainer extends Component {
+class ArticleListContainer extends Component {
 
   static propTypes = {
     results: PropTypes.object.isRequired,
@@ -54,23 +16,21 @@ export default class ArticleListContainer extends Component {
     getArticles: PropTypes.func.isRequired
   }
 
-  getArticles(page) {
-    const term = get(this.props.params, 'term', '');
-    this.props.getArticles(term, page);
-  }
-
-  searchArticles(term) {
-    this.props.getArticles(term, 1);
-  }
-
-
   render() {
-    const {results, searching, page, isFetching} = this.props;
-    const articles = get(results, 'docs', []);
-    const pages = get(results, 'pages', 0);
-    const activePage = parseInt( get(results, 'page', 0), 10);
-    const articleItems = ArticleHelper.mapToItems(articles, { baseURL: articleURL });
-    const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
+    const {
+      articles,
+      searching,
+      page,
+      pages,
+      isFetching,
+      searchArticles,
+      getArticles,
+      subTextComponent,
+      activePage,
+      articleItems
+
+    } = this.props;
+
     return (
       <div>
         <Helmet title={page.getTitle()}/>
@@ -84,13 +44,13 @@ export default class ArticleListContainer extends Component {
           </If>
         <div className="container ">
           <div className="column-large">
-            <SearchWell searching={searching} onSubmit={::this.searchArticles} />
+            <SearchWell searching={searching} onSubmit={searchArticles} />
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>
             </If >
             <ItemsList items={articleItems}/>
             <If condition={ pages > 1 }>
-               <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getArticles} />
+               <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={getArticles} />
             </If>
            </div>
          </div>
@@ -98,3 +58,12 @@ export default class ArticleListContainer extends Component {
     );
   }
 }
+
+export default articleList(ArticleListContainer,
+  {
+    searchURL: '/article/search/',
+    articleURL: '/article/',
+    slug: 'articles',
+    tagId: 2
+  }
+);

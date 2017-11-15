@@ -57,7 +57,7 @@ export default (store) => {
             <Route path="contact" component={AyaContact} />
             <Route path="article">
               <IndexRoute component={AyaArticles}/>
-              <Route path="search(/:page)" component={AyaArticles} />
+              <Route path="search/:term(/:page)" component={AyaArticles} />
               <Route path=":article" component={AyaArticle}/>
             </Route>
             <Route path="*" component={NotFound} status={404} />

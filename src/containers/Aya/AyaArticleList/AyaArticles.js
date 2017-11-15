@@ -1,80 +1,71 @@
 import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
-import {ArticleList} from 'components';
-import { request as requestList} from 'redux/modules/wordpress/articles';
-import { asyncConnect } from 'redux-async-connect';
-import get from 'lodash/get';
-import {push } from 'react-router-redux';
-import {request as requestPage} from 'redux/modules/wordpress/page';
-import ArticleHelper from 'helpers/Article';
+import Helmet from 'react-helmet';
+import {ItemsList, SearchWell, Loading} from 'components';
+import {Pagination} from 'react-bootstrap';
+import {HeroPanel} from 'components';
+import articleList from 'hoc/ArticleList';
 import heroStyles from '../heroPanel.scss';
 import promoStyles from '../promoStyles.scss';
 
-@connect(
-  (state) => {
-    return {
-      results: get(state.articlesList, 'items', []),
-      isFetching: get(state.viewPage, 'isFetching'),
-      page: new ArticleHelper(get(state.viewPage, 'entity.docs[0]')),
-    };
-  },
-  (dispatch) => {
-    return {
-      getArticles: (page) => {
-        dispatch(push('/aya/article/search/' + page));
-      }
-    };
-  }
-)
-@asyncConnect([
-  {
-    promise: ({store: {dispatch}}) => {
-      return dispatch(requestPage('aya-articles'));
-    }
-  },
-  {
-    promise: ({params, store: {dispatch}}) => {
-      return dispatch(requestList([5, ''], params.page));
-    }
-  }
-])
-export default class Aya extends Component {
+class ArticleListContainer extends Component {
 
   static propTypes = {
     results: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired,
-    params: PropTypes.object.isRequired,
-    getArticles: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
-  }
-
-  getArticles(page) {
-    this.props.getArticles(page);
+    searching: PropTypes.bool.isRequired,
+    params: PropTypes.object.isRequired,
+    getArticles: PropTypes.func.isRequired
   }
 
   render() {
-    const {results, page, isFetching} = this.props;
-    const articles = get(results, 'docs', []);
-    const pages = get(results, 'pages', 0);
-    const activePage = parseInt( get(results, 'page', 0), 10);
+    const {
+      articles,
+      searching,
+      page,
+      pages,
+      isFetching,
+      searchArticles,
+      getArticles,
+      subTextComponent,
+      activePage,
+      articleItems
+
+    } = this.props;
+
     return (
-      <ArticleList
-          meta={[
-            {name: 'description', content: 'Aya'},
-            {name: 'keywords', content: 'aya'}
-          ]}
-          heroStyles={heroStyles}
-          promoStyles={promoStyles}
-          isList
-          page={page}
-          articlesTitle=""
-          articleURL="/aya/article/"
-          articles={articles}
-          pages={pages}
-          activePage={activePage}
-          isFetching={isFetching}
-          getArticles={::this.getArticles}
-      />
+      <div>
+        <Helmet title={page.getTitle()}/>
+          <If condition={isFetching}>
+            <Loading />
+          </If>
+          <If condition={!isFetching}>
+            <HeroPanel styles={heroStyles} image={page.getImage()} title={page.getTitle()} heroStyle="image-focus-bottom">
+               {subTextComponent}
+            </HeroPanel>
+          </If>
+        <div className="container ">
+          <div className="column-large">
+            <SearchWell searching={searching} onSubmit={searchArticles} />
+            <If condition={ articles.length === 0 }>
+              <h4>No Articles</h4>
+            </If >
+            <ItemsList promoStyles={promoStyles} items={articleItems}/>
+            <If condition={ pages > 1 }>
+               <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={getArticles} />
+            </If>
+           </div>
+         </div>
+      </div>
     );
   }
 }
+
+export default articleList(ArticleListContainer,
+  {
+    searchURL: '/aya/article/search/',
+    articleURL: '/aya/article/',
+    slug: 'aya-articles',
+    tagId: 5
+  }
+);
