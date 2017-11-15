@@ -38,8 +38,8 @@ const articleURL = '/article/';
     }
   },
   {
-    promise: ({params, store: {dispatch}}) => {
-      return dispatch(requestList([2, params.term], params.page));
+    promise: ({params: {term = 'all', page}, store: {dispatch}}) => {
+      return dispatch(requestList([2, term], page));
     }
   }
 ])

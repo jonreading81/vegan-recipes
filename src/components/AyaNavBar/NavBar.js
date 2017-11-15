@@ -73,7 +73,7 @@ export default class NavBar extends Component {
             <LinkContainer to="/aya/contact">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={3}>Contact</NavItem>
             </LinkContainer>
-            <LinkContainer to="/aya/article/list">
+            <LinkContainer to="/aya/article">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={4}>Articles</NavItem>
             </LinkContainer>
         </Nav>

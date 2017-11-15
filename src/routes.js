@@ -56,6 +56,7 @@ export default (store) => {
             <Route path="retail" component={AyaRetail} />
             <Route path="contact" component={AyaContact} />
             <Route path="article">
+              <IndexRoute component={AyaArticles}/>
               <Route path="list(/:page)" component={AyaArticles} />
               <Route path=":article" component={AyaArticle}/>
             </Route>
@@ -106,6 +107,7 @@ export default (store) => {
             <Route path="jon-reading(/:page)" component={JonProfile} />
           </Route>
           <Route path="article">
+             <IndexRoute component={ArticleList}/>
             <Route path="list/:term(/:page)" component={ArticleList} />
             <Route path=":article" component={Article}/>
           </Route>
