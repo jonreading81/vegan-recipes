@@ -21,7 +21,7 @@ import promoStyles from '../promoStyles.scss';
   (dispatch) => {
     return {
       getArticles: (page) => {
-        dispatch(push('/aya/articles/list/' + page));
+        dispatch(push('/aya/article/search/' + page));
       }
     };
   }

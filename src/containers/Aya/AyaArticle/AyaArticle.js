@@ -40,7 +40,7 @@ export default class ArticleContainer extends Component {
           heroStyles={heroStyles}
           >
          <BreadcrumbContainer className={`${styles.breadcrumbwrapper} breadcrumb-wrapper--aya`}>
-          <LinkContainer to={'/aya/article/list'}>
+          <LinkContainer to={'/aya/article'}>
             <Breadcrumb.Item>Articles</Breadcrumb.Item>
           </LinkContainer>
           <Breadcrumb.Item active>{articleHelper.getTitle()}</Breadcrumb.Item>

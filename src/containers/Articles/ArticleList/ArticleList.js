@@ -26,7 +26,7 @@ const articleURL = '/article/';
   (dispatch) => {
     return {
       getArticles: (term, page) => {
-        dispatch(push('/article/list/' + term + '/' + page));
+        dispatch(push('/article/search/' + term + '/' + page));
       }
     };
   }
