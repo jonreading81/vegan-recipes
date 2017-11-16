@@ -4,8 +4,13 @@ import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import heroStyles from '../heroPanel.scss';
-import article from 'hoc/Article';
+import requestPostWithParam from 'redux/asyncConnection/requestPostWithParam';
+import mapPostToProps from 'redux/mapStateToProps/post';
+import { asyncConnect } from 'redux-async-connect';
+import {connect} from 'react-redux';
 
+@connect(mapPostToProps)
+@asyncConnect([requestPostWithParam('article')])
 class ArticleContainer extends Component {
 
   static propTypes = {
@@ -21,6 +26,7 @@ class ArticleContainer extends Component {
           article={articleHelper}
           isFetching={isFetching}
           heroStyles={heroStyles}
+          hasBreadcrumb
           >
          <BreadcrumbContainer className={`${styles.breadcrumbwrapper} breadcrumb-wrapper--aya`}>
           <LinkContainer to={'/aya/article'}>
@@ -33,4 +39,4 @@ class ArticleContainer extends Component {
   }
 }
 
-export default article(ArticleContainer);
+export default ArticleContainer;

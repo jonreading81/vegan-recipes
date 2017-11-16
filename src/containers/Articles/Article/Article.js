@@ -3,8 +3,13 @@ import {Article as ArticleComponent} from 'components';
 import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import article from 'hoc/Article';
+import requestPostWithParam from 'redux/asyncConnection/requestPostWithParam';
+import mapPostToProps from 'redux/mapStateToProps/post';
+import { asyncConnect } from 'redux-async-connect';
+import {connect} from 'react-redux';
 
+@connect(mapPostToProps)
+@asyncConnect([requestPostWithParam('article')])
 class ArticleContainer extends Component {
 
   static propTypes = {
@@ -15,7 +20,7 @@ class ArticleContainer extends Component {
   render() {
     const {articleHelper, isFetching} = this.props;
     return (
-      <ArticleComponent article={articleHelper} isFetching={isFetching}>
+      <ArticleComponent article={articleHelper} isFetching={isFetching} hasBreadcrumb>
          <BreadcrumbContainer>
           <LinkContainer to={'/article'}>
             <Breadcrumb.Item>Articles</Breadcrumb.Item>
@@ -27,4 +32,4 @@ class ArticleContainer extends Component {
   }
 }
 
-export default article(ArticleContainer);
+export default ArticleContainer;

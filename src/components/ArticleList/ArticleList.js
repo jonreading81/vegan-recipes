@@ -1,88 +1,59 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {ItemsList, ItemsGrid, Loading} from 'components';
+import {ItemsList, SearchWell, Loading} from 'components';
 import {Pagination} from 'react-bootstrap';
 import {HeroPanel} from 'components';
-import HtmlToReact from 'html-to-react';
-const htmlToReactParser = new HtmlToReact.Parser(React);
-import ArticleHelper from 'helpers/Article';
 
-
-export default class ArticleList extends Component {
+export default class ArticleListComponent extends Component {
 
   static propTypes = {
-    meta: PropTypes.object.isRequired,
-    isList: PropTypes.bool,
+    results: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired,
     page: PropTypes.object.isRequired,
-    articlesTitle: PropTypes.string.isRequired,
-    articles: PropTypes.array.isRequired,
-    articleURL: PropTypes.array.isRequired,
+    searching: PropTypes.bool.isRequired,
+    params: PropTypes.object.isRequired,
     heroStyles: PropTypes.object,
     promoStyles: PropTypes.object,
-    pages: PropTypes.number.isRequired,
-    activePage: PropTypes.number.isRequired,
-    isFetching: PropTypes.bool.isRequired,
-    getArticles: PropTypes.func.isRequired,
-  }
-
-  getArticles(page) {
-    this.props.getArticles(page);
+    getArticles: PropTypes.func.isRequired
   }
 
   render() {
     const {
-      isList,
-      heroStyles,
       articles,
+      searching,
       page,
-      isFetching,
-      meta,
       pages,
+      isFetching,
+      searchArticles,
+      getArticles,
+      subTextComponent,
       activePage,
-      articlesTitle,
-      articleURL,
+      articleItems,
+      heroStyles,
       promoStyles
+
     } = this.props;
-    const title = page.getTitle();
-    const articleItems = ArticleHelper.mapToItems(articles, {baseURL: articleURL});
-    const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
-    const sidePanelComponent = htmlToReactParser.parse('<div>' + page.getSidePanel() + '</div>');
-    const contentComponent = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
 
     return (
       <div>
-        <Helmet title={title}
-          meta={[
-            {meta}
-          ]}/>
-         <If condition={isFetching}>
+        <Helmet title={page.getTitle()}/>
+          <If condition={isFetching}>
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel styles={heroStyles} image={page.getImage()} title={title}>
+            <HeroPanel styles={heroStyles} image={page.getImage()} title={page.getTitle()} heroStyle="image-focus-bottom">
                {subTextComponent}
             </HeroPanel>
-             <div className="container">
-              <div className="body-panel">{contentComponent}</div>
-              <div className="side-panel">{sidePanelComponent}</div>
-            </div>
           </If>
-         <div className="container ">
+        <div className="container ">
           <div className="column-large">
+            <SearchWell searching={searching} onSubmit={searchArticles} />
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>
             </If >
-            <If condition={ articles.length !== 0 && articlesTitle !== ''}>
-              <h3>{articlesTitle}</h3>
-            </If >
-            <If condition={isList}>
-                <ItemsList promoStyles={promoStyles} items={articleItems}/>
-            </If >
-            <If condition={!isList}>
-                <ItemsGrid promoStyles={promoStyles} items={articleItems}/>
-            </If >
+            <ItemsList promoStyles={promoStyles} items={articleItems}/>
             <If condition={ pages > 1 }>
-               <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={::this.getArticles} />
+               <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={getArticles} />
             </If>
            </div>
          </div>

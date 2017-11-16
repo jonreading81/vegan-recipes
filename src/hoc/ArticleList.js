@@ -68,6 +68,8 @@ export default function(ComposedComponent, {searchURL, slug, tagId, articleURL})
       const activePage = parseInt( get(results, 'page', 0), 10);
       const articleItems = ArticleHelper.mapToItems(articles, { baseURL: articleURL });
       const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
+      const sidePanelComponent = htmlToReactParser.parse('<div>' + page.getSidePanel() + '</div>');
+      const contentComponent = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
 
       const props = {
         ...this.props,
@@ -75,6 +77,8 @@ export default function(ComposedComponent, {searchURL, slug, tagId, articleURL})
         searchArticles: this.searchArticles.bind(this),
         subTextComponent,
         articleItems,
+        contentComponent,
+        sidePanelComponent,
         activePage,
         articles,
         pages,
