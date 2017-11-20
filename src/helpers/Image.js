@@ -1,4 +1,5 @@
 import forOwn from 'lodash/forOwn';
+import config from '../config';
 
 export default class ImageHelper {
 
@@ -84,11 +85,10 @@ export default class ImageHelper {
   }
 
   getImageURL(size) {
-    return '/images/' + size + '/' + this.getImage();
+    return config.imagesPath + size + '/' + this.getImage();
   }
 
   getListItem() {
     return this.listItem;
   }
 }
-

@@ -16,6 +16,7 @@ module.exports = Object.assign({
   googleAnlaytics: 'UA-82807918-1',
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
+  imagesPath: 'https://s3-eu-west-1.amazonaws.com/vegan-recipes-static/images/',
   mongoDBURL: process.env.mongoURL || 'mongodb://localhost/test',
   app: {
     title: 'Call of the Forest',
