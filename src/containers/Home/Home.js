@@ -1,42 +1,31 @@
-import React, { PropTypes, Component } from 'react';
 import config from '../../config';
-import {Page} from 'components';
+import React, { Component, PropTypes } from 'react';
+import {Article as ArticleComponent} from 'components';
+import requestPage from 'redux/asyncConnection/requestPage';
+import mapPageToProps from 'redux/mapStateToProps/page';
 import { asyncConnect } from 'redux-async-connect';
 import {connect} from 'react-redux';
-import {request as requestGet} from 'redux/modules/wordpress/page';
-import get from 'lodash/get';
-import Article from 'helpers/Article';
-import Helmet from 'react-helmet';
 
-@connect(
-  (store) => {
-    return {
-      article: new Article(get(store.viewPage, 'entity.docs[0]')),
-      isFetching: get(store.viewPage, 'isFetching')
-    };
-  }
-)
-@asyncConnect([{
-  promise: ({store: {dispatch}}) => {
-    return dispatch( requestGet('home'));
-  }
-}])
+@connect(mapPageToProps)
+@asyncConnect([requestPage('home')])
 export default class Home extends Component {
 
   static propTypes = {
-    article: PropTypes.string.isRequired,
-    isFetching: PropTypes.bool
+    articleHelper: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired
   }
 
   render() {
-    const {article, isFetching} = this.props;
+    const {articleHelper, isFetching} = this.props;
     return (
-      <Page article={article} isFetching={isFetching} heroStyle="image-focus-bottom">
-        <Helmet title="Home" />
+      <ArticleComponent
+          article={articleHelper}
+          isFetching={isFetching}
+      >
         <audio controls>
           <source src={config.app.birdsong} type="audio/mp3" />
         </audio>
-      </Page>
+      </ArticleComponent>
     );
   }
 }

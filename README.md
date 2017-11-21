@@ -11,16 +11,16 @@ Univeral React / Redux Web Application using cutting edge technologies
 * [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
 * [Redux](https://github.com/rackt/redux)
 * [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
-* [redux-form](https://github.com/erikras/redux-form) 
-* [multireducer](https://github.com/erikras/multireducer) 
+* [redux-form](https://github.com/erikras/redux-form)
+* [multireducer](https://github.com/erikras/multireducer)
 * [style-loader](https://github.com/webpack/style-loader)
-* [react-helmet](https://github.com/nfl/react-helmet) 
+* [react-helmet](https://github.com/nfl/react-helmet)
 * [webpack-isomorphic-tools](https://github.com/halt-hammerzeit/webpack-isomorphic-tools)
-* [mocha](https://mochajs.org/) 
-* [chai](http://chaijs.com/) 
-* [sinon](http://sinonjs.org/) 
-* [karma](https://karma-runner.github.io/) 
-* [enzyme](https://github.com/airbnb/enzyme) 
+* [mocha](https://mochajs.org/)
+* [chai](http://chaijs.com/)
+* [sinon](http://sinonjs.org/)
+* [karma](https://karma-runner.github.io/)
+* [enzyme](https://github.com/airbnb/enzyme)
 
 
 ## Environment
@@ -35,7 +35,7 @@ Alternatively it can be ran locally it requires (Faster to build):
 * [MongoDb](https://www.mongodb.com/)
 * [ImageMagick](http://www.imagemagick.org/)
 
-Obtain Stormpath credentials https://stormpath.com/ and Set Env: 
+Obtain Stormpath credentials https://stormpath.com/ and Set Env:
 
 ```bash
 export STORMPATH_CLIENT_APIKEY_ID=
@@ -43,7 +43,14 @@ export STORMPATH_CLIENT_APIKEY_SECRET=
 export STORMPATH_APPLICATION_HREF=
 ```
 
-Add google credentials: 
+Obtain AWS credentialsand Set Env:
+
+```bash
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+```
+
+Add google credentials:
 
 ```bash
 vim api/data/google.json

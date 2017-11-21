@@ -6,8 +6,10 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import  mime from 'mime-types';
 import  im from 'imagemagick';
-const async = require('async'); 
+import  s3Client from './s3Client';
+const async = require('async');
 const destinationPath =  './static/images/';
+const uploadBasePath =  'images/';
 
 export const imagesPath = 'api/images/';
 
@@ -63,8 +65,8 @@ export const uploadImage = (image, name) => {
   return new Promise((resolve, reject) => {
     const path = get(image, 'path');
     if(path && name){
-    
-      const filename =  name + '.' + mime.extension(image.type);  
+
+      const filename =  name + '.' + mime.extension(image.type);
       const destination = imagesPath + filename;
       copyFile(path, destination)
         .then(() =>  deleteFile(path))
@@ -73,7 +75,7 @@ export const uploadImage = (image, name) => {
           convertImage(destination, filename);
           resolve(filename);
         });
-      
+
     }
     else{
       reject('path and name must be set');
@@ -93,6 +95,8 @@ export const convertImage = (sourcePath, filename) => {
       sizes.map((size, index) => {
         actions.push(function(next){
           const newPath = destinationPath + size.join('x') + '/' + filename;
+          const uploadPath = uploadBasePath + size.join('x') + '/' + filename;
+
           const config = {
             srcPath: sourcePath,
             dstPath: newPath,
@@ -103,8 +107,27 @@ export const convertImage = (sourcePath, filename) => {
           im.crop(config,
           function(err, stdout, stderr){
             if (err) reject(err);
+            console.log(newPath);
+
+            var params = {
+              localFile: newPath,
+
+              s3Params: {
+                Bucket: "vegan-recipes-static",
+                Key: uploadPath,
+              },
+            };
+            var uploader = s3Client.uploadFile(params);
+            uploader.on('error', function(err) {
+              reject(err);
+              console.error("unable to upload:", err.stack);
+            });
+            uploader.on('end', function() {
+              console.log("done uploading");
+              next();
+            });
             console.log('resized '+ sourcePath + ' to fit within' + size.join('x'));
-            next();
+
           });
         });
       });
@@ -118,5 +141,3 @@ export const convertImage = (sourcePath, filename) => {
     }
   });
 }
-
-

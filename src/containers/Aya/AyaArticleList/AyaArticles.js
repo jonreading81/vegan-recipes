@@ -1,80 +1,26 @@
-import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
 import {ArticleList} from 'components';
-import { request as requestList} from 'redux/modules/wordpress/articles';
-import { asyncConnect } from 'redux-async-connect';
-import get from 'lodash/get';
-import {push } from 'react-router-redux';
-import {request as requestPage} from 'redux/modules/wordpress/page';
-import ArticleHelper from 'helpers/Article';
+import articleListHoc from 'hoc/ArticleList';
 import heroStyles from '../heroPanel.scss';
 import promoStyles from '../promoStyles.scss';
 
-@connect(
-  (state) => {
-    return {
-      results: get(state.articlesList, 'items', []),
-      isFetching: get(state.viewPage, 'isFetching'),
-      page: new ArticleHelper(get(state.viewPage, 'entity.docs[0]')),
-    };
-  },
-  (dispatch) => {
-    return {
-      getArticles: (page) => {
-        dispatch(push('/aya/articles/list/' + page));
-      }
-    };
-  }
-)
-@asyncConnect([
-  {
-    promise: ({store: {dispatch}}) => {
-      return dispatch(requestPage('aya-articles'));
-    }
-  },
-  {
-    promise: ({params, store: {dispatch}}) => {
-      return dispatch(requestList([5, ''], params.page));
-    }
-  }
-])
-export default class Aya extends Component {
-
-  static propTypes = {
-    results: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool.isRequired,
-    params: PropTypes.object.isRequired,
-    getArticles: PropTypes.func.isRequired,
-    page: PropTypes.object.isRequired,
-  }
-
-  getArticles(page) {
-    this.props.getArticles(page);
-  }
-
+class ArticleListContainer extends Component {
   render() {
-    const {results, page, isFetching} = this.props;
-    const articles = get(results, 'docs', []);
-    const pages = get(results, 'pages', 0);
-    const activePage = parseInt( get(results, 'page', 0), 10);
     return (
       <ArticleList
-          meta={[
-            {name: 'description', content: 'Aya'},
-            {name: 'keywords', content: 'aya'}
-          ]}
-          heroStyles={heroStyles}
-          promoStyles={promoStyles}
-          isList
-          page={page}
-          articlesTitle=""
-          articleURL="/aya/article/"
-          articles={articles}
-          pages={pages}
-          activePage={activePage}
-          isFetching={isFetching}
-          getArticles={::this.getArticles}
+        heroStyles={heroStyles}
+        promoStyles={promoStyles}
+        {...this.props}
       />
     );
   }
 }
+
+export default articleListHoc(ArticleListContainer,
+  {
+    searchURL: '/aya/article/search/',
+    articleURL: '/aya/article/',
+    slug: 'aya-articles',
+    tagId: 5
+  }
+);

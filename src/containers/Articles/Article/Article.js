@@ -1,28 +1,16 @@
 import React, { PropTypes, Component } from 'react';
 import {Article as ArticleComponent} from 'components';
-import { asyncConnect } from 'redux-async-connect';
-import {connect} from 'react-redux';
-import {request as requestGet} from 'redux/modules/wordpress/post';
-import get from 'lodash/get';
-import Article from 'helpers/Article';
 import {BreadcrumbContainer} from 'components';
 import {Breadcrumb} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import requestPostWithParam from 'redux/asyncConnection/requestPostWithParam';
+import mapPostToProps from 'redux/mapStateToProps/post';
+import { asyncConnect } from 'redux-async-connect';
+import {connect} from 'react-redux';
 
-@connect(
-  (store) => {
-    return {
-      articleHelper: new Article(get(store.viewPost, 'entity.docs[0]')),
-      isFetching: get(store.viewPost, 'isFetching')
-    };
-  }
-)
-@asyncConnect([{
-  promise: ({params, store: {dispatch}}) => {
-    return dispatch( requestGet(params.article));
-  }
-}])
-export default class ArticleContainer extends Component {
+@connect(mapPostToProps)
+@asyncConnect([requestPostWithParam('article')])
+class ArticleContainer extends Component {
 
   static propTypes = {
     articleHelper: PropTypes.object.isRequired,
@@ -32,9 +20,9 @@ export default class ArticleContainer extends Component {
   render() {
     const {articleHelper, isFetching} = this.props;
     return (
-      <ArticleComponent article={articleHelper} isFetching={isFetching}>
+      <ArticleComponent article={articleHelper} isFetching={isFetching} hasBreadcrumb>
          <BreadcrumbContainer>
-          <LinkContainer to={'/article/list/all'}>
+          <LinkContainer to={'/article'}>
             <Breadcrumb.Item>Articles</Breadcrumb.Item>
           </LinkContainer>
           <Breadcrumb.Item active>{articleHelper.getTitle()}</Breadcrumb.Item>
@@ -43,3 +31,5 @@ export default class ArticleContainer extends Component {
     );
   }
 }
+
+export default ArticleContainer;
