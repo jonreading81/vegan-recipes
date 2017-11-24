@@ -37,6 +37,9 @@ module.exports = Object.assign({
       {property: 'og:creator', content: ''},
       {property: 'og:image:width', content: ''},
       {property: 'og:image:height', content: ''}
+      ],
+      link: [
+         {rel: 'shortcut icon', href: '/favicon-aya.ico'}
       ]
     }
   },
