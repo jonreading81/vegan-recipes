@@ -5,8 +5,9 @@
       @media only screen and (max-width: 500px) {
           margin:40px 0 32px 0;
       }
-      h1, h2, h3, h4, h5 {
+      h1, h2, h3, h4, h5, dt{
         font-family: "brandon-bold", Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
       }
       h1 {
         font-size: 2em;
