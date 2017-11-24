@@ -32,6 +32,12 @@ $red: #965454;
 $turquoise: #549696;
 $blue: #013981;
 
+/*------------------ AYA ----------------------------*/
+$aya-green:                   #40947d!default;
+$aya-red:                     #bb3d62!default;
+$aya-beige:                   #cdcda9!default;
+$aya-dark-green:              #274744!default;
+
 
 //== Scaffolding
 //
@@ -161,7 +167,7 @@ $btn-default-bg:                 #fff !default;
 $btn-default-border:             transparent !default;
 
 $btn-primary-color:              #fff !default;
-$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-bg:                 $aya-green !default;
 $btn-primary-border:             transparent !default;
 
 $btn-success-color:              #fff !default;
@@ -881,8 +887,3 @@ $dl-horizontal-breakpoint:    $grid-float-breakpoint !default;
 //** Horizontal line color.
 $hr-border:                   $gray-lighter !default;
 
-/*------------------ AYA ----------------------------*/
-$aya-green:                   #40947d!default;
-$aya-red:                     #bb3d62!default;
-$aya-beige:                   #cdcda9!default;
-$aya-dark-green:              #274744!default;

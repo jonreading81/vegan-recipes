@@ -30,7 +30,7 @@ export default class AyaContact extends Component {
           <Loading />
         </If>
         <If condition={!isFetching}>
-            <HeroPanel styles={heroStyles} image={articleHelper.getImage()} title={articleHelper.getTitle()} style="image-focus-button">
+            <HeroPanel styles={heroStyles} image={articleHelper.getImage()} title={articleHelper.getTitle()} style="image-focus-center">
               {subTextComponent}
             </HeroPanel>
             <div className="container">

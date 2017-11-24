@@ -3,6 +3,7 @@
 .type{
  p{
     font-size: 14px;
+    color: #666 !important;
   }
   @media only screen and (min-width: $screen-sm-min) {
     h4{
@@ -17,4 +18,10 @@
       font-size: 16px;
     }
   }
+}
+.promoUnit {
+    &:hover, 
+    &:focus {
+      background-color:transparentize(#ccc, 0.2);
+    }
 }

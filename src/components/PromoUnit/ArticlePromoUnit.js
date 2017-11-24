@@ -23,7 +23,7 @@ export default class ArticlePromoUnit extends Component {
     };
     const articleStyles = require('./articlePromoUnit.scss');
     return (
-      <div className={styles.promoUnit}>
+      <div className={`${styles.promoUnit} ${articleStyles.promoUnit}`}>
        <Link to={URL}>
           <Row>
             <Col xs={12} sm={4} md={5}>

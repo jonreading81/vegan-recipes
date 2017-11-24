@@ -26,9 +26,10 @@
       }
       span {
         font-family: $font-family-serif;
-        color: #666;
+        //color: #666;
       }
       ul.ayaList {
+        padding-left: 0;
         li {
           list-style-image: url('../Aya/images/ayaLeaf-green-left.png');
           list-style-position: inside;
