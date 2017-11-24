@@ -47,7 +47,9 @@ export default class ArticleListComponent extends Component {
           </If>
         <div className="container ">
           <div className="column-large">
-            <SearchWell searching={searching} onSubmit={searchArticles} />
+            <If condition={ articles.length === 8 }>
+                <SearchWell searching={searching} onSubmit={searchArticles} />
+            </If >
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>
             </If >

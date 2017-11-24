@@ -5,8 +5,9 @@
       @media only screen and (max-width: 500px) {
           margin:40px 0 32px 0;
       }
-      h1, h2, h3, h4, h5 {
+      h1, h2, h3, h4, h5, dt{
         font-family: "brandon-bold", Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
       }
       h1 {
         font-size: 2em;
@@ -26,9 +27,10 @@
       }
       span {
         font-family: $font-family-serif;
-        color: #666;
+        //color: #666;
       }
       ul.ayaList {
+        padding-left: 0;
         li {
           list-style-image: url('../Aya/images/ayaLeaf-green-left.png');
           list-style-position: inside;

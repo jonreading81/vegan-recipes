@@ -33,7 +33,7 @@ export default class HeroPanel extends Component {
     className = className + ' hero-panel-' + style;
 
     return (
-      <header className={className} >
+      <header className={`${className} ${styles.heroPanelImageFocusCenter}`} >
             <div className="image-wrapper">
               <If condition={!isUndefined(image)}>
                 <ResponsiveImage image={image}/>

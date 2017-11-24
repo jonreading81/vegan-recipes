@@ -12,7 +12,7 @@ backup-data:
 
 backup-content:
 	git add .
-	git commit -m 'Added data'
+	git commit -m 'Added data' &> /dev/null
 	git push https://github.com/jonreading81/vegan-recipes.git
 
 backup-all: backup-data backup-content

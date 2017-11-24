@@ -22,7 +22,6 @@ export default class AyaContact extends Component {
     const {articleHelper, isFetching} = this.props;
     const content = htmlToReactParser.parse('<div>' + articleHelper.getContent() + '</div>');
     const subTextComponent = htmlToReactParser.parse('<div>' + articleHelper.getSubText() + '</div>');
-    const styles = require('./AyaContact.scss');
     return (
       <div>
         <Helmet title={articleHelper.getTitle()} />
@@ -30,15 +29,15 @@ export default class AyaContact extends Component {
           <Loading />
         </If>
         <If condition={!isFetching}>
-            <HeroPanel styles={heroStyles} image={articleHelper.getImage()} title={articleHelper.getTitle()} style="image-focus-button">
+            <HeroPanel styles={heroStyles} image={articleHelper.getImage()} title={articleHelper.getTitle()} style="image-focus-center">
               {subTextComponent}
             </HeroPanel>
             <div className="container">
               <div className="column-large">
-                <div className={styles.contact}>
+                <div className="body-copy">
                   {content}
                   <dl>
-                      <dt className={styles.socialMediaList}>Social Media</dt>
+                      <dt>Social Media</dt>
                       <dd>
                         <ul>
                             <li>
