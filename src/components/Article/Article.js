@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import Helmet from 'react-helmet';
-import {HeroPanel, Loading} from 'components';
+import {HeroPanel, Loading, ArticleSocialLinks} from 'components';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
 
@@ -35,6 +35,7 @@ export default class Article extends Component {
             {children}
             <div className="container">
               <div className="body-copy">{contentComponent}</div>
+              <ArticleSocialLinks/>
             </div>
           </If>
         </div>

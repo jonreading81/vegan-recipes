@@ -14,5 +14,5 @@ a.socialLink span{
 }
 a.socialLink:hover,
 a.socialLink:hover span {
-  color: $aya-red;
+  color: darken($aya-green, 15%);
 }

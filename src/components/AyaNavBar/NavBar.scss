@@ -12,6 +12,9 @@
     width: 100%;
     margin-left: 0!important;
     margin-right: 0!important;
+    @media only screen and (min-width: $screen-sm-min) {
+        height: 210px;
+    }
 }
 .navbarBrand {
     height: auto;
@@ -67,43 +70,60 @@
 }
 .logoImg {
 	background-image:url("./AyaLogo.png");
-    height: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    height: 150px;
+    height: 125px;
 }
-.strapline {
-    color: $aya-green;
-    font-family: "brandon-light", Helvetica, Arial, sans-serif;
-    font-size: 0.75em;
-    text-transform: none;
-    text-align: center;
-    font-weight: 600;
+.logoBg {
+	background-image:url("./AyaLogoBg.png");
+    background-repeat: round;
+    
+    height: 155px;
 }
 :global {
+    .aya-navbar-default > .container-fluid {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .aya-navbar-default .logoLink {
+         z-index: 1;
+         position: absolute;
+         width: 100%;
+         right: 0;
+         top: 15px;
+    }
+    .aya-logo-background {
+          position: relative;
+          height: 155px;
+          z-index: 0;
+          top: 50px;
+          overflow: hidden;
+          .image-wrapper-overlay{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            @include background(linear-gradient(rgba(#666, 0.1), rgba(#666, 0.5)));
+            top: 0 ;
+            z-index:1;
+        }
+    }
+    .aya-navbar-default .navbar-brand {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .aya-navbar-default .navbar-nav > li > a {
+        color: $aya-blue;
+        font-family: "brandon-med", Helvetica, Arial, sans-serif;
+        font-size: 1.5em;
+        &:hover {
+            color: $aya-red;
+        }
+    }
     .aya-navbar-default .navbar-nav > .active > a,
     .aya-navbar-default .navbar-nav > .active > a:hover,
     .aya-navbar-default .navbar-nav > .active > a:focus {
+        color: $aya-red;
+        font-size: 1.5em;
         background-color: transparent;
-        color: #bb3d62;
-    }
-    .aya-navbar-default .navbar-nav > li > a:after {
-        content: '';
-        display: block;
-        position: inherit;
-        padding-bottom: 20px;
-        border-bottom: 2px solid transparent;
-        width: 100%;
-        @media only screen and (max-width: $screen-sm-min) {
-            padding-bottom: 10px;
-        }
-    }
-    .aya-navbar-default .navbar-nav > .active > a:after,
-    .aya-navbar-default .navbar-nav > .active > a:hover:after,
-    .aya-navbar-default .navbar-nav > .active > a:focus:after,
-    .aya-navbar-default .navbar-nav > li > a:hover:after,
-    .aya-navbar-default .navbar-nav > li > a:focus:after {
-            border-bottom: 2px solid #bb3d62;
-            transition: border 1s;
     }
 }

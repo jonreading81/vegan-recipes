@@ -39,6 +39,7 @@ export RadioGroup from './Form/RadioGroup';
 export BreadcrumbContainer from './Breadcrumb/Breadcrumb';
 export ImageForm from './ImageForm/ImageForm';
 export Article from './Article/Article';
+export ArticleSocialLinks from './Article/ArticleSocialLinks';
 export ArticleList from './ArticleList/ArticleList';
 export InspirationForm from './InspirationForm/InspirationForm';
 export InspirationDetails from './InspirationDetails/InspirationDetails';
