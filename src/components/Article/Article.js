@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import Helmet from 'react-helmet';
-import {HeroPanel, Loading, ArticleSocialLinks} from 'components';
+import {AyaHeroPanel, Loading, ArticleSocialLinks} from 'components';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
 
@@ -29,9 +29,9 @@ export default class Article extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel image={article.getImage()} title={article.getTitle()} styles={heroStyles} hasBreadcrumb={hasBreadcrumb}>
+            <AyaHeroPanel image={article.getImage()} title={article.getTitle()} styles={heroStyles} hasBreadcrumb={hasBreadcrumb}>
             {subTextComponent}
-            </HeroPanel>
+            </AyaHeroPanel>
             {children}
             <div className="container">
               <div className="body-copy">{contentComponent}</div>

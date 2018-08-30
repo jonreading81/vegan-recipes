@@ -2,6 +2,7 @@
 .socialLinks {
     position: absolute;
     right: 15px;
+    margin-top:10px;
     @media only screen and (max-width: $screen-sm-min) {
         left: 15px;
         right: unset;
@@ -15,4 +16,6 @@ a.socialLink span{
 a.socialLink:hover,
 a.socialLink:hover span {
   color: darken($aya-green, 15%);
+}
+.container .socialLinks {
 }

@@ -53,20 +53,20 @@
 }
 
 .navbar-nav {
+    @media only screen and (max-width: $screen-sm-min) {
+        display: inline-flex;
+        margin-left: 0;
+        margin-right: 0;
+    }
     @media only screen and (min-width: $screen-sm-min) {
-        display: inline-block;
+        display: inline-flex;
         float: none!important;
+        padding-bottom: 10px;
     }
 }
 .navbar-nav > li > a {
     text-decoration: none;
     padding-bottom: 0;
-}
-.navbar-nav {
-    @media only screen and (max-width: $screen-sm-min) {
-        margin-left: 0;
-        margin-right: 0;
-    }
 }
 .logoImg {
 	background-image:url("./AyaLogo.png");
@@ -77,8 +77,7 @@
 .logoBg {
 	background-image:url("./AyaLogoBg.png");
     background-repeat: round;
-    
-    height: 155px;
+    height: 180px;
 }
 :global {
     .aya-navbar-default > .container-fluid {
@@ -86,15 +85,26 @@
         padding-right: 0;
     }
     .aya-navbar-default .logoLink {
-         z-index: 1;
-         position: absolute;
-         width: 100%;
-         right: 0;
-         top: 15px;
+        z-index: 1;
+        position: absolute;
+        width: 100%;
+        right: 0;
+        top: 15px;
+        &:hover {
+            text-decoration: none;
+        }
+        .aya-strapline {
+          color: #fff;
+          text-transform: capitalize;
+          font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+          font-size: 1em;
+          padding-top: 5px;
+          display: block;
+        }
     }
     .aya-logo-background {
           position: relative;
-          height: 155px;
+          height: 180px;
           z-index: 0;
           top: 50px;
           overflow: hidden;

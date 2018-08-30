@@ -61,6 +61,7 @@ export default class NavBar extends Component {
                 <div className="image-wrapper">
                 </div>
                 <span className="hidden">{config.app.title}</span>
+                <span className="aya-strapline">{config.app.strapline}</span>
               </IndexLink>
           </div>
         </Navbar.Brand>
