@@ -21,7 +21,7 @@ export default class AyaContact extends Component {
   render() {
     const {articleHelper, isFetching} = this.props;
     const content = htmlToReactParser.parse('<div>' + articleHelper.getContent() + '</div>');
-    const subTextComponent = htmlToReactParser.parse('<div>' + articleHelper.getSubText() + '</div>');
+    const subTextComponent = Array.isArray(articleHelper.getSubText()) && articleHelper.getSubText().length !== 0 ? htmlToReactParser.parse('<div>' + articleHelper.getSubText() + '</div>') : null;
     return (
       <div>
         <Helmet title={articleHelper.getTitle()} />

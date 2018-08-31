@@ -123,8 +123,8 @@
     }
     .aya-navbar-default .navbar-nav > li > a {
         color: $aya-blue;
-        font-family: "brandon-med", Helvetica, Arial, sans-serif;
-        font-size: 1.5em;
+        font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+        font-size: 1.7em;
         &:hover {
             color: $aya-red;
         }
@@ -133,7 +133,6 @@
     .aya-navbar-default .navbar-nav > .active > a:hover,
     .aya-navbar-default .navbar-nav > .active > a:focus {
         color: $aya-red;
-        font-size: 1.5em;
         background-color: transparent;
     }
 }

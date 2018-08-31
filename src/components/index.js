@@ -28,7 +28,6 @@ export PasswordInput from './Form/PasswordInput';
 export MultiValueFormControlWrapper from './Form/MultiValueFormControlWrapper';
 export SearchWell from './SearchWell/SearchWell';
 export HeroPanel from './HeroPanel/HeroPanel';
-export AyaHeroPanel from './HeroPanel/AyaHeroPanel';
 export ResponsiveImage from './ResponsiveImage/ResponsiveImage';
 export Footer from './Footer/Footer';
 export NavBar from './NavBar/NavBar';
