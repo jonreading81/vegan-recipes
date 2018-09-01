@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { ResponsiveImage} from 'components';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
-import isNull from 'lodash/isNull';
 import defaultStyles from './default.scss';
 
 export default class HeroPanel extends Component {
@@ -17,12 +16,13 @@ export default class HeroPanel extends Component {
     isEmpty: PropTypes.bool,
     hasBreadcrumb: PropTypes.bool,
     subTitle: PropTypes.string,
-    image: PropTypes.string.isRequired
+    image: PropTypes.string.isRequired,
+    displayHeroPanel: PropTypes.bool
   }
   render() {
     require('./HeroPanel.scss');
 
-    const {title, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
+    const {title, displayHeroPanel, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
     const styles = this.props.styles || defaultStyles;
     const type = get( this.props, 'type', 'site-heading');
     const imageWrapperHolderClassName = image ? 'image-wrapper-overlay' : 'image-wrapper-overlay--no-image';
@@ -34,7 +34,7 @@ export default class HeroPanel extends Component {
     className = className + ' hero-panel-' + style;
 
     return (
-      <If condition={!isNull(children)}>
+      <If condition={displayHeroPanel === true}>
       <header className={`${className} ${styles.heroPanelImageFocusCenter}`} >
             <div className="image-wrapper">
               <If condition={!isUndefined(image)}>
@@ -63,7 +63,7 @@ export default class HeroPanel extends Component {
               </div>
             </div>
         </header>
-      </If>
+        </If>
     );
   }
 }

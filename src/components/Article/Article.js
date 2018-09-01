@@ -18,7 +18,7 @@ export default class Article extends Component {
   render() {
     const {article, isFetching, heroStyles, children, hasBreadcrumb} = this.props;
     const contentComponent = htmlToReactParser.parse('<div>' + article.getContent() + '</div>');
-    const subTextComponent = article.getSubText().length !== 0 ? htmlToReactParser.parse('<div>' + article.getSubText() + '</div>') : null;
+    const subTextComponent = htmlToReactParser.parse('<div>' + article.getSubText() + '</div>');
     return (
       <div>
         <Helmet title={article.getTitle()}
@@ -29,7 +29,7 @@ export default class Article extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel image={article.getImage()} title={article.getTitle()} styles={heroStyles} hasBreadcrumb={hasBreadcrumb}>
+            <HeroPanel displayHeroPanel={article.isDisplayHeroPanel()} image={article.getImage()} title={article.getTitle()} styles={heroStyles} hasBreadcrumb={hasBreadcrumb}>
             {subTextComponent}
             </HeroPanel>
             {children}

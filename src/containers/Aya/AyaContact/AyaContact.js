@@ -21,7 +21,7 @@ export default class AyaContact extends Component {
   render() {
     const {articleHelper, isFetching} = this.props;
     const content = htmlToReactParser.parse('<div>' + articleHelper.getContent() + '</div>');
-    const subTextComponent = Array.isArray(articleHelper.getSubText()) && articleHelper.getSubText().length !== 0 ? htmlToReactParser.parse('<div>' + articleHelper.getSubText() + '</div>') : null;
+    const subTextComponent = htmlToReactParser.parse('<div>' + articleHelper.getSubText() + '</div>');
     return (
       <div>
         <Helmet title={articleHelper.getTitle()} />
@@ -29,7 +29,7 @@ export default class AyaContact extends Component {
           <Loading />
         </If>
         <If condition={!isFetching}>
-            <HeroPanel styles={heroStyles} image={articleHelper.getImage()} title={articleHelper.getTitle()} style="image-focus-center">
+            <HeroPanel styles={heroStyles} displayHeroPanel={articleHelper.isDisplayHeroPanel()} image={articleHelper.getImage()} title={articleHelper.getTitle()} style="image-focus-center">
               {subTextComponent}
             </HeroPanel>
             <div className="container">
