@@ -41,7 +41,7 @@ export default class ArticleListComponent extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel styles={heroStyles} image={page.getImage()} title={page.getTitle()} heroStyle="image-focus-bottom">
+            <HeroPanel displayHeroPanel={page.isDisplayHeroPanel()} styles={heroStyles} image={page.getImage()} title={page.getTitle()} heroStyle="image-focus-bottom">
                {subTextComponent}
             </HeroPanel>
           </If>

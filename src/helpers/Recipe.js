@@ -78,7 +78,7 @@ export default class Recipe {
   getTitle() {
     return get(this.getRecipe(), 'title');
   }
-
+  
   getAuthor() {
     return get(this.getRecipe(), 'author');
   }
