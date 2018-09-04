@@ -35,7 +35,10 @@ export default class Article extends Component {
             {children}
             <div className="container">
               <div className="body-copy">{contentComponent}</div>
+              {hasBreadcrumb}
+              <If condition={hasBreadcrumb === true}>
               <ArticleSocialLinks/>
+              </If>
             </div>
           </If>
         </div>

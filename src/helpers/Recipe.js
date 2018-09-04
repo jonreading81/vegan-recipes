@@ -78,7 +78,6 @@ export default class Recipe {
   getTitle() {
     return get(this.getRecipe(), 'title');
   }
-  
   getAuthor() {
     return get(this.getRecipe(), 'author');
   }
@@ -86,7 +85,6 @@ export default class Recipe {
   getImage() {
     return get(this.getRecipe(), 'image');
   }
-
   getPreperationTime() {
     return get(this.preperationTimeOption, 'label');
   }

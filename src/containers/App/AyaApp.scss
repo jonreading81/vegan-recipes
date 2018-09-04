@@ -5,15 +5,24 @@
       @media only screen and (max-width: 500px) {
           margin:40px 0 32px 0;
       }
-      h1, h2, h3, h4, h5, dt{
+      h1, h2, h3, h4, h5 {
         font-family: "brandon-bold", Helvetica, Arial, sans-serif;
         text-transform: uppercase;
       }
       h1 {
-        font-size: 2em;
+        font-size: 1.9em;
         @media only screen and (min-width: $screen-sm-min) {
             font-size: 3em;
         }
+      }
+      h2 {
+          font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+          color: $aya-red;
+          padding-bottom: 20px;
+      }
+      p.blue {
+          color: $aya-blue;
+          font-weight: bolder;
       }
       a {
         font-family: $font-family-serif;
@@ -29,11 +38,38 @@
         font-family: $font-family-serif;
         //color: #666;
       }
+      span.emphasis {
+          color: $aya-red;
+          font-weight: bold;
+      }
+      dl.ayaList {
+        dt {
+        }
+        dd {
+            font-family: $font-family-serif;
+            font-size: initial;
+            &::before {
+                content: "  -  ";
+            }
+        }
+      }
+      ul.aya-emphasis-list {
+          padding-left: 0;
+          li {
+              list-style-type: none;
+              list-style-position: inside;
+          }
+      }
       ul.ayaList {
         padding-left: 0;
         li {
-          list-style-image: url('../Aya/images/ayaLeaf-green-left.png');
-          list-style-position: inside;
+          list-style: none;
+          &::before {
+              content: "  \2022  "; 
+              color: $aya-red;
+              font-size: 2em;
+              vertical-align: sub;
+          }
         }
       }
       table { 
