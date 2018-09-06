@@ -1,0 +1,58 @@
+@import "src/theme/variables";
+@import "~compass-mixins/lib/compass";
+
+.promoUnit{
+  a {
+    text-decoration: none!important;
+    p {
+      font-size: initial;
+    }
+    &:hover{
+      h4 {
+        text-decoration: none;
+      }
+    }
+    .image-wrapper-overlay{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      @include background(linear-gradient(rgba(#333, 0.1), rgba(#333, 0.5)));
+      top: 0 ;
+      z-index:1;
+    }
+  }
+}
+
+.iconWrapper {
+  display: none;
+}
+
+
+.imageWrapper{
+  background-color: $brand-primary;
+  padding-top: 56.25%;
+  position:relative;
+  img{
+    position:absolute;
+    top:0;
+  }
+}
+
+.imageOverlay{
+  position: absolute;
+  top:0;
+  width:100%;
+  padding-top: 56.25%;
+  background-color:transparentize(#333, 0.8);
+  z-index: 1;
+}
+
+.absoluteTextWrapper{
+  padding:16px;
+  box-sizing: border-box;
+}
+
+.textImage{
+  color:white;
+}
+

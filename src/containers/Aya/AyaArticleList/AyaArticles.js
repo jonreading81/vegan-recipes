@@ -1,15 +1,22 @@
-import React, { Component } from 'react';
-import {ArticleList} from 'components';
+import React, { Component, PropTypes} from 'react';
+import {AyaArticleList} from 'components';
 import articleListHoc from 'hoc/ArticleList';
 import heroStyles from '../heroPanel.scss';
 import promoStyles from '../promoStyles.scss';
 
 class ArticleListContainer extends Component {
+
+  static propTypes = {
+    promoUnitType: PropTypes.string
+  }
+
   render() {
+    const promoUnitType = 'aya';
     return (
-      <ArticleList
+      <AyaArticleList
         heroStyles={heroStyles}
         promoStyles={promoStyles}
+        promoUnitType={promoUnitType}
         {...this.props}
       />
     );

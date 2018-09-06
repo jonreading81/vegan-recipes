@@ -736,6 +736,9 @@ input[type="checkbox"],
 // Column styles =================================================================
 .body-copy, .column-small, .column-medium, .column-large, .side-panel, .body-panel{
    padding-top: 24px;
+   @media only screen and (min-width: $screen-sm-min) {
+      padding-top: 30px;
+   }
 }
 
 .body-copy,.body-panel,.side-panel {

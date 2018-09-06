@@ -1,4 +1,6 @@
 @import "src/theme/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "~compass-mixins/lib/compass";
 :global {
     .appAya {
       margin:0 0 32px 0;
@@ -18,7 +20,9 @@
       h2 {
           font-family: "sansita-bold", Helvetica, Arial, sans-serif;
           color: $aya-red;
-          padding-bottom: 20px;
+          @media only screen and (min-width: $screen-sm-min) {
+              padding-bottom: 20px;
+          }
       }
       p.blue {
           color: $aya-blue;
@@ -78,5 +82,21 @@
           line-height: 2em;
         }
       }
+      .hero-panel {
+        .image-wrapper-holder {
+          background-color: #fff;
+        }
+        .post-heading h1, span, hr {
+          color: $aya-blue;
+        }
+        .fa-spin {
+          color: $aya-blue;
+        }
+      }
+      .row {
+        display: flex;
+        flex-flow: wrap;
+      }
+
     }
 }

@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import {Link } from 'components';
 import { ResponsiveImage, IconButton, AbsoluteCenteredContent} from 'components';
-import promoStyles from './promoUnit.scss';
+import promoStyles from './AyaPromoUnit.scss';
 
-export default class ImagePromoUnit extends Component {
+export default class AyaImagePromoUnit extends Component {
 
   static propTypes = {
     image: PropTypes.string,
@@ -41,9 +41,6 @@ export default class ImagePromoUnit extends Component {
           </If>
         </div>
         <div className={styles.copy}>
-          <If condition={image && image !== ''}>
-             <h4>{title}</h4>
-          </If>
           <p>{description}</p>
         </div>
         </Link>

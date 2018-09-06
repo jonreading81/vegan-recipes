@@ -21,6 +21,7 @@ export default class ArticlePromoUnit extends Component {
       promoStyles,
       ...this.props.styles
     };
+    console.log(this.props);
     const articleStyles = require('./articlePromoUnit.scss');
     return (
       <div className={`${styles.promoUnit} ${articleStyles.promoUnit}`}>
