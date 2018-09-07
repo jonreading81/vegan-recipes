@@ -17,17 +17,17 @@ export default class HeroPanel extends Component {
     hasBreadcrumb: PropTypes.bool,
     subTitle: PropTypes.string,
     image: PropTypes.string.isRequired,
-    displayHeroPanel: PropTypes.bool
+    displayHeroPanel: PropTypes.bool,
+    heroPanelTheme: PropTypes.string
   }
-
   static defaultProps = {
-    displayHeroPanel: true
+    displayHeroPanel: true,
+    heroPanelTheme: ''
   }
 
   render() {
     require('./HeroPanel.scss');
-
-    const {title, displayHeroPanel, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
+    const {heroPanelTheme, title, displayHeroPanel, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
     const styles = this.props.styles || defaultStyles;
     const type = get( this.props, 'type', 'site-heading');
     const imageWrapperHolderClassName = image ? 'image-wrapper-overlay' : 'image-wrapper-overlay--no-image';
@@ -37,10 +37,9 @@ export default class HeroPanel extends Component {
     if (hasBreadcrumb) className += ` ${styles.hasBreadcrumb}`;
     if (!style) style = 'image-focus-center';
     className = className + ' hero-panel-' + style;
-
     return (
       <If condition={displayHeroPanel === true}>
-      <header className={`${className} ${styles.heroPanelImageFocusCenter}`} >
+      <header className={`${className} ${styles.heroPanelImageFocusCenter} ${heroPanelTheme}`} >
             <div className="image-wrapper">
               <If condition={!isUndefined(image)}>
                 <ResponsiveImage image={image}/>

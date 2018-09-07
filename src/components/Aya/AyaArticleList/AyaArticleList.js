@@ -60,7 +60,7 @@ export default class AyaArticleListComponent extends Component {
             </HeroPanel>
           </If>
         <div className="container ">
-          <div className="col-lg-10 col-lg-offset-2">
+          <div className="body-copy">
             <If condition={ articles.length === 8 }>
                 <SearchWell searching={searching} onSubmit={searchArticles} />
             </If >

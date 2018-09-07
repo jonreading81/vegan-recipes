@@ -11,12 +11,11 @@ export default class AyaImagePromoUnit extends Component {
     icon: PropTypes.string.isRequired,
     color: PropTypes.string,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
     URL: PropTypes.string.isRequired
   };
 
   render() {
-    const {title, description, image, icon, URL, color} = this.props;
+    const {title, image, icon, URL, color} = this.props;
     const styles = {
       ...promoStyles,
       ...this.props.styles
@@ -29,7 +28,6 @@ export default class AyaImagePromoUnit extends Component {
           <div className={styles.imageOverlay}/>
            <If condition={image && image !== ''}>
             <ResponsiveImage image={image}/>
-            <div className="image-wrapper-overlay" />
             <AbsoluteCenteredContent alignCenter styles={{absoluteWrapper: styles.absoluteTextWrapper}}>
               <h4 className={styles.textImage}>{title}</h4>
             </AbsoluteCenteredContent>
@@ -39,9 +37,6 @@ export default class AyaImagePromoUnit extends Component {
               <h4 className={styles.textImage}>{title}</h4>
             </AbsoluteCenteredContent>
           </If>
-        </div>
-        <div className={styles.copy}>
-          <p>{description}</p>
         </div>
         </Link>
       </div>

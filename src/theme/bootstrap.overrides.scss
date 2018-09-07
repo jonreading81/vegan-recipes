@@ -756,7 +756,6 @@ input[type="checkbox"],
 }
 
 .body-copy {
-
   @include make-xs-column(12);
   @include make-xs-column-offset(0);
   @include make-md-column(8);
@@ -766,7 +765,6 @@ input[type="checkbox"],
 }
 
 .side-panel {
-
   @include make-xs-column(12);
   @include make-md-column(4);
   @include make-lg-column(3);
@@ -774,7 +772,6 @@ input[type="checkbox"],
 }
 
 .body-panel {
-
   @include make-xs-column(12);
   @include make-md-column(8);
   @include make-lg-column(7);

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { PropTypes, Component } from 'react';
 import Helmet from 'react-helmet';
 import {HeroPanel, Loading, ArticleSocialLinks} from 'components';
@@ -13,10 +14,15 @@ export default class Article extends Component {
     isFetching: PropTypes.bool,
     hasBreadcrumb: PropTypes.bool,
     heroStyles: PropTypes.string,
+    heroPanelTheme: PropTypes.string
+  }
+
+  static defaultProp = {
+    heroPanelTheme: ''
   }
 
   render() {
-    const {article, isFetching, heroStyles, children, hasBreadcrumb} = this.props;
+    const {article, isFetching, heroStyles, children, hasBreadcrumb, heroPanelTheme} = this.props;
     const contentComponent = htmlToReactParser.parse('<div>' + article.getContent() + '</div>');
     const subTextComponent = htmlToReactParser.parse('<div>' + article.getSubText() + '</div>');
     return (
@@ -29,7 +35,7 @@ export default class Article extends Component {
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel displayHeroPanel={article.isDisplayHeroPanel()} image={article.getImage()} title={article.getTitle()} styles={heroStyles} hasBreadcrumb={hasBreadcrumb}>
+            <HeroPanel heroPanelTheme={heroPanelTheme} displayHeroPanel={article.isDisplayHeroPanel()} image={article.getImage()} title={article.getTitle()} styles={heroStyles} hasBreadcrumb={hasBreadcrumb}>
             {subTextComponent}
             </HeroPanel>
             {children}

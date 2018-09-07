@@ -12,14 +12,6 @@
         text-decoration: none;
       }
     }
-    .image-wrapper-overlay{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      @include background(linear-gradient(rgba(#333, 0.1), rgba(#333, 0.5)));
-      top: 0 ;
-      z-index:1;
-    }
   }
 }
 
@@ -29,12 +21,14 @@
 
 
 .imageWrapper{
-  background-color: $brand-primary;
+  background-color: white;
   padding-top: 56.25%;
   position:relative;
   img{
     position:absolute;
     top:0;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 }
 
@@ -43,16 +37,21 @@
   top:0;
   width:100%;
   padding-top: 56.25%;
-  background-color:transparentize(#333, 0.8);
+  background-color:transparentize(#333, 0.5);
   z-index: 1;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
 }
 
 .absoluteTextWrapper{
   padding:16px;
   box-sizing: border-box;
+  z-index: 2;
 }
 
-.textImage{
+h4.textImage{
+  font-family: "sansita-bold", Helvetica, Arial, sans-serif;
   color:white;
 }
 

@@ -1,0 +1,7 @@
+@import "~compass-mixins/lib/compass";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "src/theme/variables";
+
+.breadcrumbwrapper a {
+  color: $aya-green;
+}
