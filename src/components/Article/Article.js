@@ -14,36 +14,42 @@ export default class Article extends Component {
     isFetching: PropTypes.bool,
     hasBreadcrumb: PropTypes.bool,
     heroStyles: PropTypes.string,
-    heroPanelTheme: PropTypes.string
+    bodyTheme: PropTypes.string
   }
 
-  static defaultProp = {
-    heroPanelTheme: ''
+  static defaultProps = {
+    bodyTheme: 'body-copy'
   }
 
   render() {
-    const {article, isFetching, heroStyles, children, hasBreadcrumb, heroPanelTheme} = this.props;
+    const {article, isFetching, heroStyles, children, hasBreadcrumb, heroPanelTheme, bodyTheme, url} = this.props;
     const contentComponent = htmlToReactParser.parse('<div>' + article.getContent() + '</div>');
     const subTextComponent = htmlToReactParser.parse('<div>' + article.getSubText() + '</div>');
     return (
       <div>
         <Helmet title={article.getTitle()}
           meta={[
-            {name: 'description', content: article.getDescription()}
+            {
+              name: 'description', content: article.getDescription()
+            },
+            {
+              name: 'og:url',
+              content: url
+            }
           ]}/>
          <If condition={isFetching}>
             <Loading />
           </If>
           <If condition={!isFetching}>
-            <HeroPanel heroPanelTheme={heroPanelTheme} displayHeroPanel={article.isDisplayHeroPanel()} image={article.getImage()} title={article.getTitle()} styles={heroStyles} hasBreadcrumb={hasBreadcrumb}>
+            <HeroPanel displayHeroPanel={article.isDisplayHeroPanel()} image={article.getImage()} title={article.getTitle()} styles={heroStyles} hasBreadcrumb={hasBreadcrumb}>
             {subTextComponent}
             </HeroPanel>
             {children}
             <div className="container">
-              <div className="body-copy">{contentComponent}</div>
+              <div className={bodyTheme}>{contentComponent}</div>
               {hasBreadcrumb}
               <If condition={hasBreadcrumb === true}>
-              <ArticleSocialLinks/>
+                <ArticleSocialLinks article={article} url={url}/>
               </If>
             </div>
           </If>

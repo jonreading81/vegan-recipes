@@ -14,21 +14,19 @@ class ArticleContainer extends Component {
 
   static propTypes = {
     articleHelper: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool,
-    heroPanelTheme: PropTypes.string
+    isFetching: PropTypes.bool
   }
 
   render() {
-    const {articleHelper, isFetching} = this.props;
-    const heroPanelTheme = 'col-lg-8 col-lg-offset-2';
+    const {articleHelper, isFetching, url} = this.props;
     const styles = require('./AyaArticle.scss');
     return (
       <ArticleComponent
+          url={url}
           article={articleHelper}
           isFetching={isFetching}
           heroStyles={heroStyles}
           hasBreadcrumb
-          heroPanelTheme={heroPanelTheme}
           >
          <BreadcrumbContainer className={`${styles.breadcrumbwrapper} breadcrumb-wrapper--aya`}>
             <Breadcrumb.Item href="/aya/article">Articles</Breadcrumb.Item>

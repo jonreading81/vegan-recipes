@@ -12,16 +12,19 @@ export default class AyaHome extends Component {
 
   static propTypes = {
     articleHelper: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool.isRequired
+    isFetching: PropTypes.bool.isRequired,
+    bodyTheme: PropTypes.string
   }
 
   render() {
     const {articleHelper, isFetching} = this.props;
+    const bodyTheme = 'column-large';
     return (
       <ArticleComponent
           article={articleHelper}
           isFetching={isFetching}
           heroStyles={heroStyles}
+          bodyTheme={bodyTheme}
       />
     );
   }

@@ -1,13 +1,5 @@
 @import 'src/theme/variables';
 
-.hr {
-    border-top: 1px solid #fff;
-    height: 20px;
-    margin-left: 30px;
-    margin-right: 30px;
-    overflow: visible;
-    margin-bottom: 0;
-}
 .subTitle {
   margin-top: 0;
   p {
@@ -15,7 +7,3 @@
     text-transform: uppercase;
   }
 }
-.heroPanelImageFocusCenter img {
-    margin-top: 0!important;
-}
-

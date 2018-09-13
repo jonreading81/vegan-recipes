@@ -84,6 +84,7 @@
         }
       }
       .hero-panel {
+        margin-top: 30px;
         .image-wrapper-holder {
           background-color: #fff;
         }
@@ -98,6 +99,12 @@
         display: flex;
         flex-flow: wrap;
       }
-
+      .container {
+        .column-large {
+          img {
+            width: 100%;
+          }
+        }
+      }
     }
 }

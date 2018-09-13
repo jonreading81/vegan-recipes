@@ -21,7 +21,7 @@ import ayaConfig from './ayaConfig';
 const client = new ApiClient();
 const _browserHistory = useScroll(browserHistory, customScroll);
 const dest = document.getElementById('content');
-const store = createStore(_browserHistory, client, window.__data);
+const store = createStore(_browserHistory, client, window.__data, { url: window.location.href });
 const history = syncHistoryWithStore(_browserHistory, store);
 const config = window.location.hostname === 'www.calloftheforest.com' ? cofConfig : ayaConfig;
 
