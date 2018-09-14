@@ -1,28 +1,46 @@
-import React, { Component, PropTypes } from 'react';
-import {Article as ArticleComponent} from 'components';
-import requestPage from 'redux/asyncConnection/requestPage';
-import mapPageToProps from 'redux/mapStateToProps/page';
+import React, { Component, PropTypes} from 'react';
+import {AyaArticleList} from 'components';
+import articleListHoc from 'hoc/ArticleList';
+import heroStyles from '../heroPanel.scss';
+import promoStyles from '../promoStyles.scss';
+
+import HtmlToReact from 'html-to-react';
+const htmlToReactParser = new HtmlToReact.Parser(React);
 import { asyncConnect } from 'redux-async-connect';
 import {connect} from 'react-redux';
-import heroStyles from '../heroPanel.scss';
+import requestPage from 'redux/asyncConnection/requestPage';
+import mapPageToProps from 'redux/mapStateToProps/page';
 
 @connect(mapPageToProps)
-@asyncConnect([requestPage('aya-products')])
-export default class AyaProducts extends Component {
+@asyncConnect([requestPage('aya-product')])
+class ArticleListContainer extends Component {
 
   static propTypes = {
-    articleHelper: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool.isRequired
+    promoUnitType: PropTypes.string,
+    articleHelper: PropTypes.object.isRequired
   }
 
   render() {
-    const {articleHelper, isFetching} = this.props;
+    const promoUnitType = 'aya';
+    const {articleHelper} = this.props;
+    const content = htmlToReactParser.parse('<div>' + articleHelper.getContent() + '</div>');
     return (
-      <ArticleComponent
-          article={articleHelper}
-          isFetching={isFetching}
-          heroStyles={heroStyles}
+      <AyaArticleList
+        heroStyles={heroStyles}
+        promoStyles={promoStyles}
+        promoUnitType={promoUnitType}
+        content={content}
+        {...this.props}
       />
     );
   }
 }
+
+export default articleListHoc(ArticleListContainer,
+  {
+    searchURL: '/aya/product/search/',
+    articleURL: '/aya/product/',
+    slug: 'aya-products',
+    tagId: 6
+  }
+);

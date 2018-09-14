@@ -7,6 +7,12 @@
       @media only screen and (max-width: 500px) {
           margin:40px 0 32px 0;
       }
+      p,
+      li,
+      dt {
+        font-size: 16px;
+        line-height: 2em;
+      }
       h1, h2, h3, h4, h5 {
         font-family: "brandon-bold", Helvetica, Arial, sans-serif;
         text-transform: uppercase;
@@ -31,7 +37,7 @@
       }
       a {
         font-family: $font-family-serif;
-        color: #666;
+        color: $aya-red;
         text-decoration: underline;
       }
       a:hover,
@@ -39,9 +45,20 @@
         text-decoration: none;
         color: lighten(#666, 6.5%);
       }
+      blockquote {
+        border-left: none;
+        p {
+        font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+        font-size: 2em;
+        }
+      }
+      blockquote,
+      blockquote p:after,
+      blockquote:before {
+        color: $aya-red;
+      }
       span {
         font-family: $font-family-serif;
-        //color: #666;
       }
       span.emphasis {
           color: $aya-red;

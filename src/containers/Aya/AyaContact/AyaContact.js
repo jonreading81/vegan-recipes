@@ -34,12 +34,12 @@ export default class AyaContact extends Component {
             </HeroPanel>
             <div className="container">
               <div className="column-large">
-                <div className="body-copy">
+              <blockquote><p>No one can do it alone and no one can take all of the credit</p></blockquote>
                   {content}
                   <dl>
                       <dt>Social Media</dt>
                       <dd>
-                        <ul>
+                        <ul className="ayaList">
                             <li>
                             <a href="https://twitter.com/ayaplantbased">https://twitter.com/ayaplantbased
                             </a>
@@ -57,7 +57,7 @@ export default class AyaContact extends Component {
                       <dt>Email</dt>
                       <dd>
                         <p>
-                            <a href="mailto:hello@ayaplantbased.com">mailto:hello@ayaplantbased.com
+                            <a href="mailto:hello@ayaplantbased.com">hello@ayaplantbased.com
                             </a>
                         </p>
                       </dd>
@@ -68,7 +68,6 @@ export default class AyaContact extends Component {
                         </p>
                       </dd>
                   </dl>
-                </div>
               </div>
             </div>
         </If>

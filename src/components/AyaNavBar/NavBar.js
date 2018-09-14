@@ -71,7 +71,7 @@ export default class NavBar extends Component {
         	<LinkContainer active={URL === '/aya'} to="/aya">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Home</NavItem>
             </LinkContainer>
-            <LinkContainer to="/aya/products">
+            <LinkContainer to="/aya/product">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={2}>Products</NavItem>
             </LinkContainer>
             <LinkContainer to="/aya/ourstory">

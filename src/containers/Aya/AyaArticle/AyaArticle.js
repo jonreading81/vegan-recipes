@@ -20,6 +20,7 @@ class ArticleContainer extends Component {
   render() {
     const {articleHelper, isFetching, url} = this.props;
     const styles = require('./AyaArticle.scss');
+    console.log('url', url);
     return (
       <ArticleComponent
           url={url}

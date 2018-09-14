@@ -25,6 +25,7 @@ export default class Article extends Component {
     const {article, isFetching, heroStyles, children, hasBreadcrumb, heroPanelTheme, bodyTheme, url} = this.props;
     const contentComponent = htmlToReactParser.parse('<div>' + article.getContent() + '</div>');
     const subTextComponent = htmlToReactParser.parse('<div>' + article.getSubText() + '</div>');
+    console.log('article', article);
     return (
       <div>
         <Helmet title={article.getTitle()}
