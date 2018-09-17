@@ -48,7 +48,6 @@ export default class AyaArticleListComponent extends Component {
     } = this.props;
     const gridColLg = 6;
     const promoStyles = require('./AyaPromoUnit.scss');
-
     return (
       <div>
         <Helmet title={page.getTitle()}/>

@@ -21,7 +21,7 @@ class ArticleListContainer extends Component {
   }
 
   render() {
-    const promoUnitType = 'aya';
+    const promoUnitType = 'ayaProduct';
     const {articleHelper} = this.props;
     const content = htmlToReactParser.parse('<div>' + articleHelper.getContent() + '</div>');
     return (

@@ -13,7 +13,6 @@ export default class ItemsList extends Component {
     const {promoStyles} = this.props;
     let item;
     let index;
-    console.log(this);
     return (
         <div>
         <For each="item" index="index" of={ this.props.items}>

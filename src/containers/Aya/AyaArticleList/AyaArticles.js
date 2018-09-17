@@ -11,7 +11,7 @@ class ArticleListContainer extends Component {
   }
 
   render() {
-    const promoUnitType = 'aya';
+    const promoUnitType = 'ayaArticle';
     return (
       <AyaArticleList
         heroStyles={heroStyles}

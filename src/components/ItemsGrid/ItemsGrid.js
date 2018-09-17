@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {Row, Col, Button, ButtonToolbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import {ImagePromoUnit, AyaImagePromoUnit, AdminUser} from 'components';
+import {ImagePromoUnit, AyaImageArticlePromoUnit, AyaImageProductPromoUnit, AdminUser} from 'components';
 
 export default class ItemsGrid extends Component {
 
@@ -17,7 +17,7 @@ export default class ItemsGrid extends Component {
   };
 
   static defaultProps = {
-    gridColLg: 12,
+    gridColLg: 4,
     gridColMd: 4,
     gridColSm: 6,
     gridColXs: 12,
@@ -31,7 +31,8 @@ export default class ItemsGrid extends Component {
     let index;
     const promoTypes = {
       callOfTheForest: ImagePromoUnit,
-      aya: AyaImagePromoUnit
+      ayaArticle: AyaImageArticlePromoUnit,
+      ayaProduct: AyaImageProductPromoUnit
     };
     const PromoUnitComponent = promoTypes[promoUnitType];
     return (
