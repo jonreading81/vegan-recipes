@@ -38,8 +38,8 @@ class ArticleListContainer extends Component {
 
 export default articleListHoc(ArticleListContainer,
   {
-    searchURL: '/aya/product/search/',
-    articleURL: '/aya/product/',
+    searchURL: '/aya/products/search/',
+    articleURL: '/aya/products/',
     slug: 'aya-products',
     tagId: 6
   }

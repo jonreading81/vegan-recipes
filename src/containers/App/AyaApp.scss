@@ -7,6 +7,13 @@
       @media only screen and (max-width: 500px) {
           margin:40px 0 32px 0;
       }
+      .container .column-large p {
+        text-align: justify;
+        &.r-align {
+          text-align: right;
+          color: $aya-green;
+        }
+      }
       p,
       li,
       dt {
@@ -37,7 +44,7 @@
       }
       a {
         font-family: $font-family-serif;
-        color: $aya-red;
+        color: $aya-green;
         text-decoration: underline;
       }
       a:hover,
@@ -50,6 +57,12 @@
         p {
         font-family: "sansita-bold", Helvetica, Arial, sans-serif;
         font-size: 2em;
+          span.author-quote {
+            font-size: 0.75em;
+          }
+        }
+        &.inline-quote p{
+          font-size: 1em;
         }
       }
       blockquote,

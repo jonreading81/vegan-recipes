@@ -20,7 +20,8 @@ class ArticleContainer extends Component {
   render() {
     const {articleHelper, isFetching, url} = this.props;
     const styles = require('./AyaArticle.scss');
-    console.log('url', url);
+    const breadcrumbPath = this.props.location.pathname.split('/').slice(0, -1).join('/');
+    const breadcrumbTitle = breadcrumbPath.split('/').pop();
     return (
       <ArticleComponent
           url={url}
@@ -28,9 +29,10 @@ class ArticleContainer extends Component {
           isFetching={isFetching}
           heroStyles={heroStyles}
           hasBreadcrumb
+          bodyTheme="column-large"
           >
          <BreadcrumbContainer className={`${styles.breadcrumbwrapper} breadcrumb-wrapper--aya`}>
-            <Breadcrumb.Item href="/aya/article">Articles</Breadcrumb.Item>
+            <Breadcrumb.Item href={breadcrumbPath}>{breadcrumbTitle}</Breadcrumb.Item>
             <Breadcrumb.Item active>{articleHelper.getTitle()}</Breadcrumb.Item>
         </BreadcrumbContainer>
       </ArticleComponent>

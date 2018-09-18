@@ -54,12 +54,12 @@ export default (store) => {
             <Route path="ourstory" component={AyaAbout} />
             <Route path="retail" component={AyaRetail} />
             <Route path="contact" component={AyaContact} />
-            <Route path="article">
+            <Route path="articles">
               <IndexRoute component={AyaArticles}/>
               <Route path="search/:term(/:page)" component={AyaArticles} />
               <Route path=":article" component={AyaArticle}/>
             </Route>
-            <Route path="product">
+            <Route path="products">
               <IndexRoute component={AyaProducts}/>
               <Route path="search/:term(/:page)" component={AyaProducts} />
               <Route path=":article" component={AyaArticle}/>
