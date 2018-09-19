@@ -2,17 +2,37 @@
 @import "~compass-mixins/lib/compass";
 
 .promoUnit{
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+  border: 1px solid $aya-green;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #dcece4;
   a {
     text-decoration: none!important;
+    h4 {
+      color: $aya-green;
+    }
     p {
       font-size: initial;
+    }
+    img {
+      transition: all .2s ease-in-out;
     }
     &:hover{
       h4 {
         text-decoration: none;
       }
+      img {
+        transform: scale(1.05);
+      }
     }
   }
+}
+
+.promoTitle {
+  text-align: center;
 }
 
 .iconWrapper {
@@ -28,7 +48,6 @@
     position:absolute;
     top:0;
     border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
   }
 }
 
@@ -39,8 +58,6 @@
   padding-top: 56.25%;
   background-color:transparentize(#333, 0.5);
   z-index: 1;
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
 
 }
 

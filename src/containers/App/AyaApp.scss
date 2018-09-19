@@ -3,15 +3,12 @@
 @import "~compass-mixins/lib/compass";
 :global {
     .appAya {
-      margin:0 0 32px 0;
-      @media only screen and (max-width: 500px) {
-          margin:40px 0 32px 0;
-      }
-      .container .column-large p {
-        text-align: justify;
-        &.r-align {
-          text-align: right;
-          color: $aya-green;
+      margin: 40px 0 32px 0;
+      .column-large {
+        @media only screen and (max-width: $screen-sm-min) {
+          padding-top: 0;
+          padding-left: 0;
+          padding-right: 0;
         }
       }
       p,
@@ -19,6 +16,7 @@
       dt {
         font-size: 16px;
         line-height: 2em;
+        overflow: hidden;
       }
       h1, h2, h3, h4, h5 {
         font-family: "brandon-bold", Helvetica, Arial, sans-serif;
@@ -35,12 +33,28 @@
           font-family: "sansita-bold", Helvetica, Arial, sans-serif;
           color: $aya-red;
           @media only screen and (min-width: $screen-sm-min) {
-              padding-bottom: 20px;
+            padding-bottom: 20px;
+          }
+          @media only screen and (max-width: $screen-sm-min) {
+            font-size: 2.5em;
           }
       }
       p.blue {
           color: $aya-blue;
           font-weight: bolder;
+      }
+      p.r-align {
+          text-align: right;
+          color: $aya-green;
+      }
+      p.justify {
+        text-align: justify;
+      }
+      p.center {
+        text-align: center;
+      }
+      p img {
+        width: 100%;
       }
       a {
         font-family: $font-family-serif;
@@ -57,6 +71,7 @@
         p {
         font-family: "sansita-bold", Helvetica, Arial, sans-serif;
         font-size: 2em;
+        margin-bottom: 0;
           span.author-quote {
             font-size: 0.75em;
           }
@@ -128,13 +143,6 @@
       .row {
         display: flex;
         flex-flow: wrap;
-      }
-      .container {
-        .column-large {
-          img {
-            width: 100%;
-          }
-        }
       }
     }
 }

@@ -22,6 +22,7 @@ export default class AyaAbout extends Component {
           article={articleHelper}
           isFetching={isFetching}
           heroStyles={heroStyles}
+          bodyTheme="column-large"
       />
     );
   }

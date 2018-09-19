@@ -34,6 +34,11 @@ export default class AyaImagePromoUnit extends Component {
             </AbsoluteCenteredContent>
           </If>
         </div>
+        <div className={styles.copy + ' ' + styles.promoTitle}>
+          <If condition={image && image !== ''}>
+             <h4>{title}</h4>
+          </If>
+        </div>
         </Link>
       </div>
     );
