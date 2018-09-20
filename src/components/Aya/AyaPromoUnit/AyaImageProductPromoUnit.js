@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {Link } from 'components';
-import { ResponsiveImage, IconButton, AbsoluteCenteredContent} from 'components';
+import { ResponsiveImage, AbsoluteCenteredContent} from 'components';
 import promoStyles from './AyaPromoUnit.scss';
 
 export default class AyaImagePromoUnit extends Component {
@@ -8,14 +8,13 @@ export default class AyaImagePromoUnit extends Component {
   static propTypes = {
     image: PropTypes.string,
     styles: PropTypes.object,
-    icon: PropTypes.string.isRequired,
     color: PropTypes.string,
     title: PropTypes.string.isRequired,
     URL: PropTypes.string.isRequired
   };
 
   render() {
-    const {title, image, icon, URL, color} = this.props;
+    const {title, image, URL, color} = this.props;
     const styles = {
       ...promoStyles,
       ...this.props.styles
@@ -24,7 +23,6 @@ export default class AyaImagePromoUnit extends Component {
       <div className={styles.promoUnit}>
        <Link to={URL}>
         <div className={styles.imageWrapper + ' ' + styles[color]}>
-          <IconButton type={icon} styles={styles}/>
            <If condition={image && image !== ''}>
             <ResponsiveImage image={image}/>
           </If>

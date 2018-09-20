@@ -3,127 +3,134 @@
 @import "src/theme/variables";
 
 .navbar {
-    position: relative;
-    box-shadow: none;
-    margin-top: 15px;
-    margin-bottom: 0;
+  position: relative;
+  box-shadow: none;
+  margin-top: 15px;
+  margin-bottom: 0;
 }
 .navbarHeader {
-    width: 100%;
-    margin-left: 0!important;
-    margin-right: 0!important;
-    @media only screen and (min-width: $screen-sm-min) {
-        height: 210px;
-    }
+  width: 100%;
+  margin-left: 0!important;
+  margin-right: 0!important;
+  @media only screen and (min-width: $screen-sm-min) {
+      height: 210px;
+  }
 }
 .navbarBrand {
-    height: auto;
-    margin-left: 0!important;
-    margin-right: 0;
-    padding-bottom: 0;
+  height: auto;
+  margin-left: 0!important;
+  margin-right: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  text-align: center;
+  @media only screen and (max-width: $screen-sm-min) {
     padding-top: 0;
-    text-align: center;
-    @media only screen and (max-width: $screen-sm-min) {
-        padding-top: 0;
-        position: relative;
-        z-index: 0;
-    }
-    width: 100%;
+    position: relative;
+    z-index: 0;
+  }
+  width: 100%;
 }
 .navbarToggle {
-    position: absolute;
-    right: 15px;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    z-index: 1;
+  position: absolute;
+  right: 15px;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  z-index: 1;
 }
 .navbarCollapse {
-    @media only screen and (min-width: $screen-sm-min) {
-        text-align:center;
-    }
+  position: absolute;
+  top: 50px;
+  background: white;
+  width: 100%;
+  @media only screen and (min-width: $screen-sm-min) {
+    text-align:center;
+    position: inherit;
+    background: none;
+  }
 }
 
 .navbar-nav {
-    @media only screen and (max-width: $screen-sm-min) {
-        margin-left: 0;
-        margin-right: 0;
-    }
-    @media only screen and (min-width: $screen-sm-min) {
-        display: inline-flex;
-        float: none!important;
-        padding-bottom: 10px;
-    }
+  margin-left: 0;
+  margin-right: 0;
+  @media only screen and (min-width: $screen-sm-min) {
+    display: inline-flex;
+    float: none!important;
+    padding-bottom: 10px;
+  }
 }
 .navbar-nav > li > a {
-    text-decoration: none;
-    padding-bottom: 0;
+  text-decoration: none;
+  padding-bottom: 0;
 }
 .logoImg {
 	background-image:url("./AyaLogo.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 125px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 125px;
 }
 .logoBg {
 	background-image:url("./AyaLogoBg.png");
+  height: 180px;
+  border-bottom: 2px solid #fff;
+  @media only screen and (min-width: $screen-sm-min) {
     background-repeat: round;
-    height: 180px;
+  }
 }
 :global {
-    .aya-navbar-default > .container-fluid {
-        padding-left: 0;
-        padding-right: 0;
+  .aya-navbar-default > .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .aya-navbar-default .logoLink {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 15px;
+    &:hover {
+        text-decoration: none;
     }
-    .aya-navbar-default .logoLink {
-        z-index: 1;
-        position: absolute;
-        width: 100%;
-        right: 0;
-        top: 15px;
-        &:hover {
-            text-decoration: none;
-        }
-        .aya-strapline {
-          color: #fff;
-          text-transform: capitalize;
-          font-family: "sansita-bold", Helvetica, Arial, sans-serif;
-          font-size: 1em;
-          padding-top: 5px;
-          display: block;
-        }
+    .aya-strapline {
+      color: #fff;
+      text-transform: capitalize;
+      font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+      font-size: 1em;
+      padding-top: 5px;
+      display: block;
     }
-    .aya-logo-background {
-          position: relative;
-          height: 180px;
-          z-index: 0;
-          margin-top: 50px;
-          overflow: hidden;
-          .image-wrapper-overlay{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            @include background(linear-gradient(rgba(#666, 0.1), rgba(#666, 0.5)));
-            top: 0 ;
-            z-index:1;
-        }
-    }
-    .aya-navbar-default .navbar-brand {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    .aya-navbar-default .navbar-nav > li > a {
-        color: $aya-blue;
-        font-family: "sansita-bold", Helvetica, Arial, sans-serif;
-        font-size: 1.7em;
-        &:hover {
-            color: $aya-red;
-        }
-    }
-    .aya-navbar-default .navbar-nav > .active > a,
-    .aya-navbar-default .navbar-nav > .active > a:hover,
-    .aya-navbar-default .navbar-nav > .active > a:focus {
+  }
+  .aya-logo-background {
+    position: relative;
+    height: 178px;
+    z-index: 0;
+    margin-top: 50px;
+    overflow: hidden;
+    .image-wrapper-overlay{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      @include background(linear-gradient(rgba(#666, 0.1), rgba(#666, 0.4)));
+        top: 0 ;
+        z-index:1;
+      }
+  }
+  .aya-navbar-default .navbar-brand {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .aya-navbar-default .navbar-nav > li > a {
+    color: $aya-blue;
+    font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+    font-size: 1.7em;
+    &:hover {
         color: $aya-red;
-        background-color: transparent;
     }
+  }
+  .aya-navbar-default .navbar-nav > .active > a,
+  .aya-navbar-default .navbar-nav > .active > a:hover,
+  .aya-navbar-default .navbar-nav > .active > a:focus {
+      color: $aya-red;
+      background-color: transparent;
+  }
 }

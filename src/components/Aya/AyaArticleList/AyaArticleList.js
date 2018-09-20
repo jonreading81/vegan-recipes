@@ -47,6 +47,7 @@ export default class AyaArticleListComponent extends Component {
 
     } = this.props;
     const gridColLg = 6;
+    const pageTitle = this.props.location.pathname.split('/').pop();
     const promoStyles = require('./AyaPromoUnit.scss');
     return (
       <div>
@@ -61,6 +62,7 @@ export default class AyaArticleListComponent extends Component {
           </If>
         <div className="container ">
           <div className="column-large">
+          <h1 className="visible-xs-block">{pageTitle}</h1>
             <If condition={ articles.length === 8 }>
               <SearchWell searching={searching} onSubmit={searchArticles} />
             </If>

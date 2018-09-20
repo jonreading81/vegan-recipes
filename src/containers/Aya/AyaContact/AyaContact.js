@@ -34,6 +34,7 @@ export default class AyaContact extends Component {
             </HeroPanel>
             <div className="container">
               <div className="column-large">
+              <h1 className="visible-xs-block">Contact</h1>
               <blockquote><p>No one can do it alone and no one can take all of the credit</p></blockquote>
                   {content}
                   <dl>

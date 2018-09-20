@@ -3,7 +3,12 @@
 @import "~compass-mixins/lib/compass";
 :global {
     .appAya {
-      margin: 40px 0 32px 0;
+      margin-top: 20px;
+      margin-bottom: 32px;
+      @media only screen and (min-width: $screen-sm-min) {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
       .column-large {
         @media only screen and (max-width: $screen-sm-min) {
           padding-top: 0;
@@ -23,35 +28,26 @@
         text-transform: uppercase;
       }
       h1 {
-        font-size: 1.9em;
+        font-size: 3em;
         font-family: "sansita-bold", Helvetica, Arial, sans-serif;
-        @media only screen and (min-width: $screen-sm-min) {
-            font-size: 3em;
-        }
+        color: $aya-red;
+        line-height: 2em;
+        margin-top: 0;
       }
       h2 {
           font-family: "sansita-bold", Helvetica, Arial, sans-serif;
           color: $aya-red;
+          font-size: 2.5em;
           @media only screen and (min-width: $screen-sm-min) {
             padding-bottom: 20px;
-          }
-          @media only screen and (max-width: $screen-sm-min) {
-            font-size: 2.5em;
           }
       }
       p.blue {
           color: $aya-blue;
           font-weight: bolder;
       }
-      p.r-align {
-          text-align: right;
+      p.green {
           color: $aya-green;
-      }
-      p.justify {
-        text-align: justify;
-      }
-      p.center {
-        text-align: center;
       }
       p img {
         width: 100%;
@@ -70,14 +66,17 @@
         border-left: none;
         p {
         font-family: "sansita-bold", Helvetica, Arial, sans-serif;
-        font-size: 2em;
+        font-size: 1.75em;
+        line-height: 1.5em;
         margin-bottom: 0;
-          span.author-quote {
-            font-size: 0.75em;
+          @media only screen and (min-width: $screen-sm-min) {
+            font-size: 2em;
+            line-height: 2em;
           }
         }
-        &.inline-quote p{
+        &.inline-quote p {
           font-size: 1em;
+          color: $aya-red;
         }
       }
       blockquote,
@@ -138,6 +137,10 @@
         }
         .fa-spin {
           color: $aya-blue;
+        }
+        .site-heading h1 {
+          font-size: 30px;
+          line-height: 1em;
         }
       }
       .row {
