@@ -39,10 +39,6 @@ export default class Article {
     };
   }
 
-  getArticleUrl() {
-    return 'hello';
-  }
-
   getURL(baseURL) {
     return Article.getURLWithSlug( this.getSlug(), baseURL);
   }
