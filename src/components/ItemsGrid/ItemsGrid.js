@@ -1,26 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 import {Row, Col, Button, ButtonToolbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import {ImagePromoUnit, AdminUser} from 'components';
+import {ImagePromoUnit, AyaImageArticlePromoUnit, AyaImageProductPromoUnit, AdminUser} from 'components';
 
 export default class ItemsGrid extends Component {
 
   static propTypes = {
     items: PropTypes.array.isRequired,
     hasAdminActions: PropTypes.bool,
+    gridColLg: PropTypes.number,
+    gridColMd: PropTypes.number,
+    gridColSm: PropTypes.number,
+    gridColXs: PropTypes.number,
     promoStyles: PropTypes.object,
+    PromoUnitType: PropTypes.string
+  };
+
+  static defaultProps = {
+    gridColLg: 4,
+    gridColMd: 4,
+    gridColSm: 6,
+    gridColXs: 12,
+    promoUnitType: 'callOfTheForest'
   };
 
   render() {
-    const {hasAdminActions, promoStyles} = this.props;
+    const {promoUnitType, hasAdminActions, promoStyles, gridColLg, gridColMd, gridColSm, gridColXs} = this.props;
     const styles = require('./ItemsGrid.scss');
     let item;
     let index;
+    const promoTypes = {
+      callOfTheForest: ImagePromoUnit,
+      ayaArticle: AyaImageArticlePromoUnit,
+      ayaProduct: AyaImageProductPromoUnit
+    };
+    const PromoUnitComponent = promoTypes[promoUnitType];
     return (
       <Row>
         <For each="item" index="index" of={ this.props.items}>
-          <Col xs={12} sm={6} md={4} className={styles.promo}>
-            <ImagePromoUnit
+          <Col xs={gridColXs} sm={gridColSm} md={gridColMd} lg={gridColLg} className={styles.promo}>
+            <PromoUnitComponent
                 title={item.title}
                 URL={item.URL}
                 description={item.description}

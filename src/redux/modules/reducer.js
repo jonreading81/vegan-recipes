@@ -33,8 +33,9 @@ import {reducer as linkList} from './links/list';
 import {reducer as viewLink} from './links/view';
 import {reducer as updateLink} from './links/update';
 import {reducer as deleteLink} from './links/delete';
+import configReducerCreater from './config';
 
-export default combineReducers({
+export default (data) => combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
   api,
@@ -69,4 +70,5 @@ export default combineReducers({
   viewLink,
   updateLink,
   deleteLink,
+  config: configReducerCreater(data)
 });

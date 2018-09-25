@@ -19,6 +19,7 @@ module.exports = Object.assign({
   mongoDBURL: process.env.mongoURL || 'mongodb://localhost/test',
   app: {
     title: 'Aya',
+    strapline: 'New-generation plantbutters',
     description: description,
     head: {
       titleTemplate: '%s | Aya',

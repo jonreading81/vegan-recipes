@@ -16,12 +16,16 @@ export default class HeroPanel extends Component {
     isEmpty: PropTypes.bool,
     hasBreadcrumb: PropTypes.bool,
     subTitle: PropTypes.string,
-    image: PropTypes.string.isRequired
+    image: PropTypes.string.isRequired,
+    displayHeroPanel: PropTypes.bool,
   }
+  static defaultProps = {
+    displayHeroPanel: true,
+  }
+
   render() {
     require('./HeroPanel.scss');
-
-    const {title, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
+    const {title, displayHeroPanel, subTitle, image, isEmpty, children, hasBreadcrumb} = this.props;
     const styles = this.props.styles || defaultStyles;
     const type = get( this.props, 'type', 'site-heading');
     const imageWrapperHolderClassName = image ? 'image-wrapper-overlay' : 'image-wrapper-overlay--no-image';
@@ -31,8 +35,8 @@ export default class HeroPanel extends Component {
     if (hasBreadcrumb) className += ` ${styles.hasBreadcrumb}`;
     if (!style) style = 'image-focus-center';
     className = className + ' hero-panel-' + style;
-
     return (
+      <If condition={displayHeroPanel === true}>
       <header className={`${className} ${styles.heroPanelImageFocusCenter}`} >
             <div className="image-wrapper">
               <If condition={!isUndefined(image)}>
@@ -45,7 +49,6 @@ export default class HeroPanel extends Component {
               <div className="hero-panel-type-lining">
                 <div className={type}>
                     <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
                       <If condition={!isUndefined(title)}>
                         <h1>{title}</h1>
                         <hr className={`${styles.hr} small`} />
@@ -61,6 +64,7 @@ export default class HeroPanel extends Component {
               </div>
             </div>
         </header>
+        </If>
     );
   }
 }

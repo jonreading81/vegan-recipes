@@ -29,17 +29,18 @@ export default class AyaContact extends Component {
           <Loading />
         </If>
         <If condition={!isFetching}>
-            <HeroPanel styles={heroStyles} image={articleHelper.getImage()} title={articleHelper.getTitle()} style="image-focus-center">
+            <HeroPanel styles={heroStyles} displayHeroPanel={articleHelper.isDisplayHeroPanel()} image={articleHelper.getImage()} title={articleHelper.getTitle()} style="image-focus-center">
               {subTextComponent}
             </HeroPanel>
             <div className="container">
               <div className="column-large">
-                <div className="body-copy">
+              <h1 className="visible-xs-block">Contact</h1>
+              <blockquote><p>No one can do it alone and no one can take all of the credit</p></blockquote>
                   {content}
                   <dl>
                       <dt>Social Media</dt>
                       <dd>
-                        <ul>
+                        <ul className="ayaList">
                             <li>
                             <a href="https://twitter.com/ayaplantbased">https://twitter.com/ayaplantbased
                             </a>
@@ -57,7 +58,7 @@ export default class AyaContact extends Component {
                       <dt>Email</dt>
                       <dd>
                         <p>
-                            <a href="mailto:hello@ayaplantbased.com">mailto:hello@ayaplantbased.com
+                            <a href="mailto:hello@ayaplantbased.com">hello@ayaplantbased.com
                             </a>
                         </p>
                       </dd>
@@ -68,7 +69,6 @@ export default class AyaContact extends Component {
                         </p>
                       </dd>
                   </dl>
-                </div>
               </div>
             </div>
         </If>

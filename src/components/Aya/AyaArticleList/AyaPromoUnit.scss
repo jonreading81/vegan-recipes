@@ -1,0 +1,73 @@
+@import "src/theme/variables";
+@import "~compass-mixins/lib/compass";
+
+.promoUnit{
+  border-top-left-radius: 20px;
+  overflow: hidden;
+  padding-left: 0;
+  padding-right: 0;
+  a {
+    text-decoration: none!important;
+    h4 {
+      color: $aya-blue;
+      font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+      transition: all .2s ease-in-out;
+    }
+    p {
+      font-size: initial;
+    }
+    img {
+      transition: all .2s ease-in-out;
+    }
+    &:hover{
+      h4 {
+        text-decoration: none;
+        transform: scale(1.02);
+      }
+      img {
+        transform: scale(1.02);
+      }
+    }
+  }
+}
+
+.promoTitle {
+  text-align: center;
+  border-bottom-right-radius: 20px;
+  border: 1px solid $aya-blue;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.imageWrapper{
+  background-color: white;
+  padding-top: 56.25%;
+  position:relative;
+  img{
+    position:absolute;
+    top:0;
+    border-top-left-radius: 20px;
+  }
+}
+
+.imageOverlay{
+  position: absolute;
+  top:0;
+  width:100%;
+  padding-top: 56.25%;
+  background-color:transparentize(#333, 0.5);
+  z-index: 1;
+
+}
+
+.absoluteTextWrapper{
+  padding:16px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+h4.textImage{
+  font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+  color:white;
+}
+

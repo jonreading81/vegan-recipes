@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import {ItemsList, SearchWell, Loading} from 'components';
+import {ItemsGrid, SearchWell, Loading} from 'components';
 import {Pagination} from 'react-bootstrap';
 import {HeroPanel} from 'components';
 
-export default class ArticleListComponent extends Component {
+export default class AyaArticleListComponent extends Component {
 
   static propTypes = {
     results: PropTypes.object.isRequired,
@@ -14,7 +14,16 @@ export default class ArticleListComponent extends Component {
     params: PropTypes.object.isRequired,
     heroStyles: PropTypes.object,
     promoStyles: PropTypes.object,
-    getArticles: PropTypes.func.isRequired
+    getArticles: PropTypes.func.isRequired,
+    gridColLg: PropTypes.object,
+    gridColMd: PropTypes.object,
+    gridColSm: PropTypes.object,
+    gridColXs: PropTypes.object,
+    promoUnitType: PropTypes.string
+  }
+
+  static defaultProp = {
+    promoUnitType: 'callOfTheForest'
   }
 
   render() {
@@ -30,10 +39,16 @@ export default class ArticleListComponent extends Component {
       activePage,
       articleItems,
       heroStyles,
-      promoStyles
+      gridColMd,
+      gridColSm,
+      gridColXs,
+      promoUnitType,
+      content
 
     } = this.props;
-
+    const gridColLg = 6;
+    const pageTitle = this.props.location.pathname.split('/').pop();
+    const promoStyles = require('./AyaPromoUnit.scss');
     return (
       <div>
         <Helmet title={page.getTitle()}/>
@@ -47,13 +62,17 @@ export default class ArticleListComponent extends Component {
           </If>
         <div className="container ">
           <div className="column-large">
+          <h1 className="visible-xs-block">{pageTitle}</h1>
             <If condition={ articles.length === 8 }>
-                <SearchWell searching={searching} onSubmit={searchArticles} />
-            </If >
+              <SearchWell searching={searching} onSubmit={searchArticles} />
+            </If>
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>
-            </If >
-            <ItemsList promoStyles={promoStyles} items={articleItems}/>
+            </If>
+            <ItemsGrid promoUnitType={promoUnitType} gridColXs={gridColXs} gridColSm={gridColSm} gridColMd={gridColMd} gridColLg={gridColLg} promoStyles={promoStyles} items={articleItems}/>
+            <If condition={content && content.props && Array.isArray(content.props.children)}>
+              {content.props.children.map((child) => child)}
+            </If>
             <If condition={ pages > 1 }>
                <Pagination bsSize="medium" items={pages} activePage={activePage} onSelect={getArticles} />
             </If>

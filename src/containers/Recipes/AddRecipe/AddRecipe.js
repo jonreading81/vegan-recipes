@@ -44,9 +44,10 @@ export default class AddRecipeContainer extends Component {
     const initialValues = {
       author: author.getFullName()
     };
+
     return (
       <div>
-        <HeroPanel isEmpty image="forest.jpeg" />
+       <HeroPanel isEmpty image="forest.jpeg" />
        <EntityFormContainer
         entity ={recipe}
         pageTitle = "New Recipe"

@@ -3,107 +3,134 @@
 @import "src/theme/variables";
 
 .navbar {
-    position: relative;
-    box-shadow: none;
-    margin-top: 15px;
-    margin-bottom: 0;
+  position: relative;
+  box-shadow: none;
+  margin-top: 15px;
+  margin-bottom: 0;
 }
 .navbarHeader {
-    width: 100%;
-    margin-left: 0!important;
-    margin-right: 0!important;
+  width: 100%;
+  margin-left: 0!important;
+  margin-right: 0!important;
+  @media only screen and (min-width: $screen-sm-min) {
+      height: 210px;
+  }
 }
 .navbarBrand {
-    height: auto;
-    margin-left: 0!important;
-    margin-right: 0;
-    padding-bottom: 0;
-    margin-bottom: 15px;
+  height: auto;
+  margin-left: 0!important;
+  margin-right: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  text-align: center;
+  @media only screen and (max-width: $screen-sm-min) {
     padding-top: 0;
-    text-align: center;
-    @media only screen and (max-width: $screen-sm-min) {
-        padding-top: 0;
-        position: relative;
-        z-index: 0;
-    }
-    @media only screen and (max-width: 500px) {
-        top: 40px;
-    }
-    width: 100%;
+    position: relative;
+    z-index: 0;
+  }
+  width: 100%;
 }
 .navbarToggle {
-    position: absolute;
-    right: 15px;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    z-index: 1;
+  position: absolute;
+  right: 15px;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  z-index: 1;
 }
 .navbarCollapse {
-    @media only screen and (min-width: $screen-sm-min) {
-        text-align:center;
-    }
-    @media only screen and (max-width: 500px) {
-        position:relative;
-        top: 40px;
-    }
+  position: absolute;
+  top: 50px;
+  background: white;
+  width: 100%;
+  @media only screen and (min-width: $screen-sm-min) {
+    text-align:center;
+    position: inherit;
+    background: none;
+  }
 }
 
 .navbar-nav {
-    @media only screen and (min-width: $screen-sm-min) {
-        display: inline-block;
-        float: none!important;
-    }
+  margin-left: 0;
+  margin-right: 0;
+  @media only screen and (min-width: $screen-sm-min) {
+    display: inline-flex;
+    float: none!important;
+    padding-bottom: 10px;
+  }
 }
 .navbar-nav > li > a {
-    text-decoration: none;
-    padding-bottom: 0;
-}
-.navbar-nav {
-    @media only screen and (max-width: $screen-sm-min) {
-        margin-left: 0;
-        margin-right: 0;
-    }
+  text-decoration: none;
+  padding-bottom: 0;
 }
 .logoImg {
 	background-image:url("./AyaLogo.png");
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 150px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 125px;
 }
-.strapline {
-    color: $aya-green;
-    font-family: "brandon-light", Helvetica, Arial, sans-serif;
-    font-size: 0.75em;
-    text-transform: none;
-    text-align: center;
-    font-weight: 600;
+.logoBg {
+	background-image:url("./AyaLogoBg.png");
+  height: 180px;
+  border-bottom: 2px solid #fff;
+  @media only screen and (min-width: $screen-sm-min) {
+    background-repeat: round;
+  }
 }
 :global {
-    .aya-navbar-default .navbar-nav > .active > a,
-    .aya-navbar-default .navbar-nav > .active > a:hover,
-    .aya-navbar-default .navbar-nav > .active > a:focus {
-        background-color: transparent;
-        color: #bb3d62;
+  .aya-navbar-default > .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .aya-navbar-default .logoLink {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 15px;
+    &:hover {
+        text-decoration: none;
     }
-    .aya-navbar-default .navbar-nav > li > a:after {
-        content: '';
-        display: block;
-        position: inherit;
-        padding-bottom: 20px;
-        border-bottom: 2px solid transparent;
-        width: 100%;
-        @media only screen and (max-width: $screen-sm-min) {
-            padding-bottom: 10px;
-        }
+    .aya-strapline {
+      color: #fff;
+      text-transform: capitalize;
+      font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+      font-size: 1em;
+      padding-top: 5px;
+      display: block;
     }
-    .aya-navbar-default .navbar-nav > .active > a:after,
-    .aya-navbar-default .navbar-nav > .active > a:hover:after,
-    .aya-navbar-default .navbar-nav > .active > a:focus:after,
-    .aya-navbar-default .navbar-nav > li > a:hover:after,
-    .aya-navbar-default .navbar-nav > li > a:focus:after {
-            border-bottom: 2px solid #bb3d62;
-            transition: border 1s;
+  }
+  .aya-logo-background {
+    position: relative;
+    height: 178px;
+    z-index: 0;
+    margin-top: 50px;
+    overflow: hidden;
+    .image-wrapper-overlay{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      @include background(linear-gradient(rgba(#666, 0.1), rgba(#666, 0.4)));
+        top: 0 ;
+        z-index:1;
+      }
+  }
+  .aya-navbar-default .navbar-brand {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .aya-navbar-default .navbar-nav > li > a {
+    color: $aya-blue;
+    font-family: "sansita-bold", Helvetica, Arial, sans-serif;
+    font-size: 1.7em;
+    &:hover {
+        color: $aya-red;
     }
+  }
+  .aya-navbar-default .navbar-nav > .active > a,
+  .aya-navbar-default .navbar-nav > .active > a:hover,
+  .aya-navbar-default .navbar-nav > .active > a:focus {
+      color: $aya-red;
+      background-color: transparent;
+  }
 }

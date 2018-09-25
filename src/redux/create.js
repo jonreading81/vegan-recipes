@@ -4,10 +4,10 @@ import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import {enableBatching} from 'redux-batched-actions';
 
-export default function createStore(history, client, data) {
+export default function createStore(history, client, data, config) {
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = routerMiddleware(history);
-  const reducer = require('./modules/reducer');
+  const reducer = require('./modules/reducer')(config);
   const middleware = [createMiddleware(client), reduxRouterMiddleware, thunk];
 
   let finalCreateStore;

@@ -1,37 +1,9 @@
 @import 'src/theme/variables';
 
-.hr {
-    border-top: 1px solid #fff;
-    height: 20px;
-    margin-left: 30px;
-    margin-right: 30px;
-    overflow: visible;
-    margin-bottom: 0;
-    &:before,
-    &:after {
-         background-image: url('./images/ayaLeaf-left.png');
-         height: 21px;
-         background-repeat: no-repeat;
-         content: ' ';
-         width: 30px;
-         position: relative;
-         bottom: 11px;
-         float: left;
-         margin-left: -30px;
-    }
-    &:after {
-         background-image: url('./images/ayaLeaf-right.png');
-         float: right;
-         margin-right: -30px;
-    }
-}
 .subTitle {
   margin-top: 0;
   p {
   font-family: "brandon-light", Helvetica, Arial, sans-serif!important;
     text-transform: uppercase;
   }
-}
-.heroPanelImageFocusCenter img {
-    margin-top: 0!important;
 }

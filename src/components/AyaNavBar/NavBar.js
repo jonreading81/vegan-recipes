@@ -5,6 +5,7 @@ import { IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import {Nav, Navbar, NavItem} from 'react-bootstrap';
 import {AyaSocialLinks} from 'components';
+import mapPageToProps from 'redux/mapStateToProps/page';
 
 
 @connect(
@@ -14,6 +15,8 @@ import {AyaSocialLinks} from 'components';
     };
   }
 )
+
+@connect(mapPageToProps)
 export default class NavBar extends Component {
 
 
@@ -47,16 +50,20 @@ export default class NavBar extends Component {
         <Navbar.Toggle className={`${styles.navbarToggle}`}/>
         <AyaSocialLinks/>
         <Navbar.Brand className={`${styles.navbarBrand}`}>
-          <IndexLink to="/aya">
-            <div className={`${styles.logoImg}`}>
-            </div>
-            <span className={`${styles.strapline}`}>
-             An organic plantbutter for spreading, cooking and baking
-            </span>
-            <div className="image-wrapper">
-            </div>
-            <span className="hidden">{config.app.title}</span>
-          </IndexLink>
+          <div className="aya-logo-background image-wrapper">
+              <div className={`${styles.logoBg}`}>
+              </div>
+              <div className="image-wrapper-holder" />
+              <div className="image-wrapper-overlay" />
+              <IndexLink to="/aya" className="logoLink">
+                <div className={`${styles.logoImg}`}>
+                </div>
+                <div className="image-wrapper">
+                </div>
+                <span className="hidden">{config.app.title}</span>
+                <span className="aya-strapline">{config.app.strapline}</span>
+              </IndexLink>
+          </div>
         </Navbar.Brand>
       </Navbar.Header>
       <Navbar.Collapse autoCollapse eventKey={0} className={`${styles.navbarCollapse}`}>
@@ -73,7 +80,7 @@ export default class NavBar extends Component {
             <LinkContainer to="/aya/contact">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={3}>Contact</NavItem>
             </LinkContainer>
-            <LinkContainer to="/aya/article">
+            <LinkContainer to="/aya/articles">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={4}>Articles</NavItem>
             </LinkContainer>
         </Nav>

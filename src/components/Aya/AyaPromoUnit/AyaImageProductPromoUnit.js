@@ -1,22 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import {Link } from 'components';
-import { ResponsiveImage, IconButton, AbsoluteCenteredContent} from 'components';
-import promoStyles from './promoUnit.scss';
+import { ResponsiveImage, AbsoluteCenteredContent} from 'components';
+import promoStyles from './AyaPromoUnit.scss';
 
-export default class ImagePromoUnit extends Component {
+export default class AyaImagePromoUnit extends Component {
 
   static propTypes = {
     image: PropTypes.string,
     styles: PropTypes.object,
-    icon: PropTypes.string.isRequired,
     color: PropTypes.string,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
     URL: PropTypes.string.isRequired
   };
 
   render() {
-    const {title, description, image, icon, URL, color} = this.props;
+    const {title, image, URL, color} = this.props;
     const styles = {
       ...promoStyles,
       ...this.props.styles
@@ -25,11 +23,8 @@ export default class ImagePromoUnit extends Component {
       <div className={styles.promoUnit}>
        <Link to={URL}>
         <div className={styles.imageWrapper + ' ' + styles[color]}>
-          <IconButton type={icon} styles={styles}/>
-          <div className={styles.imageOverlay}/>
            <If condition={image && image !== ''}>
             <ResponsiveImage image={image}/>
-            <div className="image-wrapper-overlay" />
           </If>
           <If condition={!image || image === ''}>
             <AbsoluteCenteredContent alignCenter styles={{absoluteWrapper: styles.absoluteTextWrapper}}>
@@ -37,11 +32,10 @@ export default class ImagePromoUnit extends Component {
             </AbsoluteCenteredContent>
           </If>
         </div>
-        <div className={styles.copy}>
+        <div className={styles.copy + ' ' + styles.promoTitle}>
           <If condition={image && image !== ''}>
              <h4>{title}</h4>
           </If>
-          <p>{description}</p>
         </div>
         </Link>
       </div>

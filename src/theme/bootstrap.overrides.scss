@@ -736,6 +736,9 @@ input[type="checkbox"],
 // Column styles =================================================================
 .body-copy, .column-small, .column-medium, .column-large, .side-panel, .body-panel{
    padding-top: 24px;
+   @media only screen and (min-width: $screen-sm-min) {
+      padding-top: 30px;
+   }
 }
 
 .body-copy,.body-panel,.side-panel {
@@ -753,7 +756,6 @@ input[type="checkbox"],
 }
 
 .body-copy {
-
   @include make-xs-column(12);
   @include make-xs-column-offset(0);
   @include make-md-column(8);
@@ -763,7 +765,6 @@ input[type="checkbox"],
 }
 
 .side-panel {
-
   @include make-xs-column(12);
   @include make-md-column(4);
   @include make-lg-column(3);
@@ -771,7 +772,6 @@ input[type="checkbox"],
 }
 
 .body-panel {
-
   @include make-xs-column(12);
   @include make-md-column(8);
   @include make-lg-column(7);
@@ -901,6 +901,30 @@ input[type="checkbox"],
          url('fonts/brandon_med-webfont.woff') format('woff'),
          url('fonts/brandon_med-webfont.ttf') format('truetype'),
          url('fonts/brandon_med-webfont.svg#brandon-med') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'sansita-bold';
+    src: url('fonts/sansita-bold-webfont.eot');
+    src: url('fonts/sansita-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/sansita-bold-webfont.woff2') format('woff2'),
+         url('fonts/sansita-bold-webfont.woff') format('woff'),
+         url('fonts/sansita-bold-webfont.ttf') format('truetype'),
+         url('fonts/sansita-bold-webfont.svg#brandon-blk') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'sansita-extra-bold';
+    src: url('fonts/sansita-extrabold-webfont.eot');
+    src: url('fonts/sansita-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/sansita-extrabold-webfont.woff2') format('woff2'),
+         url('fonts/sansita-extrabold-webfont.woff') format('woff'),
+         url('fonts/sansita-extrabold-webfont.ttf') format('truetype'),
+         url('fonts/sansita-extrabold-webfont.svg#brandon-blk') format('svg');
     font-weight: normal;
     font-style: normal;
 }

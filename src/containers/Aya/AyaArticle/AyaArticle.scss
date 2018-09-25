@@ -2,11 +2,15 @@
 
 .breadcrumbwrapper {
     li a,
-    li span {
-        font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
+    li {
+        font-family: "sansita-bold", Helvetica, Arial, sans-serif;
         text-transform: uppercase;
-        font-size: 12px;
+        font-size: initial;
         font-weight: 500;
-        color: #666;
     }
+    li a {
+      color: $aya-green;
+    }
+    box-shadow: none;
 }
+

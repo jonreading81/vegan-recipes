@@ -22,6 +22,7 @@ export default class Article {
     this.imageHelper = new ImageHelper(this.getImage());
     this.content = get(data, 'content.rendered');
     this.title = get(data, 'title.rendered');
+    this.displayHeroPanel = get(data, 'acf.display_hero_panel');
     this.slug = get(data, 'slug');
     this.description = stripHTML(get(data, 'acf.intro'));
     this.image = get(data, 'acf.hero_image');
@@ -46,9 +47,12 @@ export default class Article {
     return this.imageHelper.getImageURL(size);
   }
 
-
   getTitle() {
     return this.title;
+  }
+
+  isDisplayHeroPanel() {
+    return this.displayHeroPanel;
   }
 
   getSlug() {

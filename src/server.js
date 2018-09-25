@@ -77,7 +77,7 @@ app.use((req, res) => {
   }
   const client = new ApiClient(req);
   const memoryHistory = createHistory(req.originalUrl);
-  const store = createStore(memoryHistory, client);
+  const store = createStore(memoryHistory, client, {}, {url: req.originalUrl} );
   const history = syncHistoryWithStore(memoryHistory, store);
 
   function hydrateOnClient() {
