@@ -133,5 +133,4 @@ router.post('/mailchimp', function(req, res){
    handleAction(mailchimp.post(req), res);
 });
 
-
 export default router;

@@ -4,6 +4,7 @@ import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 import {reducer as form} from 'redux-form';
 import api from './api';
 import auth from './auth';
+import mailchimp from './mailchimp';
 import survey from './survey';
 import {reducer as imageList} from './images/list';
 import {reducer as deleteImage} from './images/delete';
@@ -70,5 +71,6 @@ export default (data) => combineReducers({
   viewLink,
   updateLink,
   deleteLink,
+  mailchimp,
   config: configReducerCreater(data)
 });

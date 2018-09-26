@@ -4,19 +4,16 @@ import config from '../../ayaConfig';
 import { IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import {Nav, Navbar, NavItem} from 'react-bootstrap';
-import {AyaSocialLinks} from 'components';
-import mapPageToProps from 'redux/mapStateToProps/page';
+import {AyaSocialLinks, MailchimpSubscription} from 'components';
 
 
-@connect(
-  (state) => {
-    return {
-      URL: state.routing.locationBeforeTransitions.pathname
-    };
-  }
-)
+const mapStateToProps = ({ routing }) => {
+  return {
+    URL: routing.locationBeforeTransitions.pathname
+  };
+};
 
-@connect(mapPageToProps)
+@connect(mapStateToProps)
 export default class NavBar extends Component {
 
 
@@ -46,6 +43,7 @@ export default class NavBar extends Component {
     const {URL} = this.props;
     return (
    <Navbar fixedTop className={`aya-navbar-default ${styles.navbar} navbar-custom`} fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
+    <MailchimpSubscription title="Newsletter" listId="bec0c373cc" />
       <Navbar.Header className={`${styles.navbarHeader}`}>
         <Navbar.Toggle className={`${styles.navbarToggle}`}/>
         <AyaSocialLinks/>

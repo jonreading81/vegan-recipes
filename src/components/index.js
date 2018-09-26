@@ -62,3 +62,4 @@ export SortableList from './SortableList/SortableList';
 export PrefixValueInput from './Form/prefixValue';
 export AyaNavBar from './AyaNavBar/NavBar';
 export AyaFooter from './Footer/AyaFooter';
+export MailchimpSubscription from './MailchimpSubscription/MailchimpSubscription';
