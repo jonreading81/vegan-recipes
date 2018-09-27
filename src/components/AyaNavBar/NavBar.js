@@ -43,7 +43,7 @@ export default class NavBar extends Component {
     const {URL} = this.props;
     return (
    <Navbar fixedTop className={`aya-navbar-default ${styles.navbar} navbar-custom`} fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
-    <MailchimpSubscription title="Newsletter" listId="bec0c373cc" />
+    <MailchimpSubscription title="Subscribe to our Newsletter" listId="bec0c373cc" />
       <Navbar.Header className={`${styles.navbarHeader}`}>
         <Navbar.Toggle className={`${styles.navbarToggle}`}/>
         <AyaSocialLinks/>

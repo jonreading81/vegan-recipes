@@ -3,13 +3,13 @@ const SUBSCRIBE_USER = '/mailchimp/SUBSCRIBE_USER';
 const SUBSCRIBE_USER_SUCCESS = '/mailchimp/SUBSCRIBE_USER_SUCCESS';
 const SUBSCRIBE_USER_FAIL = '/mailchimp/SUBSCRIBE_USER_FAIL';
 const SUBSCRIBE_USER_HIDE = '/mailchimp/SUBSCRIBE_USER_HIDE';
-
+const SUBSCRIBE_USER_SHOW = '/mailchimp/SUBSCRIBE_USER_SHOW';
 const initialState = {
   loading: false,
   subscribed: false,
-  display: true,
-
+  displayed: false
 };
+
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case SUBSCRIBE_USER:
@@ -34,13 +34,17 @@ export default function reducer(state = initialState, action = {}) {
     case SUBSCRIBE_USER_HIDE:
       return {
         ...state,
-        display: false
+        displayed: false
+      };
+    case SUBSCRIBE_USER_SHOW:
+      return {
+        ...state,
+        displayed: true
       };
     default:
       return state;
   }
 }
-/* eslint-disable */
 
 export function subscribeUserFail(message) {
   return {
@@ -55,33 +59,31 @@ export function subscribeUserSuccess() {
   };
 }
 
-export function subscribeUserHide() {
+export function hideSubscribeUser() {
   return {
     type: SUBSCRIBE_USER_HIDE
   };
 }
 
+export function showSubscribeUser() {
+  return {
+    type: SUBSCRIBE_USER_SHOW
+  };
+}
 
 export function subscribeUser({listId, email, name}) {
   return (dispatch, state, client) => {
-
-    client.post(
-      '/mailchimp',
-      {
-        data: {
-          listId,
-          email,
-          name
-        }
-      }
-    ).then(() => {
-      dispatch(subscribeUserSuccess());
-      setTimeout(5000, () => dispatch(subscribeUserHide()));
-    })
+    const data = {
+      listId,
+      email,
+      name
+    };
+    client.post( '/mailchimp', { data })
+    .then(() => dispatch(subscribeUserSuccess()))
     .catch(({response}) => {
       const message = JSON.parse(get(response, 'text'));
       const detail = get(message, 'detail') || 'API Error Could not add email address';
       dispatch(subscribeUserFail(detail));
-    })
+    });
   };
 }

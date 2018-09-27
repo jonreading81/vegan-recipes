@@ -1,17 +1,23 @@
+/* eslint-disable */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { showSubscribeUser } from 'redux/modules/mailchimp';
 
-export default class AyaSocialLinks extends Component {
+const actions = { showSubscribeUser };
 
+class AyaSocialLinks extends Component {
 
-  static propTypes = {
-  }
   render() {
     const styles = require('./AyaSocialLinks.scss');
     return (
     <div>
      <section className={styles.socialLinks}>
-        <div className="">
-            <ul className={'list-inline text-center'}>
+        <span
+          onClick={this.props.showSubscribeUser}
+          className={styles.subscribe}
+        >Subscribe</span>
+        <div className={styles.listWrapper}>
+            <ul className={`${styles.list} list-inline text-center`}>
                 <li>
                     <a className={styles.socialLink + ' socialLink'} href="https://twitter.com/ayaplantbased">
                         <span className="fa-stack fa-lg">
@@ -51,3 +57,5 @@ export default class AyaSocialLinks extends Component {
     );
   }
 }
+
+export default connect(null, actions)(AyaSocialLinks);

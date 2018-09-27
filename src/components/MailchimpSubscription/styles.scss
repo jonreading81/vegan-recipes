@@ -1,0 +1,28 @@
+@import "src/theme/variables";
+
+.wrapper, .wrapperHidden {
+  position:relative;
+  margin: 0 2em 2em 2em;
+}
+
+.wrapperHidden {
+  display:none;
+}
+
+.button {
+  /*
+  background-color: $aya-red;
+  &:hover {
+    background-color: darken($aya-red, 10%);
+  }
+  */
+  margin-top: 1.5em;
+}
+
+
+.close {
+  position: absolute;
+  right:0;
+  font-size:3em;
+  cursor: pointer;
+}

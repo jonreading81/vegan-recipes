@@ -10,9 +10,27 @@
 a.socialLink,
 a.socialLink span{
   color: $aya-green;
-  font-size: 1.25em;
+  font-size: 1.1em;
 }
 a.socialLink:hover,
 a.socialLink:hover span {
   color: $aya-red;
+}
+
+.list {
+  clear: both;
+}
+
+.listWrapper, .subscribe {
+  float:left;
+}
+
+.subscribe {
+  position: relative;
+  font-family: "sansita-bold", Helvetica, Arial, sans-serif !important;
+  text-transform: capitalize;
+  font-size: 1.4em;
+  margin-top: 0.1em;
+  margin-right: 12px;
+  cursor: pointer;
 }

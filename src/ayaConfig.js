@@ -1,6 +1,6 @@
 require('babel-polyfill');
 
-const description = 'Aya is an organic plantbutter used for spreading, cooking and baking';
+const description = 'Aya new-generation plantbutters';
 const environment = {
   development: {
     isProduction: false
