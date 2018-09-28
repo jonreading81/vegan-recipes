@@ -13,7 +13,7 @@ const environment = {
 module.exports = Object.assign({
   host: process.env.HOST || 'localhost',
   port: process.env.PORT,
-  googleAnlaytics: 'UA-82807918-1',
+  googleAnlaytics: 'UA-126643239-1',
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   mongoDBURL: process.env.mongoURL || 'mongodb://localhost/test',
