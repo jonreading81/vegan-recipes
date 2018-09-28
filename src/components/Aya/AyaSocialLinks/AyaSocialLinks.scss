@@ -15,6 +15,7 @@ a.socialLink span{
 a.socialLink:hover,
 a.socialLink:hover span {
   color: $aya-red;
+  transition: all 0.4s;
 }
 
 .list {
@@ -27,10 +28,17 @@ a.socialLink:hover span {
 
 .subscribe {
   position: relative;
-  font-family: "sansita-bold", Helvetica, Arial, sans-serif !important;
-  text-transform: capitalize;
-  font-size: 1.4em;
+  font-family: "Georgia", Helvetica, Arial, sans-serif !important;
+  text-transform: uppercase;
+  font-size: 1em;
   margin-top: 0.1em;
-  margin-right: 12px;
+  margin-right: 5px;
   cursor: pointer;
+  background-color: $aya-green;
+  color: #fff;
+  box-shadow: none;
+  &:hover {
+    color: #fff;
+    background-color: $aya-red;
+  }
 }

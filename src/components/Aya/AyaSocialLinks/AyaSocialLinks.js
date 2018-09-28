@@ -1,23 +1,32 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { showSubscribeUser } from 'redux/modules/mailchimp';
+import { showSubscribeUser as showSubscribeUserAction } from 'redux/modules/mailchimp';
 
-const actions = { showSubscribeUser };
+const mapStateToProps = ({mailchimp = {}}) => {
+  return {
+    displayed: mailchimp.displayed
+  };
+};
+
+const actions = { showSubscribeUserAction };
 
 class AyaSocialLinks extends Component {
 
   render() {
     const styles = require('./AyaSocialLinks.scss');
+    const {showSubscribeUserAction, displayed} = this.props;
     return (
     <div>
      <section className={styles.socialLinks}>
-        <span
-          onClick={this.props.showSubscribeUser}
-          className={styles.subscribe}
-        >Subscribe</span>
         <div className={styles.listWrapper}>
             <ul className={`${styles.list} list-inline text-center`}>
+                <li>
+                  <span
+                  onClick={showSubscribeUserAction}
+                  className={` ${styles.subscribe} btn ${displayed ? 'hidden' : ''}`}
+                  >Join our newsletter</span>
+                </li>
                 <li>
                     <a className={styles.socialLink + ' socialLink'} href="https://twitter.com/ayaplantbased">
                         <span className="fa-stack fa-lg">
@@ -58,4 +67,4 @@ class AyaSocialLinks extends Component {
   }
 }
 
-export default connect(null, actions)(AyaSocialLinks);
+export default connect(mapStateToProps, actions)(AyaSocialLinks);

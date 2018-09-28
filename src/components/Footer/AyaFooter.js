@@ -26,7 +26,7 @@ export default class Footer extends Component {
                 </ul>
                 </section>
             </div> */}
-            <div className="row">
+            <div>
                     <p className={styles.copyright + ' text-muted'}>Copyright © Aya Foods Ltd {currentYear}</p>
             </div>
         </div>
