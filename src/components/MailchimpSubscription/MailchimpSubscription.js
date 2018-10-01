@@ -26,6 +26,36 @@ const actionCreators = {
 
 class MailChimpSubscription extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      shouldAnimate: false
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps');
+    const shouldAnimate = this.props.displayed !== nextProps.displayed;
+    console.log('state', this.state);
+    if (this.state.shouldAnimate !== shouldAnimate) {
+      this.setState({shouldAnimate});
+    }
+  }
+
+  componentDidUpdate() {
+    const {displayed} = this.props;
+    const {shouldAnimate} = this.state;
+    const {wrapper} = this.refs;
+    const height = wrapper.clientHeight;
+    console.log('shouldAnimate', shouldAnimate);
+    if (displayed && shouldAnimate) {
+      wrapper.style.height = 0;
+      setTimeout(() => wrapper.style.height = `${height}px`, 0);
+    }else {
+      wrapper.style.height = null;
+    }
+  }
+
   render() {
     const {
       fields: {name, email},
@@ -41,7 +71,7 @@ class MailChimpSubscription extends Component {
 
     const styles = require('./styles.scss');
     return (
-      <div className={displayed ? styles.wrapper : styles.wrapperHidden}>
+      <div ref="wrapper" className={displayed ? styles.wrapper : styles.wrapperHidden}>
         <i onClick={hideSubscribeUserAction}
           className={`fa fa-window-close ${styles.close}`}
           aria-hidden="true">
