@@ -8,10 +8,10 @@ export default class ReduxFormHelpBlock extends Component {
     field: PropTypes.object.isRequired
   };
   render() {
-    const {field} = this.props;
+    const {field, helpBlockClassName} = this.props;
     return (
       <div>
-       {field.touched && field.error && <HelpBlock>{field.error}</HelpBlock>}
+       {field.touched && field.error && <HelpBlock className={helpBlockClassName}>{field.error}</HelpBlock>}
       </div>
     );
   }

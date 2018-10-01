@@ -1,28 +1,55 @@
 @import "src/theme/variables";
 
 .wrapper, .wrapperHidden {
+  margin: 0 1em 1em 1em;
+  @media only screen and (max-width: $screen-sm-min) {
+    background-color: #f0f0f0;
+  }
   position:relative;
-  margin: 0 2em 2em 2em;
+  transition: height 0.7s;
+  height:auto;
+  overflow:hidden;
 }
 
 .wrapperHidden {
-  display:none;
+  height: 0;
 }
 
 .button {
-  /*
-  background-color: $aya-red;
-  &:hover {
-    background-color: darken($aya-red, 10%);
+  background-color: $aya-green;
+  box-shadow: none;
+  margin-top: 1em;
+  @media only screen and (min-width: $screen-sm-min) {
+    margin-top: 0;
+    margin-left: 20px;
+    margin-right: 20px;
   }
-  */
-  margin-top: 1.5em;
+  &:hover {
+    background-color: $aya-red;
+    transition: all 0.4s;
+  }
 }
-
 
 .close {
   position: absolute;
-  right:0;
-  font-size:3em;
+  top: 0;
+  right: 0;
+  font-size: 2.5em;
   cursor: pointer;
+  color: $aya-red;
+  background-color: white;
+  @media only screen and (min-width: $screen-sm-min) {
+    font-size: 3em;
+  }
+}
+
+.newsletterForm {
+  padding: 30px;
+  text-align: center;
+  @media only screen and (min-width: $screen-sm-min) {
+    margin-right: 40px;
+    padding: 0;
+    padding-top: 0;
+    text-align: right;
+  }
 }

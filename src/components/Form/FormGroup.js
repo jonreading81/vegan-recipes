@@ -24,12 +24,14 @@ export default class ReduxFormFormGroup extends Component {
   }
 
   render() {
-    const {field, controlId, children, className} = this.props;
+    const {field, controlId, children, className, inline} = this.props;
+    const styles = require('./FormGroup.scss');
+    const helpBlockClassName = inline ? styles.inlineHelpBlock : '';
     return (
-        <FormGroup bsClass={className} controlId={controlId} validationState={this.getValidationState(field)}>
+        <FormGroup bsClass={className} className={styles.formGroup} controlId={controlId} validationState={this.getValidationState(field)}>
           {children}
           <FormControl.Feedback />
-          <HelpBlock field={field}/>
+          <HelpBlock field={field} helpBlockClassName={helpBlockClassName} />
         </FormGroup>
     );
   }

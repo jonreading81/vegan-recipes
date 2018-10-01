@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import { Form } from 'react-bootstrap';
 import FormGroup from 'components/Form/FormGroup';
 import ErrorBlock from 'components/Form/ErrorBlock';
 import {EmailInput, UserInput, LoadingButton} from 'components';
@@ -34,9 +35,7 @@ class MailChimpSubscription extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps');
     const shouldAnimate = this.props.displayed !== nextProps.displayed;
-    console.log('state', this.state);
     if (this.state.shouldAnimate !== shouldAnimate) {
       this.setState({shouldAnimate});
     }
@@ -46,11 +45,11 @@ class MailChimpSubscription extends Component {
     const {displayed} = this.props;
     const {shouldAnimate} = this.state;
     const {wrapper} = this.refs;
-    const height = wrapper.clientHeight;
-    console.log('shouldAnimate', shouldAnimate);
+    const {clientHeight} = wrapper;
+
     if (displayed && shouldAnimate) {
       wrapper.style.height = 0;
-      setTimeout(() => wrapper.style.height = `${height}px`, 0);
+      setTimeout(() => wrapper.style.height = `${clientHeight}px`, 0);
     }else {
       wrapper.style.height = null;
     }
@@ -59,44 +58,44 @@ class MailChimpSubscription extends Component {
   render() {
     const {
       fields: {name, email},
-      title,
       handleSubmit,
       subscribeUserAction,
       hideSubscribeUserAction,
       submitting,
       subscribed,
       displayed,
-      formError
+      formError,
     } = this.props;
 
     const styles = require('./styles.scss');
     return (
       <div ref="wrapper" className={displayed ? styles.wrapper : styles.wrapperHidden}>
-        <i onClick={hideSubscribeUserAction}
-          className={`fa fa-window-close ${styles.close}`}
-          aria-hidden="true">
-        </i>
+        <If condition={!subscribed}>
+          <i onClick={hideSubscribeUserAction}
+            className={`fa fa-window-close ${styles.close}`}
+            aria-hidden="true">
+          </i>
+        </If>
         <If condition={subscribed}>
-          <h2>Thankyou for subscribing!</h2>
+          <h4 className="text-right">Thank you for joining!</h4>
         </If>
         <If condition={!subscribed}>
-          <h2>{title}</h2>
-          <form onSubmit={handleSubmit(subscribeUserAction)}>
-            <FormGroup controlId="name" type="text" field={name}>
+          <Form className={styles.newsletterForm} inline onSubmit={handleSubmit(subscribeUserAction)}>
+            <FormGroup controlId="name" type="text" field={name} inline>
               <UserInput placeholder="Enter name" field={name} />
             </FormGroup>
-            <FormGroup controlId="email" type="text" field={email}>
+            <FormGroup controlId="email" type="text" field={email} inline>
               <EmailInput email={email} />
             </FormGroup>
-            <ErrorBlock error={formError}/>
             <LoadingButton
               className={styles.button}
               type="submit"
               submitting={submitting}
-              bsSize="large"
+              bsSize="medium"
               bsStyle="primary"
-            >Subscribe</LoadingButton>
-          </form>
+            >Join our newsletter</LoadingButton>
+            <ErrorBlock error={formError}/>
+          </Form>
         </If>
       </div>
     );
