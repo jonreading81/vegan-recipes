@@ -1,14 +1,17 @@
 @import "src/theme/variables";
 .socialLinks {
-    position: absolute;
-    right: 15px;
-    @media only screen and (max-width: $screen-sm-min) {
-        left: 15px;
-        right: unset;
+    margin-left: 5px;
+    @media only screen and (min-width: 500px) {
+        position: absolute;
+        right: 15px;
+    }
+    @media only screen and (max-width: $screen-sm-min) and (min-width: 499px) {
+      right: unset;
     }
 }
 a.socialLink,
 a.socialLink span{
+  display: block;
   color: $aya-green;
   font-size: 1.1em;
 }
@@ -37,8 +40,15 @@ a.socialLink:hover span {
   background-color: $aya-green;
   color: #fff;
   box-shadow: none;
+  &:after {
+    content: 'Join';
+    @media only screen and (min-width: 500px) {
+      content: 'Join our newsletter';
+    }
+  }
   &:hover {
     color: #fff;
     background-color: $aya-red;
   }
 }
+

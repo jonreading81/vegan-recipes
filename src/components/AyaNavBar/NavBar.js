@@ -7,9 +7,10 @@ import {Nav, Navbar, NavItem} from 'react-bootstrap';
 import {AyaSocialLinks, MailchimpSubscription} from 'components';
 
 
-const mapStateToProps = ({ routing }) => {
+const mapStateToProps = ({ routing, mailchimp }) => {
   return {
-    URL: routing.locationBeforeTransitions.pathname
+    URL: routing.locationBeforeTransitions.pathname,
+    mailchimpDisplayed: mailchimp.displayed
   };
 };
 
@@ -40,7 +41,8 @@ export default class NavBar extends Component {
 
   render() {
     const styles = require('./NavBar.scss');
-    const {URL} = this.props;
+    const {URL, mailchimpDisplayed} = this.props;
+    const mailchimpDisplayedClassName = mailchimpDisplayed ? styles.mailchimpDisplayed : '';
     return (
    <Navbar fixedTop className={`aya-navbar-default ${styles.navbar} navbar-custom`} fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
     <MailchimpSubscription title="Subscribe to our Newsletter" listId="bec0c373cc" />
@@ -64,7 +66,7 @@ export default class NavBar extends Component {
           </div>
         </Navbar.Brand>
       </Navbar.Header>
-      <Navbar.Collapse autoCollapse eventKey={0} className={`${styles.navbarCollapse}`}>
+      <Navbar.Collapse autoCollapse eventKey={0} className={`${styles.navbarCollapse} ${mailchimpDisplayedClassName}`}>
         <Nav navbar className={`${styles['navbar-nav']}`}>
         	<LinkContainer active={URL === '/aya'} to="/aya">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Home</NavItem>

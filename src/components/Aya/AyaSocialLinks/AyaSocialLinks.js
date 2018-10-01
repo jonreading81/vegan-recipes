@@ -25,7 +25,7 @@ class AyaSocialLinks extends Component {
                   <span
                   onClick={showSubscribeUserAction}
                   className={` ${styles.subscribe} btn ${displayed ? 'hidden' : ''}`}
-                  >Join our newsletter</span>
+                  ></span>
                 </li>
                 <li>
                     <a className={styles.socialLink + ' socialLink'} href="https://twitter.com/ayaplantbased">
