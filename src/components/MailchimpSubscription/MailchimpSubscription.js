@@ -72,7 +72,7 @@ class MailChimpSubscription extends Component {
       <div ref="wrapper" className={displayed ? styles.wrapper : styles.wrapperHidden}>
         <If condition={!subscribed}>
           <i onClick={hideSubscribeUserAction}
-            className={`fa fa-window-close ${styles.close}`}
+            className={`fa fa-close ${styles.close}`}
             aria-hidden="true">
           </i>
         </If>
