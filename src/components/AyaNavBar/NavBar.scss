@@ -37,12 +37,22 @@
   margin-top: 0;
   margin-bottom: 0;
   z-index: 1;
+  @media only screen and (max-width: 500px) {
+    position: relative;
+  }
 }
 .navbarCollapse {
   position: absolute;
   top: 50px;
   background: white;
   width: 100%;
+  @media only screen and (max-width: 340px) {
+    top: 90px;
+  }
+  @media only screen and (min-width: 341px) and (max-width: 500px) {
+    position: absolute;
+    top: 60px;
+  }
   @media only screen and (min-width: $screen-sm-min) {
     text-align:center;
     position: inherit;
@@ -88,6 +98,7 @@
     width: 100%;
     right: 0;
     top: 15px;
+    text-decoration: none;
     &:hover {
         text-decoration: none;
     }
@@ -106,6 +117,9 @@
     z-index: 0;
     margin-top: 50px;
     overflow: hidden;
+    @media only screen and (max-width: 500px) {
+      margin-top: 0;
+    }
     .image-wrapper-overlay{
       position: absolute;
       width: 100%;
@@ -122,7 +136,7 @@
   .aya-navbar-default .navbar-nav > li > a {
     color: $aya-blue;
     font-family: "sansita-bold", Helvetica, Arial, sans-serif;
-    font-size: 1.7em;
+    font-size: 1.35em;
     &:hover {
         color: $aya-red;
     }
@@ -132,5 +146,11 @@
   .aya-navbar-default .navbar-nav > .active > a:focus {
       color: $aya-red;
       background-color: transparent;
+  }
+}
+.mailchimpDisplayed {
+  top: 275px;
+  @media only screen and (min-width: $screen-sm-min) {
+    top: 50px;
   }
 }

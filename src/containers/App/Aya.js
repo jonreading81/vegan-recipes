@@ -19,10 +19,10 @@ export default class App extends Component {
     const {apiError} = this.props;
     const styles = require('./AyaApp.scss');
     return (
-        <div className={styles.app}>
+        <div className={styles.app + ' appAya'}>
         <Helmet {...config.app.head}/>
         <AyaNavBar />
-        <div className={styles.appContent + ' appAya'}>
+        <div className={styles.appContent}>
          {!apiError ? this.props.children : <Error code="500"><h2>{get(apiError, 'name')}</h2><p>{get(apiError, 'message')}</p></Error > }
         </div>
         <AyaFooter />

@@ -11,6 +11,7 @@ import * as inspiration  from 'actions/inspiration';
 import * as images  from 'actions/image';
 import * as survey  from 'actions/survey';
 import * as wordpress  from 'actions/wordpress';
+import * as mailchimp  from 'actions/mailchimp';
 import stormpath from 'express-stormpath';
 
 
@@ -121,5 +122,15 @@ router.get('/wp-json*', function(req, res){
    handleAction(wordpress.get(req), res);
 });
 
+
+/*
+
+-------------------------- mailchimp  ------------------
+
+*/
+
+router.post('/mailchimp', function(req, res){
+   handleAction(mailchimp.post(req), res);
+});
 
 export default router;

@@ -1,18 +1,54 @@
 @import "src/theme/variables";
 .socialLinks {
-    position: absolute;
-    right: 15px;
-    @media only screen and (max-width: $screen-sm-min) {
-        left: 15px;
-        right: unset;
+    margin-left: 5px;
+    @media only screen and (min-width: 500px) {
+        position: absolute;
+        right: 15px;
+    }
+    @media only screen and (max-width: $screen-sm-min) and (min-width: 499px) {
+      right: unset;
     }
 }
 a.socialLink,
 a.socialLink span{
+  display: block;
   color: $aya-green;
-  font-size: 1.25em;
+  font-size: 1.1em;
 }
 a.socialLink:hover,
 a.socialLink:hover span {
   color: $aya-red;
+  transition: all 0.4s;
 }
+
+.list {
+  clear: both;
+}
+
+.listWrapper, .subscribe {
+  float:left;
+}
+
+.subscribe {
+  position: relative;
+  font-family: "Georgia", Helvetica, Arial, sans-serif !important;
+  text-transform: uppercase;
+  font-size: 1em;
+  margin-top: 0.1em;
+  margin-right: 5px;
+  cursor: pointer;
+  background-color: $aya-green;
+  color: #fff;
+  box-shadow: none;
+  &:after {
+    content: 'Join';
+    @media only screen and (min-width: 500px) {
+      content: 'Join our newsletter';
+    }
+  }
+  &:hover {
+    color: #fff;
+    background-color: $aya-red;
+  }
+}
+

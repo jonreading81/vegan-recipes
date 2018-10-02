@@ -114,19 +114,24 @@
         li {
           list-style: none;
           &::before {
-              content: "  \2022  "; 
+              content: "  \2022  ";
               color: $aya-red;
               font-size: 2em;
               vertical-align: sub;
           }
         }
       }
-      table { 
+      table {
         td {
           font-size: 16px;
           line-height: 2em;
         }
       }
+
+      .glyphicon {
+        font-family: 'Glyphicons Halflings';
+      }
+      
       .hero-panel {
         margin-top: 30px;
         .image-wrapper-holder {

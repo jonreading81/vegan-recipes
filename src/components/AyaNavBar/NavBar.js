@@ -4,19 +4,17 @@ import config from '../../ayaConfig';
 import { IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import {Nav, Navbar, NavItem} from 'react-bootstrap';
-import {AyaSocialLinks} from 'components';
-import mapPageToProps from 'redux/mapStateToProps/page';
+import {AyaSocialLinks, MailchimpSubscription} from 'components';
 
 
-@connect(
-  (state) => {
-    return {
-      URL: state.routing.locationBeforeTransitions.pathname
-    };
-  }
-)
+const mapStateToProps = ({ routing, mailchimp }) => {
+  return {
+    URL: routing.locationBeforeTransitions.pathname,
+    mailchimpDisplayed: mailchimp.displayed
+  };
+};
 
-@connect(mapPageToProps)
+@connect(mapStateToProps)
 export default class NavBar extends Component {
 
 
@@ -43,9 +41,11 @@ export default class NavBar extends Component {
 
   render() {
     const styles = require('./NavBar.scss');
-    const {URL} = this.props;
+    const {URL, mailchimpDisplayed} = this.props;
+    const mailchimpDisplayedClassName = mailchimpDisplayed ? styles.mailchimpDisplayed : '';
     return (
    <Navbar fixedTop className={`aya-navbar-default ${styles.navbar} navbar-custom`} fluid onToggle={ this.onNavbarToggle } expanded={ this.state.navExpanded } >
+    <MailchimpSubscription title="Subscribe to our Newsletter" listId="bec0c373cc" />
       <Navbar.Header className={`${styles.navbarHeader}`}>
         <Navbar.Toggle className={`${styles.navbarToggle}`}/>
         <AyaSocialLinks/>
@@ -66,7 +66,7 @@ export default class NavBar extends Component {
           </div>
         </Navbar.Brand>
       </Navbar.Header>
-      <Navbar.Collapse autoCollapse eventKey={0} className={`${styles.navbarCollapse}`}>
+      <Navbar.Collapse autoCollapse eventKey={0} className={`${styles.navbarCollapse} ${mailchimpDisplayedClassName}`}>
         <Nav navbar className={`${styles['navbar-nav']}`}>
         	<LinkContainer active={URL === '/aya'} to="/aya">
               <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Home</NavItem>
