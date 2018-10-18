@@ -1,8 +1,8 @@
 import request from 'superagent';
 const APIKEY = process.env.MAILCHIMP_APITOKEN;
 
-export function post (req) {
-    const {email, name, listId} = req.body;
+export function post (req) {   
+const {email, name, listId} = req.body;
     const LIST_URL = `https://us19.api.mailchimp.com/3.0/lists/${listId}/members`;
     const user = {
     	"email_address": email,
