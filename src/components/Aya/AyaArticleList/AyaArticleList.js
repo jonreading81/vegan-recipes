@@ -63,6 +63,9 @@ export default class AyaArticleListComponent extends Component {
         <div className="container ">
           <div className="column-large">
           <h1 className="visible-xs-block">{pageTitle}</h1>
+          <If condition={promoUnitType === 'ayaProduct'}>
+          <h3>Select a product to see more information</h3>
+          </If>
             <If condition={ articles.length === 8 }>
               <SearchWell searching={searching} onSubmit={searchArticles} />
             </If>

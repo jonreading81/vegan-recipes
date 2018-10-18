@@ -64,7 +64,7 @@ export default class ArticleList extends Component {
             </div>
           </If>
          <div className="container ">
-          <div className="column-large">
+          <div className="body-panel">
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>
             </If >

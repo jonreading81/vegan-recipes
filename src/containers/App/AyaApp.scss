@@ -16,6 +16,9 @@
           padding-right: 0;
         }
       }
+      img.size-three-quarters {
+        width: 75%;
+      }
       p,
       li,
       dt {
@@ -40,6 +43,11 @@
           font-size: 2.5em;
           @media only screen and (min-width: $screen-sm-min) {
             padding-bottom: 20px;
+          }
+      }
+      h3 {
+          @media only screen and (max-width: $screen-sm-min) {
+            font-size: 2.2em;
           }
       }
       p.blue {
@@ -144,8 +152,13 @@
           color: $aya-blue;
         }
         .site-heading h1 {
-          font-size: 30px;
+          font-size: 3.5em;
           line-height: 1em;
+        }
+        .subheading p {
+          @media only screen and (min-width: $screen-sm-min) {
+            font-size: 1em;
+          }
         }
       }
       .row {
