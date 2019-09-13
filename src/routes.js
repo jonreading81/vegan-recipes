@@ -38,6 +38,7 @@ import {
     DeleteLink,
     LinkList,
     JonProfile,
+    AmyProfile,
     AyaArticles,
     AyaArticle,
     ButtaNameSurvey
@@ -110,6 +111,7 @@ export default (store) => {
           <Route path="yoga">
             <Route path="jon-reading(/:page)" component={JonProfile} />
           </Route>
+          <Route path="/therapy(/:page)" component={AmyProfile} />
           <Route path="article">
              <IndexRoute component={ArticleList}/>
             <Route path="search/:term(/:page)" component={ArticleList} />

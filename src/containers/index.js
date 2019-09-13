@@ -38,3 +38,4 @@ export LinkList from './Links/LinkList/LinkList';
 export AyaArticles from './Aya/AyaArticleList/AyaArticles';
 export AyaProducts from './Aya/AyaProductList/AyaProducts';
 export JonProfile from './Profile/JonReading';
+export AmyProfile from './Profile/Amy';
