@@ -61,6 +61,10 @@ export default class NavBar extends Component {
             <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={1}>Yoga</NavItem>
           </LinkContainer>
 
+            <LinkContainer to="/amy-cares">
+            <NavItem autoCollapse onClick={ this.onNavItemClick } eventKey={2}>Therapy</NavItem>
+          </LinkContainer>
+
            <NavDropdown eventKey={2} title="Recipes" id="recipes-dropdown">
             <LinkContainer to="/recipe/list/all">
               <MenuItem onClick={ this.onNavItemClick } eventKey={2.1}>List</MenuItem>
