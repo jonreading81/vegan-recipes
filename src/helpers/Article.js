@@ -20,7 +20,7 @@ export default class Article {
 
   constructor(data, { baseURL } = {} ) {
     this.imageHelper = new ImageHelper(this.getImage());
-    this.content = get(data, 'content.rendered');
+    this.content = get(data, 'content.rendered').replace(/\n/gi, '');
     this.title = get(data, 'title.rendered');
     this.displayHeroPanel = get(data, 'acf.display_hero_panel');
     this.slug = get(data, 'slug');

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {Profile} from 'components';
+import {TwoColGrid} from 'components';
 import articleList from 'hoc/ArticleList';
 
-class JonProfile extends Component {
+class AmyProfile extends Component {
 
   render() {
     return (
-      <Profile
+      <TwoColGrid
           meta={[
             {name: 'description', content: 'Amys Profile'},
             {name: 'keywords', content: 'therapy, meditation'}
@@ -18,7 +18,7 @@ class JonProfile extends Component {
   }
 }
 
-export default articleList(JonProfile,
+export default articleList(AmyProfile,
   {
     searchURL: '/therapy/list/',
     articleURL: '/article/',

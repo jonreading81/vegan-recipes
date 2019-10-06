@@ -58,6 +58,7 @@ export AyaSocialLinks from './Aya/AyaSocialLinks/AyaSocialLinks';
 export LinkForm from './LinkForm/LinkForm';
 export Link from './Link/Link';
 export Profile from './Profile/Profile';
+export TwoColGrid from './TwoColGrid/TwoColGrid';
 export SortableList from './SortableList/SortableList';
 export PrefixValueInput from './Form/prefixValue';
 export AyaNavBar from './AyaNavBar/NavBar';
