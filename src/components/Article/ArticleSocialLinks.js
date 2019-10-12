@@ -7,7 +7,8 @@ export default class ArticleSocialLinks extends Component {
   }
 
   render() {
-    const {url} = this.props;
+    const {article} = this.props;
+    const url = window.location.origin + article.listItem.shareURL;
     const styles = require('./ArticleSocialLinks.scss');
     const twitterUrl = 'https://twitter.com/share?URL=' + url;
     const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
