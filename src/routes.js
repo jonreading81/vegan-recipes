@@ -111,7 +111,9 @@ export default (store) => {
           <Route path="yoga">
             <Route path="jon-reading(/:page)" component={JonProfile} />
           </Route>
-          <Route path="/therapy(/:page)" component={AmyProfile} />
+          <Route path="therapy">
+            <Route path="amy-varga(/:page)" component={AmyProfile} />
+          </Route>
           <Route path="article">
              <IndexRoute component={ArticleList}/>
             <Route path="search/:term(/:page)" component={ArticleList} />
