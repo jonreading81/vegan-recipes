@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import config from '../../config.js';
 
 export default class ArticleSocialLinks extends Component {
 
@@ -8,10 +9,10 @@ export default class ArticleSocialLinks extends Component {
 
   render() {
     const {article} = this.props;
-    const url = window.location.origin + article.listItem.shareURL;
+    const url = article.listItem.shareURL;
     const styles = require('./ArticleSocialLinks.scss');
-    const twitterUrl = 'https://twitter.com/share?URL=' + url;
-    const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+    const twitterUrl = 'https://twitter.com/share?URL=http://' + config.host + url;
+    const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=http://' + config.host + url;
     return (
 
     <div>
