@@ -12,6 +12,7 @@ const environment = {
 
 module.exports = Object.assign({
   host: process.env.HOST || 'localhost',
+  domain: 'ayaplantbased.com',
   port: process.env.PORT,
   googleAnlaytics: 'UA-126643239-1',
   apiHost: process.env.APIHOST || 'localhost',

@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import {HeroPanel, Loading, ArticleSocialLinks} from 'components';
 import HtmlToReact from 'html-to-react';
 const htmlToReactParser = new HtmlToReact.Parser(React);
+import config from "../../config.js"
 
 
 export default class Article extends Component {
@@ -14,15 +15,18 @@ export default class Article extends Component {
     isFetching: PropTypes.bool,
     hasBreadcrumb: PropTypes.bool,
     heroStyles: PropTypes.string,
-    bodyTheme: PropTypes.string
+    bodyTheme: PropTypes.string,
+    domain: PropTypes.string
   }
 
   static defaultProps = {
-    bodyTheme: 'body-copy'
+    bodyTheme: 'body-copy',
+    domain: config.domain
   }
 
   render() {
-    const {article, isFetching, heroStyles, children, hasBreadcrumb, heroPanelTheme, bodyTheme, url} = this.props;
+    const {article, isFetching, heroStyles, children, hasBreadcrumb, heroPanelTheme, bodyTheme, domain} = this.props;
+    const url = article.listItem.URL;
     const contentComponent = htmlToReactParser.parse('<div>' + article.getContent() + '</div>');
     const subTextComponent = htmlToReactParser.parse('<div>' + article.getSubText() + '</div>');
     return (
@@ -49,7 +53,7 @@ export default class Article extends Component {
               <div className={bodyTheme}>{contentComponent}</div>
               {hasBreadcrumb}
               <If condition={hasBreadcrumb === true}>
-                <ArticleSocialLinks article={article} url={url}/>
+                <ArticleSocialLinks url={url} domain={domain}/>
               </If>
             </div>
           </If>

@@ -7,6 +7,7 @@ import requestPostWithParam from 'redux/asyncConnection/requestPostWithParam';
 import mapPostToProps from 'redux/mapStateToProps/post';
 import { asyncConnect } from 'redux-async-connect';
 import {connect} from 'react-redux';
+import config from '../../../ayaConfig.js';
 
 @connect(mapPostToProps)
 @asyncConnect([requestPostWithParam('article')])
@@ -18,6 +19,7 @@ class ArticleContainer extends Component {
   }
 
   render() {
+    const domain = config.domain;
     const {articleHelper, isFetching, url} = this.props;
     const styles = require('./AyaArticle.scss');
     const breadcrumbPath = this.props.location.pathname.split('/').slice(0, -1).join('/');
@@ -30,6 +32,7 @@ class ArticleContainer extends Component {
           heroStyles={heroStyles}
           hasBreadcrumb
           bodyTheme="column-large"
+          domain={domain}
           >
          <BreadcrumbContainer className={`${styles.breadcrumbwrapper} breadcrumb-wrapper--aya`}>
             <Breadcrumb.Item href={breadcrumbPath}>{breadcrumbTitle}</Breadcrumb.Item>
