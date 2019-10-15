@@ -12,6 +12,7 @@ const environment = {
 
 module.exports = Object.assign({
   host: process.env.HOST || 'localhost',
+  domain: 'calloftheforest.com',
   port: process.env.PORT,
   googleAnlaytics: 'UA-82807918-1',
   apiHost: process.env.APIHOST || 'localhost',

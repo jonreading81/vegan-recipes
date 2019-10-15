@@ -35,8 +35,7 @@ export default class Article {
       URL: this.getURL(baseURL),
       icon: 'newspaper-o',
       thumbnail: this.getImageURL('384x216'),
-      image: this.getImage(),
-      shareURL: this.getURL(baseURL)
+      image: this.getImage()
     };
   }
 

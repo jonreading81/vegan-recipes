@@ -1,18 +1,12 @@
-import React, { PropTypes, Component } from 'react';
-import config from '../../config.js';
+import React, { Component } from 'react';
 
 export default class ArticleSocialLinks extends Component {
 
-  static propTypes = {
-    article: PropTypes.object.isRequired
-  }
-
   render() {
-    const {article} = this.props;
-    const url = article.listItem.shareURL;
+    const {domain, url} = this.props;
     const styles = require('./ArticleSocialLinks.scss');
-    const twitterUrl = 'https://twitter.com/share?URL=http://' + config.host + url;
-    const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=http://' + config.host + url;
+    const twitterUrl = 'https://twitter.com/share?URL=http://' + domain + url;
+    const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=http://' + domain + url;
     return (
 
     <div>
@@ -20,7 +14,7 @@ export default class ArticleSocialLinks extends Component {
         <div className="">
             <ul className={'list-inline text-center'}>
                 <li>
-                    <a className={styles.socialLink + ' socialLink'} href={twitterUrl}>
+                    <a className={styles.socialLink + ' socialLink'} href={twitterUrl} target="blank">
                         <span className="fa-stack fa-lg">
                             <i className="fa fa-circle fa-stack-2x"></i>
                             <i className="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -28,7 +22,7 @@ export default class ArticleSocialLinks extends Component {
                     </a>
                 </li>
                 <li>
-                    <a className={styles.socialLink + ' socialLink'} href={facebookUrl}>
+                    <a className={styles.socialLink + ' socialLink'} href={facebookUrl} target="blank">
                         <span className="fa-stack fa-lg">
                             <i className="fa fa-circle fa-stack-2x"></i>
                             <i className="fa fa-facebook fa-stack-1x fa-inverse"></i>
