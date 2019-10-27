@@ -931,153 +931,103 @@ input[type="checkbox"],
 /* ---------------- grids --------------- */
 .wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-gap: 3em;
-    grid-auto-rows: minmax(100px, auto);
+    grid-template-areas: 
+    "intro thaiimage"
+    "links thaiimage"
+    "why mountain"
+    "introcontd share"
+    "how laitiart"
+    "who hridaya"
+    "who contact"
+    "when rumi"
+    "references mylinks";
     @media only screen and (max-width: $screen-sm-min) {
       grid-template-columns: 1fr;
       grid-gap: 0;
-      grid-auto-rows: minmax(50px, auto);
+      grid-template-areas: 
+      "intro"
+      "thaiimage"
+      "links"
+      "why"
+      "mountain"
+      "introcontd"
+      "share"
+      "how"
+      "laitiart"
+      "who" 
+      "hridaya"
+      "contact"
+      "when"
+      "rumi"
+      "references"
+      "mylinks";
     }
     h3, blockquote {
       margin-top: 0;
       padding-top:0;
       padding-bottom: 0;
     }
-    .blockquote-reference {
+    .blockquote-reference,
+    a.quicklinks {
       color: #965454;
     }
     img {
       width: 100%;
-      @media only screen and (max-width: $screen-sm-min) {
-        width: 75%;
-      }
    }
    > div {
      @media only screen and (max-width: $screen-sm-min) {
        padding: 1em 0;
      }
    }
-   .image-holder {
-      @media only screen and (max-width: $screen-sm-min) {
-        text-align: center;
-        grid-column: 4 / 4;
-      }
-   }
+}
+#intro {
+  grid-area: intro;
+}
+#thaiimage {
+  grid-area: thaiimage;
+}
+#links {
+  grid-area: links;
+}
+#why {
+  grid-area: why;
+}
+#mountain {
+  grid-area: mountain;
+}
+#introcontd {
+  grid-area: introcontd;
+}
+#share {
+  grid-area: share;
+}
+#how {
+  grid-area: how;
+}
+#laitiart {
+  grid-area: laitiart;
+}
+#who {
+  grid-area: who;
+}
+#hridaya {
+  grid-area: hridaya;
+}
+#when {
+  grid-area: when;
+}
+#contact {
+  grid-area: contact;
+}
+#references {
+  grid-area: references;
+}
+#rumi {
+  grid-area: rumi;
+}
+#mylinks {
+  grid-area: mylinks;
 }
 
-.one, .three, .five, .seven,  .eleven, .thirteen, .fifteen, .fourteen {
-    grid-column: 1 / 3;
-    img { 
-      width: 50%;
-    }
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-column: 4 / 4;
-      img { 
-        width: 75%;
-      }
-    }
-}
-.two, .four, .six, .eight, .nine, .ten, .twelve { 
-    grid-column: 3 / 3;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-column: 4 / 4;
-    }
-}
-.six {
-  div:nth-child(2), div:nth-child(3) {
-    margin-top: 3em;
-    @media only screen and (max-width: $screen-sm-min) {
-      margin-top:0;
-    }
-  }
-}
-.one {
-  grid-row: 1;
-}
-.two {
-    grid-row: 1;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 2;
-    }
- }
-.three {
-    grid-row: 2;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 3;
-    }
-}
-.four {
-    grid-row: 2;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 4;
-    }
-}
-.five {
-    grid-row: 3;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 6;
-    }
-}
-.six {
-    grid-row: 3;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 5;
-    }
-}
-.seven {
-    grid-row-start: 4;
-    grid-row-end: 6;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 7;
-    }
-}
-
-.eight {
-    grid-row: 4;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 8;
-    }
-}
-.nine {
-    grid-row: 5;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 9;
-    }
-}
-.ten {
-    grid-row: 6;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 10;
-    }
-}
-.eleven {
-    grid-row: 6;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 11;
-    }
-}
-.twelve {
-    grid-row: 7;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 12;
-    }
-}
-.thirteen {
-    grid-row: 7;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 13;
-    }
-}
-.fourteen {
-    grid-row: 8;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 14;
-    }
-}
-.fifteen {
-    grid-row: 8;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 14;
-    }
-}
