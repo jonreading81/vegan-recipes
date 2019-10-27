@@ -933,9 +933,36 @@ input[type="checkbox"],
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 3em;
+    grid-template-areas: 
+    "intro thaiimage"
+    "links thaiimage"
+    "why mountain"
+    "introcontd share"
+    "how laitiart"
+    "who hridaya"
+    "who contact"
+    "when rumi"
+    "references mylinks";
     @media only screen and (max-width: $screen-sm-min) {
       grid-template-columns: 1fr;
       grid-gap: 0;
+      grid-template-areas: 
+      "intro"
+      "thaiimage"
+      "links"
+      "why"
+      "mountain"
+      "introcontd"
+      "share"
+      "how"
+      "laitiart"
+      "who" 
+      "hridaya"
+      "contact"
+      "when"
+      "rumi"
+      "references"
+      "mylinks";
     }
     h3, blockquote {
       margin-top: 0;
@@ -948,133 +975,59 @@ input[type="checkbox"],
     }
     img {
       width: 100%;
-      @media only screen and (max-width: $screen-sm-min) {
-        width: 75%;
-      }
    }
    > div {
      @media only screen and (max-width: $screen-sm-min) {
        padding: 1em 0;
      }
    }
-   .image-holder {
-      @media only screen and (max-width: $screen-sm-min) {
-        text-align: center;
-      }
-   }
-   div:nth-child(odd) {
-    grid-column: 1;
-    @media only screen and (max-width: $screen-sm-min) {
-      img { 
-        width: 75%;
-      }
-    }
-   }
-   div:nth-child(even) {
-    grid-column: 2;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-column: 1;
-    }
-   }
+}
+#intro {
+  grid-area: intro;
+}
+#thaiimage {
+  grid-area: thaiimage;
+}
+#links {
+  grid-area: links;
+}
+#why {
+  grid-area: why;
+}
+#mountain {
+  grid-area: mountain;
+}
+#introcontd {
+  grid-area: introcontd;
+}
+#share {
+  grid-area: share;
+}
+#how {
+  grid-area: how;
+}
+#laitiart {
+  grid-area: laitiart;
+}
+#who {
+  grid-area: who;
+}
+#hridaya {
+  grid-area: hridaya;
+}
+#when {
+  grid-area: when;
+}
+#contact {
+  grid-area: contact;
+}
+#references {
+  grid-area: references;
+}
+#rumi {
+  grid-area: rumi;
+}
+#mylinks {
+  grid-area: mylinks;
 }
 
-.one {
-  grid-row: 1;
-}
-.two {
-    grid-row: 1 / 4;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 2;
-    }
- }
-.three {
-    grid-row: 2/ 4;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 3;
-    }
-}
-.five {
-    grid-row: 4;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 4;
-    }
-}
-.six {
-    grid-row: 4;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 5;
-    }
-}
-.seven {
-    grid-row: 5 / 6;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 6;
-    }
-}
-
-.eight {
-    grid-row: 5;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 7;
-    }
-}
-.nine {
-    grid-row: 6;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 8;
-    }
-}
-.ten {
-    grid-row: 6;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 9;
-    }
-}
-.eleven {
-    grid-row: 7 / 9;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 10;
-    }
-}
-.twelve {
-    grid-row: 7 / 8;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 11;
-    }
-}
-.thirteen {
-    grid-row: 10;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 12;
-    }
-}
-.fourteen {
-    grid-row: 8;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 13;
-    }
-}
-.fifteen {
-    grid-row: 11;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 14;
-    }
-}
-.sixteen {
-    grid-row: 10;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 15;
-    }
-}
-.seventeen {
-    grid-row: 11;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 16;
-    }
-}
-.eighteen {
-    grid-row: 11;
-    @media only screen and (max-width: $screen-sm-min) {
-      grid-row: 17;
-    }
-}
