@@ -51,6 +51,21 @@ export default function(ComposedComponent, {searchURL, slug, tagId, articleURL})
       getArticles: PropTypes.func.isRequired
     }
 
+    componentDidMount() {
+      document.querySelectorAll("a[href^='#']").forEach(node => {
+        node.addEventListener('click', anchor => {
+          anchor.preventDefault();
+          const hashName = anchor.target.hash.replace('#', '');
+          const targetEle = document.getElementById(hashName);
+          const navbarEle = document.getElementsByClassName('navbar-header')[0];
+          targetEle.scrollIntoView();
+          window.scrollTo({
+            top: targetEle.offsetTop - navbarEle.offsetHeight
+          });
+        });
+      });
+    }
+
     getArticles(page) {
       const term = get(this.props.params, 'term', '');
       this.props.getArticles(term, page);
