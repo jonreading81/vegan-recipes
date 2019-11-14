@@ -24,7 +24,7 @@ export default class Footer extends Component {
                             </a>
                         </li>
                         <li>
-                            <a className={styles.socialLink} href="mailto:amy@calloftheforest.com">
+                            <a className={styles.socialLink} href="mailto:hello.calloftheforest@gmail.com">
                                 <span className="fa-stack fa-lg">
                                     <i className="fa fa-circle fa-stack-2x"></i>
                                     <i className="fa fa-envelope fa-stack-1x fa-inverse"></i>
