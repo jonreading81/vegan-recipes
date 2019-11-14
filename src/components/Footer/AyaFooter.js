@@ -7,7 +7,6 @@ export default class Footer extends Component {
   }
   render() {
     const styles = require('./AyaFooter.scss');
-    const currentYear = new Date().getFullYear();
     return (
     <div>
     <hr />
@@ -27,7 +26,7 @@ export default class Footer extends Component {
                 </section>
             </div> */}
             <div>
-                    <p className={styles.copyright + ' text-muted'}>Copyright © Aya Foods Ltd {currentYear}</p>
+                    <p className={styles.copyright + ' text-muted'}>Copyright © Aya Foods Ltd 2017</p>
             </div>
         </div>
     </footer>

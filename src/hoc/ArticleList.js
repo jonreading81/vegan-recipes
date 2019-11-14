@@ -51,18 +51,31 @@ export default function(ComposedComponent, {searchURL, slug, tagId, articleURL})
       getArticles: PropTypes.func.isRequired
     }
 
+    constructor(props) {
+      super(props);
+      this.onHashClick = this.onHashClick.bind(this);
+    }
+
     componentDidMount() {
       document.querySelectorAll("a[href^='#']").forEach(node => {
-        node.addEventListener('click', anchor => {
-          anchor.preventDefault();
-          const hashName = anchor.target.hash.replace('#', '');
-          const targetEle = document.getElementById(hashName);
-          const navbarEle = document.getElementsByClassName('navbar-header')[0];
-          targetEle.scrollIntoView();
-          window.scrollTo({
-            top: targetEle.offsetTop - navbarEle.offsetHeight
-          });
-        });
+        node.addEventListener('click', this.onHashClick);
+      });
+    }
+
+    componentWillUnmount() {
+      document.querySelectorAll("a[href^='#']").forEach(node => {
+        node.removeEventListener('click', this.onHashClick);
+      });
+    }
+
+    onHashClick(anchorEvent) {
+      anchorEvent.preventDefault();
+      const hashName = anchorEvent.target.hash.replace('#', '');
+      const targetEle = document.getElementById(hashName);
+      const navbarEle = document.getElementsByClassName('navbar-header')[0];
+      targetEle.scrollIntoView();
+      window.scrollTo({
+        top: targetEle.offsetTop - navbarEle.offsetHeight
       });
     }
 
@@ -77,7 +90,6 @@ export default function(ComposedComponent, {searchURL, slug, tagId, articleURL})
 
     render() {
       const {results, page} = this.props;
-
       const articles = get(results, 'docs', []);
       const pages = get(results, 'pages', 0);
       const activePage = parseInt( get(results, 'page', 0), 10);
@@ -85,7 +97,6 @@ export default function(ComposedComponent, {searchURL, slug, tagId, articleURL})
       const subTextComponent = htmlToReactParser.parse('<div>' + page.getSubText() + '</div>');
       const sidePanelComponent = htmlToReactParser.parse('<div>' + page.getSidePanel() + '</div>');
       const contentComponent = htmlToReactParser.parse('<div>' + page.getContent() + '</div>');
-
       const props = {
         ...this.props,
         getArticles: this.getArticles.bind(this),
