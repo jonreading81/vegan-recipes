@@ -4,7 +4,6 @@ import articleListHoc from 'hoc/ArticleList';
 
 class ArticleListContainer extends Component {
   render() {
-    console.log('articelListContainer', this.props);
     return (
       <ArticleList
         {...this.props}

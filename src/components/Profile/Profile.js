@@ -26,7 +26,6 @@ export default class ArticleList extends Component {
   }
 
   render() {
-    console.log('rendeirng profile component');
     const {
       isList,
       heroStyles,
