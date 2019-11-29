@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Profile} from 'components';
-import articleList from 'hoc/ArticleList';
+import articleListHoc from 'hoc/ArticleList';
 
 class JonProfile extends Component {
 
@@ -18,7 +18,7 @@ class JonProfile extends Component {
   }
 }
 
-export default articleList(JonProfile,
+export default articleListHoc(JonProfile,
   {
     searchURL: '/jon-reading/list/',
     articleURL: '/article/',

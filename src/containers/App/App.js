@@ -28,7 +28,8 @@ import config from '../../config';
     user: state.auth.user,
     apiError: state.api.error
   }),
-  {pushState: push})
+  {pushState: push}
+)
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,

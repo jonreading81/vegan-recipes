@@ -8,12 +8,11 @@ import {HeroPanel} from 'components';
 export default class ArticleList extends Component {
 
   static propTypes = {
-    meta: PropTypes.object.isRequired,
+    meta: PropTypes.array.isRequired,
     isList: PropTypes.bool,
     page: PropTypes.object.isRequired,
     articlesTitle: PropTypes.string.isRequired,
     articles: PropTypes.array.isRequired,
-    articleURL: PropTypes.array.isRequired,
     heroStyles: PropTypes.object,
     promoStyles: PropTypes.object,
     pages: PropTypes.number.isRequired,
@@ -27,6 +26,7 @@ export default class ArticleList extends Component {
   }
 
   render() {
+    console.log('rendeirng profile component');
     const {
       isList,
       heroStyles,

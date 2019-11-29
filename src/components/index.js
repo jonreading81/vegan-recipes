@@ -64,3 +64,7 @@ export PrefixValueInput from './Form/prefixValue';
 export AyaNavBar from './AyaNavBar/NavBar';
 export AyaFooter from './Footer/AyaFooter';
 export MailchimpSubscription from './MailchimpSubscription/MailchimpSubscription';
+export YouTubeVideos from './YouTubeVideos/YouTubeVideos';
+export VideoList from './VideoList/VideoList';
+export VideoItem from './VideoList/VideoItem';
+

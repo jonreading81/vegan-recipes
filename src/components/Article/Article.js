@@ -33,14 +33,9 @@ export default class Article extends Component {
       <div>
         <Helmet title={article.getTitle()}
           meta={[
-            {
-              name: 'description', content: article.getDescription()
-            },
-            {
-              name: 'og:url',
-              content: url
-            }
-          ]}/>
+            {name: 'description', content: article.getDescription() },
+            { name: 'og:url', content: url }
+          ]} />
          <If condition={isFetching}>
             <Loading />
           </If>

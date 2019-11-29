@@ -3,23 +3,23 @@ import Helmet from 'react-helmet';
 import {ItemsList, ItemsGrid, Loading} from 'components';
 import {Pagination} from 'react-bootstrap';
 import {HeroPanel} from 'components';
+import YouTubeVideos from '../YouTubeVideos/YouTubeVideos.js';
 
-
-export default class ArticleList extends Component {
+export default class TwoColGrid extends Component {
 
   static propTypes = {
-    meta: PropTypes.object.isRequired,
+    meta: PropTypes.array.isRequired,
     isList: PropTypes.bool,
     page: PropTypes.object.isRequired,
     articlesTitle: PropTypes.string.isRequired,
     articles: PropTypes.array.isRequired,
-    articleURL: PropTypes.array.isRequired,
     heroStyles: PropTypes.object,
     promoStyles: PropTypes.object,
     pages: PropTypes.number.isRequired,
     activePage: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
     getArticles: PropTypes.func.isRequired,
+    youTubeChannelId: PropTypes.string
   }
 
   getArticles(page) {
@@ -40,7 +40,8 @@ export default class ArticleList extends Component {
       promoStyles,
       subTextComponent,
       contentComponent,
-      articleItems
+      articleItems,
+      youTubeChannelId
     } = this.props;
 
     const title = page.getTitle();
@@ -62,6 +63,7 @@ export default class ArticleList extends Component {
             </div>
           </If>
          <div className="container ">
+          <YouTubeVideos channelId={youTubeChannelId}/>
           <div className="body-panel">
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>
