@@ -12,7 +12,6 @@ import * as images from 'actions/image';
 import * as survey from 'actions/survey';
 import * as wordpress from 'actions/wordpress';
 import * as mailchimp from 'actions/mailchimp';
-import * as youtube from 'actions/youtube';
 import stormpath from 'express-stormpath';
 
 

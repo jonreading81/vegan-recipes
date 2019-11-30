@@ -1,5 +1,5 @@
 import React from 'react';
-import youtube from '../../../api/actions/youtube';
+import youtube from '../../utils/youtube';
 import VideoList from '../VideoList/VideoList';
 
 class YouTubeVideos extends React.Component {
