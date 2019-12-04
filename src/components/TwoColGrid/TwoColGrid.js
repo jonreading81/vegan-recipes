@@ -63,7 +63,7 @@ export default class TwoColGrid extends Component {
             </div>
           </If>
          <div className="container ">
-          <YouTubeVideos channelId={youTubeChannelId}/>
+          {youTubeChannelId && (<YouTubeVideos channelId={youTubeChannelId}/>) }
           <div className="body-panel">
             <If condition={ articles.length === 0 }>
               <h4>No Articles</h4>

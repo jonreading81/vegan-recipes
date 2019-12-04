@@ -6,6 +6,7 @@ import api from './api';
 import auth from './auth';
 import mailchimp from './mailchimp';
 import survey from './survey';
+import youtube from './youtube';
 import {reducer as imageList} from './images/list';
 import {reducer as deleteImage} from './images/delete';
 import {reducer as updateImage} from './images/update';
@@ -53,6 +54,7 @@ export default (data) => combineReducers({
   register,
   form,
   survey,
+  youtube,
   imageList,
   updateImage,
   deleteImage,
