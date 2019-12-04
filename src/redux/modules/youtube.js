@@ -1,34 +1,37 @@
 import youtube from '../../utils/youtube';
 
-export const reducer = (state = {}, action = {}) => {
+const initialState = {
+  channel: [],
+  videos: []
+};
+
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'FETCH_CHANNEL':
       return {
         ...state,
-        entity: action.result
+        channel: action.payload
       };
-    case 'FETCH_VIDEO':
+    case 'FETCH_VIDEOS':
       return {
         ...state,
-        entity: action.result
+        videos: action.payload
       };
     default:
       return state;
   }
-};
+}
 
-export const fetchChannel = channelId => async dispatch => {
-  const response = await youtube.get('/search', { params: { channelId} });
+export const fetchChannelVideos = channelId => async dispatch => {
+  const channelInfo = await youtube.get('/search', { params: { channelId } });
   dispatch({
     type: 'FETCH_CHANNEL',
-    payload: response.data
+    payload: channelInfo.data.items
   });
-};
-
-export const fetchVideo = videoId => async dispatch => {
-  const response = await youtube.get('/search', { q: { videoId} });
+  const strVideoIds = (channelInfo.data.items.filter(item => item.id.videoId).map(video => video.id.videoId)).join();
+  const videos = await youtube.get('/videos', { params: { id: strVideoIds }});
   dispatch({
-    type: 'FETCH_VIDEO',
-    payload: response.data
+    type: 'FETCH_VIDEOS',
+    payload: videos.data.items
   });
 };

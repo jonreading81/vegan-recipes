@@ -1,49 +1,30 @@
 import React from 'react';
-import youtube from '../../utils/youtube';
+import { connect } from 'react-redux';
+import { fetchChannelVideos } from '../../redux/modules/youtube';
 import VideoList from '../VideoList/VideoList';
 
 class YouTubeVideos extends React.Component {
-  state = {videos: []};
   componentDidMount() {
-    this.getChannelInfo(this.props.channelId);
+    this.props.fetchChannelVideos(this.props.channelId);
   }
-  getChannelInfo = async () => {
-    const response = await youtube.get('/search', {
-      params: {
-        channelId: this.props.channelId,
-      }
-    });
-    this.createVideosArr(response.data);
-  }
-  getVideo = (videoId) => {
-    return youtube.get('/search', {
-      params: {
-        q: videoId,
-      }
-    });
-  }
-  createVideosArr = async (channelInfo) => {
-    const videos = await Promise.all(
-      channelInfo.items.filter(item => item.id.videoId).map(item => { return this.getVideo(item.id.videoId); })
-    );
-    this.setState({
-      videos: videos.map(video => {return video.data.items[0]; })
-    });
-  }
+
   render() {
-    if (this.state.videos.length === 0) {
-      return (
-        <div>
-          Loading ...
-        </div>
-      );
-    }
     return (
       <div>
-        <VideoList videos={this.state.videos} />
+        <VideoList videos={this.props.videos} />
       </div>
     );
   }
 }
 
-export default YouTubeVideos;
+const mapStateToProps = state => {
+  return {
+    channelItems: state.youtube.channel,
+    videos: state.youtube.videos
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchChannelVideos }
+)(YouTubeVideos);

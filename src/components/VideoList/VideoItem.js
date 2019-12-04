@@ -6,8 +6,8 @@ const createMarkup = (string) => {
 };
 const VideoItem = ({ video }) => {
   return (
-    <div className="promoUnit" key={video.id.videoId}>
-      <a target="_blank" href={`${youTubeURL}${video.id.videoId}`}>
+    <div className="promoUnit" key={video.id}>
+      <a target="_blank" href={`${youTubeURL}${video.id}`}>
         <div className="row">
           <div className="col-xs-12 col-sm-4 col-md-5">
             <img className="image-wrapper"
