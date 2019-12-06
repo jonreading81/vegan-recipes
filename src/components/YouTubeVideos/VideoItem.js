@@ -6,7 +6,7 @@ const createMarkup = (string) => {
 };
 const VideoItem = ({ video }) => {
   return (
-    <div className="promoUnit" key={video.id}>
+    <div className="promoUnit">
       <a target="_blank" href={`${youTubeURL}${video.id}`}>
         <div className="row">
           <div className="col-xs-12 col-sm-4 col-md-5">

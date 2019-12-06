@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchChannelVideos } from '../../redux/modules/youtube';
-import VideoList from '../VideoList/VideoList';
+import { VideoItem } from 'components';
 
 class YouTubeVideos extends React.Component {
   componentDidMount() {
@@ -10,19 +10,27 @@ class YouTubeVideos extends React.Component {
 
   render() {
     return (
-      <div>
-        <VideoList videos={this.props.videos} />
-      </div>
+      <div className="body-panel">
+        <h3>Youtube Videos</h3>
+        {!!this.props.loading && <p>Loading YouTube videos ... </p>}
+        <div className="row">
+          {this.props.videos.map(video => {
+            return <VideoItem key={video.id} video={video} />;
+          })}
+        </div>
+      </div >
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    channelItems: state.youtube.channel,
-    videos: state.youtube.videos
+    channel: state.youtube.channel,
+    videos: state.youtube.videos,
+    loading: state.youtube.loading
   };
 };
+
 
 export default connect(
   mapStateToProps,
