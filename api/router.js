@@ -1,17 +1,17 @@
 import express from 'express';
 import handleAction from 'utils/handleAction.js';
 import {addDefaultCrudRoutes} from 'utils/routerHelper.js';
-const Recipe   = require('models/recipe');
+const Recipe = require('models/recipe');
 const router = express.Router();
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
-import * as recipes  from 'actions/recipe';
-import * as links  from 'actions/links';
-import * as inspiration  from 'actions/inspiration';
-import * as images  from 'actions/image';
-import * as survey  from 'actions/survey';
-import * as wordpress  from 'actions/wordpress';
-import * as mailchimp  from 'actions/mailchimp';
+import * as recipes from 'actions/recipe';
+import * as links from 'actions/links';
+import * as inspiration from 'actions/inspiration';
+import * as images from 'actions/image';
+import * as survey from 'actions/survey';
+import * as wordpress from 'actions/wordpress';
+import * as mailchimp from 'actions/mailchimp';
 import stormpath from 'express-stormpath';
 
 

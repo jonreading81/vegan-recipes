@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {TwoColGrid} from 'components';
-import articleList from 'hoc/ArticleList';
+import articleListHoc from 'hoc/ArticleList';
 
 class AmyProfile extends Component {
 
@@ -12,17 +12,18 @@ class AmyProfile extends Component {
             {name: 'keywords', content: 'therapy, meditation'}
           ]}
           articlesTitle="Amys Articles"
+          youTubeChannelId="UCt10rx8sYa3fJxOQvfxd8SA"
           {...this.props}
       />
     );
   }
 }
 
-export default articleList(AmyProfile,
+export default articleListHoc(AmyProfile,
   {
     searchURL: '/therapy/list/',
-    articleURL: '/article/',
     slug: 'therapy',
-    tagId: 7
+    tagId: 7,
+    articleURL: '/article/'
   }
 );

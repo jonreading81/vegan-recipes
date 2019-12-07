@@ -15,6 +15,7 @@ module.exports = Object.assign({
   domain: 'calloftheforest.com',
   port: process.env.PORT,
   googleAnlaytics: 'UA-82807918-1',
+  googleYouTube: 'AIzaSyBxN17tlX8oBhyE4yvW2fnxVo8Ew3-dPnc',
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   imagesPath: 'https://s3-eu-west-1.amazonaws.com/vegan-recipes-static/images/',

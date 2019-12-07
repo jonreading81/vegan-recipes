@@ -12,7 +12,7 @@ const pretty = new PrettyError();
 const app = express();
 const server = new http.Server(app);
 const io = new SocketIo(server);
-const mongoose   = require('mongoose');
+const mongoose = require('mongoose');
 
 
 let dbConnected = false, dbError;
